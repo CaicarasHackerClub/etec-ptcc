@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30px"
+    tools:context="com.example.matheusy.webview.MainActivity">
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout1"
+        android:id="@+id/wb2"
+        android:layout_y="70dp">
+    </WebView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/layout1"
+        android:layout_height="wrap_content"
+        android:layout_x="70dp"
+        android:layout_y="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20px">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/retornar"
+        android:background="#fff"
+        android:id="@+id/tras"
+        android:layout_x="11dp"
+        android:layout_marginRight="50px"
+        android:layout_y="3dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/atualizar"
+        android:background="#fff"
+        android:layout_marginRight="50px"
+        android:id="@+id/atualizar"
+        android:layout_x="204dp"
+        android:layout_y="6dp" />
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home"
+        android:layout_marginRight="50px"
+        android:id="@+id/home"
+        android:background="#fff"
+        android:layout_x="91dp"
+        android:layout_y="22dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avancar"
+        android:background="#fff"
+        android:id="@+id/frente"
+        android:layout_marginRight="50px"
+        android:layout_x="300dp"
+        android:layout_y="16dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
