@@ -1,0 +1,71 @@
+/*Este documento edita o css do index.php*/
+
+/*
+
+Class Main,FormLogin
+
+*/
+
+.FormLogin{
+  display: flex;
+  flex-flow: wrap;
+  width: 26%;
+  height: 29%;
+  margin-left: 36%;
+  margin-top: 380px;
+  background-color: #9bd3ae;
+}
+
+.FormLogin #inp_login{
+  background-color: #009657;
+  color: #eee;
+  border: 0px;
+}
+
+.FormLogin #inp_senha, #inp_email{
+  text-indent: 7px;
+}
+
+.FormLogin #inp_login:hover{
+  background-color: #01b26a;
+}
+
+.FormLogin input{
+  width: 80%;
+  height: 40px;
+  margin-top: 10px;
+  margin-left: 12%;
+  border: 0px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.Img{
+  left: 50%;
+  margin-top: -330px;
+  margin-left: -110px;
+  position: absolute;
+}
+
+/* Dispositivos abaixo de 460px*/
+@media screen and (max-width: 800px) {
+/*Class FormLogin*/
+.FormLogin{
+  width: 50%;
+  height: 220px;
+  margin-left: 23%;
+  margin-top: 340px;
+}
+
+.FormLogin input{
+  height: 40px;
+}
+}
+/* Dispositivos abaixo de 460px*/
+@media screen and (max-width: 460px) {
+/*Class FormLogin*/
+.FormLogin{
+  width: 80%;
+  height: 220px;
+  margin-left: 8%;
+  margin-top: 340px;
+}
