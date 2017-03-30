@@ -50,6 +50,10 @@ Class Posto
 	
 	//enfermeiro
 	private $enf_registro;
+
+	//plano_de_saude
+	private $pds_convenio_nome;
+	private $pds_numero_sus;
 	
 	
 	//pessoa
@@ -156,9 +160,6 @@ Class Posto
 	function setPac_tipo_sangue($tipo_sangue){
 		$this->pac_tipo_sangue = $tipo_sangue;
 	}
-	function setPac_plano_saude($plano_saude){
-		$this->pac_plano_saude = $plano_saude;
-	}
 	function setPac_remedio($pac_remedio){
 		$this->pac_remedio = $pac_remedio;
 	}
@@ -170,6 +171,13 @@ Class Posto
 	}
 	function setPac_profissao($pac_profissao){
 		$this->pac_profissao = $pac_profissao;
+	}
+	//plano_de_saude
+	function setPds_convenio_nome($pds_convenio_nome){
+		$this->pds_convenio_nome = $pds_convenio_nome;
+	}
+	function setPds_sus($pds_numero_sus){
+		$this->pds_numero_sus = $pds_numero_sus;
 	}
 	//get pessoa 
 	function getPes_nome(){
@@ -264,9 +272,6 @@ Class Posto
 	function getPac_tipo_sangue(){
 		return $this->pac_tipo_sangue;	
 	}
-	function getPac_plano_saude(){
-		return $this->pac_plano_saude;
-	}
 	function getPac_remedio(){
 		return $this->pac_remedio;
 	}
@@ -278,6 +283,13 @@ Class Posto
 	}
 	function getPac_profissao(){
 		return $this->pac_profissao;
+	}
+	//plano_de_saude
+	function getPds_convenio_nome(){
+		return $this->pds_convenio_nome;
+	}
+	function getPds_numero_sus(){
+		return $this->pds_numero_sus;
 	}
 	//enfermeiro
 	function getEnf_registro(){
@@ -297,7 +309,7 @@ Class Posto
 	
 	function selecionar($query){
 		$con = $this->conectar();
-		$res = mysqli_query($con, $query) or die ("Erro Selecionar()" . $query . mysqli_error($con));
+		$res = mysqli_query($con, $query) or die ("Erro selecionar 	r()" . $query . mysqli_error($con));
 		$qtd = mysqli_num_rows($res);
 		if ($qtd == 0)
 			return $qtd;
@@ -315,7 +327,7 @@ Class Posto
 		$server  = "localhost";
 		$usuario = "root";
 		$senha   = "";
-		$banco   = "hospital";
+		$banco   = "hospital1";
 				
 		$con = mysqli_connect($server, $usuario, $senha, $banco) or die ("Erro 7: " . mysqli_connect_error());
 		$dbase = mysqli_select_db($con, $banco) or die ("Erro 8:" . mysqli_error($con));
