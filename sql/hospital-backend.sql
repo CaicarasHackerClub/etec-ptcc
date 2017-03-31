@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 30/03/2017 às 00:35
+-- Tempo de geração: 31/03/2017 às 04:44
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -178,7 +178,7 @@ INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`
 
 CREATE TABLE `pessoa` (
   `pes_id` int(11) NOT NULL,
-  `pes_nomel` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `pes_nome` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `pes_pai` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `pes_mae` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `pes_rg` varchar(15) COLLATE utf8_bin DEFAULT NULL,
@@ -198,7 +198,7 @@ CREATE TABLE `pessoa` (
 -- Fazendo dump de dados para tabela `pessoa`
 --
 
-INSERT INTO `pessoa` (`pes_id`, `pes_nomel`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`, `endereco_end_id`) VALUES
+INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`, `endereco_end_id`) VALUES
 (1, 'Karina Mathos Ramos', 'Joaquim Mathos Ramos', 'Larisa Mathos', '43.434.434-3', '346.346.346-34', '2005-04-21', 1, 'karina@bol.com.br', 'Solteira', 'Ubatubense', 'Feminino', 'Feminino', '(12)971343434', 1),
 (2, 'Marciana Mathos ', 'Jose Mathos ', 'Lana Mathos', '43.434.434-3', '346.346.346-34', '1979-01-11', 2, 'karina@bol.com.br', 'Solteira', 'Ubatubense', 'Feminino', 'Feminino', '(12)982343434', 2),
 (3, 'Karlos  Ramos', 'Kleiton  Ramos', 'Lurdes Ramos', '43.444.334-5', '346.346.346-14', '1980-03-22', 3, 'karlos@bol.com.br', 'Casado', 'Ubatubense', 'Masculino', 'Masculino', '(12)981343444', 3);
@@ -212,15 +212,18 @@ INSERT INTO `pessoa` (`pes_id`, `pes_nomel`, `pes_pai`, `pes_mae`, `pes_rg`, `pe
 CREATE TABLE `plano_de_saude` (
   `pds_id` int(11) NOT NULL,
   `pds_convenio_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL
+  `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `pds_num_convenio` int(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `plano_de_saude`
 --
 
-INSERT INTO `plano_de_saude` (`pds_id`, `pds_convenio_nome`, `pds_numero_sus`) VALUES
-(1, 'Unimed', '0');
+INSERT INTO `plano_de_saude` (`pds_id`, `pds_convenio_nome`, `pds_numero_sus`, `pds_num_convenio`) VALUES
+(1, 'Unimed', '0', 0),
+(2, '0', '898004164447763', 0),
+(3, 'Unimed', '0', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -289,7 +292,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`usu_id`, `usu_nome`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`) VALUES
 (1, 'Marciana Mathos', '123', 'marci_ana@gmail.com', 1, 1),
-(2, 'Karlos Ramos', '123', 'karlramos@gmail.com', 1, 1);
+(2, 'Karlos Ramos', '123', 'karlramos@gmail.com', 1, 1),
+(3, 'Gisele', '123', 'gih@gih', 1, 1);
 
 --
 -- Índices de tabelas apagadas
@@ -446,7 +450,7 @@ ALTER TABLE `triagem`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restrições para dumps de tabelas
 --
