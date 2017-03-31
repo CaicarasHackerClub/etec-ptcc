@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 31/03/2017 às 04:44
+-- Tempo de geração: 01/04/2017 às 01:36
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -262,12 +262,11 @@ CREATE TABLE `triagem` (
   `tri_pressao` varchar(8) COLLATE utf8_bin DEFAULT NULL,
   `tri_peso` float DEFAULT NULL,
   `tri_altura` float DEFAULT NULL,
+  `tri_oxigenacao` int(2) DEFAULT NULL,
   `tri_batimento` int(3) DEFAULT NULL,
-  `tri_traumatismo` int(2) DEFAULT NULL,
-  `tri_oxigenacao` int(3) DEFAULT NULL,
-  `tri_dor` int(2) DEFAULT NULL,
   `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL,
   `tri_respiracao` int(2) DEFAULT NULL,
+  `tri_orgaos_vitais` tinyint(1) DEFAULT NULL,
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
