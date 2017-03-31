@@ -70,7 +70,7 @@ header{
   width: 85%;
   height: 100vh;
 }
-
+/*Div que contém triagem, Recepção e Administração*/
 .conteudoCentro{
   display: flex;
   justify-content: space-around;
@@ -80,16 +80,19 @@ header{
   margin-top: 4%;
 }
 
+/*Formatação e posicionamento dos ícones do centro*/
 .conteudoCentro .avatars{
   display: flex;
   flex-wrap: ;
 }
 
+/*Div que contém o título e o botão para aparecer a lateral*/
 .cabecalho{
   display: flex;
   font-size: 17pt;
 }
 
+/*Formatação do título Hugh & Health*/
 .cabecalho #titulo{
   display: flex;
   flex-direction: row;
@@ -101,35 +104,43 @@ header{
   padding-left: 3%;
 }
 
-.a .avatars{
-  color: red;
+/*Formatação do texto abaixo dos avatars*/
+.conteudoCentro .anchor {
+  text-decoration: none;
+  color: #29784b;
 }
 
 @media (max-width: 1050px){
 
+    /*Div lateral com botões deslogar e usuário*/
     .lateral{
       width: 140px;
       margin-left: 0px;
     }
 
+    /*Formatação dos botões da lateral*/
     .lateral .nav_user{
       width: 100%;
       padding-left: 30%;
     }
 
+    /*Formatação logo na lateral*/
     .lateral .logo{
       width: 70px;
       margin-left: 35px;
     }
+
 
     .lateral #user{
       border-bottom: 1px solid white;
       border-right: none;
     }
 
+    /*Formatação do cabeçalho*/
     .cabecalho #titulo{
       margin-left: 26%;
     }
+
 
     .lateral #hora{
       font-size: 90%;
@@ -141,14 +152,17 @@ header{
 
 @media (max-width: 650px){
 
+  /*Mostrar o botão lateral para tela de mobiles*/
   header{
     display: flex;
   }
 
+  /*Div que pega a tela inteira*/
   .main{
     width: 100%;
   }
 
+  /*Formatação da div lateral*/
   .lateral{
     position: absolute;
     width: 60%;
@@ -158,16 +172,19 @@ header{
     border-right: 0px;
   }
 
+  /*Formatação dos botões da lateral */
   .lateral .nav_user{
     width: 100%;
     text-align: center;
     padding-left: 40%;
   }
 
+  /*Formatação dos avatares*/
   .conteudoCentro .avatars{
     margin: 20px;
   }
 
+  /*Formatação da div que contém o título e o botão da lateral*/
   .cabecalho {
     display: flex;
     flex-direction: row;
@@ -185,10 +202,12 @@ header{
     padding-bottom: 30px;
   }
 
+  /*Div do conteúdo central com os avatares*/
   .conteudoCentro{
     margin-left: 15%;
   }
 
+  /*Formatação do botão da lateral*/
   #btn_slide{
     width: 40px;
     height: 30px;
@@ -199,7 +218,7 @@ header{
 
 
 @media (max-width: 400px){
-  
+
   .cabecalho #titulo{
     margin-left: 13%;
     font-size: 16pt;
