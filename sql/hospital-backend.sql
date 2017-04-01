@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 01/04/2017 às 01:36
+-- Tempo de geração: 01/04/2017 às 04:56
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -34,17 +34,18 @@ CREATE TABLE `endereco` (
   `end_cep` varchar(13) COLLATE utf8_bin NOT NULL,
   `end_bairro` varchar(45) COLLATE utf8_bin NOT NULL,
   `end_rua` varchar(45) COLLATE utf8_bin NOT NULL,
-  `end_numero` int(9) NOT NULL
+  `end_numero` int(9) NOT NULL,
+  `pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `endereco`
 --
 
-INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`) VALUES
-(1, 'Brasil', 'SP', 'Ubatuba', '11680-000', 'Centro', 'Central', 314),
-(2, 'Brasil', 'SP', 'Ubatuba', '11680-000', 'Centro', 'Central', 315),
-(3, 'Brasil', 'SP', 'Ubatuba', '11680-000', 'Centro', 'Bergamota', 316);
+INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`, `pessoa_pes_id`) VALUES
+(1, 'Brasil', 'SP', 'Ubatuba', '11680-000', 'Centro', 'Central', 314, 1),
+(2, 'Brasil', 'SP', 'Ubatuba', '11680-000', 'Centro', 'Central', 245, 2),
+(3, 'Brasil', 'SP', 'Ubatuba', '11680-000', 'Centro', 'Central', 143, 3);
 
 -- --------------------------------------------------------
 
@@ -56,16 +57,15 @@ CREATE TABLE `enfermeiro` (
   `enf_id` int(11) NOT NULL,
   `enf_registro` varchar(45) COLLATE utf8_bin NOT NULL,
   `funcionario_fun_id` int(11) NOT NULL,
-  `funcionario_pessoa_pes_id` int(11) NOT NULL,
-  `funcionario_pessoa_endereco_end_id` int(11) NOT NULL
+  `funcionario_pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `enfermeiro`
 --
 
-INSERT INTO `enfermeiro` (`enf_id`, `enf_registro`, `funcionario_fun_id`, `funcionario_pessoa_pes_id`, `funcionario_pessoa_endereco_end_id`) VALUES
-(1, '874589', 2, 3, 3);
+INSERT INTO `enfermeiro` (`enf_id`, `enf_registro`, `funcionario_fun_id`, `funcionario_pessoa_pes_id`) VALUES
+(1, '874589', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,7 @@ CREATE TABLE `especializacao` (
 --
 
 INSERT INTO `especializacao` (`esp_id`, `esp_nome`) VALUES
-(1, 'Clinico Geral');
+(1, 'Pediatria');
 
 -- --------------------------------------------------------
 
@@ -98,17 +98,16 @@ CREATE TABLE `funcionario` (
   `fun_inscricao` int(9) NOT NULL,
   `fun_turno` varchar(8) COLLATE utf8_bin NOT NULL,
   `usuario_usu_id` int(4) NOT NULL,
-  `pessoa_pes_id` int(11) NOT NULL,
-  `pessoa_endereco_end_id` int(11) NOT NULL
+  `pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `usuario_usu_id`, `pessoa_pes_id`, `pessoa_endereco_end_id`) VALUES
-(1, 'medico', '08:00:00', 1111111, 'noturno', 1, 2, 2),
-(2, 'enfermeiro', '08:00:00', 1111112, 'noturno', 1, 3, 3);
+INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `usuario_usu_id`, `pessoa_pes_id`) VALUES
+(1, 'medico', '08:00:00', 1111111, 'noturno', 1, 3),
+(2, 'enfermeiro', '08:00:00', 1111112, 'noturno', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -134,16 +133,15 @@ CREATE TABLE `medico` (
   `med_crm` varchar(45) COLLATE utf8_bin NOT NULL,
   `especializacao_esp_id` int(4) NOT NULL,
   `funcionario_fun_id` int(11) NOT NULL,
-  `funcionario_pessoa_pes_id` int(11) NOT NULL,
-  `funcionario_pessoa_endereco_end_id` int(11) NOT NULL
+  `funcionario_pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `medico`
 --
 
-INSERT INTO `medico` (`med_id`, `med_crm`, `especializacao_esp_id`, `funcionario_fun_id`, `funcionario_pessoa_pes_id`, `funcionario_pessoa_endereco_end_id`) VALUES
-(1, '12309-SP', 1, 1, 2, 2);
+INSERT INTO `medico` (`med_id`, `med_crm`, `especializacao_esp_id`, `funcionario_fun_id`, `funcionario_pessoa_pes_id`) VALUES
+(1, '12309-SP', 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -159,16 +157,8 @@ CREATE TABLE `paciente` (
   `pac_educacao` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `pac_hospitalizado` tinyint(1) DEFAULT NULL,
   `pessoa_pes_id` int(11) NOT NULL,
-  `pessoa_endereco_end_id` int(11) NOT NULL,
   `plano_saude` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Fazendo dump de dados para tabela `paciente`
---
-
-INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`, `pac_educacao`, `pac_hospitalizado`, `pessoa_pes_id`, `pessoa_endereco_end_id`, `plano_saude`) VALUES
-(1, 'AB', 'nenhum', 'nenhuma', 'cursando o ensino médio ', 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -190,18 +180,17 @@ CREATE TABLE `pessoa` (
   `pes_cidadania` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `pes_genero` varchar(25) COLLATE utf8_bin DEFAULT NULL,
   `pes_sexo_biologico` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `pes_telefone` varchar(15) COLLATE utf8_bin DEFAULT NULL,
-  `endereco_end_id` int(11) NOT NULL
+  `pes_telefone` varchar(15) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `pessoa`
 --
 
-INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`, `endereco_end_id`) VALUES
-(1, 'Karina Mathos Ramos', 'Joaquim Mathos Ramos', 'Larisa Mathos', '43.434.434-3', '346.346.346-34', '2005-04-21', 1, 'karina@bol.com.br', 'Solteira', 'Ubatubense', 'Feminino', 'Feminino', '(12)971343434', 1),
-(2, 'Marciana Mathos ', 'Jose Mathos ', 'Lana Mathos', '43.434.434-3', '346.346.346-34', '1979-01-11', 2, 'karina@bol.com.br', 'Solteira', 'Ubatubense', 'Feminino', 'Feminino', '(12)982343434', 2),
-(3, 'Karlos  Ramos', 'Kleiton  Ramos', 'Lurdes Ramos', '43.444.334-5', '346.346.346-14', '1980-03-22', 3, 'karlos@bol.com.br', 'Casado', 'Ubatubense', 'Masculino', 'Masculino', '(12)981343444', 3);
+INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`) VALUES
+(1, 'Karina Mathos Ramos', 'Joaquim Mathos Ramos', 'Larisa Mathos', '43.434.434-3', '346.346.346-34', '2005-04-21', 1, 'karina@bol.com.br', 'Solteira', 'Ubatubense', 'Feminino', 'Feminino', '(12)982343434'),
+(2, 'Kaio Mathos Ramos', 'Joaquim Mathos Ramos', 'Larisa Mathos', '43.434.434-4', '346.346.346-44', '2000-04-21', 1, 'kaio@bol.com.br', 'Solteiro', 'Ubatubense', 'Masculino', 'Masculino', '(12)982343433'),
+(3, 'Mathias Silva Santos', 'Marcos Silva Santos', 'Joana Nascimento', '43.444.455-4', '366.366.366-34', '1980-04-22', 1, 'mati@bol.com.br', 'Casado', 'Ubatubense', 'Masculino', 'Masculino', '(12)981343434');
 
 -- --------------------------------------------------------
 
@@ -221,9 +210,8 @@ CREATE TABLE `plano_de_saude` (
 --
 
 INSERT INTO `plano_de_saude` (`pds_id`, `pds_convenio_nome`, `pds_numero_sus`, `pds_num_convenio`) VALUES
-(1, 'Unimed', '0', 0),
-(2, '0', '898004164447763', 0),
-(3, 'Unimed', '0', 2147483647);
+(1, '0', '898004164447763', 0),
+(2, 'Unimed', '0', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -262,8 +250,8 @@ CREATE TABLE `triagem` (
   `tri_pressao` varchar(8) COLLATE utf8_bin DEFAULT NULL,
   `tri_peso` float DEFAULT NULL,
   `tri_altura` float DEFAULT NULL,
-  `tri_oxigenacao` int(2) DEFAULT NULL,
   `tri_batimento` int(3) DEFAULT NULL,
+  `tri_oxigenacao` int(3) DEFAULT NULL,
   `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL,
   `tri_respiracao` int(2) DEFAULT NULL,
   `tri_orgaos_vitais` tinyint(1) DEFAULT NULL,
@@ -290,9 +278,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_nome`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`) VALUES
-(1, 'Marciana Mathos', '123', 'marci_ana@gmail.com', 1, 1),
-(2, 'Karlos Ramos', '123', 'karlramos@gmail.com', 1, 1),
-(3, 'Gisele', '123', 'gih@gih', 1, 1);
+(1, 'Gisele', '123', 'gih@gih', 1, 1),
+(2, 'João', '123', 'joao@mail', 1, 1);
 
 --
 -- Índices de tabelas apagadas
@@ -302,14 +289,15 @@ INSERT INTO `usuario` (`usu_id`, `usu_nome`, `usu_senha`, `usu_email`, `usu_ativ
 -- Índices de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  ADD PRIMARY KEY (`end_id`);
+  ADD PRIMARY KEY (`end_id`),
+  ADD KEY `fk_endereco_pessoa1_idx` (`pessoa_pes_id`);
 
 --
 -- Índices de tabela `enfermeiro`
 --
 ALTER TABLE `enfermeiro`
-  ADD PRIMARY KEY (`enf_id`,`funcionario_fun_id`,`funcionario_pessoa_pes_id`,`funcionario_pessoa_endereco_end_id`),
-  ADD KEY `fk_enfermeiro_funcionario1_idx` (`funcionario_fun_id`,`funcionario_pessoa_pes_id`,`funcionario_pessoa_endereco_end_id`);
+  ADD PRIMARY KEY (`enf_id`,`funcionario_fun_id`,`funcionario_pessoa_pes_id`),
+  ADD KEY `fk_enfermeiro_funcionario1_idx` (`funcionario_fun_id`,`funcionario_pessoa_pes_id`);
 
 --
 -- Índices de tabela `especializacao`
@@ -321,9 +309,9 @@ ALTER TABLE `especializacao`
 -- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  ADD PRIMARY KEY (`fun_id`,`pessoa_pes_id`,`pessoa_endereco_end_id`),
+  ADD PRIMARY KEY (`fun_id`,`pessoa_pes_id`),
   ADD KEY `fk_FUNCIONARIOS_USUARIO1_idx` (`usuario_usu_id`),
-  ADD KEY `fk_funcionario_pessoa1_idx` (`pessoa_pes_id`,`pessoa_endereco_end_id`);
+  ADD KEY `fk_funcionario_pessoa1_idx` (`pessoa_pes_id`);
 
 --
 -- Índices de tabela `login_acesso`
@@ -336,24 +324,23 @@ ALTER TABLE `login_acesso`
 -- Índices de tabela `medico`
 --
 ALTER TABLE `medico`
-  ADD PRIMARY KEY (`med_id`,`funcionario_fun_id`,`funcionario_pessoa_pes_id`,`funcionario_pessoa_endereco_end_id`),
+  ADD PRIMARY KEY (`med_id`,`funcionario_fun_id`,`funcionario_pessoa_pes_id`),
   ADD KEY `fk_MEDICO_ESPECIALIZACAO1_idx` (`especializacao_esp_id`),
-  ADD KEY `fk_medico_funcionario1_idx` (`funcionario_fun_id`,`funcionario_pessoa_pes_id`,`funcionario_pessoa_endereco_end_id`);
+  ADD KEY `fk_medico_funcionario1_idx` (`funcionario_fun_id`,`funcionario_pessoa_pes_id`);
 
 --
 -- Índices de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  ADD PRIMARY KEY (`pac_id`,`pessoa_pes_id`,`pessoa_endereco_end_id`),
-  ADD KEY `fk_paciente_pessoa1_idx` (`pessoa_pes_id`,`pessoa_endereco_end_id`),
+  ADD PRIMARY KEY (`pac_id`,`pessoa_pes_id`),
+  ADD KEY `fk_paciente_pessoa1_idx` (`pessoa_pes_id`),
   ADD KEY `fk_paciente_plano_de_saude1_idx` (`plano_saude`);
 
 --
 -- Índices de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
-  ADD PRIMARY KEY (`pes_id`,`endereco_end_id`),
-  ADD KEY `fk_pessoa_endereco1_idx` (`endereco_end_id`);
+  ADD PRIMARY KEY (`pes_id`);
 
 --
 -- Índices de tabela `plano_de_saude`
@@ -424,7 +411,7 @@ ALTER TABLE `medico`
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `pessoa`
 --
@@ -449,23 +436,29 @@ ALTER TABLE `triagem`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restrições para dumps de tabelas
 --
 
 --
+-- Restrições para tabelas `endereco`
+--
+ALTER TABLE `endereco`
+  ADD CONSTRAINT `fk_endereco_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Restrições para tabelas `enfermeiro`
 --
 ALTER TABLE `enfermeiro`
-  ADD CONSTRAINT `fk_enfermeiro_funcionario1` FOREIGN KEY (`funcionario_fun_id`,`funcionario_pessoa_pes_id`,`funcionario_pessoa_endereco_end_id`) REFERENCES `funcionario` (`fun_id`, `pessoa_pes_id`, `pessoa_endereco_end_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_enfermeiro_funcionario1` FOREIGN KEY (`funcionario_fun_id`,`funcionario_pessoa_pes_id`) REFERENCES `funcionario` (`fun_id`, `pessoa_pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para tabelas `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_FUNCIONARIOS_USUARIO1` FOREIGN KEY (`usuario_usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`,`pessoa_endereco_end_id`) REFERENCES `pessoa` (`pes_id`, `endereco_end_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para tabelas `login_acesso`
@@ -478,20 +471,14 @@ ALTER TABLE `login_acesso`
 --
 ALTER TABLE `medico`
   ADD CONSTRAINT `fk_MEDICO_ESPECIALIZACAO1` FOREIGN KEY (`especializacao_esp_id`) REFERENCES `especializacao` (`esp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_medico_funcionario1` FOREIGN KEY (`funcionario_fun_id`,`funcionario_pessoa_pes_id`,`funcionario_pessoa_endereco_end_id`) REFERENCES `funcionario` (`fun_id`, `pessoa_pes_id`, `pessoa_endereco_end_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_medico_funcionario1` FOREIGN KEY (`funcionario_fun_id`,`funcionario_pessoa_pes_id`) REFERENCES `funcionario` (`fun_id`, `pessoa_pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para tabelas `paciente`
 --
 ALTER TABLE `paciente`
-  ADD CONSTRAINT `fk_paciente_pessoa1` FOREIGN KEY (`pessoa_pes_id`,`pessoa_endereco_end_id`) REFERENCES `pessoa` (`pes_id`, `endereco_end_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_paciente_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_paciente_plano_de_saude1` FOREIGN KEY (`plano_saude`) REFERENCES `plano_de_saude` (`pds_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Restrições para tabelas `pessoa`
---
-ALTER TABLE `pessoa`
-  ADD CONSTRAINT `fk_pessoa_endereco1` FOREIGN KEY (`endereco_end_id`) REFERENCES `endereco` (`end_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para tabelas `triagem`
