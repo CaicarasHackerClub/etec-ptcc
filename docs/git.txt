@@ -1,5 +1,6 @@
 # COMANDOS GIT
 
+$ git checkout devel
 $ git status
 $ git pull origin devel
 $ git git log
@@ -7,4 +8,8 @@ $ git add file1 file2 etc
 $ git commit -m 'título do commit'
 $ git status
 $ git log
-$ git push origin master
+ou
+$ git log --oneline
+$ git push origin devel
+
+Para sair do log usar 'q'
