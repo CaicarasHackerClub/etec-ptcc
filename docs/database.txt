@@ -1,1 +1,7 @@
 # BANCO DE DADOS
+
+O Posto.sql é a o dumb do banco de dados antigo, feito pegando o que foi feito pelo grupo da Engenharia Reversa.
+
+O hospital-backend.sql é o dumb do banco de dados feito com o que os grupos de backend pedem.
+
+No momento estamos usando o hospital-backend.sql 
