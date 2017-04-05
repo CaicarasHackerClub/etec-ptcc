@@ -172,7 +172,7 @@
 							<input class="inp_class" type="text" name="pac_profissao" size="28">
 							<input class="inp_class" type="hidden" name="tipo" value="rec_paciente"><br>
 							<label class="lbl_class">Convênio:</label>
-							<input class="inp_class" type="text" name="pds_convenio_nome" size="28">
+							<input class="inp_class" type="text" name="pds_convenio_nome" size="28"><br>
 							<label class="lbl_class">SUS:</label>
 							<input class="inp_class" type="text" name="pds_numero_sus" size="28">
 							<input class="inp_class" type="submit" value = "Confirmar">
@@ -234,12 +234,16 @@
 						echo "Paciente já cadastrado!";
 					}
 					else {
+						$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
+					   	$pes_id = $posto->selecionar($sel_id);
+
 						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_profissao) VALUES (
-								'" . getPac_tipo_sangue() . "'
-								'" . getPac_remedio()     . "'
-								'" . getPac_doenca()      . "'
-								'" . getPac_educacao()    . "'
+								'" . getPac_tipo_sangue() . "',
+								'" . getPac_remedio()     . "',
+								'" . getPac_doenca()      . "',
+								'" . getPac_educacao()    . "',
 								'" . getPac_profissao()   . "'
+
 							);";
 						$insPds = "INSERT INTO plano_de_saude (pds_convenio,pds_sus) VALUES ( 
 								'" . getPds_convenio_nome() . "', 

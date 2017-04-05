@@ -180,7 +180,7 @@ Class Posto
 	function setPds_convenio_nome($pds_convenio_nome){
 		$this->pds_convenio_nome = $pds_convenio_nome;
 	}
-	function setPds_sus($pds_numero_sus){
+	function setPds_numero_sus($pds_numero_sus){
 		$this->pds_numero_sus = $pds_numero_sus;
 	}
 	//get pessoa 
