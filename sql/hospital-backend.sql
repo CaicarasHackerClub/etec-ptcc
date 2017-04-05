@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 05/04/2017 às 02:19
+-- Tempo de geração: 05/04/2017 às 02:49
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -267,6 +267,7 @@ CREATE TABLE `triagem` (
   `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL,
   `tri_respiracao` int(2) DEFAULT NULL,
   `tri_dor` int(2) DEFAULT NULL,
+  `tri_orgaos_vitais` tinyint(1) DEFAULT NULL,
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -290,7 +291,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_nome`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`) VALUES
-(1, 'Gisele', '123', 'gih@gih', 1, 1);
+(1, 'Gisele', '123', 'gih@gih', 1, 1),
+(2, 'Admin', 'admin', 'admin@admin', 1, 1);
 
 --
 -- Índices de tabelas apagadas
@@ -448,7 +450,7 @@ ALTER TABLE `triagem`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restrições para dumps de tabelas
 --
