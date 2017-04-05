@@ -19,5 +19,20 @@ function mostrarMenu() {
     nav.style.marginLeft = "-390px";
     ok = false;
   }
+}
 
+/*Funçao que mostra os submodulos*/
+var ok = false;
+function mostrar(){
+  var submodulo = document.getElementById('submodulo_1');
+
+  if (ok == false){
+    submodulo.style.position   = "relative";
+    submodulo.style.visibility = "visible";
+    ok = true;
+  }else {
+    submodulo.style.position   = "absolute";
+    submodulo.style.visibility = "hidden";
+    ok = false;
+  }
 }

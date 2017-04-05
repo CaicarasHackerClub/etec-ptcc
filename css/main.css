@@ -67,17 +67,17 @@ header{
 .main {
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: 90%;
   height: 100vh;
 }
+
 /*Div que contém triagem, Recepção e Administração*/
 .conteudoCentro{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 80%;
-  margin-left: 5%;
-  margin-top: 4%;
+  width: 100%;
+  margin-top: 2%;
 }
 
 /*Formatação e posicionamento dos ícones do centro*/
@@ -93,7 +93,7 @@ header{
 }
 
 /*Formatação do título Hugh & Health*/
-.cabecalho #titulo{
+.cabecalho .titulo{
   display: flex;
   flex-direction: row;
   margin-left: 29%;
@@ -106,8 +106,80 @@ header{
 
 /*Formatação do texto abaixo dos avatars*/
 .conteudoCentro .anchor {
-  text-decoration: none;
   color: #29784b;
+}
+
+.anchor{
+  padding: 0.4em;
+  border-collapse: collapse;
+}
+
+.anchor, .lista{
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.submodulo{
+  visibility: hidden;
+  position: absolute;
+}
+
+.container .lateral .main-lateral .lista .anchor{
+  height: 20%;
+}
+
+.container .lateral .main-lateral .submodulo{
+  margin: 0%;
+}
+
+.container .lateral .main-lateral{
+  width: 100%;
+  height: 60%;
+  overflow: scroll;
+}
+
+.container .lateral .main-lateral .anchor{
+  background-color: #01b26c;
+  border-bottom: 1px solid #29784b;
+  color: #29784b;
+}
+
+.container .lateral .main-lateral .anchor:hover{
+  color: #f56529;
+}
+
+/*
+AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
+*/
+.conteudoCentro .main{
+  display: inline-block;
+  border: 0.5px solid #29784b;
+  width: 100%;
+  height: 31.9em;
+  display: flex;
+  flex-flow: column;
+}
+
+.conteudoCentro .main .main-centro{
+  width: 99%;
+  height: 40em;
+  margin: 0.5%;
+  border: 0.5px solid #29784b;
+}
+
+/*
+FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
+*/
+
+.main .cabecalho .config{
+  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main .cabecalho .tit-sub-modulo{
+  border: 10px;
 }
 
 @media (max-width: 1050px){
@@ -137,7 +209,7 @@ header{
     }
 
     /*Formatação do cabeçalho*/
-    .cabecalho #titulo{
+    .cabecalho .titulo{
       margin-left: 26%;
     }
 
@@ -193,7 +265,7 @@ header{
     height: 50px;
   }
 
-  .cabecalho #titulo{
+  .cabecalho .titulo{
     display: flex;
     box-shadow: none;
     font-size: 108%;
@@ -205,6 +277,10 @@ header{
   /*Div do conteúdo central com os avatares*/
   .conteudoCentro{
     margin-left: 15%;
+  }
+
+  .centro-modulo{
+    margin-left: 0;
   }
 
   /*Formatação do botão da lateral*/
@@ -219,7 +295,7 @@ header{
 
 @media (max-width: 400px){
 
-  .cabecalho #titulo{
+  .cabecalho .titulo{
     margin-left: 13%;
     font-size: 16pt;
   }
