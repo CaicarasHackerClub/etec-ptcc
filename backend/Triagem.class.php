@@ -1,6 +1,7 @@
 <?php
 
 class Triagem {
+  private $pacId;
   private $peso;
   private $altura;
   private $batimento;
@@ -11,7 +12,15 @@ class Triagem {
   private $oxi;
   private $class;
   private $org;
-  private $pacId;
+  private $dor;
+
+  function setPacId($pacId) {
+    $this->pacId = $pacId;
+  }
+
+  function getPacId() {
+    return $this->pacId;
+  }
 
   function setPeso($peso) {
     $this->peso = $peso;
@@ -77,12 +86,12 @@ class Triagem {
     return $this->oxi;
   }
 
-  function setClass($class) {
-    $this->class = $class;
+  function setDor($dor) {
+    $this->dor = $dor;
   }
 
-  function getClass() {
-    return $this->class;
+  function getDor() {
+    return $this->dor;
   }
 
   function setOrg($org) {
@@ -93,12 +102,12 @@ class Triagem {
     return $this->org;
   }
 
-  function setPacId($pacId) {
-    $this->pacId = $pacId;
+  function setClass($class) {
+    $this->class = $class;
   }
 
-  function getPacId() {
-    return $this->pacId;
+  function getClass() {
+    return $this->class;
   }
 
 }
