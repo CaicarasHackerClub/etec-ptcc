@@ -328,7 +328,16 @@ Class Posto
 		}
 		mysqli_close($con);
 	}
-		
+	
+	function select($query){
+		$con = $this->conectar();
+		$res = mysqli_query($con, $query) or die ("Erro na seleção " . $query . mysqli_error($con));
+		$array = mysqli_fetch_array($res);
+
+		return $array;
+		mysqli_close($con);
+	}	
+	
 	function conectar() {
 		error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
 		
@@ -342,6 +351,8 @@ Class Posto
 			
 		return $con;
 	}
+
+
 
 }
 	
