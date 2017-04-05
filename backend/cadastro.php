@@ -111,25 +111,24 @@
 					<?php
 				}
 				else {
+					$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
+					$pes_id = $posto->selecionar($sel_id);
 					//Insere os dados na tabela endereço
-					$insEnd = "INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero) VALUES (
+					$insEnd = "INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero,pessoa_pes_id) VALUES (
 									'" . $posto->getEnd_pais()   . "',
 									'" . $posto->getEnd_estado() . "',
 									'" . $posto->getEnd_cidade() . "',
 									'" . $posto->getEnd_cep()    . "',
 									'" . $posto->getEnd_bairro() . "',
 									'" . $posto->getEnd_rua() 	 . "',
-									'" . $posto->getEnd_numero() . "'
+									'" . $posto->getEnd_numero() . "',
+									'" . $pes_id                 . "'
 						);";
 					// Verifica se a query foi inserida corretamente 
 					$okEnd = $posto->inserir($insEnd);
-					// Pega id do ultimo endereço cadastrado
-					$selId = "SELECT MAX(end_id) AS end_id FROM endereco";
-					$end_id = $posto->selecionar($selId);
-					$posto->setPes_end_id($end_id);
-					
+										
 					//Insere os dados na tabela pessoa			
-					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone, endereco_end_id) VALUES ( 
+					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES ( 
 									'". $posto->getPes_nome()    	  	."',
 									'". $posto->getPes_pai()     	  	."',
 									'". $posto->getPes_mae()          	."',
@@ -141,8 +140,8 @@
 									'". $posto->getPes_cidadania()    	."',
 									'". $posto->getPes_genero()       	."',
 									'". $posto->getPes_sexo_biologico()	."',
-									'". $posto->getPes_telefone()      	."',
-									'". $end_id                     	."'
+									'". $posto->getPes_telefone()      	."'
+									
 						);";
 					//verifica se a query foi inserida corretamente
 					$okPes = $posto->inserir($insPes);
@@ -286,23 +285,19 @@
 
 							);";
 
-						$sel_id = "SELECT MAX(end_id) AS end_id FROM endereco";
-					   	$end_id = $posto->selecionar($sel_id);
-						
 						$sel_id = "SELECT MAX(usu_id) AS usu_id FROM usuario";
 					   	$usu_id = $posto->selecionar($sel_id);
 					   	
 					   	$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					   	$pes_id = $posto->selecionar($sel_id);
 
-						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, usuario_usu_id, pessoa_pes_id, pessoa_endereco_end_id) VALUES ( 
+						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, usuario_usu_id, pessoa_pes_id) VALUES ( 
 								'" . $posto->getFun_cargo()      . "',
 								'" . $posto->getFun_horario()    . "',
 								'" . $posto->getFun_inscricao()  . "',
 								'" . $posto->getFun_turno()      . "',
 								'" .         $usu_id             . "',
-								'" .         $pes_id             . "',
-								'" .         $end_id             . "'
+								'" .         $pes_id             . "'
 							);";
 
 						$okFun = $posto->inserir($insFun);
@@ -316,6 +311,37 @@
 					//}
 				}
 
+				if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro" || $_POST['recepcionista']) {
+					echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
+					if ($_POST['fun_cargo'] == "medico") {
+						?>
+						<h1>Médico</h1>
+						<label class="lbl_class">CRM:</label>
+						<input class="inp_class" type="text" name="med_crm" size="28"><br>
+						<label class="lbl_class">Especialização:</label>
+						<input class="inp_class" type="text" name="med_especializacao" size="28"><br>
+						<input class="inp_class" type = "submit" value = "cadastrar">
+						<?php
+					}
+					// Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
+					else if ($_POST['fun_cargo'] == "enfermeiro") {
+						?>
+						<h1>Enfermeiro</h1>
+						<label class="lbl_class">Registro:</label>
+						<input class="inp_class" type="text" name="enf_registro" size="28"><br>
+						<input class="inp_class" type = "submit" value = "cadastrar">
+						<?php
+					}
+					else if ($_POST['fun_cargo'] == "recepcionista"){
+					}
+					echo "</form>";
+				}
+				else {
+					header("Location:cadastro.php?passo=4");
+				}
+			}
+			else if ($_GET['passo'] == 4) {
+				//últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
 				if ($_POST['fun_cargo'] == "medico") {
 					$posto->setMed_crm            ($_POST['med_crm']);
 					$posto->setMed_especializacao ($_POST['med_especializacao']);
@@ -352,38 +378,7 @@
 
 				////////////////////Fim do cadastro//////
 
-				if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro") {
-					echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
-					if ($_POST['fun_cargo'] == "medico") {
-						?>
-						<h1>Médico</h1>
-						<label class="lbl_class">CRM:</label>
-						<input class="inp_class" type="text" name="med_crm" size="28"><br>
-						<label class="lbl_class">Especialização:</label>
-						<input class="inp_class" type="text" name="med_especializacao" size="28"><br>
-						<input class="inp_class" type = "submit" value = "cadastrar">
-						<?php
-					}
-					// Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
-					else if ($_POST['fun_cargo'] == "enfermeiro") {
-						?>
-						<h1>Enfermeiro</h1>
-						<label class="lbl_class">Registro:</label>
-						<input class="inp_class" type="text" name="enf_registro" size="28"><br>
-						<input class="inp_class" type = "submit" value = "cadastrar">
-						<?php
-					}
-					else if ($_POST['fun_cargo'] == "recepcionista"){
 						echo "recepcao";
-					}
-					echo "</form>";
-				}
-				else {
-					header("Location:cadastro.php?passo=4");
-				}
-			}
-			else if ($_GET['passo'] == 4) {
-				//últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
 				echo "Confirmação final - Passo 4";
 			}
 		}
