@@ -22,17 +22,30 @@ function mostrarMenu() {
 }
 
 /*Funçao que mostra os submodulos*/
-var ok = false;
+var okMostrar = false;
 function mostrar(){
   var submodulo = document.getElementById('submodulo_1');
 
-  if (ok == false){
+  if (okMostrar == false){
     submodulo.style.position   = "relative";
     submodulo.style.visibility = "visible";
-    ok = true;
+    okMostrar = true;
   }else {
     submodulo.style.position   = "absolute";
     submodulo.style.visibility = "hidden";
-    ok = false;
+    okMostrar = false;
+  }
+}
+
+var okConfig = false;
+function mostrarConfig(){
+  var config = document.getElementById('config');
+
+  if (okConfig == false) {
+    config.style.visibility = "visible";
+    okConfig = true;
+  }else{
+    config.style.visibility = "hidden";
+    okConfig = false;
   }
 }
