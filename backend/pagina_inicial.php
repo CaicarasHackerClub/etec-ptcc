@@ -24,11 +24,11 @@
           <header>
             <img src="../img/icons/botao_menu.png" id="btn_slide" onclick="mostrarMenu()" >
           </header>
-          <h1 id="titulo">Hug & Health</h1>
+          <h1 class="titulo">Hug & Health</h1>
         </div>
 
         <div class="conteudoCentro">
-          <a class="anchor" href="#"><img class="avatars" src="../img/avatars/nurse.png"><p class="txt_avatar">Triagem</p></a>
+          <a class="anchor" href="#"><img class="avatars" src="../img/avatars/triagem.png"><p class="txt_avatar">Triagem</p></a>
           <a class="anchor" href="#"><img class="avatars" src="../img/avatars/recepcao.png"><p class="txt_avatar">Recepção</p></a>
           <a class="anchor" href="#"><img class="avatars" src="../img/avatars/adm.png"><p class="txt_avatar">Administração</p></a>
         </div>
