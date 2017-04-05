@@ -8,6 +8,7 @@
 		 <?php
 		 include_once("Posto.class.php");
 		 $posto = new Posto;
+						 //Passando os dados para as funções setter
 						 $posto->setPes_nome     			($_POST['pes_nome']);
 						 $posto->setPes_pai     			($_POST['pes_pai']);
 						 $posto->setPes_mae     			($_POST['pes_mae']);
@@ -20,18 +21,18 @@
 						 $posto->setPes_genero		 		($_POST['pes_genero']);
 						 $posto->setPes_sexo_biologico		($_POST['pes_sexo_biologico']);
 						 $posto->setPes_telefone			($_POST['pes_telefone']);
+						
 						 $posto->setEnd_pais			    ($_POST['end_pais']);
 						 $posto->setEnd_Estado			    ($_POST['end_estado']);
 						 $posto->setEnd_cidade   		    ($_POST['end_cidade']);
 						 $posto->setEnd_cep      		    ($_POST['end_cep']);
 						 $posto->setEnd_bairro   		    ($_POST['end_bairro']);
-						 $posto->setEnd_distrito 		    ($_POST['end_distrito']);
 						 $posto->setEnd_rua			 	    ($_POST['end_rua']);
 						 $posto->setEnd_numero			    ($_POST['end_numero']);
 						 
 							
 							 
-						
+						// Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
 						$selPes = "SELECT * FROM pessoa WHERE pes_cpf = '" . $_POST ['pes_cpf'] . "';";
 						$qtd = $posto->selecionar($selPes);
 						if ($qtd >= 1){
@@ -41,54 +42,55 @@
 							<?php
 						}
 						else{
-										
-							$insPes = "INSERT INTO pessoa (pes_nome,pes_pai,pes_mae,pes_rg,pes_cpf,pes_data,pes_tipo,pes_email,
-											pes_estado_civil,pes_cidadania,pes_genero,pes_sexo_biologico,pes_telefone)VALUES ( 
-											'". $posto->getPes_nome()    	  	."',
-											'". $posto->getPes_pai()     	  	."',
-											'". $posto->getPes_mae()          	."',
-											'". $posto->getPes_rg()           	."',
-											'". $posto->getPes_cpf()          	."',
-											'". $posto->getPes_data()         	."',
-											'". $posto->getPes_tipo()     	  	."',
-											'". $posto->getPes_email()        	."',
-											'". $posto->getPes_estado_civil()  	."',
-											'". $posto->getPes_cidadania()    	."',
-											'". $posto->getPes_genero()       	."',
-											'". $posto->getPes_sexo_biologico()	."',
-											'". $posto->getPes_telefone()      	."'
-											
-											
-											
-											);";
-						$okPes = $posto->inserir($insPes);
-							$insEnd = "INSERT INTO endereco (end_pais,end_estado,end_cidade,end_cep,end_bairro,end_distrito,
+							//Insere os dados na tabela endereço
+							$insEnd = "INSERT INTO endereco (end_pais,end_estado,end_cidade,end_cep,end_bairro,
 											end_rua,end_numero) VALUES (
 												'" . $posto->getEnd_pais()     . "',
 												'" . $posto->getEnd_estado()   . "',
 												'" . $posto->getEnd_cidade()   . "',
 												'" . $posto->getEnd_cep()      . "',
 												'" . $posto->getEnd_bairro()   . "',
-												'" . $posto->getEnd_distrito() . "',
 												'" . $posto->getEnd_rua() 	   . "',
 												'" . $posto->getEnd_numero()   . "'
 											);";
-						$okEnd = $posto->inserir($insEnd);
+							// Verifica se a query foi inserida corretamente 
+							$okEnd = $posto->inserir($insEnd);
+							// Pega id do ultimo endereço cadastrado
+							$selId = "SELECT MAX(end_id) AS end_id FROM endereco";
+							$end_id = $posto->selecionar($selId);
+							$posto->setPes_end_id($end_id);
+							
+							//Insere os dados na tabela pessoa			
+							$insPes = "INSERT INTO pessoa (pes_nome,pes_pai,pes_mae,pes_rg,pes_cpf,pes_data,pes_email,
+											pes_estado_civil,pes_cidadania,pes_genero,pes_sexo_biologico,pes_telefone,endereco_end_id)VALUES ( 
+											'". $posto->getPes_nome()    	  	."',
+											'". $posto->getPes_pai()     	  	."',
+											'". $posto->getPes_mae()          	."',
+											'". $posto->getPes_rg()           	."',
+											'". $posto->getPes_cpf()          	."',
+											'". $posto->getPes_data()         	."',
+											'". $posto->getPes_email()        	."',
+											'". $posto->getPes_estado_civil()  	."',
+											'". $posto->getPes_cidadania()    	."',
+											'". $posto->getPes_genero()       	."',
+											'". $posto->getPes_sexo_biologico()	."',
+											'". $posto->getPes_telefone()      	."',
+											'". $end_id                     	."'
+											
+											
+											
+											);";
+						//verifica se a query foi inserida corretamente
+						$okPes = $posto->inserir($insPes);
+						
+						
 						if ($okPes && $okEnd) {
 							echo "Pessoa cadastrada com sucesso!!!";
 							
-							//Aqui procura qual o cargo do id logado.
-							$con = $posto->conectar();
-							$selCar = "SELECT * FROM funcionario WHERE USUARIO_usu_id = '" . $_SESSION['tipo']. "';";
-							echo $selCar; 											
-							$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
-							$cargo = mysqli_fetch_array($res);							
 							
-							$_SESSION['cargo'] = $cargo['fun_cargo'];
-
-							mysqli_close($con);
+							
 								
-//							header("Location:cadastro.php");
+							header("Location:cadastro.php");
 							
 						}
 						else 
@@ -101,8 +103,8 @@
 							$posto->setPac_doenca				($_POST['pac_doenca']);
 							$posto->setPac_educacao				($_POST['pac_educacao']);
 							$posto->setPac_profissao	        ($_POST['pac_profissao']);
-							$posto->setPds_convenio_nome        ($_POST['pds_convenio_nome'])
-							$posto->setPds_numero_sus           ($_POST['pds_numero_sus'])
+							$posto->setPds_convenio_nome        ($_POST['pds_convenio_nome']);
+							$posto->setPds_numero_sus           ($_POST['pds_numero_sus']);
 							
 							$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus = 
 									  '" . $_POST['pds_numero_sus'] . "';";

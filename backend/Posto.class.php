@@ -15,6 +15,7 @@ Class Posto
 	private $pes_genero;
 	private $pes_sexo_biologico;
 	private $pes_telefone;
+	private $end_id;
 	
 	//Variaveis Endereço
 	private $end_pais;
@@ -95,6 +96,9 @@ Class Posto
 	}
 	function setPes_telefone($telefone){
 		$this->pes_telefone = $telefone;
+	}
+	function setPes_end_id($end_id){
+		$this->$end_id = $end_id;
 	}
 
 	//endereco
@@ -219,6 +223,10 @@ Class Posto
 	function getPes_telefone(){
 		return $this->pes_telefone;
 	}
+	function getPes_end_id(){
+		return $this->end_id;
+	}
+
 
 	//get endereco
 	function getEnd_pais(){
