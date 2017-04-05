@@ -15,6 +15,7 @@ Class Posto
 	private $pes_genero;
 	private $pes_sexo_biologico;
 	private $pes_telefone;
+	private $end_id;
 	
 	//Variaveis Endereço
 	private $end_pais;
@@ -96,6 +97,9 @@ Class Posto
 	function setPes_telefone($telefone){
 		$this->pes_telefone = $telefone;
 	}
+	function setPes_end_id($end_id){
+		$this->$end_id = $end_id;
+	}
 
 	//endereco
 	function setEnd_pais($pais){
@@ -176,7 +180,7 @@ Class Posto
 	function setPds_convenio_nome($pds_convenio_nome){
 		$this->pds_convenio_nome = $pds_convenio_nome;
 	}
-	function setPds_sus($pds_numero_sus){
+	function setPds_numero_sus($pds_numero_sus){
 		$this->pds_numero_sus = $pds_numero_sus;
 	}
 	//get pessoa 
@@ -219,6 +223,10 @@ Class Posto
 	function getPes_telefone(){
 		return $this->pes_telefone;
 	}
+	function getPes_end_id(){
+		return $this->end_id;
+	}
+
 
 	//get endereco
 	function getEnd_pais(){
@@ -320,20 +328,31 @@ Class Posto
 		}
 		mysqli_close($con);
 	}
-		
+	
+	function select($query){
+		$con = $this->conectar();
+		$res = mysqli_query($con, $query) or die ("Erro na seleção " . $query . mysqli_error($con));
+		$array = mysqli_fetch_array($res);
+
+		return $array;
+		mysqli_close($con);
+	}	
+	
 	function conectar() {
 		error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
 		
 		$server  = "localhost";
 		$usuario = "root";
 		$senha   = "";
-		$banco   = "hospital1";
+		$banco   = "health_hospital";
 				
 		$con = mysqli_connect($server, $usuario, $senha, $banco) or die ("Erro 7: " . mysqli_connect_error());
 		$dbase = mysqli_select_db($con, $banco) or die ("Erro 8:" . mysqli_error($con));
 			
 		return $con;
 	}
+
+
 
 }
 	
