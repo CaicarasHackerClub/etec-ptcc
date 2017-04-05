@@ -5,6 +5,8 @@
 
 body {
   margin: 0;
+  overflow: hidden;
+  width: 100%;
 }
 
 /*remover checkbox para usar em dispçays menores*/
@@ -67,7 +69,7 @@ header{
 .main {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   height: 100vh;
 }
 
@@ -78,25 +80,27 @@ header{
   flex-wrap: wrap;
   width: 100%;
   margin-top: 2%;
+  margin-left: 5%;
 }
 
 /*Formatação e posicionamento dos ícones do centro*/
 .conteudoCentro .avatars{
-  display: flex;
-  flex-wrap: ;
+  width: 30%;
+  flex-wrap: wrap;
 }
 
 /*Div que contém o título e o botão para aparecer a lateral*/
 .cabecalho{
   display: flex;
   font-size: 17pt;
+  width: 100%;
 }
 
 /*Formatação do título Hugh & Health*/
 .cabecalho .titulo{
   display: flex;
   flex-direction: row;
-  margin-left: 29%;
+  margin-left: 35%;
   color: #01b26a;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -109,42 +113,66 @@ header{
   color: #29784b;
 }
 
+/*classe que edita todas as tags a*/
 .anchor{
   padding: 0.4em;
   border-collapse: collapse;
 }
 
-.anchor, .lista{
+/*edição nas tags a e li*/
+.anchor, .lista, .submodulo{
   display: inline-block;
   text-decoration: none;
   text-align: center;
 }
 
+/*esconde os submódulos*/
 .submodulo{
   visibility: hidden;
   position: absolute;
 }
 
+/*altura dos links na lateral*/
 .container .lateral .main-lateral .lista .anchor{
   height: 20%;
+  font-size: 10pt;
+  width: 100%;
 }
 
+.container .lateral .main-lateral .lista{
+  width: 100%;
+}
+
+.container .lateral .main-lateral .lista:hover{
+  background-color: #9bd3ae;
+}
+
+/*edição nos links de submódulos*/
 .container .lateral .main-lateral .submodulo{
   margin: 0%;
+
+  width: 100%;
 }
 
+/*edição na segunda class da navegção lateral*/
 .container .lateral .main-lateral{
   width: 100%;
   height: 60%;
   overflow: scroll;
 }
 
+.conteudoCentro .txt_avatar{
+	text-align: center;
+}
+
+/*edição nas tags a da navegação lateral*/
 .container .lateral .main-lateral .anchor{
   background-color: #01b26c;
   border-bottom: 1px solid #29784b;
   color: #29784b;
 }
 
+/*hover das tags a*/
 .container .lateral .main-lateral .anchor:hover{
   color: #f56529;
 }
@@ -152,42 +180,82 @@ header{
 /*
 AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 */
+
+/*edição no conteudo central da pagina*/
 .conteudoCentro .main{
   display: inline-block;
   border: 0.5px solid #29784b;
   width: 100%;
-  height: 31.9em;
+  height: 32.7em;
   display: flex;
   flex-flow: column;
 }
 
+/*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 99%;
   height: 40em;
   margin: 0.5%;
   border: 0.5px solid #29784b;
 }
+/*edição na segunda class do da main do centro*/
+.centro-modulo{
+  margin-top: 1%;
+  margin-left: 0;
+}
 
 /*
 FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 */
 
-.main .cabecalho .config{
+/*padronização dos conteudos do cabeçalho*/
+.main .cabecalho .config,
+.container .main .cabecalho .cabecalho-group{
   display: inline-block;
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
 }
 
-.main .cabecalho .tit-sub-modulo{
-  border: 10px;
+/*icone da página no cabeçalho*/
+.container .main .cabecalho .cabecalho-group .img-titulo{
+  margin-top: -0.6em;
+  height: 2.5em;
+  margin-left: -10%;
 }
 
-@media (max-width: 1050px){
+/*informações no cabeçalho*/
+.container .main .cabecalho .cabecalho-group .tit-sub-modulo{
+  margin-bottom: 0%;
+  border: 0;
+}
+
+/*edição no grupo onde fica o icone da página*/
+.container .main .cabecalho .group-image{
+  margin-left: 20%;
+}
+
+.main .cabecalho .config .anchor{
+  height: 3em;
+}
+
+@media (min-width: 650px){
+  /*grupo contido no cabeçalho*/
+  .container .main .cabecalho .cabecalho-group{
+    width: 20%;
+  }
+}
+
+@media (max-width: 1054px){
 
     /*Div lateral com botões deslogar e usuário*/
     .lateral{
       width: 140px;
       margin-left: 0px;
+    }
+
+    .container .main .cabecalho .config{
+      width: 40%;
     }
 
     /*Formatação dos botões da lateral*/
@@ -210,9 +278,14 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
     /*Formatação do cabeçalho*/
     .cabecalho .titulo{
-      margin-left: 26%;
+      margin-left: 22%;
+  		text-align: center;
     }
 
+    /*edição no grupo onde fica o icone da página*/
+    .container .main .cabecalho .group-image{
+      margin-left: 10%;
+    }
 
     .lateral #hora{
       font-size: 90%;
@@ -234,11 +307,50 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     width: 100%;
   }
 
+  .main .cabecalho .config{
+    margin-left: 60%;
+    height: 40%;
+    position: absolute;
+    margin-top: 2.2em;
+    visibility: hidden;
+  }
+
+  .main .cabecalho .config .anchor{
+    width: 50%;
+    height: 3em;
+    margin-left: 50%;
+  }
+
+  .main .cabecalho .group-image{
+    width: 55%;
+  }
+
+  .main .cabecalho .group-image .tit-sub-modulo{
+    width: 30%;
+    margin-top: 17px;
+    margin-left: 40%;
+  }
+
+  .main .cabecalho .group-image .tit-sub-modulo .img-titulo{
+    height: 46px;
+  }
+
+  .main .cabecalho .group-image #lbl_triagem{
+    margin-left: -11%;
+  }
+
+  .main .cabecalho .button{
+    height:  40px;
+    margin-left: 85%;
+    margin-top: 5px;
+    position:absolute;
+  }
+
   /*Formatação da div lateral*/
   .lateral{
     position: absolute;
     width: 60%;
-    margin-top: 56px;
+    margin-top: 53px;
     margin-left: -390px;
     height: 90.5vh;
     border-right: 0px;
@@ -253,7 +365,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   /*Formatação dos avatares*/
   .conteudoCentro .avatars{
-    margin: 20px;
+    margin: 5px;
   }
 
   /*Formatação da div que contém o título e o botão da lateral*/
@@ -268,15 +380,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .cabecalho .titulo{
     display: flex;
     box-shadow: none;
-    font-size: 108%;
+    font-size: 100%;
     margin-top: 10px;
-    margin-left: 20%;
+    margin-left: 30%;
     padding-bottom: 30px;
-  }
-
-  /*Div do conteúdo central com os avatares*/
-  .conteudoCentro{
-    margin-left: 15%;
   }
 
   .centro-modulo{
@@ -292,19 +399,40 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   }
 }
 
-
 @media (max-width: 400px){
 
+  .main .cabecalho .group-image .tit-sub-modulo{
+    margin-left: 10%;
+  }
+
+  .main .cabecalho .group-image #lbl_triagem{
+    margin-left: 1%;
+  }
+
   .cabecalho .titulo{
-    margin-left: 13%;
-    font-size: 16pt;
+    width: 40%;
+    margin-left: 16%;
+		font-size: 16pt;
+		padding-left: 2%;
+		padding-bottom: 1px;
   }
 
   .conteudoCentro .avatars {
-    width: 40%;
+    width: 20%;
+  }
+
+  .conteudoCentro{
+    margin-left: 0;
   }
 
   .lateral {
     width: 80%;
+  }
+}
+
+@media (max-width: 360px){
+  .cabecalho .titulo{
+    width: 55%;
+    padding-left: 5%;
   }
 }
