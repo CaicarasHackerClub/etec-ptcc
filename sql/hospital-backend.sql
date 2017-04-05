@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 05/04/2017 às 01:28
+-- Tempo de geração: 05/04/2017 às 02:19
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -121,6 +121,13 @@ CREATE TABLE `login_acesso` (
   `log_ip` varchar(45) COLLATE utf8_bin NOT NULL,
   `usuario_usu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `login_acesso`
+--
+
+INSERT INTO `login_acesso` (`log_id`, `log_data`, `log_ip`, `usuario_usu_id`) VALUES
+(1, '0000-00-00 00:00:00', '127.0.0.1', 1);
 
 -- --------------------------------------------------------
 
@@ -259,6 +266,7 @@ CREATE TABLE `triagem` (
   `tri_oxigenacao` int(3) DEFAULT NULL,
   `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL,
   `tri_respiracao` int(2) DEFAULT NULL,
+  `tri_dor` int(2) DEFAULT NULL,
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -405,7 +413,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `login_acesso`
 --
 ALTER TABLE `login_acesso`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de tabela `medico`
 --
