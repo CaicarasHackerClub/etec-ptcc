@@ -344,7 +344,7 @@ Class Posto
 		$server  = "localhost";
 		$usuario = "root";
 		$senha   = "";
-		$banco   = "hospital1";
+		$banco   = "health_hospital";
 				
 		$con = mysqli_connect($server, $usuario, $senha, $banco) or die ("Erro 7: " . mysqli_connect_error());
 		$dbase = mysqli_select_db($con, $banco) or die ("Erro 8:" . mysqli_error($con));
