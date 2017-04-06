@@ -111,23 +111,6 @@
 					<?php
 				}
 				else {
-					$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-					$pes_id = $posto->selecionar($sel_id);
-					//Insere os dados na tabela endereço
-					$insEnd = "INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero,pessoa_pes_id) VALUES (
-									'" . $posto->getEnd_pais()   . "',
-									'" . $posto->getEnd_estado() . "',
-									'" . $posto->getEnd_cidade() . "',
-									'" . $posto->getEnd_cep()    . "',
-									'" . $posto->getEnd_bairro() . "',
-									'" . $posto->getEnd_rua() 	 . "',
-									'" . $posto->getEnd_numero() . "',
-									'" . $pes_id                 . "'
-						);";
-					// Verifica se a query foi inserida corretamente 
-					$okEnd = $posto->inserir($insEnd);
-										
-					//Insere os dados na tabela pessoa			
 					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES ( 
 									'". $posto->getPes_nome()    	  	."',
 									'". $posto->getPes_pai()     	  	."',
@@ -143,6 +126,24 @@
 									'". $posto->getPes_telefone()      	."'
 									
 						);";
+					//Insere os dados na tabela endereço
+					$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
+					$pes_id = $posto->selecionar($sel_id);
+
+					$insEnd = "INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero,pessoa_pes_id) VALUES (
+									'" . $posto->getEnd_pais()   . "',
+									'" . $posto->getEnd_estado() . "',
+									'" . $posto->getEnd_cidade() . "',
+									'" . $posto->getEnd_cep()    . "',
+									'" . $posto->getEnd_bairro() . "',
+									'" . $posto->getEnd_rua() 	 . "',
+									'" . $posto->getEnd_numero() . "',
+									'" . $pes_id                 . "'
+						);";
+					// Verifica se a query foi inserida corretamente 
+					$okEnd = $posto->inserir($insEnd);
+										
+					//Insere os dados na tabela pessoa			
 					//verifica se a query foi inserida corretamente
 					$okPes = $posto->inserir($insPes);
 					
@@ -157,22 +158,19 @@
 							<h1>Paciente</h1>
 							<label class="lbl_class">Tipo Sanguineo</label>
 							<input class="inp_class" type="text" name="pac_tipo_sangue" size="28"><br>
-							<label class="lbl_class">Plano de Saúde:</label>
-							<input class="inp_class" type="text" name="pac_plano_saude" size="28"><br>
 							<label class="lbl_class">Remedio</label>
 							<input class="inp_class" type="text" name="pac_remedio" size="28"><br>
 							<label class="lbl_class">Doença</label>
 							<input class="inp_class" type="text" name="pac_doenca" size="28"><br>
-		       				<label class="lbl_class">Grau de escolaridade:</label><br>
+							<label class="lbl_class">Grau de escolaridade:</label><br>
 							<input class="inp_class" type="radio" name="pac_educacao" value = "Ef1">Ensino Fundamental 1 <br>
 							<input class="inp_class" type="radio" name="pac_educacao" value = "EF2">Ensino Fundamental 2<br>
 							<input class="inp_class" type="radio" name="pac_educacao" value = "EM">Ensino Médio<br>
 							<input class="inp_class" type="radio" name="pac_educacao" value = "ES">Ensino Superior<br>
-							<label class="lbl_class">Profissão:</label>
-							<input class="inp_class" type="text" name="pac_profissao" size="28">
-							<input class="inp_class" type="hidden" name="tipo" value="rec_paciente"><br>
 							<label class="lbl_class">Convênio:</label>
 							<input class="inp_class" type="text" name="pds_convenio_nome" size="28"><br>
+							<label class="lbl_class">Número :</label>
+							<input class="inp_class" type="text" name="pds_num_convenio" size="28"><br>
 							<label class="lbl_class">SUS:</label>
 							<input class="inp_class" type="text" name="pds_numero_sus" size="28">
 							<input class="inp_class" type="submit" value = "Confirmar">
@@ -223,31 +221,46 @@
 					$posto->setPac_remedio			($_POST['pac_remedio']);
 					$posto->setPac_doenca			($_POST['pac_doenca']);
 					$posto->setPac_educacao			($_POST['pac_educacao']);
-					$posto->setPac_profissao	    ($_POST['pac_profissao']);
+					
 					$posto->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
 					$posto->setPds_numero_sus       ($_POST['pds_numero_sus']);
+					$posto->setPds_num_convenio     ($_POST['pds_num_convenio']);
 					
-					$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus = 
-							  '" . $_POST['pds_numero_sus'] . "';";
-								
-					if ($qtdPds >= 1) {
+					
+					//$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus = 
+					//		  '" . $_POST['pds_numero_sus'] . "';";
+							
+					/*if ($qtdPds >= 1) {
 						echo "Paciente já cadastrado!";
 					}
 					else {
+					*/
 						$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					   	$pes_id = $posto->selecionar($sel_id);
 
-						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_profissao) VALUES (
-								'" . getPac_tipo_sangue() . "',
-								'" . getPac_remedio()     . "',
-								'" . getPac_doenca()      . "',
-								'" . getPac_educacao()    . "',
-								'" . getPac_profissao()   . "'
+					   	$sel_id = "SELECT MAX(pac_id) AS pac_id FROM paciente";
+					   	$pac_id = $posto->selecionar($sel_id);
+
+					   			 
+
+
+						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
+								'" . $posto->getPac_tipo_sangue() . "',
+								'" . $posto->getPac_remedio()     . "',
+								'" . $posto->getPac_doenca()      . "',
+								'" . $posto->getPac_educacao()    . "',
+								0 ,
+								'" . $pac_id              . "'
 
 							);";
-						$insPds = "INSERT INTO plano_de_saude (pds_convenio,pds_sus) VALUES ( 
-								'" . getPds_convenio_nome() . "', 
-								'" . getPds_numero_sus() . "'
+							 
+							echo $insPac;
+						$insPds = "INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id) VALUES ( 
+								'" . $posto->getPds_convenio_nome(). "', 
+								'" . $posto->getPds_numero_sus()   . "'
+								'" . $posto->getPds_num_convenio() . "'
+								'" . $pac_id                       . "'
+				
 							);";
 
 						$okPac = $posto->inserir($insPac);
@@ -258,7 +271,7 @@
 						else {
 							echo "Não cadastrado!!!!!!!!!";
 						}
-					}
+					//}
 				}
 				else if ($_SESSION['cargo'] == "administracao") {
 					$posto->setFun_cargo 		($_POST ['fun_cargo']);

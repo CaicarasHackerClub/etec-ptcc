@@ -43,11 +43,9 @@ Class Posto
 	
 	//paciente
 	private $pac_tipo_sangue;
-	private $pac_plano_saude;
 	private $pac_remedio;
 	private $pac_doenca;
 	private $pac_educacao;
-	private $pac_profissao;
 	
 	//enfermeiro
 	private $enf_registro;
@@ -55,7 +53,7 @@ Class Posto
 	//plano_de_saude
 	private $pds_convenio_nome;
 	private $pds_numero_sus;
-	
+	private $pds_num_convenio;
 	
 	//pessoa
 	function setPes_nome($nome){
@@ -173,12 +171,13 @@ Class Posto
 	function setPac_educacao($pac_educacao){
 		$this->pac_educacao = $pac_educacao;
 	}
-	function setPac_profissao($pac_profissao){
-		$this->pac_profissao = $pac_profissao;
-	}
+	
 	//plano_de_saude
 	function setPds_convenio_nome($pds_convenio_nome){
 		$this->pds_convenio_nome = $pds_convenio_nome;
+	}
+	function setPds_num_convenio($pds_num_convenio){
+		$this->pds_num_convenio = $pds_num_convenio;
 	}
 	function setPds_numero_sus($pds_numero_sus){
 		$this->pds_numero_sus = $pds_numero_sus;
@@ -289,15 +288,16 @@ Class Posto
 	function getPac_educacao(){
 		return $this->pac_educacao;
 	}
-	function getPac_profissao(){
-		return $this->pac_profissao;
-	}
+	
 	//plano_de_saude
 	function getPds_convenio_nome(){
 		return $this->pds_convenio_nome;
 	}
 	function getPds_numero_sus(){
 		return $this->pds_numero_sus;
+	}
+	function getPds_num_convenio(){
+		return $this->pds_num_convenio;
 	}
 	//enfermeiro
 	function getEnf_registro(){
