@@ -6,6 +6,11 @@ O hospital-backend.sql é o dump do banco de dados feito com o que os grupos de 
 
 No momento estamos usando o hospital-backend.sql 
 
+Renomeado o hospital-backend.sql para helth_hospital para ficar padronizado com o nome do banco da função
+conectar do Posto.class.php
+
+Passaremos a usar o helth_hospital agora.
+
 Tem dois usuarios cadastrados:  email : gih@gih > senha: 123
                                 email : admin@admin > senha : admin
 
