@@ -16,7 +16,7 @@ Class Posto
 	private $pes_sexo_biologico;
 	private $pes_telefone;
 	private $end_id;
-	
+
 	//Variaveis Endereço
 	private $end_pais;
 	private $end_estado;
@@ -26,27 +26,27 @@ Class Posto
 	private $end_destrito;
 	private $end_rua;
 	private $end_numero;
-	
+
 	//Funcionario
 	private $fun_cargo;
 	private $fun_setor;
 	private $fun_horario;
 	private $fun_inscricao;
-	
+
 	//usuario
 	private $usu_senha;
 	private $usu_email;
-	
+
 	//medico
 	private $med_especializacao;
 	private $med_crm;
-	
+
 	//paciente
 	private $pac_tipo_sangue;
 	private $pac_remedio;
 	private $pac_doenca;
 	private $pac_educacao;
-	
+
 	//enfermeiro
 	private $enf_registro;
 
@@ -54,7 +54,7 @@ Class Posto
 	private $pds_convenio_nome;
 	private $pds_numero_sus;
 	private $pds_num_convenio;
-	
+
 	//pessoa
 	function setPes_nome($nome){
 		$this->pes_nome = $nome;
@@ -70,8 +70,8 @@ Class Posto
 	}
 	function setPes_cpf($cpf){
 		$this->pes_cpf = $cpf;
-	} 
-	function setPes_data($data){ 
+	}
+	function setPes_data($data){
 		$this->pes_data  = $data;
 	}
 	function setPes_tipo($tipo){
@@ -104,7 +104,7 @@ Class Posto
 		$this->end_pais = $pais;
 	}
 	function setEnd_estado($estado){
-		$this->end_estado;
+		$this->end_estado = $estado;
 	}
 	function setEnd_cidade($cidade){
 		$this->end_cidade = $cidade;
@@ -122,13 +122,13 @@ Class Posto
 		$this->end_rua = $rua;
 	}
 	function setEnd_numero($numero){
-		$this->end_numero;
+		$this->end_numero = $numero;
 	}
-		
+
 	//funcionario
 	function setFun_cargo($cargo){
 		$this->fun_cargo = $cargo;
-	} 
+	}
 	function setFun_horario($horario){
 		$this->fun_horario = $horario;
 	}
@@ -137,7 +137,7 @@ Class Posto
 	}
 	function setFun_turno($turno){
 		$this->fun_turno = $turno;
-	} 
+	}
 
 	//usuario
 	function setUsu_senha($senha){
@@ -153,7 +153,7 @@ Class Posto
 	}
 	function setMed_crm($crm){
 		$this->med_crm = $crm;
-	} 
+	}
 	//enfermeiro
 	function setEnf_registro($registro){
 		$this->enf_registro = $registro;
@@ -171,7 +171,7 @@ Class Posto
 	function setPac_educacao($pac_educacao){
 		$this->pac_educacao = $pac_educacao;
 	}
-	
+
 	//plano_de_saude
 	function setPds_convenio_nome($pds_convenio_nome){
 		$this->pds_convenio_nome = $pds_convenio_nome;
@@ -182,7 +182,7 @@ Class Posto
 	function setPds_numero_sus($pds_numero_sus){
 		$this->pds_numero_sus = $pds_numero_sus;
 	}
-	//get pessoa 
+	//get pessoa
 	function getPes_nome(){
 		return $this->pes_nome;
 	}
@@ -194,11 +194,11 @@ Class Posto
 	}
 	function getPes_rg(){
 		return $this->pes_rg;
-	} 
+	}
 	function getPes_cpf(){
 		return $this->pes_cpf;
-	} 
-	function getPes_data(){ 
+	}
+	function getPes_data(){
 		return $this->pes_data;
 	}
 	function getPes_tipo(){
@@ -216,9 +216,9 @@ Class Posto
 	function getPes_genero(){
 		return $this->pes_genero;
 	}
-	function getPes_sexo_biologico(){ 
+	function getPes_sexo_biologico(){
 		return $this->pes_sexo_biologico;
-	} 
+	}
 	function getPes_telefone(){
 		return $this->pes_telefone;
 	}
@@ -255,7 +255,7 @@ Class Posto
 	//get funcionario
 	function getFun_cargo(){
 		return $this->fun_cargo;
-	} 
+	}
 	function getFun_horario(){
 		return $this->fun_horario;
 	}
@@ -264,20 +264,20 @@ Class Posto
 	}
 	function getFun_turno(){
 		return $this->fun_turno;
-	} 
-			
+	}
+
 
 	//get senha
 	function getUsu_senha(){
 		return $this->usu_senha;
-	} 
+	}
 	function getUsu_email(){
 		return $this->usu_email;
-	} 
+	}
 
-	//get paciente	  
+	//get paciente
 	function getPac_tipo_sangue(){
-		return $this->pac_tipo_sangue;	
+		return $this->pac_tipo_sangue;
 	}
 	function getPac_remedio(){
 		return $this->pac_remedio;
@@ -288,7 +288,7 @@ Class Posto
 	function getPac_educacao(){
 		return $this->pac_educacao;
 	}
-	
+
 	//plano_de_saude
 	function getPds_convenio_nome(){
 		return $this->pds_convenio_nome;
@@ -303,18 +303,18 @@ Class Posto
 	function getEnf_registro(){
 		return $this->enf_registro;
 	}
-	
+
 	//Métodos gerais
-	function Inserir($ins){	
+	function Inserir($ins){
 		$con = $this->conectar();
 		mysqli_query($con,$ins) or die ("Erro no Inserir : " . mysqli_error ($con) . "<br>" . $ins);
-		
+
 		mysqli_close($con);
-		
+
 		return TRUE;
 	}
-		
-	
+
+
 	function selecionar($query){
 		$con = $this->conectar();
 		$res = mysqli_query($con, $query) or die ("Erro selecionar 	r()" . $query . mysqli_error($con));
@@ -323,12 +323,12 @@ Class Posto
 			return $qtd;
 		else{
 			$posto = mysqli_fetch_array ($res);
-				
-			return $posto[0];             
+
+			return $posto[0];
 		}
 		mysqli_close($con);
 	}
-	
+
 	function select($query){
 		$con = $this->conectar();
 		$res = mysqli_query($con, $query) or die ("Erro na seleção " . $query . mysqli_error($con));
@@ -336,24 +336,24 @@ Class Posto
 
 		return $array;
 		mysqli_close($con);
-	}	
-	
+	}
+
 	function conectar() {
 		error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
-		
+
 		$server  = "localhost";
-		$usuario = "root";
-		$senha   = "";
-		$banco   = "health_hospital";
-				
+		$usuario = "helth";
+		$senha   = "helth";
+		$banco   = "helth_hospital";
+
 		$con = mysqli_connect($server, $usuario, $senha, $banco) or die ("Erro 7: " . mysqli_connect_error());
 		$dbase = mysqli_select_db($con, $banco) or die ("Erro 8:" . mysqli_error($con));
-			
+
 		return $con;
 	}
 
 
 
 }
-	
+
 ?>
