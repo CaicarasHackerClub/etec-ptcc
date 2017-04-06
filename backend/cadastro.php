@@ -8,14 +8,14 @@
 		<?php
 		include_once ("Posto.class.php");
 		$posto = new Posto;
-		
+
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
-		
+
 		$con = $posto->conectar();
 		$selCar = "SELECT * FROM funcionario WHERE USUARIO_usu_id = '" . $_SESSION['tipo']. "';";
 		$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
-		$cargo = mysqli_fetch_array($res);							
-			
+		$cargo = mysqli_fetch_array($res);
+
 		$_SESSION['cargo'] = $cargo['fun_cargo'];
 		?>
 		<a href="?acao=cadastro">Cadastro</a>
@@ -87,19 +87,19 @@
 				$posto->setPes_data     		($_POST['pes_data']);
 				$posto->setPes_email    		($_POST['pes_email']);
 				$posto->setPes_estado_civil 	($_POST['pes_estado_civil']);
-				$posto->setPes_Cidadania 		($_POST['pes_cidadania']);
+				$posto->setPes_cidadania 		($_POST['pes_cidadania']);
 				$posto->setPes_genero		 	($_POST['pes_genero']);
 				$posto->setPes_sexo_biologico	($_POST['pes_sexo_biologico']);
 				$posto->setPes_telefone			($_POST['pes_telefone']);
-				
+
 				$posto->setEnd_pais			    ($_POST['end_pais']);
-				$posto->setEnd_Estado			($_POST['end_estado']);
+				$posto->setEnd_estado			($_POST['end_estado']);
 				$posto->setEnd_cidade   		($_POST['end_cidade']);
 				$posto->setEnd_cep      		($_POST['end_cep']);
 				$posto->setEnd_bairro   		($_POST['end_bairro']);
 				$posto->setEnd_rua			 	($_POST['end_rua']);
 				$posto->setEnd_numero			($_POST['end_numero']);
-								 
+
 				// Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
 				$selPes = "SELECT * FROM pessoa WHERE pes_cpf = '" . $_POST ['pes_cpf'] . "';";
 				$qtd = $posto->selecionar($selPes);
@@ -111,7 +111,7 @@
 					<?php
 				}
 				else {
-					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES ( 
+					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES (
 									'". $posto->getPes_nome()    	  	."',
 									'". $posto->getPes_pai()     	  	."',
 									'". $posto->getPes_mae()          	."',
@@ -124,8 +124,12 @@
 									'". $posto->getPes_genero()       	."',
 									'". $posto->getPes_sexo_biologico()	."',
 									'". $posto->getPes_telefone()      	."'
-									
+
 						);";
+
+                    //Insere os dados na tabela pessoa
+                    $okPes = $posto->inserir($insPes);
+
 					//Insere os dados na tabela endereço
 					$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					$pes_id = $posto->selecionar($sel_id);
@@ -140,16 +144,14 @@
 									'" . $posto->getEnd_numero() . "',
 									'" . $pes_id                 . "'
 						);";
-					// Verifica se a query foi inserida corretamente 
+
+					// Verifica se a query foi inserida corretamente
 					$okEnd = $posto->inserir($insEnd);
-										
-					//Insere os dados na tabela pessoa			
-					//verifica se a query foi inserida corretamente
-					$okPes = $posto->inserir($insPes);
-					
+
+                    //verifica se a query foi inserida corretamente
 					if ($okPes && $okEnd) {
 						echo "Pessoa cadastrada com sucesso!!!" . $_SESSION['cargo'];
-						/* se o usuário logado for recepcionista ele só poderá cadastrar 
+						/* se o usuário logado for recepcionista ele só poderá cadastrar
 						os dados de pacientes do formulário abaixo */
 						echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
 						if ($_SESSION['cargo'] == "recepcao") {
@@ -176,7 +178,7 @@
 							<input class="inp_class" type="submit" value = "Confirmar">
 							<?php
 						}
-						/* Se o usuário logado for recepcionista ele só poderá cadastrar 
+						/* Se o usuário logado for recepcionista ele só poderá cadastrar
 						os dados de funcionário do formulário abaixo
 						*/
 						else if ($_SESSION['cargo'] == "administracao") {
@@ -221,15 +223,15 @@
 					$posto->setPac_remedio			($_POST['pac_remedio']);
 					$posto->setPac_doenca			($_POST['pac_doenca']);
 					$posto->setPac_educacao			($_POST['pac_educacao']);
-					
+
 					$posto->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
 					$posto->setPds_numero_sus       ($_POST['pds_numero_sus']);
 					$posto->setPds_num_convenio     ($_POST['pds_num_convenio']);
-					
-					
-					//$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus = 
+
+
+					//$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus =
 					//		  '" . $_POST['pds_numero_sus'] . "';";
-							
+
 					/*if ($qtdPds >= 1) {
 						echo "Paciente já cadastrado!";
 					}
@@ -241,7 +243,7 @@
 					   	$sel_id = "SELECT MAX(pac_id) AS pac_id FROM paciente";
 					   	$pac_id = $posto->selecionar($sel_id);
 
-					   			 
+
 
 
 						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
@@ -253,14 +255,14 @@
 								'" . $pac_id              . "'
 
 							);";
-							 
+
 							echo $insPac;
-						$insPds = "INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id) VALUES ( 
-								'" . $posto->getPds_convenio_nome(). "', 
+						$insPds = "INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id) VALUES (
+								'" . $posto->getPds_convenio_nome(). "',
 								'" . $posto->getPds_numero_sus()   . "'
 								'" . $posto->getPds_num_convenio() . "'
 								'" . $pac_id                       . "'
-				
+
 							);";
 
 						$okPac = $posto->inserir($insPac);
@@ -280,10 +282,10 @@
 					$posto->setFun_turno 		($_POST ['fun_turno']);
 					$posto->setUsu_email        ($_POST['usu_email']);
 					$posto->setUsu_senha        ($_POST['usu_senha']);
-					 
+
 					// Seleção e inserção na tabela funcionário
 					//$selFun  = "SELECT fun_inscricao FROM funcionario WHERE '" . $_POST['fun_inscricao'] . "';";
-					
+
 					 /*  $qtdFun = $posto->selecionar($selfun);
 					if ($qtd >= 1) {
 						echo"Funcionario já cadastrado!";
@@ -304,11 +306,11 @@
 
 						$sel_id = "SELECT MAX(usu_id) AS usu_id FROM usuario";
 					   	$usu_id = $posto->selecionar($sel_id);
-					   	
+
 					   	$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					   	$pes_id = $posto->selecionar($sel_id);
 
-						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, usuario_usu_id, pessoa_pes_id) VALUES ( 
+						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, usuario_usu_id, pessoa_pes_id) VALUES (
 								'" . $posto->getFun_cargo()      . "',
 								'" . $posto->getFun_horario()    . "',
 								'" . $posto->getFun_inscricao()  . "',
@@ -324,7 +326,7 @@
 						else {
 							echo "Erro ao cadastrar";
 						}
-					
+
 					//}
 				}
 
@@ -362,27 +364,27 @@
 				if ($_POST['fun_cargo'] == "medico") {
 					$posto->setMed_crm            ($_POST['med_crm']);
 					$posto->setMed_especializacao ($_POST['med_especializacao']);
-					
+
 					$selMed = "SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
-					
+
 					$insMed = "INSERT INTO medico (med_crm,med_especializacao) VALUES (
 									'" . $posto->getMed_crm() . "',
 									'" . $posto->getMed_especializacao() . "'
 								);";
 
 					$okMed = $posto->inserir($insMed);
-					
+
 					if ($okMed){
 						echo "Médico(a) cadastrado!!";
 					}
 					else {
 						echo "Não cadastrado!";
 					}
-				} 
+				}
 				else if ($_POST['fun_cargo'] == "enfermeiro") {
-					$posto->setEnf_registro($_POST['enf_registro']);	
+					$posto->setEnf_registro($_POST['enf_registro']);
 					$selEnf = "SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
-					
+
 					$insEnf = "INSERT INTO enfermeiro (enf_registro) VALUES('" . $posto->getEnf_registro() . "');";
 					$okEnf =	$posto->inserir($insEnf);
 					if ($okEnf) {
@@ -399,7 +401,7 @@
 				echo "Confirmação final - Passo 4";
 			}
 		}
-		else { 
+		else {
 			echo "LOGOFF";
 		}
 		mysqli_close($con);
