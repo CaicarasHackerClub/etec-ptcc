@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Home</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pagina_inicial.css">
     <script type="text/javascript" src="../js/script.js" ></script>
   </head>
   <body>
