@@ -7,11 +7,13 @@
 	<body>
 		<?php
 		include_once ("Posto.class.php");
-		$posto = new Posto;
+		$metodo = new Metodo;
+		include_once ("sql.class");
+		$sql = new Sql;
 
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
-		$con = $posto->conectar();
+		$con = $sql->conecta();
 		$selCar = "SELECT * FROM funcionario WHERE USUARIO_usu_id = '" . $_SESSION['tipo']. "';";
 		$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
 		$cargo = mysqli_fetch_array($res);
@@ -79,30 +81,30 @@
 				<?php
 			}
 			else if ($_GET['passo'] == 2) {
-				$posto->setPes_nome     		($_POST['pes_nome']);
-				$posto->setPes_pai     			($_POST['pes_pai']);
-				$posto->setPes_mae     			($_POST['pes_mae']);
-				$posto->setPes_rg       		($_POST['pes_rg']);
-				$posto->setPes_cpf      		($_POST['pes_cpf']);
-				$posto->setPes_data     		($_POST['pes_data']);
-				$posto->setPes_email    		($_POST['pes_email']);
-				$posto->setPes_estado_civil 	($_POST['pes_estado_civil']);
-				$posto->setPes_cidadania 		($_POST['pes_cidadania']);
-				$posto->setPes_genero		 	($_POST['pes_genero']);
-				$posto->setPes_sexo_biologico	($_POST['pes_sexo_biologico']);
-				$posto->setPes_telefone			($_POST['pes_telefone']);
+				$metodo->setPes_nome     		($_POST['pes_nome']);
+				$metodo->setPes_pai     		($_POST['pes_pai']);
+				$metodo->setPes_mae     		($_POST['pes_mae']);
+				$metodo->setPes_rg       		($_POST['pes_rg']);
+				$metodo->setPes_cpf      		($_POST['pes_cpf']);
+				$metodo->setPes_data     		($_POST['pes_data']);
+				$metodo->setPes_email    		($_POST['pes_email']);
+				$metodo->setPes_estado_civil 	($_POST['pes_estado_civil']);
+				$metodo->setPes_cidadania 		($_POST['pes_cidadania']);
+				$metodo->setPes_genero		 	($_POST['pes_genero']);
+				$metodo->setPes_sexo_biologico	($_POST['pes_sexo_biologico']);
+				$metodo->setPes_telefone		($_POST['pes_telefone']);
 
-				$posto->setEnd_pais			    ($_POST['end_pais']);
-				$posto->setEnd_estado			($_POST['end_estado']);
-				$posto->setEnd_cidade   		($_POST['end_cidade']);
-				$posto->setEnd_cep      		($_POST['end_cep']);
-				$posto->setEnd_bairro   		($_POST['end_bairro']);
-				$posto->setEnd_rua			 	($_POST['end_rua']);
-				$posto->setEnd_numero			($_POST['end_numero']);
+				$metodo->setEnd_pais			($_POST['end_pais']);
+				$metodo->setEnd_estado			($_POST['end_estado']);
+				$metodo->setEnd_cidade   		($_POST['end_cidade']);
+				$metodo->setEnd_cep      		($_POST['end_cep']);
+				$metodo->setEnd_bairro   		($_POST['end_bairro']);
+				$metodo->setEnd_rua			 	($_POST['end_rua']);
+				$metodo->setEnd_numero			($_POST['end_numero']);
 
 				// Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
 				$selPes = "SELECT * FROM pessoa WHERE pes_cpf = '" . $_POST ['pes_cpf'] . "';";
-				$qtd = $posto->selecionar($selPes);
+				$qtd = $sql->selecionar($selPes);
 				$qtd = 0;
 				if ($qtd >= 1) {
 					echo "Pessoa já cadastrada!!";
@@ -112,41 +114,42 @@
 				}
 				else {
 					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES (
-									'". $posto->getPes_nome()    	  	."',
-									'". $posto->getPes_pai()     	  	."',
-									'". $posto->getPes_mae()          	."',
-									'". $posto->getPes_rg()           	."',
-									'". $posto->getPes_cpf()          	."',
-									'". $posto->getPes_data()         	."',
-									'". $posto->getPes_email()        	."',
-									'". $posto->getPes_estado_civil()  	."',
-									'". $posto->getPes_cidadania()    	."',
-									'". $posto->getPes_genero()       	."',
-									'". $posto->getPes_sexo_biologico()	."',
-									'". $posto->getPes_telefone()      	."'
+									'". $metodo->getPes_nome()    	  	."',
+									'". $metodo->getPes_pai()     	  	."',
+									'". $metodo->getPes_mae()          	."',
+									'". $metodo->getPes_rg()           	."',
+									'". $metodo->getPes_cpf()          	."',
+									'". $metodo->getPes_data()         	."',
+									'". $metodo->getPes_email()        	."',
+									'". $metodo->getPes_estado_civil() 	."',
+									'". $metodo->getPes_cidadania()    	."',
+									'". $metodo->getPes_genero()       	."',
+									'". $metodo->getPes_sexo_biologico()."',
+									'". $metodo->getPes_telefone()      ."'
+								
 
 						);";
 
                     //Insere os dados na tabela pessoa
-                    $okPes = $posto->inserir($insPes);
+                    $okPes = $sql->inserir($insPes);
 
 					//Insere os dados na tabela endereço
 					$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-					$pes_id = $posto->selecionar($sel_id);
+					$pes_id = $sql->selecionar($sel_id);
 
 					$insEnd = "INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero,pessoa_pes_id) VALUES (
-									'" . $posto->getEnd_pais()   . "',
-									'" . $posto->getEnd_estado() . "',
-									'" . $posto->getEnd_cidade() . "',
-									'" . $posto->getEnd_cep()    . "',
-									'" . $posto->getEnd_bairro() . "',
-									'" . $posto->getEnd_rua() 	 . "',
-									'" . $posto->getEnd_numero() . "',
+									'" . $metodo->getEnd_pais()   . "',
+									'" . $metodo->getEnd_estado() . "',
+									'" . $metodo->getEnd_cidade() . "',
+									'" . $metodo->getEnd_cep()    . "',
+									'" . $metodo->getEnd_bairro() . "',
+									'" . $metodo->getEnd_rua() 	 . "',
+									'" . $metodo->getEnd_numero() . "',
 									'" . $pes_id                 . "'
 						);";
 
 					// Verifica se a query foi inserida corretamente
-					$okEnd = $posto->inserir($insEnd);
+					$okEnd = $sql->inserir($insEnd);
 
                     //verifica se a query foi inserida corretamente
 					if ($okPes && $okEnd) {
@@ -219,14 +222,14 @@
 			}
 			else if ($_GET['passo'] == 3) {
 				if ($_SESSION['cargo'] == "recepcao") {
-					$posto->setPac_tipo_sangue		($_POST['pac_tipo_sangue']);
-					$posto->setPac_remedio			($_POST['pac_remedio']);
-					$posto->setPac_doenca			($_POST['pac_doenca']);
-					$posto->setPac_educacao			($_POST['pac_educacao']);
+					$metodo->setPac_tipo_sangue		($_POST['pac_tipo_sangue']);
+					$metodo->setPac_remedio			($_POST['pac_remedio']);
+					$metodo->setPac_doenca			($_POST['pac_doenca']);
+					$metodo->setPac_educacao			($_POST['pac_educacao']);
 
-					$posto->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
-					$posto->setPds_numero_sus       ($_POST['pds_numero_sus']);
-					$posto->setPds_num_convenio     ($_POST['pds_num_convenio']);
+					$metodo->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
+					$metodo->setPds_numero_sus       ($_POST['pds_numero_sus']);
+					$metodo->setPds_num_convenio     ($_POST['pds_num_convenio']);
 
 
 					//$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus =
@@ -238,19 +241,19 @@
 					else {
 					*/
 						$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-					   	$pes_id = $posto->selecionar($sel_id);
+					   	$pes_id = $sql->selecionar($sel_id);
 
 					   	$sel_id = "SELECT MAX(pac_id) AS pac_id FROM paciente";
-					   	$pac_id = $posto->selecionar($sel_id);
+					   	$pac_id = $sql->selecionar($sel_id);
 
 
 
 
 						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
-								'" . $posto->getPac_tipo_sangue() . "',
-								'" . $posto->getPac_remedio()     . "',
-								'" . $posto->getPac_doenca()      . "',
-								'" . $posto->getPac_educacao()    . "',
+								'" . $metodo->getPac_tipo_sangue() . "',
+								'" . $metodo->getPac_remedio()     . "',
+								'" . $metodo->getPac_doenca()      . "',
+								'" . $metodo->getPac_educacao()    . "',
 								0 ,
 								'" . $pac_id              . "'
 
@@ -258,15 +261,15 @@
 
 							echo $insPac;
 						$insPds = "INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id) VALUES (
-								'" . $posto->getPds_convenio_nome(). "',
-								'" . $posto->getPds_numero_sus()   . "'
-								'" . $posto->getPds_num_convenio() . "'
+								'" . $metodo->getPds_convenio_nome(). "',
+								'" . $metodo->getPds_numero_sus()   . "'
+								'" . $metodo->getPds_num_convenio() . "'
 								'" . $pac_id                       . "'
 
 							);";
 
-						$okPac = $posto->inserir($insPac);
-						$okPds = $posto->inserir($insPds);
+						$okPac = $sql->inserir($insPac);
+						$okPds = $sql->inserir($insPds);
 						if ($okPac && $okPds) {
 							echo "Paciente cadastrado!!!!!!!!";
 						}
@@ -276,12 +279,12 @@
 					//}
 				}
 				else if ($_SESSION['cargo'] == "administracao") {
-					$posto->setFun_cargo 		($_POST ['fun_cargo']);
-					$posto->setFun_horario 		($_POST ['fun_horario']);
-					$posto->setFun_inscricao	($_POST ['fun_inscricao']);
-					$posto->setFun_turno 		($_POST ['fun_turno']);
-					$posto->setUsu_email        ($_POST['usu_email']);
-					$posto->setUsu_senha        ($_POST['usu_senha']);
+					$metodo->setFun_cargo 		($_POST ['fun_cargo']);
+					$metodo->setFun_horario 	($_POST ['fun_horario']);
+					$metodo->setFun_inscricao	($_POST ['fun_inscricao']);
+					$metodo->setFun_turno 		($_POST ['fun_turno']);
+					$metodo->setUsu_email       ($_POST['usu_email']);
+					$metodo->setUsu_senha       ($_POST['usu_senha']);
 
 					// Seleção e inserção na tabela funcionário
 					//$selFun  = "SELECT fun_inscricao FROM funcionario WHERE '" . $_POST['fun_inscricao'] . "';";
@@ -292,34 +295,34 @@
 					}
 					else {
 					*/  $selNome = "SELECT MAX(pes_nome) AS pes_nome FROM pessoa";
-						$usu_nome = $posto->select($selNome);
+						$usu_nome = $sql->fetch($selNome);
 
 
 						"INSERT INTO usuario (usu_nome, usu_senha, usu_email, usu_ativo, usu_tipo) VALUES (
 							'" . $usu_nome[2]           . "'
-							'" . $posto->getUsu_senha() . "',
-							'" . $posto->getUsu_email() . "',
+							'" . $metodo->getUsu_senha() . "',
+							'" . $metodo->getUsu_email() . "',
 							' .          1              . ',
 							' .          1              . '
 
 							);";
 
 						$sel_id = "SELECT MAX(usu_id) AS usu_id FROM usuario";
-					   	$usu_id = $posto->selecionar($sel_id);
+					   	$usu_id = $sql->selecionar($sel_id);
 
 					   	$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-					   	$pes_id = $posto->selecionar($sel_id);
+					   	$pes_id = $sql->selecionar($sel_id);
 
 						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, usuario_usu_id, pessoa_pes_id) VALUES (
-								'" . $posto->getFun_cargo()      . "',
-								'" . $posto->getFun_horario()    . "',
-								'" . $posto->getFun_inscricao()  . "',
-								'" . $posto->getFun_turno()      . "',
+								'" . $metodo->getFun_cargo()      . "',
+								'" . $metodo->getFun_horario()    . "',
+								'" . $metodo->getFun_inscricao()  . "',
+								'" . $metodo->getFun_turno()      . "',
 								'" .         $usu_id             . "',
 								'" .         $pes_id             . "'
 							);";
 
-						$okFun = $posto->inserir($insFun);
+						$okFun = $sql->inserir($insFun);
 						if ($okFun) {
 							echo "Cadastrado com sucesso!!";
 						}
@@ -362,17 +365,17 @@
 			else if ($_GET['passo'] == 4) {
 				//últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
 				if ($_POST['fun_cargo'] == "medico") {
-					$posto->setMed_crm            ($_POST['med_crm']);
-					$posto->setMed_especializacao ($_POST['med_especializacao']);
+					$metodo->setMed_crm            ($_POST['med_crm']);
+					$metodo->setMed_especializacao ($_POST['med_especializacao']);
 
 					$selMed = "SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
 
 					$insMed = "INSERT INTO medico (med_crm,med_especializacao) VALUES (
-									'" . $posto->getMed_crm() . "',
-									'" . $posto->getMed_especializacao() . "'
+									'" . $metodo->getMed_crm() . "',
+									'" . $metodo->getMed_especializacao() . "'
 								);";
 
-					$okMed = $posto->inserir($insMed);
+					$okMed = $sql->inserir($insMed);
 
 					if ($okMed){
 						echo "Médico(a) cadastrado!!";
@@ -382,11 +385,11 @@
 					}
 				}
 				else if ($_POST['fun_cargo'] == "enfermeiro") {
-					$posto->setEnf_registro($_POST['enf_registro']);
+					$metodo->setEnf_registro($_POST['enf_registro']);
 					$selEnf = "SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
 
-					$insEnf = "INSERT INTO enfermeiro (enf_registro) VALUES('" . $posto->getEnf_registro() . "');";
-					$okEnf =	$posto->inserir($insEnf);
+					$insEnf = "INSERT INTO enfermeiro (enf_registro) VALUES('" . $metodo->getEnf_registro() . "');";
+					$okEnf =	$sql->inserir($insEnf);
 					if ($okEnf) {
 						echo "Enfermeiro(a) Cadastrado!";
 					}

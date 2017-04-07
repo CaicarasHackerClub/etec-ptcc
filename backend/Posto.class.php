@@ -304,56 +304,6 @@ Class Posto
 		return $this->enf_registro;
 	}
 
-	//Métodos gerais
-	function Inserir($ins){
-		$con = $this->conectar();
-		mysqli_query($con,$ins) or die ("Erro no Inserir : " . mysqli_error ($con) . "<br>" . $ins);
-
-		mysqli_close($con);
-
-		return TRUE;
-	}
-
-
-	function selecionar($query){
-		$con = $this->conectar();
-		$res = mysqli_query($con, $query) or die ("Erro selecionar 	r()" . $query . mysqli_error($con));
-		$qtd = mysqli_num_rows($res);
-		if ($qtd == 0)
-			return $qtd;
-		else{
-			$posto = mysqli_fetch_array ($res);
-
-			return $posto[0];
-		}
-		mysqli_close($con);
-	}
-
-	function select($query){
-		$con = $this->conectar();
-		$res = mysqli_query($con, $query) or die ("Erro na seleção " . $query . mysqli_error($con));
-		$array = mysqli_fetch_array($res);
-
-		return $array;
-		mysqli_close($con);
-	}
-
-	function conectar() {
-		error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
-
-		$server  = "localhost";
-		$usuario = "helth";
-		$senha   = "helth";
-		$banco   = "helth_hospital";
-
-		$con = mysqli_connect($server, $usuario, $senha, $banco) or die ("Erro 7: " . mysqli_connect_error());
-		$dbase = mysqli_select_db($con, $banco) or die ("Erro 8:" . mysqli_error($con));
-
-		return $con;
-	}
-
-
-
 }
 
 ?>
