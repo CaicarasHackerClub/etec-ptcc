@@ -5,7 +5,6 @@
 
 body {
   margin: 0;
-  overflow: hidden;
   width: 100%;
 }
 
@@ -20,7 +19,7 @@ header{
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: auto;
+  height: 100vh;
 }
 
 /*conteúdo da lateral, hora, usuário, logar, etc..*/
@@ -55,7 +54,7 @@ header{
   position: absolute;
   display: block;
   top: 0%;
-  margin-left: 3%;
+  margin-left: 1.9em;
   margin-top: 5px;
 }
 
@@ -150,7 +149,6 @@ header{
 /*edição nos links de submódulos*/
 .container .lateral .main-lateral .submodulo{
   margin: 0%;
-
   width: 100%;
 }
 
@@ -158,7 +156,6 @@ header{
 .container .lateral .main-lateral{
   width: 100%;
   height: 60%;
-  overflow: scroll;
 }
 
 .conteudoCentro .txt_avatar{
@@ -186,7 +183,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   border: 0.5px solid #29784b;
   width: 100%;
-  height: 32.7em;
+  height: 100%;
   display: flex;
   flex-flow: column;
 }
@@ -194,14 +191,15 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 99%;
-  height: 40em;
+  height: 84vh;
   margin: 0.5%;
   border: 0.5px solid #29784b;
 }
+
 /*edição na segunda class do da main do centro*/
 .centro-modulo{
-  margin-top: 1%;
   margin-left: 0;
+  margin-top: 0.4%;
 }
 
 /*
@@ -211,17 +209,9 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 /*padronização dos conteudos do cabeçalho*/
 .main .cabecalho .config,
 .container .main .cabecalho .cabecalho-group{
-  display: inline-block;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-}
-
-/*icone da página no cabeçalho*/
-.container .main .cabecalho .cabecalho-group .img-titulo{
-  margin-top: -0.6em;
-  height: 2.5em;
-  margin-left: -10%;
 }
 
 /*informações no cabeçalho*/
@@ -230,19 +220,55 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   border: 0;
 }
 
-/*edição no grupo onde fica o icone da página*/
-.container .main .cabecalho .group-image{
-  margin-left: 20%;
+.container .main .cabecalho .group-image {
+  width: 34%;
+
+}
+
+.container .main .cabecalho .group-image .tit-image{
+  display: inline-block;
+  background: url("../img/avatars/triagem.png") no-repeat;
+  background-size: 70px;
+  background-position: center;
+  background-position: 15% -1%;
+  width: 87px;
+  height: 50px;
+}
+
+.container .main .cabecalho .group-image .tit-text{
+  display: inline-block;
+  color: #01b26a;
+  margin-top: 2.5em;
+  border-bottom: 0;
+  font-size: 20pt;
+  margin-left: 1%;
 }
 
 .main .cabecalho .config .anchor{
   height: 3em;
 }
 
-@media (min-width: 650px){
+.config .anchor .image{
+  width: 90%;
+}
+
+@media (min-width: 651px){
   /*grupo contido no cabeçalho*/
+  .container .main .cabecalho .config{
+    width: 45%;
+  }
+
+  .container .main .cabecalho .group-image .tit-image{
+    background-size: 140px;
+    background-position: center;
+    background-position: 15% -1%;
+    width: 145px;
+    height: 100px;
+  }
+
+  /*edição no grupo onde fica o icone da página*/
   .container .main .cabecalho .cabecalho-group{
-    width: 20%;
+    margin-left: 0%;
   }
 }
 
@@ -255,7 +281,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     }
 
     .container .main .cabecalho .config{
-      width: 40%;
+      width: 60%;
     }
 
     /*Formatação dos botões da lateral*/
@@ -284,7 +310,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
     /*edição no grupo onde fica o icone da página*/
     .container .main .cabecalho .group-image{
-      margin-left: 10%;
+      width: 70%;
     }
 
     .lateral #hora{
@@ -307,36 +333,33 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     width: 100%;
   }
 
+  .container .main .cabecalho .group-image{
+    width: 80%;
+    margin-left: -10%;
+  }
+
   .main .cabecalho .config{
-    margin-left: 60%;
     height: 40%;
     position: absolute;
     margin-top: 2.2em;
     visibility: hidden;
-  }
-
-  .main .cabecalho .config .anchor{
-    width: 50%;
-    height: 3em;
-    margin-left: 50%;
-  }
-
-  .main .cabecalho .group-image{
-    width: 55%;
-  }
-
-  .main .cabecalho .group-image .tit-sub-modulo{
-    width: 30%;
-    margin-top: 17px;
     margin-left: 40%;
   }
 
-  .main .cabecalho .group-image .tit-sub-modulo .img-titulo{
-    height: 46px;
+  .main .cabecalho .config .anchor{
+    width: 70px;
+    height: 3em;
+    margin-left: 53%;
+  }
+
+  .main .cabecalho .group-image .tit-sub-modulo{
+    margin-left: 40%;
   }
 
   .main .cabecalho .group-image #lbl_triagem{
-    margin-left: -11%;
+    font-size: 14pt;
+    margin: 0;
+    margin-top: 24px;
   }
 
   .main .cabecalho .button{
@@ -401,14 +424,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 @media (max-width: 400px){
 
-  .main .cabecalho .group-image .tit-sub-modulo{
-    margin-left: 10%;
-  }
-
-  .main .cabecalho .group-image #lbl_triagem{
-    margin-left: 1%;
-  }
-
   .cabecalho .titulo{
     width: 40%;
     margin-left: 16%;
@@ -434,5 +449,9 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .cabecalho .titulo{
     width: 55%;
     padding-left: 5%;
+  }
+
+  .main .cabecalho .group-image #lbl_triagem{
+    visibility: hidden;
   }
 }
