@@ -5,6 +5,7 @@ function hora() {
  document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
 }
 
+
 /* Função que mostra o menú lateral */
 var ok = false
 function mostrarMenu() {
@@ -37,6 +38,7 @@ function mostrar(){
   }
 }
 
+/*Funçao que mostra os as opções de salvar editar e imprimir*/
 var okConfig = false;
 function mostrarConfig(){
   var config = document.getElementById('config');

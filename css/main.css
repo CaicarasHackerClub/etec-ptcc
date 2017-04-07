@@ -31,7 +31,7 @@ header{
   flex-wrap: wrap;
   border-right: 1px solid #29784b;
   border-left: 1px solid #29784b;
-  }
+}
 
 .lateral .nav_user{
   display: flex;
@@ -54,7 +54,7 @@ header{
   position: absolute;
   display: block;
   top: 0%;
-  margin-left: 1.9em;
+  margin-left: 3%;
   margin-top: 5px;
 }
 
@@ -99,7 +99,7 @@ header{
 .cabecalho .titulo{
   display: flex;
   flex-direction: row;
-  margin-left: 35%;
+  margin-left: 33%;/*alterado*/
   color: #01b26a;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -199,7 +199,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição na segunda class do da main do centro*/
 .centro-modulo{
   margin-left: 0;
-  margin-top: 0.4%;
+  margin-top: 1px;
 }
 
 /*
@@ -349,7 +349,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .main .cabecalho .config .anchor{
     width: 70px;
     height: 3em;
-    margin-left: 53%;
+    margin-left: 70%;
   }
 
   .main .cabecalho .group-image .tit-sub-modulo{
@@ -425,10 +425,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 @media (max-width: 400px){
 
   .cabecalho .titulo{
-    width: 40%;
-    margin-left: 16%;
+    width: 55%;/*alterado*/
+    margin-left: 15%;/*alterado*/
 		font-size: 16pt;
-		padding-left: 2%;
+		padding-left: 6%;
 		padding-bottom: 1px;
   }
 
@@ -445,13 +445,8 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   }
 }
 
-@media (max-width: 360px){
-  .cabecalho .titulo{
-    width: 55%;
-    padding-left: 5%;
-  }
-
-  .main .cabecalho .group-image #lbl_triagem{
+@media (max-width: 370px){
+  .container .main .cabecalho .group-image .tit-text{
     visibility: hidden;
   }
 }
