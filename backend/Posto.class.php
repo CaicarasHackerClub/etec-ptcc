@@ -303,6 +303,7 @@ Class Metodo
 	function getEnf_registro(){
 		return $this->enf_registro;
 	}
+	/////////////////////
 
 }
 

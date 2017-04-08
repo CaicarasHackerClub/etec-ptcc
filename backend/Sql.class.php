@@ -6,7 +6,7 @@ class Sql {
     // $user = "helth";
     // $password = "helth";
     // $db = "helth_hospital";
-      
+      //
 
   function inserir($query) {
     $con = conecta();
