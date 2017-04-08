@@ -259,14 +259,15 @@
 
 							);";
 
-							echo $insPac;
+							
 						$insPds = "INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id) VALUES (
 								'" . $metodo->getPds_convenio_nome(). "',
-								'" . $metodo->getPds_numero_sus()   . "'
-								'" . $metodo->getPds_num_convenio() . "'
-								'" . $pac_id                       . "'
+								'" . $metodo->getPds_numero_sus()   . "',
+								'" . $metodo->getPds_num_convenio() . "',
+								'" . $pac_id                        . "'
 
 							);";
+						echo $insPds;
 
 						$okPac = $sql->inserir($insPac);
 						$okPds = $sql->inserir($insPds);
