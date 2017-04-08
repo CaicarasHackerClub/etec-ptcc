@@ -12,7 +12,7 @@ class Sql {
   }
 
   function inserir($query) {
-    $con = conecta();
+    $con = $this->conecta();
 
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
 
@@ -39,7 +39,7 @@ class Sql {
   }
 
   function selecionar($query){
-    $con = conecta();
+    $con = $this->conecta();
     $res = mysqli_query($con, $query) or die ("Erro selecionar  r()" . $query . mysqli_error($con));
     $qtd = mysqli_num_rows($res);
     if ($qtd == 0)
