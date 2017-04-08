@@ -13,7 +13,7 @@
 
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
-		$con = conecta();
+		$con = $sql->conecta();
 		$selCar = "SELECT * FROM funcionario WHERE USUARIO_usu_id = '" . $_SESSION['tipo']. "';";
 		$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
 		$cargo = mysqli_fetch_array($res);
