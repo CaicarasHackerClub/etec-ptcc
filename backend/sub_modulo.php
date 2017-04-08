@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Home</title>
     <link rel="stylesheet" href="../css/main.css">
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
     <script type="text/javascript" src="../js/script.js" ></script>
   </head>
   <body>
@@ -21,8 +22,8 @@
             <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
             <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
           </ul>
-          <a href="#" Class="anchor" id="modulo_2" >+ Módulo</a>
-          <a href="#" Class="anchor" id="modulo_3" >+ Módulo</a>
+          <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" >+ Triagem</a>
+          <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" >+ Cadastro</a>
         </main>
         <a href="#" id="user" class="nav_user">Usuário</a>
         <a href="#" class="nav_user">Deslogar</a>
@@ -49,7 +50,17 @@
 
         <div class="centro-modulo conteudoCentro">
           <div class="main">
-            <main class="main main-centro">
+            <main class="main main-centro" id="main-centro">
+              <div class="TabControl">
+                  <div id="header">
+                      <ul class="abas" id="abas">
+
+                      </ul>
+                  </div>
+                  <div id="content">
+
+                  </div>
+              </div>
             </main>
           </div>
         </div>

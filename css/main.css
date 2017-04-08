@@ -252,6 +252,84 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 90%;
 }
 
+/*EDIÇÃO DA ABAS*/
+
+.TabControl{
+  width:100%;
+  overflow:hidden;
+  height:100%;
+}
+
+.TabControl #header{
+  width:100%;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.TabControl #content{
+  width:100%;
+  border: solid 1px #01b26a;
+  overflow: hidden;
+  height:100%;
+}
+
+.TabControl .abas{
+  display:inline;
+}
+
+.TabControl .abas li{
+  float:left
+}
+
+.abas{
+  list-style:none;
+}
+
+.aba{
+  width:100px;
+  height:30px;
+  border: solid 1px #01b26a;
+  text-align:center;
+  padding-top:5px;
+  border-bottom-color:#01b26a;
+}
+
+.ativa{
+  width:100px;
+  height:30px;
+  border:solid 1px #27408B;
+  text-align:center;
+  padding-top:5px;
+}
+
+.ativa span, .selecionada span{
+  /*color: #fff;*/
+}
+
+.TabControl #content{
+  /*background:#27408B*/
+}
+
+.TabControl .conteudo{
+  width:100%;
+  /*background:#27408B;*/
+  display:none;
+  height:100%;
+}
+
+.aba .image-close{
+  margin-left: 10px;
+}
+
+.selecionada{
+  width:100px;
+  height:30px;
+  border:solid 1px #27408B;
+  text-align:center;
+  padding-top:5px;
+  background-color: #f56529;
+}
+
 @media (min-width: 651px){
   /*grupo contido no cabeçalho*/
   .container .main .cabecalho .config{
@@ -371,7 +449,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   /*Formatação da div lateral*/
   .lateral{
-    position: absolute;
+    position:fixed;
     width: 60%;
     margin-top: 53px;
     margin-left: -390px;
