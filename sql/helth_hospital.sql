@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08/04/2017 às 02:21
+-- Tempo de geração: 08/04/2017 às 03:34
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -217,13 +217,6 @@ CREATE TABLE `plano_de_saude` (
   `pac_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Fazendo dump de dados para tabela `plano_de_saude`
---
-
-INSERT INTO `plano_de_saude` (`pds_id`, `pds_convenio_nome`, `pds_numero_sus`, `pds_num_convenio`, `pac_id`) VALUES
-(1, 'Unimed', '0', '898004164447763', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -434,6 +427,11 @@ ALTER TABLE `paciente`
 --
 ALTER TABLE `pessoa`
   MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de tabela `plano_de_saude`
+--
+ALTER TABLE `plano_de_saude`
+  MODIFY `pds_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `quadro_clinico`
 --
