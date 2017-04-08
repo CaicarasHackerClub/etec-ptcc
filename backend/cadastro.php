@@ -8,12 +8,12 @@
 		<?php
 		include_once ("Posto.class.php");
 		$metodo = new Metodo;
-		include_once ("sql.class");
+		include_once ("Sql.class.php");
 		$sql = new Sql;
 
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
-		$con = $sql->conecta();
+		$con = conecta();
 		$selCar = "SELECT * FROM funcionario WHERE USUARIO_usu_id = '" . $_SESSION['tipo']. "';";
 		$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
 		$cargo = mysqli_fetch_array($res);

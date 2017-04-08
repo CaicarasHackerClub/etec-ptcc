@@ -17,12 +17,12 @@
 								location.href='index.php';</script>;";
 			}
 			else {
-				include_once ("Posto.class.php");
-				$posto = new Posto;
+				include_once ("Sql.class.php");
+				$sql = new Sql;
 
 				$sel= "SELECT * FROM usuario WHERE usu_senha = '".$_POST['usu_senha'].
 						"' AND usu_email = '".$_POST['usu_email']."';";
-				$qtd = $posto->selecionar($sel);
+				$qtd = $sql->selecionar($sel);
 
 				if ($qtd >=1){
 					$_SESSION['tipo'] = $qtd;
@@ -40,13 +40,14 @@
 								'" . $log_data 				 . "',
 								 " . $_SESSION['tipo'] . "
 								);";
+					echo "olá" . $ins;
 
-					$qtd = $posto->selecionar($sel);
+					$qtd = $sql->selecionar($sel);
 					if ($qtd >=1){
 						echo"Sessão cadastrada anteriormente!!";
 					}
 					else{
-						$ok = $posto->inserir($ins);
+						$ok = $sql->inserir($ins);
 
 						if ($ok) {
 							echo "Cadastrado com sucesso!";
