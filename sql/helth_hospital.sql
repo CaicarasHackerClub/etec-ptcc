@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 06/04/2017 às 04:40
+-- Tempo de geração: 08/04/2017 às 02:21
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -84,18 +84,6 @@ CREATE TABLE `especializacao` (
 
 INSERT INTO `especializacao` (`esp_id`, `esp_nome`, `medico_med_id`) VALUES
 (1, 'Pediatria', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `fila_de_espera`
---
-
-CREATE TABLE `fila_de_espera` (
-  `fde_id` int(11) NOT NULL,
-  `hora` time DEFAULT NULL,
-  `paciente_pac_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -280,6 +268,9 @@ CREATE TABLE `triagem` (
   `tri_respiracao` int(2) DEFAULT NULL,
   `tri_dor` int(2) DEFAULT NULL,
   `tri_orgaos_vitais` tinyint(1) DEFAULT NULL,
+  `tri_data` date DEFAULT NULL,
+  `tri_hora` time DEFAULT NULL,
+  `tri_status` tinyint(1) DEFAULT NULL,
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -330,13 +321,6 @@ ALTER TABLE `enfermeiro`
 ALTER TABLE `especializacao`
   ADD PRIMARY KEY (`esp_id`),
   ADD KEY `fk_especializacao_medico1_idx` (`medico_med_id`);
-
---
--- Índices de tabela `fila_de_espera`
---
-ALTER TABLE `fila_de_espera`
-  ADD PRIMARY KEY (`fde_id`),
-  ADD KEY `fk_fila_de_espera_paciente1_idx` (`paciente_pac_id`);
 
 --
 -- Índices de tabela `funcionario`
@@ -426,11 +410,6 @@ ALTER TABLE `enfermeiro`
 ALTER TABLE `especializacao`
   MODIFY `esp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `fila_de_espera`
---
-ALTER TABLE `fila_de_espera`
-  MODIFY `fde_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
@@ -496,12 +475,6 @@ ALTER TABLE `enfermeiro`
 --
 ALTER TABLE `especializacao`
   ADD CONSTRAINT `fk_especializacao_medico1` FOREIGN KEY (`medico_med_id`) REFERENCES `medico` (`med_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Restrições para tabelas `fila_de_espera`
---
-ALTER TABLE `fila_de_espera`
-  ADD CONSTRAINT `fk_fila_de_espera_paciente1` FOREIGN KEY (`paciente_pac_id`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Restrições para tabelas `funcionario`
