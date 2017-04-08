@@ -1,5 +1,5 @@
 <?php
-Class Posto
+Class Metodo
 {
 	//pessoa
 	private $pes_nome;

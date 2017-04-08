@@ -1,23 +1,15 @@
 <?php
 
+  include_once "conectar.php";
 class Sql {
-  function conecta() {
     // $host = "192.168.0.170";
     // $user = "helth";
     // $password = "helth";
     // $db = "helth_hospital";
-
-    $host = "localhost";
-    $user = "root";
-    $password = "root";
-    $db = "hospital1";
-    $con  = mysqli_connect($host, $user, $password, $db) or die ("Erro ao conectar: " . mysqli_connect_error());
-
-    return $con;
-  }
+      
 
   function inserir($query) {
-    $con = $this->conecta();
+    $con = conecta();
 
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
 
@@ -41,6 +33,20 @@ class Sql {
     mysqli_close($con);
 
     return $fetch;
+  }
+
+  function selecionar($query){
+    $con = conecta();
+    $res = mysqli_query($con, $query) or die ("Erro selecionar  r()" . $query . mysqli_error($con));
+    $qtd = mysqli_num_rows($res);
+    if ($qtd == 0)
+      return $qtd;
+    else{
+      $posto = mysqli_fetch_array ($res);
+
+      return $posto[0];
+    }
+    mysqli_close($con);
   }
 }
 
