@@ -1,12 +1,15 @@
 <?php
 
-  include_once "conectar.php";
 class Sql {
     // $host = "192.168.0.170";
     // $user = "helth";
     // $password = "helth";
     // $db = "helth_hospital";
       //
+  function conecta (){ 
+    include_once "conectar.php";
+    return $con;
+  }
 
   function inserir($query) {
     $con = conecta();
