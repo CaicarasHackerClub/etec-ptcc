@@ -268,7 +268,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .TabControl #content{
   width:100%;
-  border: solid 1px #01b26a;
+  /*border: solid 1px #01b26a;*/
   overflow: hidden;
   height:100%;
 }
@@ -288,43 +288,29 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 .aba{
   width:100px;
   height:30px;
-  border: solid 1px #01b26a;
   text-align:center;
   padding-top:5px;
-  border-bottom-color:#01b26a;
+  background-color: #01b26a;
 }
 
 .ativa{
-  width:100px;
-  height:30px;
-  border:solid 1px #27408B;
-  text-align:center;
-  padding-top:5px;
-}
-
-.ativa span, .selecionada span{
-  /*color: #fff;*/
-}
-
-.TabControl #content{
-  /*background:#27408B*/
+  border:solid 1px #01b26a;
 }
 
 .TabControl .conteudo{
   width:100%;
-  /*background:#27408B;*/
   display:none;
   height:100%;
 }
 
 .aba .image-close{
   margin-left: 10px;
+  height: 13px;
 }
 
 .selecionada{
   width:100px;
   height:30px;
-  border:solid 1px #27408B;
   text-align:center;
   padding-top:5px;
   background-color: #f56529;
