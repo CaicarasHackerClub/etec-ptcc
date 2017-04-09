@@ -75,17 +75,30 @@ header{
 /*Div que contém triagem, Recepção e Administração*/
 .conteudoCentro{
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
   margin-top: 2%;
-  margin-left: 5%;
+  padding-left: 17%;
 }
 
 /*Formatação e posicionamento dos ícones do centro*/
 .conteudoCentro .avatars{
-  width: 30%;
+  display: flex;
   flex-wrap: wrap;
+  width: 90%;
+  padding-left: 17%;
+}
+
+/*Formatação do a abaixo dos avatars*/
+.conteudoCentro .anchor {
+  color: #29784b;
+  width: 20%;
+  padding-left: 10%;
+}
+
+/*Formatação do texto abaixo dos ícones*/
+.conteudoCentro .txt_avatar{
+  width: 100%;
 }
 
 /*Div que contém o título e o botão para aparecer a lateral*/
@@ -99,7 +112,7 @@ header{
 .cabecalho .titulo{
   display: flex;
   flex-direction: row;
-  margin-left: 33%;/*alterado*/
+  margin-left: 33%;
   color: #01b26a;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -198,6 +211,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 
 /*edição na segunda class do da main do centro*/
 .centro-modulo{
+  padding: 0;
   margin-left: 0;
   margin-top: 1px;
 }
@@ -368,7 +382,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
     /*Formatação do cabeçalho*/
     .cabecalho .titulo{
-      margin-left: 22%;
+      margin-left: 28%;
   		text-align: center;
     }
 
@@ -382,6 +396,21 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       margin-left: 10%;
       visibility: hidden;
       display: none;
+    }
+
+    .conteudoCentro{
+      padding-left: 1%;
+    }
+
+    .conteudoCentro .anchor{
+      width: 33%;
+      padding-left: 19%;
+    }
+
+    .conteudoCentro .avatars{
+      width: 110%;
+      text-align: center;
+      padding-left: 20%;
     }
 }
 
@@ -413,7 +442,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .main .cabecalho .config .anchor{
     width: 70px;
     height: 3em;
-    margin-left: 70%;
+    margin-left: 71%;
   }
 
   .main .cabecalho .group-image .tit-sub-modulo{
@@ -435,7 +464,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   /*Formatação da div lateral*/
   .lateral{
-    position:fixed;
+    position: absolute;
     width: 60%;
     margin-top: 53px;
     margin-left: -390px;
@@ -450,16 +479,24 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     padding-left: 40%;
   }
 
+  .conteudoCentro .anchor{
+    width: 30%;
+    margin-left: 3px;
+    padding-left: 10%;
+  }
+
   /*Formatação dos avatares*/
   .conteudoCentro .avatars{
+    width: 80px;
     margin: 5px;
+    padding-left: 10%;
   }
 
   /*Formatação da div que contém o título e o botão da lateral*/
   .cabecalho {
     display: flex;
     flex-direction: row;
-    margin-top: 0%;
+    margin-top: 0px;
     background: #9bd3ae;
     height: 50px;
   }
@@ -475,6 +512,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   .centro-modulo{
     margin-left: 0;
+    padding: 0;
   }
 
   /*Formatação do botão da lateral*/
@@ -489,28 +527,39 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 @media (max-width: 400px){
 
   .cabecalho .titulo{
-    width: 55%;/*alterado*/
-    margin-left: 15%;/*alterado*/
+    margin-left: 12%;
 		font-size: 16pt;
-		padding-left: 6%;
+		padding-left: 5%;
 		padding-bottom: 1px;
-  }
-
-  .conteudoCentro .avatars {
-    width: 20%;
-  }
-
-  .conteudoCentro{
-    margin-left: 0;
+    margin-top: 10px;
   }
 
   .lateral {
     width: 80%;
+  }
+
+.conteudoCentro .anchor{
+    /*width: 37%;*/
+    margin-left: 22px;
+    padding-left: 10%;
+  }
+
+  /*Formatação dos avatares*/
+.conteudoCentro .avatars{
+    width: 70px;
+    margin: 5px;
+    padding-left: 13%;
   }
 }
 
 @media (max-width: 370px){
   .container .main .cabecalho .group-image .tit-text{
     visibility: hidden;
+  }
+}
+
+@media (max-height: 280px){
+  .cabecalho .titulo{
+    width: 32%;
   }
 }
