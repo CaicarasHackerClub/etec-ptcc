@@ -54,7 +54,7 @@ header{
   position: absolute;
   display: block;
   top: 0%;
-  margin-left: 3%;
+  margin-left: 2.5%;
   margin-top: 5px;
 }
 
@@ -92,7 +92,7 @@ header{
 /*Formatação do a abaixo dos avatars*/
 .conteudoCentro .anchor {
   color: #29784b;
-  width: 20%;
+  width: 22%;
   padding-left: 10%;
 }
 
@@ -204,7 +204,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 99%;
-  height: 84vh;
+  height: 81vh;
   margin: 0.5%;
   border: 0.5px solid #29784b;
 }
@@ -348,6 +348,19 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .container .main .cabecalho .cabecalho-group{
     margin-left: 0%;
   }
+
+  @media (max-height: 590px){
+    .container .main .cabecalho .group-image .tit-image{
+      width: 30%;
+      height: 100%;
+      background-size: 100%;
+    }
+
+    .container .main .cabecalho .group-image .tit-text{
+      margin-top: 1em;
+      padding-bottom: 15%;
+    }
+  }
 }
 
 @media (max-width: 1054px){
@@ -402,15 +415,19 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       padding-left: 1%;
     }
 
+    .centro-modulo{
+      padding-left: 0%;
+    }
+
     .conteudoCentro .anchor{
-      width: 33%;
+      width: 29%;
       padding-left: 19%;
     }
 
     .conteudoCentro .avatars{
-      width: 110%;
-      text-align: center;
-      padding-left: 20%;
+      width: 120%;   
+      text-align: center; 
+      padding-left: 20%; 
     }
 }
 
@@ -506,9 +523,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     box-shadow: none;
     font-size: 100%;
     margin-top: 10px;
-    margin-left: 30%;
-    padding-bottom: 30px;
-  }
+    margin-left: 25%;
+    padding-bottom: 30px;   
+
+}
 
   .centro-modulo{
     margin-left: 0;
@@ -539,7 +557,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   }
 
 .conteudoCentro .anchor{
-    /*width: 37%;*/
+    width: 37%;
     margin-left: 22px;
     padding-left: 10%;
   }
@@ -561,5 +579,16 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 @media (max-height: 280px){
   .cabecalho .titulo{
     width: 32%;
+  }
+
+  .container .lateral .sub-logo{
+    visibility: hidden;
+  }
+}
+
+@media (max-height: 500px){
+  .container .lateral .main-lateral{
+    height: 30%;
+    overflow: auto;
   }
 }
