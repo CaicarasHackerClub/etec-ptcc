@@ -7,7 +7,7 @@ class Sql {
     // $db = "helth_hospital";
       //
   function conecta() {
-    include_once 'conectar.php';
+    include 'conectar.php';
     return $con;
   }
 
