@@ -2,8 +2,18 @@
 /*Funçao que atualiza a hora*/
 setInterval("hora()", 1000);
 function hora() {
- var hora = new Date();
- document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
+  var hora = new Date();
+  document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
+
+  if (screen.width > 650) {
+    if ($("#lateral").css("margin-left") == "-390px") {
+      $("#lateral").css("margin-left", "0px");
+    }
+
+    if ($("#config").css("visibility") == "hidden") {
+      $("#config").css("visibility", "visible");
+    }
+  }
 }
 
 
@@ -59,8 +69,11 @@ function mostrarAbas(nomeAba, url, num) {
     $('#abas').append("<li><div class='aba' id='abas"+num+"'><span>"+nomeAba+"</span></div></li>");
     $('#content').append("<div class='conteudo' id='conteudo"+num+"'></div>");
     $('#conteudo'+num).append("<iframe name='frame"+num+"' id='frame"+num+"' width='100%' height='400%'></iframe>");
-    window.open (url, 'frame'+num, 'toolbar=yes,scrollbars=yes,resizable=yes');
+    window.open (url, 'frame'+num);
     abas(num);
+    if (screen.width <= 650) {
+      $("#lateral").css("margin-left", "-390px");
+    }
   }
 }
 
