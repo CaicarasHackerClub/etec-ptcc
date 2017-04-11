@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08/04/2017 às 03:34
+-- Tempo de geração: 11/04/2017 às 18:54
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -263,7 +263,7 @@ CREATE TABLE `triagem` (
   `tri_orgaos_vitais` tinyint(1) DEFAULT NULL,
   `tri_data` date DEFAULT NULL,
   `tri_hora` time DEFAULT NULL,
-  `tri_status` tinyint(1) DEFAULT NULL,
+  `tri_status` varchar(11) COLLATE utf8_bin DEFAULT NULL,
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
