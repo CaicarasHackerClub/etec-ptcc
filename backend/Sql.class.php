@@ -6,8 +6,8 @@ class Sql {
     // $password = "helth";
     // $db = "helth_hospital";
       //
-  function conecta (){ 
-    include_once "conectar.php";
+  function conecta() {
+    include_once 'conectar.php';
     return $con;
   }
 
@@ -29,7 +29,6 @@ class Sql {
 
   function fetch($query) {
     $con = $this->conecta();
-
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
     $fetch = mysqli_fetch_array($res);
 
@@ -38,17 +37,20 @@ class Sql {
     return $fetch;
   }
 
-  function selecionar($query){
+  function selecionar($query) {
     $con = $this->conecta();
     $res = mysqli_query($con, $query) or die ("Erro selecionar  r()" . $query . mysqli_error($con));
     $qtd = mysqli_num_rows($res);
-    if ($qtd == 0)
-      return $qtd;
-    else{
-      $posto = mysqli_fetch_array ($res);
 
+    if($qtd == 0) {
+      return $qtd;
+    }
+
+    else {
+      $posto = mysqli_fetch_array($res);
       return $posto[0];
     }
+
     mysqli_close($con);
   }
 }
