@@ -5,8 +5,8 @@
     // $db = "helth_hospital";
 
     $host = "localhost";
-    $user = "root";
-    $password = "root";
+    $user = "";
+    $password = "";
     $db = "hospital1";
     $con  = mysqli_connect($host, $user, $password, $db) or die ("Erro ao conectar: " . mysqli_connect_error());
 ?>
