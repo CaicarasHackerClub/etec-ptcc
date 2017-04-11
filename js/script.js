@@ -1,8 +1,19 @@
+
 /*Funçao que atualiza a hora*/
 setInterval("hora()", 1000);
 function hora() {
- var hora = new Date();
- document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
+  var hora = new Date();
+  document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
+
+  if (screen.width > 650) {
+    if ($("#lateral").css("margin-left") == "-390px") {
+      $("#lateral").css("margin-left", "0px");
+    }
+
+    if ($("#config").css("visibility") == "hidden") {
+      $("#config").css("visibility", "visible");
+    }
+  }
 }
 
 
@@ -50,4 +61,61 @@ function mostrarConfig(){
     config.style.visibility = "hidden";
     okConfig = false;
   }
+}
+
+/*Função que mostra os conteudos das abas*/
+function mostrarAbas(nomeAba, url, num) {
+  if (!$("#abas"+num ).is( ":visible")) {
+    $('#abas').append("<li><div class='aba' id='abas"+num+"'><span>"+nomeAba+"</span></div></li>");
+    $('#content').append("<div class='conteudo' id='conteudo"+num+"'></div>");
+    $('#conteudo'+num).append("<iframe name='frame"+num+"' id='frame"+num+"' width='100%' height='400%'></iframe>");
+    window.open (url, 'frame'+num);
+    abas(num);
+    if (screen.width <= 650) {
+      $("#lateral").css("margin-left", "-390px");
+    }
+  }
+}
+
+/*Função que implementa as abas*/
+function abas(num){
+  $("#content div:nth-child(1)").show();
+  $(".abas li:first div").addClass("selecionada");
+
+  /*Coloca o icone de fechar nas abas*/
+  $('#abas'+num).append("<img class='image-close' src='../img/icons/fecharJ.png'>");
+
+  /*Adiciona o hover nos nomes das abas*/
+  $(".aba").hover(
+    function(){$(this).addClass("ativa")},
+    function(){$(this).removeClass("ativa")}
+  );
+
+  /*permite a seleção das abas*/
+  $(".aba").click(function(){
+    $(".aba").removeClass("selecionada");
+    $(this).addClass("selecionada");
+    var indice = $(this).parent().index();
+    indice++;
+    $("#content div").hide();
+    $("#content div:nth-child("+indice+")").show();
+  });
+
+  /*Fecha a aba*/
+  $(".aba > img").click(function(){
+    var aba = $(this).parent().parent();
+    var indice = aba.index() + 1;
+    aba.remove();
+    $("#content div:nth-child("+indice.toString()+")").remove();
+    // $(".aba").removeClass("selecionada");
+    // $("#content div").hide();
+    if(indice > 1){
+        var id = indice - 1;
+        $("#content div:nth-child("+id.toString()+")").show();
+        $(".abas li:nth-child("+id+") .aba").addClass("selecionada");
+    }else{
+        $("#content div:nth-child("+indice.toString()+")").show();
+        $(".abas li:nth-child("+indice+") .aba").addClass("selecionada");
+    }
+  });
 }

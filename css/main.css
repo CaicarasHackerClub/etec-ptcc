@@ -54,7 +54,7 @@ header{
   position: absolute;
   display: block;
   top: 0%;
-  margin-left: 3%;
+  margin-left: 2.5%;
   margin-top: 5px;
 }
 
@@ -75,17 +75,30 @@ header{
 /*Div que contém triagem, Recepção e Administração*/
 .conteudoCentro{
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
   margin-top: 2%;
-  margin-left: 5%;
+  padding-left: 17%;
 }
 
 /*Formatação e posicionamento dos ícones do centro*/
 .conteudoCentro .avatars{
-  width: 30%;
+  display: flex;
   flex-wrap: wrap;
+  width: 90%;
+  padding-left: 17%;
+}
+
+/*Formatação do a abaixo dos avatars*/
+.conteudoCentro .anchor {
+  color: #29784b;
+  width: 22%;
+  padding-left: 10%;
+}
+
+/*Formatação do texto abaixo dos ícones*/
+.conteudoCentro .txt_avatar{
+  width: 100%;
 }
 
 /*Div que contém o título e o botão para aparecer a lateral*/
@@ -99,7 +112,7 @@ header{
 .cabecalho .titulo{
   display: flex;
   flex-direction: row;
-  margin-left: 33%;/*alterado*/
+  margin-left: 33%;
   color: #01b26a;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -191,13 +204,14 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 99%;
-  height: 84vh;
+  height: 81vh;
   margin: 0.5%;
   border: 0.5px solid #29784b;
 }
 
 /*edição na segunda class do da main do centro*/
 .centro-modulo{
+  padding: 0;
   margin-left: 0;
   margin-top: 1px;
 }
@@ -252,6 +266,70 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 90%;
 }
 
+/*EDIÇÃO DA ABAS*/
+
+.TabControl{
+  width:100%;
+  overflow:hidden;
+  height:100%;
+}
+
+.TabControl #header{
+  width:100%;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.TabControl #content{
+  width:100%;
+  /*border: solid 1px #01b26a;*/
+  overflow: hidden;
+  height:100%;
+}
+
+.TabControl .abas{
+  display:inline;
+}
+
+.TabControl .abas li{
+  float:left
+}
+
+.abas{
+  list-style:none;
+}
+
+.aba{
+  width:100px;
+  height:30px;
+  text-align:center;
+  padding-top:5px;
+  background-color: #01b26a;
+}
+
+.ativa{
+  border:solid 1px #01b26a;
+}
+
+.TabControl .conteudo{
+  width:100%;
+  display:none;
+  height:100%;
+}
+
+.aba .image-close{
+  margin-left: 10px;
+  height: 13px;
+}
+
+.selecionada{
+  width:100px;
+  height:30px;
+  text-align:center;
+  padding-top:5px;
+  background-color: #f56529;
+}
+
 @media (min-width: 651px){
   /*grupo contido no cabeçalho*/
   .container .main .cabecalho .config{
@@ -269,6 +347,19 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   /*edição no grupo onde fica o icone da página*/
   .container .main .cabecalho .cabecalho-group{
     margin-left: 0%;
+  }
+
+  @media (max-height: 590px){
+    .container .main .cabecalho .group-image .tit-image{
+      width: 30%;
+      height: 100%;
+      background-size: 100%;
+    }
+
+    .container .main .cabecalho .group-image .tit-text{
+      margin-top: 1em;
+      padding-bottom: 15%;
+    }
   }
 }
 
@@ -304,7 +395,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
     /*Formatação do cabeçalho*/
     .cabecalho .titulo{
-      margin-left: 22%;
+      margin-left: 28%;
   		text-align: center;
     }
 
@@ -318,6 +409,25 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       margin-left: 10%;
       visibility: hidden;
       display: none;
+    }
+
+    .conteudoCentro{
+      padding-left: 1%;
+    }
+
+    .centro-modulo{
+      padding-left: 0%;
+    }
+
+    .conteudoCentro .anchor{
+      width: 29%;
+      padding-left: 19%;
+    }
+
+    .conteudoCentro .avatars{
+      width: 120%;   
+      text-align: center; 
+      padding-left: 20%; 
     }
 }
 
@@ -349,7 +459,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .main .cabecalho .config .anchor{
     width: 70px;
     height: 3em;
-    margin-left: 70%;
+    margin-left: 71%;
   }
 
   .main .cabecalho .group-image .tit-sub-modulo{
@@ -386,16 +496,24 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     padding-left: 40%;
   }
 
+  .conteudoCentro .anchor{
+    width: 30%;
+    margin-left: 3px;
+    padding-left: 10%;
+  }
+
   /*Formatação dos avatares*/
   .conteudoCentro .avatars{
+    width: 80px;
     margin: 5px;
+    padding-left: 10%;
   }
 
   /*Formatação da div que contém o título e o botão da lateral*/
   .cabecalho {
     display: flex;
     flex-direction: row;
-    margin-top: 0%;
+    margin-top: 0px;
     background: #9bd3ae;
     height: 50px;
   }
@@ -405,12 +523,14 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     box-shadow: none;
     font-size: 100%;
     margin-top: 10px;
-    margin-left: 30%;
-    padding-bottom: 30px;
-  }
+    margin-left: 25%;
+    padding-bottom: 30px;   
+
+}
 
   .centro-modulo{
     margin-left: 0;
+    padding: 0;
   }
 
   /*Formatação do botão da lateral*/
@@ -425,28 +545,50 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 @media (max-width: 400px){
 
   .cabecalho .titulo{
-    width: 55%;/*alterado*/
-    margin-left: 15%;/*alterado*/
+    margin-left: 12%;
 		font-size: 16pt;
-		padding-left: 6%;
+		padding-left: 5%;
 		padding-bottom: 1px;
-  }
-
-  .conteudoCentro .avatars {
-    width: 20%;
-  }
-
-  .conteudoCentro{
-    margin-left: 0;
+    margin-top: 10px;
   }
 
   .lateral {
     width: 80%;
+  }
+
+.conteudoCentro .anchor{
+    width: 37%;
+    margin-left: 22px;
+    padding-left: 10%;
+  }
+
+  /*Formatação dos avatares*/
+.conteudoCentro .avatars{
+    width: 70px;
+    margin: 5px;
+    padding-left: 13%;
   }
 }
 
 @media (max-width: 370px){
   .container .main .cabecalho .group-image .tit-text{
     visibility: hidden;
+  }
+}
+
+@media (max-height: 280px){
+  .cabecalho .titulo{
+    width: 32%;
+  }
+
+  .container .lateral .sub-logo{
+    visibility: hidden;
+  }
+}
+
+@media (max-height: 500px){
+  .container .lateral .main-lateral{
+    height: 30%;
+    overflow: auto;
   }
 }
