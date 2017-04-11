@@ -28,9 +28,24 @@
         </div>
 
         <div class="conteudoCentro">
-          <a class="anchor" href="#"><img class="avatars" src="../img/avatars/triagem.png"><p class="txt_avatar">Triagem</p></a>
-          <a class="anchor" href="#"><img class="avatars" src="../img/avatars/recepcao.png"><p class="txt_avatar">Recepção</p></a>
-          <a class="anchor" href="#"><img class="avatars" src="../img/avatars/adm.png"><p class="txt_avatar">Administração</p></a>
+          <form action="sub_modulo.php" method="post">
+            <a class="anchor" href="#"><img class="avatars" src="../img/avatars/triagem.png"><p class="txt_avatar">
+            Triagem</p></a>
+            <input type="hidden" name=Valor value="../img/avatars/triagem.png">
+            <input type="hidden" name=Nome_pag value="Triagem">
+          </form>
+
+          <form action="sub_modulo.php" method="post">
+            <a class="anchor" href="#"><img class="avatars" src="../img/avatars/recepcao.png"><p class="txt_avatar">Recepção</p></a>
+            <input type="hidden" name=Valor value="../img/avatars/recepcao.png">
+            <input type="hidden" name=Nome_pag value="Recepcao">
+          </form>
+
+          <form action="sub_modulo.php" method="post">
+            <a class="anchor" href="#"><img class="avatars" src="../img/avatars/adm.png"><p class="txt_avatar">Administração</p></a>
+            <input type="hidden" name=Valor value="../img/avatars/adm.png">
+            <input type="hidden" name=Nome_pag value="Administracao">
+          </form>        
         </div>
 
       </div>
