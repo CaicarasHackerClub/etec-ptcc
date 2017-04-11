@@ -13,6 +13,7 @@ class Sql {
 
   function inserir($query) {
     $con = $this->conecta();
+
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
 
     mysqli_close($con);
