@@ -22,8 +22,8 @@
             <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
             <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
           </ul>
-          <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" >+ Triagem</a>
-          <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" >+ Cadastro</a>
+          <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" ><img src="../img/icons/triagem-icon.png" class="icon-modulo"  alt=""> <p>Triagem</p></a>
+          <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
         </main>
         <a href="#" id="user" class="nav_user">Usuário</a>
         <a href="#" class="nav_user">Deslogar</a>
