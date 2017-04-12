@@ -13,5 +13,8 @@ Passaremos a usar o helth_hospital agora.
 
 Tem dois usuarios cadastrados:  email : gih@gih > senha: 123
                                 email : admin@admin > senha : admin
+                                email : etec1@etec > senha : 123  Para logar como administracao e fazer os cadastros de pessoa, endereço, funcionário,médico e 
+                                especialização
+                                email : etec2@etec > senha : 123  Para logar como recpcao e fazer o cadastro de pessoa, endereço, paciente e plano de saúde.
 
 
