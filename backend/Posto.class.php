@@ -38,8 +38,9 @@ Class Metodo
 	private $usu_email;
 
 	//medico
-	private $med_especializacao;
 	private $med_crm;
+	// especializacao
+	private $esp_nome;
 
 	//paciente
 	private $pac_tipo_sangue;
@@ -54,7 +55,6 @@ Class Metodo
 	private $pds_convenio_nome;
 	private $pds_numero_sus;
 	private $pds_num_convenio;
-
 	//pessoa
 	function setPes_nome($nome){
 		$this->pes_nome = $nome;
@@ -148,11 +148,12 @@ Class Metodo
 	}
 
 	//medico
-	function setMed_turno($turno){
-		$this->med_turno = $turno;
-	}
 	function setMed_crm($crm){
 		$this->med_crm = $crm;
+	}
+	//especializacao
+	function setEsp_nome($esp_nome){
+		$this->esp_nome= $esp_nome;
 	}
 	//enfermeiro
 	function setEnf_registro($registro){
@@ -303,6 +304,15 @@ Class Metodo
 	function getEnf_registro(){
 		return $this->enf_registro;
 	}
+	//medico
+	function getMed_crm($crm){
+		return $this->med_crm;
+	}
+	//especializacao
+	function getEsp_nome($esp_nome){
+		$this->esp_nome = $esp_nome;
+	}
+
 	/////////////////////
 
 }

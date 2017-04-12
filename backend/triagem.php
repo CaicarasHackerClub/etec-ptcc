@@ -38,6 +38,8 @@
     $resp = isset($_POST['resp']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0";
     $dor = isset($_POST['dor']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0";
     $orgaos = isset($_POST['org']) ? 1 : 0;
+    $data = date('Y-m-d');
+    $hora = date('H:i:s');
 
     $class = isset($_POST['class']) ? $_POST['class'] : "Indefinido";
 
@@ -53,18 +55,25 @@
     $tri->setResp($resp);
     $tri->setDor($dor);
     $tri->setOrg($orgaos);
+    $tri->setData($data);
+    $tri->setHora($hora);
 
     // Se o usuário já tiver clicado no botão "Classificar" ou "Aceitar cor"
     if(isset($_POST['classificar'])) {
-      $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura, tri_batimento,
-                tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor, tri_orgaos_vitais, id_paciente) VALUES("
-                . $tri->getTemp() . ", '" . $tri->getPas()    . "x"   . $tri->getPad()       . "', "
-                . $tri->getPeso() . ", "  . $tri->getAltura() . ", "  . $tri->getBatimento() . ", "
-                . $tri->getOxi()  . ", '" . $tri->getClass()  . "', " . $tri->getResp()      . ", "
-                . $tri->getDor()  . ", "  . $tri->getOrg()    . ", "  .  $tri->getPacId()    . ");";
+      $status = $tri->getClass() == "Vermelho" ? "Em consulta" : "Em espera";
+      $tri->setStatus($status);
+
+      $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
+                tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor,
+                tri_orgaos_vitais, tri_data, tri_hora, tri_status, id_paciente) VALUES("
+                . $tri->getTemp() . ", '"  . $tri->getPas()    . "x"   . $tri->getPad()       . "', "
+                . $tri->getPeso() . ", "   . $tri->getAltura() . ", "  . $tri->getBatimento() . ", "
+                . $tri->getOxi()  . ", '"  . $tri->getClass()  . "', " . $tri->getResp()      . ", "
+                . $tri->getDor()  . ", "   . $tri->getOrg()    . ", '" . $tri->getData()      . "', '"
+                . $tri->getHora() . "', '" . $tri->getStatus() . "', " . $tri->getPacId()     . ");";
 
       if($sql->inserir($query)) {
-        echo "Inserido com sucesso.";
+        echo "Inserido com sucesso";
       }
 
       else {
@@ -78,8 +87,8 @@
       $fetchId = $sql->fetch("SELECT pessoa_pes_id FROM paciente WHERE pac_id = " . $tri->getPacId() . ";");
       $fetchData = $sql->fetch("SELECT pes_data FROM pessoa WHERE pes_id = " . $fetchId['pessoa_pes_id'] . ";");
 
-      $data = explode("-", $fetchData['pes_data']);
-      $idade = date(Y) - $data[0];
+      $dataNasc = explode("-", $fetchData['pes_data']);
+      $idade = date(Y) - $dataNasc[0];
 
       // echo "ID PESSOA: " . $fetchId['pessoa_pes_id'] . "<br>";
 

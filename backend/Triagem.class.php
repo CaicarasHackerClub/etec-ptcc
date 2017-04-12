@@ -5,14 +5,17 @@ class Triagem {
   private $peso;
   private $altura;
   private $batimento;
+  private $class;
   private $resp;
   private $temp;
   private $pas;
   private $pad;
   private $oxi;
-  private $class;
   private $org;
   private $dor;
+  private $data;
+  private $hora;
+  private $status;
 
   function setPacId($pacId) {
     $this->pacId = $pacId;
@@ -44,6 +47,14 @@ class Triagem {
 
   function getBatimento() {
     return $this->batimento;
+  }
+
+  function setClass($class) {
+    $this->class = $class;
+  }
+
+  function getClass() {
+    return $this->class;
   }
 
   function setResp($resp) {
@@ -102,12 +113,28 @@ class Triagem {
     return $this->org;
   }
 
-  function setClass($class) {
-    $this->class = $class;
+  function setData($data) {
+    $this->data = $data;
   }
 
-  function getClass() {
-    return $this->class;
+  function getData() {
+    return $this->data;
+  }
+
+  function setHora($hora) {
+    $this->hora = $hora;
+  }
+
+  function getHora() {
+    return $this->hora;
+  }
+
+  function setStatus($status) {
+    $this->status = $status;
+  }
+
+  function getStatus() {
+    return $this->status;
   }
 
 }
