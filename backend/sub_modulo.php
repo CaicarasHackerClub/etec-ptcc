@@ -9,7 +9,7 @@
     <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
     <script type="text/javascript" src="../js/script.js" ></script>
   </head>
-  <body>
+  <body onload="recebe()">
 
     <div class="container">
       <nav class="lateral" id="lateral">
@@ -44,7 +44,7 @@
           </div>
           <div class="group-image cabecalho-group" >
             <div class="tit-sub-modulo tit-image"></div>
-            <label class="tit-sub-modulo tit-text" id="lbl_triagem">Triagem</label>
+            <label class="tit-sub-modulo tit-text" id="lbl_triagem"></label>
           </div>
         </div>
 
