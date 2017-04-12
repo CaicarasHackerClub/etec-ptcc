@@ -146,11 +146,26 @@ header{
   position: absolute;
 }
 
+.icon-modulo{
+  height: 30px;
+}
+
 /*altura dos links na lateral*/
 .container .lateral .main-lateral .lista .anchor{
   height: 20%;
   font-size: 10pt;
   width: 100%;
+}
+.container .main-lateral .anchor p{
+  display: inline-block;
+  position: absolute;
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+.container .main-lateral .anchor .icon-modulo{
+  margin-left: -90px;
 }
 
 .container .lateral .main-lateral .lista{
@@ -206,7 +221,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 99%;
-  height: 81vh;
+  height: 84.5vh;
   margin: 0.5%;
   border: 0.5px solid #29784b;
 }
@@ -330,6 +345,40 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   text-align:center;
   padding-top:5px;
   background-color: #f56529;
+}
+
+/*EDIÇÕES NOS FORULÁRIOS DE TRIAGEM*/
+.form {
+  background: linear-gradient(#FFF, #9bd3ae, #FFF);
+  width: 100%;
+  height: 98%;
+  display: inline-block;
+  font-family: sans-serif;
+}
+
+.form .lbl_class{
+  color: #01b26a;
+  display: inline-block;
+  width: 200px;
+  margin-top: 10px;
+  margin-left: 10px;
+  /*background-color: #29784b;*/
+  padding: 5px;
+}
+
+.form .inp_class{
+  border-radius: 3px 3px 3px 3px;
+  margin-left: 4px;
+}
+.form .edit-class{
+  width: 270px;
+}
+
+.titulo-triagem{
+  color: #01b26a;
+  margin-left: 45%;
+  margin-bottom: 1px;
+  text-decoration: underline;
 }
 
 @media (min-width: 651px){
@@ -526,7 +575,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     font-size: 100%;
     margin-top: 10px;
     margin-left: 28%;
-    padding-bottom: 30px;   
+    padding-bottom: 30px;
 
 }
 
