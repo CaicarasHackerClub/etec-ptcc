@@ -1,6 +1,17 @@
 
+function recebe() {
+  var img = JSON.parse(sessionStorage.getItem('img'));
+  $("#lbl_triagem").html(JSON.parse(sessionStorage.getItem('nome-modulo')));
+  $('.tit-image').css({
+    "background": "url("+img+") no-repeat",
+    "background-size": "140px",
+    "background-position": "center",
+    "background-position": "15% -1%"
+  });
+}
+
 /*Funçao que atualiza a hora*/
-setInterval("hora()", 1000);
+setInterval("hora()", 100);
 function hora() {
   var hora = new Date();
   document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
@@ -13,9 +24,20 @@ function hora() {
     if ($("#config").css("visibility") == "hidden") {
       $("#config").css("visibility", "visible");
     }
+
+    $('.tit-image').css({
+      "background-size": "140px",
+    });
+  }else{
+    $('.tit-image').css({
+      "background-size": "70px",
+    });
+  }
+
+  if (screen.width <= 711 && screen.width > 650 ) {
+    $(".config").css("width", "44%");
   }
 }
-
 
 /* Função que mostra o menú lateral */
 var ok = false
@@ -118,4 +140,27 @@ function abas(num){
         $(".abas li:nth-child("+indice+") .aba").addClass("selecionada");
     }
   });
+}
+
+function enviar(val) {
+  var img;
+  var name;
+  switch(val) {
+    case 1:
+        img  = $("#img-triagem").attr('src');
+        name = $("#name-tri").html();
+        break;
+    case 2:
+        img = $("#img-recepcao").attr('src');
+        name = $("#name-recep").html();
+        break;
+    default:
+        img = $("#img-admin").attr('src');
+        name = $("#name-admin").html();
+  }
+
+  var image = JSON.stringify(img);
+  var txt   = JSON.stringify(name);
+  sessionStorage.setItem('img', image );
+  sessionStorage.setItem('nome-modulo', txt );
 }
