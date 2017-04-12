@@ -245,6 +245,7 @@
 
 					   	$sel_id = "SELECT MAX(pac_id) AS pac_id FROM paciente";
 					   	$pac_id = $sql->selecionar($sel_id);
+					   	$pac_id++;
 
 
 
@@ -255,7 +256,7 @@
 								'" . $metodo->getPac_doenca()      . "',
 								'" . $metodo->getPac_educacao()    . "',
 								0 ,
-								'" . $pac_id              . "'
+								'" . $pes_id              . "'
 
 							);";
 
@@ -267,8 +268,7 @@
 								'" . $pac_id                        . "'
 
 							);";
-						echo $insPds;
-
+						
 						$okPac = $sql->inserir($insPac);
 						$okPds = $sql->inserir($insPds);
 						if ($okPac && $okPds) {
@@ -299,17 +299,18 @@
 						$usu_nome = $sql->fetch($selNome);
 
 
-						"INSERT INTO usuario (usu_nome, usu_senha, usu_email, usu_ativo, usu_tipo) VALUES (
-							'" . $usu_nome[2]           . "'
-							'" . $metodo->getUsu_senha() . "',
-							'" . $metodo->getUsu_email() . "',
-							' .          1              . ',
-							' .          1              . '
+						$okUsu = "INSERT INTO usuario (usu_nome, usu_senha, usu_email, usu_ativo, usu_tipo) VALUES (
+								'" . $usu_nome[1]           . "',
+								'" . $metodo->getUsu_senha(). "',
+								'" . $metodo->getUsu_email(). "',
+								' .          1              . ',
+								' .          1              . '
 
-							);";
+								);";
 
 						$sel_id = "SELECT MAX(usu_id) AS usu_id FROM usuario";
 					   	$usu_id = $sql->selecionar($sel_id);
+					   	$usu_id++;
 
 					   	$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					   	$pes_id = $sql->selecionar($sel_id);
@@ -319,12 +320,13 @@
 								'" . $metodo->getFun_horario()    . "',
 								'" . $metodo->getFun_inscricao()  . "',
 								'" . $metodo->getFun_turno()      . "',
-								'" .         $usu_id             . "',
-								'" .         $pes_id             . "'
+								'" .         $usu_id              . "',
+								'" .         $pes_id              . "'
 							);";
 
 						$okFun = $sql->inserir($insFun);
-						if ($okFun) {
+						$okUsu = $sql->inserir($insUsu);
+						if ($okFun && $okUsu) {
 							echo "Cadastrado com sucesso!!";
 						}
 						else {
