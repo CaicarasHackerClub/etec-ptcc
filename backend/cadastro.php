@@ -14,7 +14,7 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-		$selCar = "SELECT * FROM funcionario WHERE USUARIO_usu_id = '" . $_SESSION['tipo']. "';";
+		$selCar = "SELECT * FROM funcionario WHERE usuario_usu_id = '" . $_SESSION['tipo']. "';";
 		$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
 		$cargo = mysqli_fetch_array($res);
 
@@ -336,7 +336,7 @@
 					//}
 				}
 
-				if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro" || $_POST['recepcionista']) {
+				if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro" || $_POST['recepcao']) {
 					echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
 					if ($_POST['fun_cargo'] == "medico") {
 						?>
@@ -344,7 +344,7 @@
 						<label class="lbl_class">CRM:</label>
 						<input class="inp_class" type="text" name="med_crm" size="28"><br>
 						<label class="lbl_class">Especialização:</label>
-						<input class="inp_class" type="text" name="med_especializacao" size="28"><br>
+						<input class="inp_class" type="text" name="esp_nome" size="28"><br>
 						<input class="inp_class" type = "submit" value = "cadastrar">
 						<?php
 					}
@@ -357,7 +357,7 @@
 						<input class="inp_class" type = "submit" value = "cadastrar">
 						<?php
 					}
-					else if ($_POST['fun_cargo'] == "recepcionista"){
+					else if ($_POST['fun_cargo'] == "recepcao"){
 					}
 					echo "</form>";
 				}
@@ -369,22 +369,35 @@
 				//últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
 				if ($_POST['fun_cargo'] == "medico") {
 					$metodo->setMed_crm            ($_POST['med_crm']);
-					$metodo->setMed_especializacao ($_POST['med_especializacao']);
+					$metodo->setEsp_nome           ($_POST['esp_nome']);
 
 					$selMed = "SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
 
-					$insMed = "INSERT INTO medico (med_crm,med_especializacao) VALUES (
+					$sel_id = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
+					$fun_id = $sql->selecionar($sel_id);
+					
+					$insMed = "INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
 									'" . $metodo->getMed_crm() . "',
-									'" . $metodo->getMed_especializacao() . "'
+									'" . $fun_id               . "'
+								);";
+					
+					$sel_id = "SELECT MAX(med_id) AS med_id FROM medico";
+					$med_id = $sql->selecionar($sel_id);
+					$med_id++;
+
+					$insEps = "INSERT INTO especializacao (esp_nome, medico_med_id) VALUES (
+									'" . $metodo->getEsp_nome() . "',
+									'" . $med_id                . "'
 								);";
 
 					$okMed = $sql->inserir($insMed);
+					$okEsp = $sql->inserir($insEsp);
 
-					if ($okMed){
+					if ($okMed && $okEsp){
 						echo "Médico(a) cadastrado!!";
 					}
 					else {
-						echo "Não cadastrado!";
+						echo "Não cadastrado!" . $insMed . "...." . $insEsp ;
 					}
 				}
 				else if ($_POST['fun_cargo'] == "enfermeiro") {
