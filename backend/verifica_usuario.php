@@ -9,7 +9,7 @@
 		<?php
 		//Verifica usuario e senha do index.php (login)
 
-		if (!isset ($_SESSION['tipo'])) {
+		if (!isset ($_SESSION['id_usu'])) {
 			if ($_POST['usu_email'] == "" || $_POST['usu_senha'] == "") {
 				//Direciona pro formulário de acesso
 				//echo "Digite os campos corretamente";
@@ -24,21 +24,21 @@
 						"' AND usu_email = '".$_POST['usu_email']."';";
 				$qtd = $sql->selecionar($sel);
 
-				if ($qtd >=1){
-					$_SESSION['tipo'] = $qtd;
+				if ($qtd >= 1) {
+					$_SESSION['id_usu'] = $qtd;
 					echo "Logado !!! <br>";
 					$log_data = date ("y-m-d");
 					$log_ip = $_SERVER['REMOTE_ADDR'];
-					$log_id = $_SESSION['tipo'];
+					$log_id = $_SESSION['id_usu'];
 					$sel = "SELECT * FROM login_acesso WHERE
 								log_ip   = '" . $log_ip . "' AND
 								log_data = '" . $log_data . "' AND
-								USUARIO_usu_id = "  . $_SESSION['tipo'] . "
+								usuario_usu_id = "  . $_SESSION['id_usu'] . "
 								;";
-					$ins = "INSERT INTO login_acesso (log_ip,log_data,USUARIO_usu_id) VALUES (
+					$ins = "INSERT INTO login_acesso (log_ip,log_data,usuario_usu_id) VALUES (
 								'" . $log_ip 					 . "',
 								'" . $log_data 				 . "',
-								 " . $_SESSION['tipo'] . "
+								 " . $_SESSION['id_usu'] . "
 								);";
 					echo "olá" . $ins;
 
