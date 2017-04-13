@@ -1,20 +1,27 @@
 <?php
   echo "<link rel='stylesheet' href='../css/main.css'>";
+
   // $id = isset($_POST['id']) ? $_POST['id'] : "";
+
   if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
   ?>
-  <h1 class="titulo-triagem">Triagem</h1>
   <form class="form" action="triagem.php" method="post">
-    <label class="lbl_class">ID: </label><input class="inp_class"type="text" name="id"><br>
-    <label class="lbl_class">Peso: </label><input class="inp_class"type="text" name="peso"><br>
-    <label class="lbl_class">Altura: </label><input class="inp_class" type="text" name="altura"><br>
-    <label class="lbl_class">Batimento cardíaco: </label><input class="inp_class" type="text" name="batimento" required><br>
-    <label class="lbl_class">Respiração: </label><input class="inp_class" type="text" name="resp" required><br>
-    <label class="lbl_class">Temperatura corporal: </label><input class="inp_class" type="text" name="temp" required><br>
-    <label class="lbl_class">PAS: </label><input class="inp_class" type="text" name="pas" required><br>
-    <label class="lbl_class">PAD: </label><input class="inp_class" type="text" name="pad" required><br>
-    <label class="lbl_class edit-class">Nível de oxigenação do sangue: </label><input class="inp_class" type="text" name="oxi"><br>
-    <label class="lbl_class">Dor: </label><input class="inp_class" type="text" name="dor"><br>
+    <label class="lbl_class">ID: </label><input class="inp_class" type="text" name="id"><br>
+    <label class="lbl_class">Peso: </label><input class="inp_class" type="text" size="3" name="peso"> kg <br>
+    <label class="lbl_class">Altura: </label><input class="inp_class" type="text" size="3" name="altura"> m <br>
+    <label class="lbl_class">Batimento cardíaco: </label><input class="inp_class" type="text" size="3" name="batimento" required> bpm <br>
+    <label class="lbl_class">Respiração: </label><input class="inp_class" type="text" size="3" name="resp" required> rpm <br>
+    <label class="lbl_class">Temperatura corporal: </label><input class="inp_class" type="text" size="2" name="temp" required> ºC <br>
+    <label class="lbl_class">PAS: </label><input class="inp_class" type="text" size="3" name="pas" required> mmHg <br>
+    <label class="lbl_class">PAD: </label><input class="inp_class" type="text" size="3" name="pad" required> mmHg <br>
+    <label class="lbl_class edit-class">Nível de oxigenação: </label><input class="inp_class" type="text" size="3" name="oxi"> % <br>
+    <label class="lbl_class">Dor: </label>
+    <select class="inp_class" name="dor">
+      <?php
+        for($i = 0; $i <= 10; $i++)
+          echo "<option value='$i'> $i </option>";
+      ?>
+    <br>
     <label class="lbl_class edit-class" for="indi">Indicação de comprometimento dos orgãos vitais </label> <input id="indi" class="inp_class" type="checkbox" name="org"> <br>
     <input class="inp_class submit" type="submit" name="Recepcao">
   </form>
@@ -37,10 +44,10 @@
     $batimento = isset($_POST['batimento']) && !empty($_POST['batimento']) ? trim($_POST['batimento']) : "0";
     $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : "0";
     $resp = isset($_POST['resp']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0";
-    $dor = isset($_POST['dor']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0";
+    $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : "0";
     $orgaos = isset($_POST['org']) ? 1 : 0;
     $data = date('Y-m-d');
-    $hora = date('H:i:s');
+    $hora = date('H:i');
 
     $class = isset($_POST['class']) ? $_POST['class'] : "Indefinido";
 
@@ -89,7 +96,7 @@
       $fetchData = $sql->fetch("SELECT pes_data FROM pessoa WHERE pes_id = " . $fetchId['pessoa_pes_id'] . ";");
 
       $dataNasc = explode("-", $fetchData['pes_data']);
-      $idade = date(Y) - $dataNasc[0];
+      $idade = date('Y') - $dataNasc[0];
 
       // echo "ID PESSOA: " . $fetchId['pessoa_pes_id'] . "<br>";
 
