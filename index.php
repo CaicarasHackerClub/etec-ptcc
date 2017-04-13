@@ -8,7 +8,7 @@ session_start();
 	</head>
 	<body>
 		<?php
-		if (!isset ($_SESSION ['tipo'])){
+		if (!isset ($_SESSION ['id_usu'])){
 			if (!isset ($_POST['usuario']) && !isset($_POST['senha'])){
 			?>
 			<img src="img/logos/index.png" class="Img">

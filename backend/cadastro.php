@@ -14,11 +14,14 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-		$selCar = "SELECT * FROM funcionario WHERE usuario_usu_id = '" . $_SESSION['tipo']. "';";
-		$res = mysqli_query($con, $selCar) or die ("Erro no select de procura do id do funcionário" . mysqli_error($con) . "<br>" . $selCar);
+		$selCar = "SELECT * FROM funcionario WHERE usuario_usu_id = '" . $_SESSION['id_usu']. "';";
+		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
-		$_SESSION['cargo'] = $cargo['fun_cargo'];
+
+		$_SESSION['tipo'] = $cargo['fun_cargo'];
+		//echo $_SESSION['tipo'] . $_SESSION['id_usu'] . $selCar;
+
 		?>
 		<a href="?acao=cadastro">Cadastro</a>
 		<a href="?acao=logoff">Sair</a>
@@ -112,6 +115,7 @@
 					<a href="?acao=cadastro">Voltar</a>
 					<?php
 				}
+				////////////////////Insere os dados do formulário anterior no banco/////////////////////////
 				else {
 					$insPes = "INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES (
 									'". $metodo->getPes_nome()    	  	."',
@@ -151,13 +155,16 @@
 					// Verifica se a query foi inserida corretamente
 					$okEnd = $sql->inserir($insEnd);
 
+				/////////////////////////fim da inserção de dados Pessoais////////////////////////////////		
+                    
                     //verifica se a query foi inserida corretamente
 					if ($okPes && $okEnd) {
-						echo "Pessoa cadastrada com sucesso!!!" . $_SESSION['cargo'];
+						echo "Pessoa cadastrada com sucesso!!!" . $_SESSION['tipo'];
+
 						/* se o usuário logado for recepcionista ele só poderá cadastrar
 						os dados de pacientes do formulário abaixo */
 						echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
-						if ($_SESSION['cargo'] == "recepcao") {
+						if ($_SESSION['tipo'] == "recepcao") {
 							?>
 							<br>
 							<h1>Paciente</h1>
@@ -184,7 +191,7 @@
 						/* Se o usuário logado for recepcionista ele só poderá cadastrar
 						os dados de funcionário do formulário abaixo
 						*/
-						else if ($_SESSION['cargo'] == "administracao") {
+						else if ($_SESSION['tipo'] == "administracao") {
 							?>
 							<h1>Funcionário</h1>
 							<label class="lbl_class">Cargo:</label>
@@ -221,11 +228,11 @@
 				}
 			}
 			else if ($_GET['passo'] == 3) {
-				if ($_SESSION['cargo'] == "recepcao") {
+				if ($_SESSION['tipo'] == "recepcao") {
 					$metodo->setPac_tipo_sangue		($_POST['pac_tipo_sangue']);
 					$metodo->setPac_remedio			($_POST['pac_remedio']);
 					$metodo->setPac_doenca			($_POST['pac_doenca']);
-					$metodo->setPac_educacao			($_POST['pac_educacao']);
+					$metodo->setPac_educacao		($_POST['pac_educacao']);
 
 					$metodo->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
 					$metodo->setPds_numero_sus       ($_POST['pds_numero_sus']);
@@ -239,7 +246,7 @@
 						echo "Paciente já cadastrado!";
 					}
 					else {
-					*/
+					*/  ////////Seleciona o ultimo id de pessoa e ultimo id de paciente para ser utilizado///////////
 						$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					   	$pes_id = $sql->selecionar($sel_id);
 
@@ -249,7 +256,7 @@
 
 
 
-
+					   	////////////////////inserção de dados nas tabelas paciente e plano_de_saude /////////////// 
 						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
 								'" . $metodo->getPac_tipo_sangue() . "',
 								'" . $metodo->getPac_remedio()     . "',
@@ -271,15 +278,17 @@
 						
 						$okPac = $sql->inserir($insPac);
 						$okPds = $sql->inserir($insPds);
+						///////////////////////fim da inserção de dados///////////////////////////
 						if ($okPac && $okPds) {
 							echo "Paciente cadastrado!!!!!!!!";
+							///////////fim de cadastro/////////////
 						}
 						else {
 							echo "Não cadastrado!!!!!!!!!";
 						}
 					//}
 				}
-				else if ($_SESSION['cargo'] == "administracao") {
+				else if ($_SESSION['tipo'] == "administracao") {
 					$metodo->setFun_cargo 		($_POST ['fun_cargo']);
 					$metodo->setFun_horario 	($_POST ['fun_horario']);
 					$metodo->setFun_inscricao	($_POST ['fun_inscricao']);
@@ -297,6 +306,7 @@
 					else {
 					*/  $selNome = "SELECT MAX(pes_nome) AS pes_nome FROM pessoa";
 						$usu_nome = $sql->fetch($selNome);
+
 
 
 						$okUsu = "INSERT INTO usuario (usu_nome, usu_senha, usu_email, usu_ativo, usu_tipo) VALUES (
@@ -413,6 +423,7 @@
 						echo "Não cadastrado!!!";
 					}
 				}
+
 
 				////////////////////Fim do cadastro//////
 
