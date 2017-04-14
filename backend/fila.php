@@ -1,32 +1,51 @@
 <?php
   include_once 'Sql.class.php';
+  include_once 'Fila.class.php';
 
   $sql = new Sql();
+  $fila = new Fila();
 
-  $vermelho = "SELECT * FROM triagem WHERE tri_classe_risco = 'Vermelho' AND status = 'Em espera'";
-  $laranja = "SELECT * FROM triagem WHERE tri_classe_risco = 'Laranja' AND status = 'Em espera'";
-  $amarelo = "SELECT * FROM triagem WHERE tri_classe_risco = 'amarelo' AND status = 'Em espera'";
-  $verde = "SELECT * FROM triagem WHERE tri_classe_risco = 'Verde' AND status = 'Em espera'";
-  $azul = "SELECT * FROM triagem WHERE tri_classe_risco = 'Azul' AND status = 'Em espera'";
+  // $cor[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Vermelho' AND tri_status = 'Em espera'";
+  $cor[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Laranja' AND tri_status = 'Em espera'";
+  $cor[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 'amarelo' AND tri_status = 'Em espera'";
+  $cor[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Verde' AND tri_status = 'Em espera'";
+  $cor[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Azul' AND tri_status = 'Em espera'";
 
-  $data = new DateTime('2017-04-10');
-  $hora = new DateTime('14:02');
+  $tempo = array(10, 60, 120, 240);
 
-  $dias = $data->diff(new DateTime(date('Y-m-d')));
-  $horas = $hora->diff(new DateTime(date('H:i')));
+  $pacMax = 5;
 
-  echo $dias->d . ' dia(s) <br>';
-  echo $horas->format('%H:%I') . '<br>';
+  // $fetch = $sql->fetch($laranja);
 
-  $tempo = $horas->format('%H:%I');
-  $tempo = explode(':', $tempo);
-  $h = $tempo[0];
-  $m = $tempo[1];
+  $con = $sql->conecta();
 
-  $h += $dias->d * 24;
-  echo $h . ' horas e ' . $m . ' minutos <br>';
+  for($i = 0; $i < count($cor); $i++) {
+    $res = mysqli_query($con, $cor[$i]);
+    $fetch = mysqli_fetch_array($res);
+    if(mysqli_num_rows($res) != 0) {
+      while($pac = mysqli_fetch_array($res)) {
+          $data = $pac['tri_data'];
+          $hora = $pac['tri_hora'];
+          $espera = $fila->espera($data, $hora);
 
-  $tempoFinal = $h*60 + $m;
-  echo 'Tempo total: ' . $tempoFinal . ' minutos';
+          $pesId = $sql->selecionar("SELECT pessoa_pes_id FROM paciente WHERE pac_id = ".$pac['id_paciente'].";");
+          $nome = $sql->selecionar("SELECT  pes_nome FROM pessoa WHERE pes_id = ".$pesId.";");
 
+          $res2 = mysqli_query($con, "SELECT tri_id FROM triagem WHERE tri_status = 'Em consulta'");
+          $emConsulta = mysqli_num_rows($res2);
+
+          if($emConsulta < $pacMax || $espera >= $tempo[$i]) {
+            $fila->chamar($pac['tri_id']);
+            echo "Chama, nome: " . $nome . ", ID: " . $pac['tri_id'] . ", tempo de espera: " . $espera . "<br>";
+
+          }
+          else {
+            echo "Na fila de espera, nome: " . $nome . ", ID: " . $pac['tri_id'] . ", tempo de espera: " . $espera . "<br>";
+
+          }
+
+          echo "Pessoas em consulta: " . $emConsulta . "<br>";
+      }
+    }
+  }
 ?>
