@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 14/04/2017 às 07:18
+-- Tempo de geração: 15/04/2017 às 01:18
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `endereco` (
   `end_id` int(11) NOT NULL,
-  `end_pais` varchar(60) COLLATE utf8_bin NOT NULL,
-  `end_estado` char(2) COLLATE utf8_bin NOT NULL,
-  `end_cidade` varchar(100) COLLATE utf8_bin NOT NULL,
-  `end_cep` varchar(13) COLLATE utf8_bin NOT NULL,
-  `end_bairro` varchar(45) COLLATE utf8_bin NOT NULL,
-  `end_rua` varchar(45) COLLATE utf8_bin NOT NULL,
-  `end_numero` int(9) NOT NULL,
+  `end_pais` varchar(60) COLLATE utf8_bin NOT NULL COMMENT 'País da pessoa',
+  `end_estado` char(2) COLLATE utf8_bin NOT NULL COMMENT 'Estado da pessoa',
+  `end_cidade` varchar(100) COLLATE utf8_bin NOT NULL COMMENT 'Cidade da pessoa',
+  `end_cep` varchar(13) COLLATE utf8_bin NOT NULL COMMENT 'Cep da cidade ou região da pessoa',
+  `end_bairro` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'Bairro onde mora a pessoa',
+  `end_rua` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'logradouro da pessoa',
+  `end_numero` int(9) NOT NULL COMMENT 'numero da casa/apt/etc da pessoa',
   `pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -60,7 +60,7 @@ INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_c
 
 CREATE TABLE `enfermeiro` (
   `enf_id` int(11) NOT NULL,
-  `enf_registro` varchar(8) COLLATE utf8_bin NOT NULL,
+  `enf_registro` varchar(8) COLLATE utf8_bin NOT NULL COMMENT 'Coren do enfermeiro',
   `funcionario_fun_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -79,7 +79,7 @@ INSERT INTO `enfermeiro` (`enf_id`, `enf_registro`, `funcionario_fun_id`) VALUES
 
 CREATE TABLE `escolaridade` (
   `esc_id` int(11) NOT NULL,
-  `esc_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL
+  `esc_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'grau de escolaridade da pessoa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -100,7 +100,7 @@ INSERT INTO `escolaridade` (`esc_id`, `esc_nome`) VALUES
 
 CREATE TABLE `especializacao` (
   `esp_id` int(11) NOT NULL,
-  `esp_nome` varchar(60) COLLATE utf8_bin NOT NULL
+  `esp_nome` varchar(60) COLLATE utf8_bin NOT NULL COMMENT 'nome da especialização do médico'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -171,7 +171,7 @@ INSERT INTO `especializacao` (`esp_id`, `esp_nome`) VALUES
 
 CREATE TABLE `estado_civil` (
   `etc_id` int(11) NOT NULL,
-  `etc_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL
+  `etc_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'estado civil da pessoa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -203,23 +203,24 @@ CREATE TABLE `fila_de_espera` (
 
 CREATE TABLE `funcionario` (
   `fun_id` int(11) NOT NULL,
-  `fun_cargo` varchar(45) COLLATE utf8_bin NOT NULL,
-  `fun_horario` time NOT NULL,
-  `fun_inscricao` int(9) NOT NULL,
-  `fun_turno` varchar(8) COLLATE utf8_bin NOT NULL,
-  `pessoa_pes_id` int(11) NOT NULL
+  `fun_cargo` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'cargo ocupado pelo funcionário',
+  `fun_horario` time NOT NULL COMMENT 'quantas horas trabalha por dia o funcionário',
+  `fun_inscricao` int(9) NOT NULL COMMENT 'número que foi registrado ou carteira do funcionario',
+  `fun_turno` varchar(8) COLLATE utf8_bin NOT NULL COMMENT 'em qual turno trabalha ',
+  `pessoa_pes_id` int(11) NOT NULL,
+  `setor_set_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Fazendo dump de dados para tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `pessoa_pes_id`) VALUES
-(1, 'medico', '08:00:00', 1111111, 'noturno', 1),
-(2, 'enfermeiro', '08:00:00', 1111112, 'noturno', 2),
-(3, 'administracao', '07:00:00', 1222222, 'noturno', 4),
-(4, 'recepcao', '07:00:00', 13333333, 'noturno', 5),
-(5, 'recpcionista', '07:00:00', 1444444, 'noturno', 6);
+INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `pessoa_pes_id`, `setor_set_id`) VALUES
+(1, 'medico', '08:00:00', 1111111, 'noturno', 1, 3),
+(2, 'enfermeiro', '08:00:00', 1111112, 'noturno', 2, 5),
+(3, 'administracao', '07:00:00', 1222222, 'noturno', 4, 1),
+(4, 'recepcao', '07:00:00', 13333333, 'noturno', 5, 1),
+(5, 'recpcionista', '07:00:00', 1444444, 'noturno', 6, 4);
 
 -- --------------------------------------------------------
 
@@ -229,8 +230,8 @@ INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`
 
 CREATE TABLE `login_acesso` (
   `log_id` int(11) NOT NULL,
-  `log_data` datetime NOT NULL,
-  `log_ip` varchar(45) COLLATE utf8_bin NOT NULL,
+  `log_data` datetime NOT NULL COMMENT 'data e hora em que o usuario logou',
+  `log_ip` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'ip para saber em qual maquina usario fez o login',
   `usuario_usu_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -249,7 +250,7 @@ INSERT INTO `login_acesso` (`log_id`, `log_data`, `log_ip`, `usuario_usu_id`) VA
 
 CREATE TABLE `medico` (
   `med_id` int(11) NOT NULL,
-  `med_crm` varchar(8) COLLATE utf8_bin NOT NULL,
+  `med_crm` varchar(8) COLLATE utf8_bin NOT NULL COMMENT 'número do CRM do médico',
   `funcionario_fun_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -279,11 +280,11 @@ CREATE TABLE `medico_has_especializacao` (
 
 CREATE TABLE `paciente` (
   `pac_id` int(11) NOT NULL,
-  `pac_tipo_sangue` int(11) DEFAULT NULL,
-  `pac_remedio` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `pac_doenca` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `pac_educacao` int(11) DEFAULT NULL,
-  `pac_hospitalizado` tinyint(1) DEFAULT NULL,
+  `pac_tipo_sangue` int(11) DEFAULT NULL COMMENT 'tipo sanguíneo',
+  `pac_remedio` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'se tomar remédio, avisair quais',
+  `pac_doenca` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'se tiver alguma doença avisar quais',
+  `pac_educacao` int(11) DEFAULT NULL COMMENT 'nivel de escolaridade',
+  `pac_hospitalizado` tinyint(1) DEFAULT NULL COMMENT 'se está ou não hospitalizado',
   `pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -304,18 +305,18 @@ INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`
 
 CREATE TABLE `pessoa` (
   `pes_id` int(11) NOT NULL,
-  `pes_nome` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `pes_pai` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `pes_mae` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `pes_rg` varchar(15) COLLATE utf8_bin DEFAULT NULL,
-  `pes_cpf` varchar(14) COLLATE utf8_bin DEFAULT NULL,
-  `pes_data` date DEFAULT NULL,
-  `pes_tipo` int(1) DEFAULT NULL,
-  `pes_email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `pes_estado_civil` int(11) DEFAULT NULL,
-  `pes_cidadania` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `pes_genero` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `pes_sexo_biologico` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `pes_nome` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome da pessoa',
+  `pes_pai` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome do pai da pessoa',
+  `pes_mae` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'Nome da mãe da pessoa',
+  `pes_rg` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT 'informar o RG',
+  `pes_cpf` varchar(14) COLLATE utf8_bin DEFAULT NULL COMMENT 'Informar o CPF',
+  `pes_data` date DEFAULT NULL COMMENT 'data de nascimento da pessoa',
+  `pes_tipo` int(1) DEFAULT NULL COMMENT 'que tipo de pessoa é',
+  `pes_email` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'email para contato',
+  `pes_estado_civil` int(11) DEFAULT NULL COMMENT 'qual o estado civil',
+  `pes_cidadania` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'sua cidadania',
+  `pes_genero` varchar(25) COLLATE utf8_bin DEFAULT NULL COMMENT 'gênero em que a pessoa se identifica',
+  `pes_sexo_biologico` varchar(25) COLLATE utf8_bin DEFAULT NULL COMMENT 'sexo com o qual a pessoa nasceu',
   `pes_telefone` varchar(15) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -341,9 +342,9 @@ INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes
 
 CREATE TABLE `plano_de_saude` (
   `pds_id` int(11) NOT NULL,
-  `pds_convenio_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `pds_num_convenio` varchar(16) COLLATE utf8_bin DEFAULT NULL,
+  `pds_convenio_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'nome do convenio ou plano de saude',
+  `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do cartão SUS',
+  `pds_num_convenio` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do convenio ou plano de saude',
   `pac_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -367,9 +368,9 @@ CREATE TABLE `quadro_clinico` (
 
 CREATE TABLE `setor` (
   `set_id` int(11) NOT NULL,
-  `set_nome` varchar(60) COLLATE utf8_bin NOT NULL,
-  `set_descricao` varchar(255) COLLATE utf8_bin NOT NULL,
-  `set_responsavel` varchar(60) COLLATE utf8_bin NOT NULL
+  `set_nome` varchar(60) COLLATE utf8_bin NOT NULL COMMENT 'nome do setor',
+  `set_descricao` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'breve descrição do setor',
+  `set_responsavel` varchar(60) COLLATE utf8_bin NOT NULL COMMENT 'nome ou cargo do responsavel pelo setor'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -394,7 +395,7 @@ INSERT INTO `setor` (`set_id`, `set_nome`, `set_descricao`, `set_responsavel`) V
 
 CREATE TABLE `sub_setor` (
   `sbs_id` int(11) NOT NULL,
-  `sbs_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `sbs_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'nome do subsetor',
   `setor_set_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -418,7 +419,7 @@ INSERT INTO `sub_setor` (`sbs_id`, `sbs_nome`, `setor_set_id`) VALUES
 
 CREATE TABLE `tipo_sanguineo` (
   `tis_id` int(11) NOT NULL,
-  `tis_nome` varchar(3) COLLATE utf8_bin NOT NULL
+  `tis_nome` varchar(3) COLLATE utf8_bin NOT NULL COMMENT 'nome do tipo sanguineo do paciente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -443,19 +444,19 @@ INSERT INTO `tipo_sanguineo` (`tis_id`, `tis_nome`) VALUES
 
 CREATE TABLE `triagem` (
   `tri_id` int(11) NOT NULL,
-  `tri_temperatura` float DEFAULT NULL,
-  `tri_pressao` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `tri_peso` float DEFAULT NULL,
-  `tri_altura` float DEFAULT NULL,
-  `tri_batimento` int(3) DEFAULT NULL,
-  `tri_oxigenacao` int(3) DEFAULT NULL,
-  `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL,
-  `tri_respiracao` int(2) DEFAULT NULL,
-  `tri_dor` int(2) DEFAULT NULL,
-  `tri_orgaos_vitais` tinyint(1) DEFAULT NULL,
-  `tri_data` date DEFAULT NULL,
-  `tri_hora` time DEFAULT NULL,
-  `tri_status` varchar(11) COLLATE utf8_bin DEFAULT NULL,
+  `tri_temperatura` float DEFAULT NULL COMMENT 'temperatura corporal',
+  `tri_pressao` varchar(8) COLLATE utf8_bin DEFAULT NULL COMMENT 'pressao arterial',
+  `tri_peso` float DEFAULT NULL COMMENT 'peso ',
+  `tri_altura` float DEFAULT NULL COMMENT 'altura',
+  `tri_batimento` int(3) DEFAULT NULL COMMENT 'batimentos cardiacos',
+  `tri_oxigenacao` int(3) DEFAULT NULL COMMENT 'oxigenação do sangue',
+  `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL COMMENT 'cor da classe de risco segundo o protocolo de Manchester',
+  `tri_respiracao` int(2) DEFAULT NULL COMMENT 'frequencia respiratória',
+  `tri_dor` int(2) DEFAULT NULL COMMENT 'grau de dor',
+  `tri_orgaos_vitais` tinyint(1) DEFAULT NULL COMMENT 'se esta comprometido ou não',
+  `tri_data` date DEFAULT NULL COMMENT 'data da entrada',
+  `tri_hora` time DEFAULT NULL COMMENT 'hora da entrada',
+  `tri_status` varchar(11) COLLATE utf8_bin DEFAULT NULL COMMENT 'status da triagem',
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -467,11 +468,10 @@ CREATE TABLE `triagem` (
 
 CREATE TABLE `usuario` (
   `usu_id` int(11) NOT NULL,
-  `usu_nome` varchar(60) COLLATE utf8_bin NOT NULL,
-  `usu_senha` varchar(64) COLLATE utf8_bin NOT NULL,
-  `usu_email` varchar(45) COLLATE utf8_bin NOT NULL,
-  `usu_ativo` tinyint(1) NOT NULL DEFAULT '1',
-  `usu_tipo` int(11) NOT NULL,
+  `usu_senha` varchar(64) COLLATE utf8_bin NOT NULL COMMENT 'senha para logar',
+  `usu_email` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'email que usará para logar',
+  `usu_ativo` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'se esta ativo ou não',
+  `usu_tipo` int(11) NOT NULL COMMENT 'tipo do usuario',
   `funcionario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -479,12 +479,12 @@ CREATE TABLE `usuario` (
 -- Fazendo dump de dados para tabela `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_nome`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`, `funcionario_id`) VALUES
-(1, 'Gisele', '123', 'gih@gih', 1, 1, 1),
-(2, 'Admin', 'admin', 'admin@admin', 1, 1, 2),
-(3, 'Kleber', '123', 'etec1@etec', 1, 1, 3),
-(4, 'Luiza', '123', 'etec2@etec', 1, 1, 4),
-(5, 'Rafael', '123', 'etec3@etec', 1, 1, 5);
+INSERT INTO `usuario` (`usu_id`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`, `funcionario_id`) VALUES
+(1, '123', 'gih@gih', 1, 1, 1),
+(2, 'admin', 'admin@admin', 1, 1, 2),
+(3, '123', 'etec1@etec', 1, 1, 3),
+(4, '123', 'etec2@etec', 1, 1, 4),
+(5, '123', 'etec3@etec', 1, 1, 5);
 
 --
 -- Índices de tabelas apagadas
@@ -535,7 +535,8 @@ ALTER TABLE `fila_de_espera`
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`fun_id`),
   ADD UNIQUE KEY `fun_inscricao` (`fun_inscricao`),
-  ADD KEY `fk_funcionario_pessoa1_idx` (`pessoa_pes_id`);
+  ADD KEY `fk_funcionario_pessoa1_idx` (`pessoa_pes_id`),
+  ADD KEY `setor_set_id` (`setor_set_id`);
 
 --
 -- Índices de tabela `login_acesso`
@@ -736,7 +737,8 @@ ALTER TABLE `enfermeiro`
 -- Restrições para tabelas `funcionario`
 --
 ALTER TABLE `funcionario`
-  ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`setor_set_id`) REFERENCES `setor` (`set_id`);
 
 --
 -- Restrições para tabelas `login_acesso`
