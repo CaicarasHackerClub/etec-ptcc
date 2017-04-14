@@ -1,11 +1,12 @@
+<!DOCTYPE html>
+<head>
+  <link rel='stylesheet' href='../css/main.css'>
+</head>
 <?php
-  // $id = isset($_POST['id']) ? $_POST['id'] : "";
+// $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-  if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
-  ?>
-  <head>
-    <link rel='stylesheet' href='../css/main.css'>
-  </head>
+if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
+?>
   <form class="form" action="triagem.php" method="post">
     <label class="lbl_class">ID: </label>
     <input class="inp_class" type="text" name="id"> <br>
@@ -175,11 +176,21 @@
 
       <h1> Classificação manual: </h1>
       <form class="form" action="triagem.php" method="post">
-        <input type="radio" class="inp_class" name="class" value="Vermelho" required> Vermelho <br>
-        <input type="radio" class="inp_class" name="class" value="Laranja" required> Laranja  <br>
-        <input type="radio" class="inp_class" name="class" value="Amarelo" required> Amarelo <br>
-        <input type="radio" class="inp_class" name="class" value="Verde" required> Verde  <br>
-        <input type="radio" class="inp_class" name="class" value="Azul" required> Azul  <br>
+        <input type="radio" id="vermelho" class="inp_class" name="class" value="Vermelho" required>
+        <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
+
+        <input type="radio" id="laranja" class="inp_class" name="class" value="Laranja" required>
+        <label for="laranja" class="lbl-radio-class lbl_class"><p>Laranja</p></label><br>
+
+        <input type="radio" id="amarelo" class="inp_class" name="class" value="Amarelo" required>
+        <label for="amarelo" class="lbl-radio-class lbl_class"><p>Amarelo</p></label><br>
+
+        <input type="radio" id="verde" class="inp_class" name="class" value="Verde" required>
+        <label for="verde" class="lbl-radio-class lbl_class"><p>Verde</p></label><br>
+
+        <input type="radio" id="azul" class="inp_class" name="class" value="Azul" required>
+        <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label><br>
+
         <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">
         <input type="hidden" class="inp_class" name="altura" value=" <?php echo $tri->getAltura() ?>">
         <input type="hidden" class="inp_class" name="batimento" value=" <?php echo $tri->getBatimento() ?>">
