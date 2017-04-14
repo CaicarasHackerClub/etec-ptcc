@@ -1,10 +1,11 @@
 <?php
-  echo "<link rel='stylesheet' href='../css/main.css'>";
-
   // $id = isset($_POST['id']) ? $_POST['id'] : "";
 
   if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
   ?>
+  <head>
+    <link rel='stylesheet' href='../css/main.css'>
+  </head>
   <form class="form" action="triagem.php" method="post">
     <label class="lbl_class">ID: </label>
     <input class="inp_class" type="text" name="id"> <br>
