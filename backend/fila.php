@@ -24,27 +24,27 @@
     $fetch = mysqli_fetch_array($res);
     if(mysqli_num_rows($res) != 0) {
       while($pac = mysqli_fetch_array($res)) {
-          $data = $pac['tri_data'];
-          $hora = $pac['tri_hora'];
-          $espera = $fila->espera($data, $hora);
+        $data = $pac['tri_data'];
+        $hora = $pac['tri_hora'];
+        $espera = $fila->espera($data, $hora);
 
-          $pesId = $sql->selecionar("SELECT pessoa_pes_id FROM paciente WHERE pac_id = ".$pac['id_paciente'].";");
-          $nome = $sql->selecionar("SELECT  pes_nome FROM pessoa WHERE pes_id = ".$pesId.";");
+        $pesId = $sql->selecionar("SELECT pessoa_pes_id FROM paciente WHERE pac_id = ".$pac['id_paciente'].";");
+        $nome = $sql->selecionar("SELECT  pes_nome FROM pessoa WHERE pes_id = ".$pesId.";");
 
-          $res2 = mysqli_query($con, "SELECT tri_id FROM triagem WHERE tri_status = 'Em consulta'");
-          $emConsulta = mysqli_num_rows($res2);
+        $res2 = mysqli_query($con, "SELECT tri_id FROM triagem WHERE tri_status = 'Em consulta'");
+        $emConsulta = mysqli_num_rows($res2);
 
-          if($emConsulta < $pacMax || $espera >= $tempo[$i]) {
-            $fila->chamar($pac['tri_id']);
-            echo "Chama, nome: " . $nome . ", ID: " . $pac['tri_id'] . ", tempo de espera: " . $espera . "<br>";
+        if($emConsulta < $pacMax || $espera >= $tempo[$i]) {
+          $fila->chamar($pac['tri_id']);
+          echo "Chama, nome: " . $nome . ", ID: " . $pac['tri_id'] . ", tempo de espera: " . $espera . "<br>";
 
-          }
-          else {
-            echo "Na fila de espera, nome: " . $nome . ", ID: " . $pac['tri_id'] . ", tempo de espera: " . $espera . "<br>";
+        }
+        else {
+          echo "Na fila de espera, nome: " . $nome . ", ID: " . $pac['tri_id'] . ", tempo de espera: " . $espera . "<br>";
 
-          }
+        }
 
-          echo "Pessoas em consulta: " . $emConsulta . "<br>";
+        echo "Pessoas em consulta: " . $emConsulta . "<br>";
       }
     }
   }
