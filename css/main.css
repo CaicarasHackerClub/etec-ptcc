@@ -14,7 +14,6 @@ header{
   display: none;
 }
 
-
 /*div que pega a tela inteira*/
 .container {
   display: flex;
@@ -211,7 +210,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo central da pagina*/
 .conteudoCentro .main{
   display: inline-block;
-  border: 0.5px solid #29784b;
+  /*border: 0.5px solid #29784b;*/
   width: 100%;
   height: 100%;
   display: flex;
@@ -349,7 +348,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 /*EDIÇÕES NOS FORULÁRIOS DE TRIAGEM*/
 .form {
-  background: linear-gradient(#FFF, #9bd3ae, #FFF);
   width: 100%;
   height: 98%;
   display: inline-block;
@@ -362,7 +360,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 200px;
   margin-top: 10px;
   margin-left: 10px;
-  /*background-color: #29784b;*/
   padding: 5px;
 }
 
@@ -370,15 +367,68 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   border-radius: 3px 3px 3px 3px;
   margin-left: 4px;
 }
-.form .edit-class{
+
+.form .extend-lbl-class{
   width: 270px;
 }
 
-.titulo-triagem{
-  color: #01b26a;
-  margin-left: 45%;
-  margin-bottom: 1px;
-  text-decoration: underline;
+.form .lbl-radio-class{
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.form .lbl-radio-class p{
+  margin-top: -28px;
+  margin-left: 40px;
+}
+
+/* Escondemos o radio original */
+.form input[type="radio"] {
+  display: none;
+}
+
+/* Usamos o pseudo-element :before para recriar o novo radio */
+.form .lbl-radio-class:before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-top: -10px;
+  border-radius: 50%;
+  /*position: absolute;*/
+  left: 0;
+  bottom: 1px;
+  border: 0;
+}
+
+/* CSS Responsavel por definir o estilo para radio Checkado */
+.form input[type="radio"]:checked + .lbl-radio-class:before {
+  content: "\2022";
+  color: #fff;
+  font-size: 50px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.form #vermelho + .lbl-radio-class:before  {
+  background-color: red;
+}
+
+.form #laranja + .lbl-radio-class:before  {
+  background-color: orange;
+}
+
+.form #amarelo + .lbl-radio-class:before  {
+  background-color: yellow;
+}
+
+.form #verde + .lbl-radio-class:before  {
+  background-color: green;
+}
+
+.form #azul + .lbl-radio-class:before  {
+  background-color: blue;
 }
 
 @media (min-width: 651px){
@@ -576,8 +626,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-top: 10px;
     margin-left: 28%;
     padding-bottom: 30px;
-
-}
+  }
 
   .centro-modulo{
     margin-left: 0;
@@ -631,6 +680,13 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   }
 }
 
+@media (max-height: 500px){
+  .container .lateral .main-lateral{
+    height: 30%;
+    overflow: auto;
+  }
+}
+
 @media (max-height: 280px){
   .cabecalho .titulo{
     width: 32%;
@@ -638,12 +694,5 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   .container .lateral .sub-logo{
     visibility: hidden;
-  }
-}
-
-@media (max-height: 500px){
-  .container .lateral .main-lateral{
-    height: 30%;
-    overflow: auto;
   }
 }
