@@ -47,26 +47,26 @@
 					<input class="inp_class" type="text" name="pes_email" size="28"><br>
 					<label class="lbl_class">Estado civil:</label>
 					<select class="select" name = "pes_estado_civil">
-						<option class="option" value = "Solteiro">Solteiro</option>
-						<option class="option" value = "Casado">Casado</option>
+						<option class="option" value = "1">Solteiro</option>
+						<option class="option" value = "2">Casado</option>
 					</select><br>
 					<label class="lbl_class">Cidadania:</label>
 					<input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
 					<label class="lbl_class">Gênero</label>
-					<input class="inp_class" type="radio" name="pes_genero" value = "Masculino">Masculino
-					<input class="inp_class" type="radio" name="pes_genero" value = "Feminino">Feminino<br>
+					<input class="inp_class" type="radio" name="pes_genero" value = "1">Masculino
+					<input class="inp_class" type="radio" name="pes_genero" value = "2">Feminino<br>
 					<label class="lbl_class">Sexo biológico:</label>
-					<input class="inp_class" type="radio" name="pes_sexo_biologico" value = "Masculino">Masculino
-					<input class="inp_class" type="radio" name="pes_sexo_biologico" value = "Feminino">Feminino<br>
+					<input class="inp_class" type="radio" name="pes_sexo_biologico" value = "1">Masculino
+					<input class="inp_class" type="radio" name="pes_sexo_biologico" value = "2">Feminino<br>
 					<label class="lbl_class">Telefone:</label>
 					<input class="inp_class" type="text" name="pes_telefone" size = "15"><br>
 					<label class="lbl_class">País:</label>
 					<input class="inp_class" type="text" name="end_pais" size = "28" value="Brasil"><br>
 					<label class="lbl_class">Estado:</label>
 					<select class="select" name = "end_estado">
-					<option class="option" value="SP" selected>SP</option>
-					<option class="option" value="MG">MG</option>
-					<option class="option" value="RJ">RJ</option>
+					<option class="option" value="26" selected>SP</option>
+					<option class="option" value="11">MG</option>
+					<option class="option" value="19">RJ</option>
 					</select><br>
 
 					<label class="lbl_class">Cidade:</label>
