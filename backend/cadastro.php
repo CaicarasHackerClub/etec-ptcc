@@ -14,7 +14,7 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-		$selCar = "SELECT * FROM funcionario WHERE usuario_usu_id = '" . $_SESSION['id_usu']. "';";
+		$selCar = "SELECT * FROM funcionario WHERE pessoa_pes_id = '" . $_SESSION['id_usu']. "';";
 		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
@@ -130,7 +130,7 @@
 									'". $metodo->getPes_genero()       	."',
 									'". $metodo->getPes_sexo_biologico()."',
 									'". $metodo->getPes_telefone()      ."'
-								
+
 
 						);";
 
@@ -155,8 +155,8 @@
 					// Verifica se a query foi inserida corretamente
 					$okEnd = $sql->inserir($insEnd);
 
-				/////////////////////////fim da inserção de dados Pessoais////////////////////////////////		
-                    
+				/////////////////////////fim da inserção de dados Pessoais////////////////////////////////
+
                     //verifica se a query foi inserida corretamente
 					if ($okPes && $okEnd) {
 						echo "Pessoa cadastrada com sucesso!!!" . $_SESSION['tipo'];
@@ -256,7 +256,7 @@
 
 
 
-					   	////////////////////inserção de dados nas tabelas paciente e plano_de_saude /////////////// 
+					   	////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
 						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
 								'" . $metodo->getPac_tipo_sangue() . "',
 								'" . $metodo->getPac_remedio()     . "',
@@ -267,7 +267,7 @@
 
 							);";
 
-							
+
 						$insPds = "INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id) VALUES (
 								'" . $metodo->getPds_convenio_nome(). "',
 								'" . $metodo->getPds_numero_sus()   . "',
@@ -275,7 +275,7 @@
 								'" . $pac_id                        . "'
 
 							);";
-						
+
 						$okPac = $sql->inserir($insPac);
 						$okPds = $sql->inserir($insPds);
 						///////////////////////fim da inserção de dados///////////////////////////
@@ -385,12 +385,12 @@
 
 					$sel_id = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
 					$fun_id = $sql->selecionar($sel_id);
-					
+
 					$insMed = "INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
 									'" . $metodo->getMed_crm() . "',
 									'" . $fun_id               . "'
 								);";
-					
+
 					$sel_id = "SELECT MAX(med_id) AS med_id FROM medico";
 					$med_id = $sql->selecionar($sel_id);
 					$med_id++;
