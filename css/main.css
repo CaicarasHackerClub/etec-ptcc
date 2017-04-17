@@ -107,6 +107,7 @@ header{
   display: flex;
   font-size: 17pt;
   width: 100%;
+  background-color: #9bd3ae;
 }
 
 /*Formatação do título Hugh & Health*/
@@ -215,6 +216,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
   height: 100%;
   display: flex;
   flex-flow: column;
+  background-color: #9bd3ae;
 }
 
 /*edição no conteudo que fica dentro do centro da pagina*/
@@ -223,13 +225,14 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
   height: 84.5vh;
   margin: 0.5%;
   border: 0.5px solid #29784b;
+  background-color: #fff;
 }
 
 /*edição na segunda class do da main do centro*/
 .centro-modulo{
   padding: 0;
   margin-left: 0;
-  margin-top: 1px;
+  margin-top: 0px;
 }
 
 /*
@@ -452,7 +455,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   @media (max-height: 590px){
     .container .main .cabecalho .group-image .tit-image{
-      width: 30%;
+      /*width: 30%;*/
       height: 100%;
       background-size: 100%;
     }
