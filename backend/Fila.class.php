@@ -11,16 +11,11 @@ class Fila extends Sql {
     $dias = $data->diff(new DateTime(date('Y-m-d')));
     $horas = $horario->diff(new DateTime(date('H:i')));
 
-    // echo $dias->d . ' dia(s) <br>';
-    // echo $horas->format('%H:%I') . '<br>';
-
     $tempo = $horas->format('%H:%I');
     $tempo = explode(':', $tempo);
     $h = $tempo[0];
     $m = $tempo[1];
-
     $h += $dias->d * 24;
-    // echo $h . ' horas e ' . $m . ' minutos <br>';
 
     $tempoFinal = $h*60 + $m;
 
@@ -31,15 +26,7 @@ class Fila extends Sql {
     $con = parent::conecta();
 
     $up = "UPDATE triagem SET tri_status = 'Em consulta' WHERE tri_id = " . $id . ";";
-    $res = mysqli_query($con, $up) or die("Erro: " . mysqli_error($con));
-
-    if($res) {
-      return TRUE;
-    }
-
-    else {
-      return FALSE;
-    }
+    $res = mysqli_query($con, $up) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $up);
 
   }
 }
