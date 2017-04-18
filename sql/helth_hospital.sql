@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 17/04/2017 às 04:04
+-- Tempo de geração: 18/04/2017 às 02:42
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9754,6 +9754,29 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`, `cid_capital`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `cores`
+--
+
+CREATE TABLE `cores` (
+  `cor_id` int(11) NOT NULL,
+  `cor_nome` varchar(8) COLLATE utf8_bin NOT NULL,
+  `cor_ativo` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `cores`
+--
+
+INSERT INTO `cores` (`cor_id`, `cor_nome`, `cor_ativo`) VALUES
+(1, 'azul', 1),
+(2, 'verde', 1),
+(3, 'amarelo', 1),
+(4, 'laranja', 1),
+(5, 'vermelho', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `endereco`
 --
 
@@ -10266,7 +10289,7 @@ CREATE TABLE `triagem` (
   `tri_altura` float DEFAULT NULL COMMENT 'altura',
   `tri_batimento` int(3) DEFAULT NULL COMMENT 'batimentos cardiacos',
   `tri_oxigenacao` int(3) DEFAULT NULL COMMENT 'oxigenação do sangue',
-  `tri_classe_risco` varchar(8) COLLATE utf8_bin DEFAULT NULL COMMENT 'cor da classe de risco segundo o protocolo de Manchester',
+  `tri_classe_risco` int(11) DEFAULT NULL COMMENT 'cor da classe de risco segundo o protocolo de Manchester',
   `tri_respiracao` int(2) DEFAULT NULL COMMENT 'frequencia respiratória',
   `tri_dor` int(2) DEFAULT NULL COMMENT 'grau de dor',
   `tri_orgaos_vitais` tinyint(1) DEFAULT NULL COMMENT 'se esta comprometido ou não',
@@ -10312,6 +10335,12 @@ INSERT INTO `usuario` (`usu_id`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tip
 ALTER TABLE `cidade`
   ADD PRIMARY KEY (`cid_id`),
   ADD KEY `est_id` (`est_id`);
+
+--
+-- Índices de tabela `cores`
+--
+ALTER TABLE `cores`
+  ADD PRIMARY KEY (`cor_id`);
 
 --
 -- Índices de tabela `endereco`
@@ -10463,7 +10492,8 @@ ALTER TABLE `tipo_sanguineo`
 --
 ALTER TABLE `triagem`
   ADD PRIMARY KEY (`tri_id`),
-  ADD KEY `fk_triagem_paciente1_idx` (`id_paciente`);
+  ADD KEY `fk_triagem_paciente1_idx` (`id_paciente`),
+  ADD KEY `tri_classe_risco` (`tri_classe_risco`);
 
 --
 -- Índices de tabela `usuario`
@@ -10482,6 +10512,11 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `cidade`
   MODIFY `cid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9715;
+--
+-- AUTO_INCREMENT de tabela `cores`
+--
+ALTER TABLE `cores`
+  MODIFY `cor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
@@ -10664,7 +10699,8 @@ ALTER TABLE `sub_setor`
 -- Restrições para tabelas `triagem`
 --
 ALTER TABLE `triagem`
-  ADD CONSTRAINT `fk_triagem_paciente1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_triagem_paciente1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `triagem_ibfk_1` FOREIGN KEY (`tri_classe_risco`) REFERENCES `cores` (`cor_id`);
 
 --
 -- Restrições para tabelas `usuario`
