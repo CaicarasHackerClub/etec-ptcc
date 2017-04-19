@@ -14,7 +14,8 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-		$selCar = "SELECT * FROM funcionario WHERE usuario_usu_id = '" . $_SESSION['id_usu']. "';";
+		$selCar = "SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id = u.funcionario_id WHERE u.usu_id = '" . $_SESSION['id_usu']. "';";
+		
 		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
@@ -368,6 +369,7 @@
 						<?php
 					}
 					else if ($_POST['fun_cargo'] == "recepcao"){
+					
 					}
 					echo "</form>";
 				}
