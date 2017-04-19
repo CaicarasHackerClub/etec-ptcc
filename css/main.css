@@ -28,7 +28,8 @@ header{
   align-content: flex-end;
   width: 13%;
   height: 100%;
-  background: linear-gradient(#FFF, #9bd3ae, #FFF);
+  background-color: #d8fce4;
+  /*background: linear-gradient(#FFF, #9bd3ae, #FFF);*/
   flex-wrap: wrap;
   border-right: 1px solid #29784b;
   border-left: 1px solid #29784b;
@@ -107,6 +108,9 @@ header{
   display: flex;
   font-size: 17pt;
   width: 100%;
+}
+
+.sub-cabecalho{
   background-color: #9bd3ae;
 }
 
@@ -156,6 +160,7 @@ header{
   font-size: 10pt;
   width: 100%;
 }
+
 .container .main-lateral .anchor p{
   display: inline-block;
   position: absolute;
@@ -221,11 +226,9 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
-  width: 99%;
+  width: 100%;
   height: 84.5vh;
-  margin: 0.5%;
-  border: 0.5px solid #29784b;
-  background-color: #fff;
+  /*border: 0.5px solid #29784b;*/
 }
 
 /*edição na segunda class do da main do centro*/
@@ -301,6 +304,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .TabControl #content{
   width:100%;
+  background-color: #fff;
   /*border: solid 1px #01b26a;*/
   overflow: hidden;
   height:100%;
@@ -352,23 +356,50 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 /*EDIÇÕES NOS FORULÁRIOS DE TRIAGEM*/
 .form {
   width: 100%;
-  height: 98%;
+  height: 90vh;
   display: inline-block;
   font-family: sans-serif;
+  /*border: 1px solid;*/
+  margin-left: 6%;
+  overflow:scroll;
+}
+
+.form-cadastro{
+  margin-left: 0;
+}
+
+.form .lbl_class, .extend-class{
+  color: #fff;
+  display: inline-block;
+  width: 190px;
+  padding: 5px;
+  background-color: #01b26a;
+  text-align: right;
+  border-radius: 3px 0px 0px 3px;
 }
 
 .form .lbl_class{
-  color: #01b26a;
-  display: inline-block;
-  width: 200px;
-  margin-top: 10px;
-  margin-left: 10px;
-  padding: 5px;
+  line-height: 40px;
 }
 
 .form .inp_class{
   border-radius: 3px 3px 3px 3px;
-  margin-left: 4px;
+  border: 3px solid #01b26a;
+  margin-left: 5px;
+}
+
+.form .extend-class{
+  height: 100%;
+}
+
+.form .group-form, .extend-group-form{
+  width: 337px;
+  height: 50px;
+  background-color: #9bd3ae;
+  margin-top: 2%;
+  margin-left: 10%;
+  display: inline-block;
+  border-radius: 3px 3px 3px 3px;
 }
 
 .form .extend-lbl-class{
@@ -379,6 +410,17 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   cursor: pointer;
   position: relative;
+  line-height: 20px;
+}
+
+.form .submit{
+  height: 40px;
+  width: 100px;
+  margin-top: 10px;
+  background-color: #01b26a;
+  border: 0px;
+  color: #fff;
+  border-radius: 3px 3px 3px 3px;
 }
 
 .form .lbl-radio-class p{
@@ -386,8 +428,37 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 40px;
 }
 
+.form-classi .lbl_class{
+  width: 150px;
+  text-align: left;
+  margin-top: 10px;
+  border-radius:  3px 3px 3px 3px;
+  margin-left: 40%;
+}
+
+.form-classi .titulo, .form-cadastro .titulo{
+  display: inline-block;
+  margin-left: 36%;
+  width: 250px;
+  color: #01b26a;
+  text-align: center;
+  border-bottom: 1px solid #01b26a;
+}
+
+.form-cadastro .titulo{
+  width: 340px;
+}
+
+.form-cadastro .lbl_class{
+  width: 160px;
+}
+
+.form .group-form-cadastro{
+  width: 390px;
+}
+
 /* Escondemos o radio original */
-.form input[type="radio"] {
+.form-classi input[type="radio"] {
   display: none;
 }
 
@@ -397,7 +468,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   width: 32px;
   height: 32px;
-  margin-top: -10px;
+  margin-top: 10px;
   border-radius: 50%;
   /*position: absolute;*/
   left: 0;
@@ -446,6 +517,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     background-position: 15% -1%;*/
     width: 145px;
     height: 100px;
+    margin-top: 10px;
   }
 
   /*edição no grupo onde fica o icone da página*/
@@ -532,6 +604,15 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       width: 120%;
       text-align: center;
       padding-left: 20%;
+    }
+
+    .form{
+      margin-left: 0;
+      overflow: scroll;
+    }
+
+    .form .group-form{
+      margin-left: 1%;
     }
 }
 
@@ -645,6 +726,16 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   }
 }
 
+@media (max-width: 433px){
+  .container .main .cabecalho .group-image .tit-text{
+    visibility: hidden;
+  }
+
+  .container .main .cabecalho .group-image .tit-image{
+    margin-left: 40%;
+  }
+}
+
 @media (max-width: 400px){
 
   .cabecalho .titulo{
@@ -670,16 +761,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     width: 70px;
     margin: 5px;
     padding-left: 13%;
-  }
-}
-
-@media (max-width: 433px){
-  .container .main .cabecalho .group-image .tit-text{
-    visibility: hidden;
-  }
-
-  .container .main .cabecalho .group-image .tit-image{
-    margin-left: 40%;
   }
 }
 

@@ -32,7 +32,7 @@
 
       <div class="main">
 
-        <div class="cabecalho">
+        <div class="cabecalho sub-cabecalho">
           <header>
             <img src="../img/icons/botao_menu.png" id="btn_slide" onclick="mostrarMenu()" >
             <img src="../img/icons/opcoes.png" id="btn_slide-down" onclick="mostrarConfig()" class="button">
