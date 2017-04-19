@@ -189,7 +189,7 @@ if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
       ?>
 
       <form class="form form-classi" action="triagem.php" method="post">
-        <h1> Classificação: </h1>
+        <h1 class="titulo"> Classificação: </h1>
         <input type="radio" id="vermelho" class="inp_class" name="class" value="Vermelho" required <?php if($tri->getClass() == "Vermelho") echo "checked"?> >
         <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
 
@@ -203,7 +203,7 @@ if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
         <label for="verde" class="lbl-radio-class lbl_class"><p>Verde</p></label><br>
 
         <input type="radio" id="azul" class="inp_class" name="class" value="Azul" required <?php if($tri->getClass() == "Azul") echo "checked"?> >
-        <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label><br>
+        <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label>
 
         <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">
         <input type="hidden" class="inp_class" name="altura" value=" <?php echo $tri->getAltura() ?>">
