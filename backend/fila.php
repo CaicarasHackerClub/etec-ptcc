@@ -15,6 +15,9 @@
 
   $pacMax = 5;
 
+  $emConsulta = $sql->num("SELECT tri_id FROM triagem WHERE tri_status = 'Em consulta';");
+  $emEspera = $sql->num("SELECT tri_id FROM triagem WHERE tri_status = 'Em espera'");
+
   $con = $sql->conecta();
 
   for($i = 0; $i < count($cor); $i++) {
