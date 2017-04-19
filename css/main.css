@@ -356,11 +356,16 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 /*EDIÇÕES NOS FORULÁRIOS DE TRIAGEM*/
 .form {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: inline-block;
   font-family: sans-serif;
   /*border: 1px solid;*/
   margin-left: 6%;
+  overflow:scroll;
+}
+
+.form-cadastro{
+  margin-left: 0;
 }
 
 .form .lbl_class, .extend-class{
@@ -431,13 +436,25 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 40%;
 }
 
-.form-classi .titulo{
+.form-classi .titulo, .form-cadastro .titulo{
   display: inline-block;
   margin-left: 36%;
   width: 250px;
   color: #01b26a;
   text-align: center;
   border-bottom: 1px solid #01b26a;
+}
+
+.form-cadastro .titulo{
+  width: 340px;
+}
+
+.form-cadastro .lbl_class{
+  width: 160px;
+}
+
+.form .group-form-cadastro{
+  width: 390px;
 }
 
 /* Escondemos o radio original */
