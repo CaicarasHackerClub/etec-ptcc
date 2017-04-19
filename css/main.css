@@ -407,6 +407,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   cursor: pointer;
   position: relative;
+  line-height: 20px;
 }
 
 .form .submit{
