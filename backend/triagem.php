@@ -8,34 +8,66 @@
 if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
 ?>
   <form class="form" action="triagem.php" method="post">
-    <label class="lbl_class">ID: </label>
-    <input class="inp_class" type="text" name="id"> <br>
-    <label class="lbl_class">Peso: </label>
-    <input class="inp_class" type="text" size="3" name="peso"> kg <br>
-    <label class="lbl_class">Altura: </label>
-    <input class="inp_class" type="text" size="3" name="altura"> m <br>
-    <label class="lbl_class">Batimento cardíaco: </label>
-    <input class="inp_class" type="text" size="3" name="batimento" required> bpm <br>
-    <label class="lbl_class">Respiração: </label>
-    <input class="inp_class" type="text" size="3" name="resp" required> rpm <br>
-    <label class="lbl_class">Temperatura corporal: </label>
-    <input class="inp_class" type="text" size="2" name="temp" required> ºC <br>
-    <label class="lbl_class">PAS: </label>
-    <input class="inp_class" type="text" size="3" name="pas" required> mmHg <br>
-    <label class="lbl_class">PAD: </label>
-    <input class="inp_class" type="text" size="3" name="pad" required> mmHg <br>
-    <label class="lbl_class edit-class">Nível de oxigenação: </label>
-    <input class="inp_class" type="text" size="3" name="oxi"> % <br>
-    <label class="lbl_class">Dor: </label>
-    <select class="inp_class" name="dor">
-      <?php
+
+    <div class="group-form">
+      <label class="lbl_class">ID: </label>
+      <input class="inp_class" type="text" size="4" name="id"> <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Peso: </label>
+      <input class="inp_class" type="text" size="3" name="peso"> kg <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Altura: </label>
+      <input class="inp_class" type="text" size="3" name="altura"> m <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Batimento cardíaco: </label>
+      <input class="inp_class" type="text" size="3" name="batimento" required> bpm <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Respiração: </label>
+      <input class="inp_class" type="text" size="3" name="resp" required> rpm <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Temperatura corporal: </label>
+      <input class="inp_class" type="text" size="2" name="temp" required> ºC <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">PAS: </label>
+      <input class="inp_class" type="text" size="3" name="pas" required> mmHg <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">PAD: </label>
+      <input class="inp_class" type="text" size="3" name="pad" required> mmHg <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class edit-class">Nível de oxigenação: </label>
+      <input class="inp_class" type="text" size="3" name="oxi"> % <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Dor: </label>
+      <select class="inp_class" name="dor">
+        <?php
         for($i = 0; $i <= 10; $i++)
-          echo "<option value='$i'> $i </option>";
-      ?>
-    </select> <br>
-    <label class="lbl_class edit-class" for="indi">Indicação de comprometimento dos orgãos vitais </label>
-    <input id="indi" class="inp_class" type="checkbox" name="org"> <br>
-    <input class="inp_class submit" type="submit" name="Recepcao">
+        echo "<option value='$i'> $i </option>";
+        ?>
+      </select> <br>
+    </div>
+    <div class="group-form">
+      <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
+      <input id="indi" class="inp_class" type="checkbox" name="org">
+    </div>
+    <input class="anchor submit" type="submit" name="Recepcao" value="Enviar">
   </form>
   <?php
     }
@@ -156,8 +188,8 @@ if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
       }
       ?>
 
-      <h1> Classificação: </h1>
-      <form class="form" action="triagem.php" method="post">
+      <form class="form form-classi" action="triagem.php" method="post">
+        <h1> Classificação: </h1>
         <input type="radio" id="vermelho" class="inp_class" name="class" value="Vermelho" required <?php if($tri->getClass() == "Vermelho") echo "checked"?> >
         <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
 
@@ -184,7 +216,7 @@ if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
         <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
         <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
         <input type="hidden" class="inp_class" name="id" value=" <?php echo $tri->getPacId()  ?> ">
-        <input type="submit" class="inp_class" name="classificar" value="Classificar">
+        <input type="submit" class="submit" name="classificar" value="Classificar">
       </form>
     <?php
     }
