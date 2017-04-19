@@ -3,8 +3,7 @@
 ?>
 <html>
 	<head>
-    <link rel='stylesheet' href='../css/main.css'>
-  </head>
+	</head>
 	<body>
 		<?php
 		include_once ("Posto.class.php");
@@ -16,7 +15,7 @@
 
 		$con = $sql->conecta();
 		$selCar = "SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id = u.funcionario_id WHERE u.usu_id = '" . $_SESSION['id_usu']. "';";
-
+		
 		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
@@ -31,114 +30,57 @@
 		if ($acao == "cadastro") {
 			if (!isset($_GET['passo'])) {
 				?>
-				<form class="form form-cadastro" action="cadastro.php?acao=cadastro&passo=2" method="post">
-					<h1 class="titulo">Cadastro de Pessoa</h1>
-          <br>
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome:</label>
-            <input class="inp_class" type="text" name="pes_nome" size="28"><br>
-          </div>
+				<form class="Form" action="cadastro.php?acao=cadastro&passo=2" method="post">
+					<h1>Cadastro de Pessoa</h1>
+					<label class="lbl_class">Nome:</label>
+					<input class="inp_class" type="text" name="pes_nome" size="28"><br>
+					<label class="lbl_class">Nome do pai:</label>
+					<input class="inp_class" type="text" name="pes_pai" size="28"><br>
+					<label class="lbl_class">Nome da mãe:</label>
+					<input class="inp_class" type="text" name="pes_mae" size="28"><br>
+					<label class="lbl_class">RG:</label>
+					<input class="inp_class" type="text" name="pes_rg" size="28"><br>
+					<label class="lbl_class">CPF:</label>
+					<input class="inp_class" type="text" name="pes_cpf" size="28"><br>
+					<label class="lbl_class">Data de nascimento:</label>
+					<input class="inp_class" type="date" name="pes_data" size="28"><br>
+					<label class="lbl_class">Email</label>
+					<input class="inp_class" type="text" name="pes_email" size="28"><br>
+					<label class="lbl_class">Estado civil:</label>
+					<select class="select" name = "pes_estado_civil">
+						<option class="option" value = "1">Solteiro</option>
+						<option class="option" value = "2">Casado</option>
+					</select><br>
+					<label class="lbl_class">Cidadania:</label>
+					<input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
+					<label class="lbl_class">Gênero</label>
+					<input class="inp_class" type="radio" name="pes_genero" value = "1">Masculino
+					<input class="inp_class" type="radio" name="pes_genero" value = "2">Feminino<br>
+					<label class="lbl_class">Sexo biológico:</label>
+					<input class="inp_class" type="radio" name="pes_sexo_biologico" value = "1">Masculino
+					<input class="inp_class" type="radio" name="pes_sexo_biologico" value = "2">Feminino<br>
+					<label class="lbl_class">Telefone:</label>
+					<input class="inp_class" type="text" name="pes_telefone" size = "15"><br>
+					<label class="lbl_class">País:</label>
+					<input class="inp_class" type="text" name="end_pais" size = "28" value="Brasil"><br>
+					<label class="lbl_class">Estado:</label>
+					<select class="select" name = "end_estado">
+					<option class="option" value="26" selected>SP</option>
+					<option class="option" value="11">MG</option>
+					<option class="option" value="19">RJ</option>
+					</select><br>
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome do pai:</label>
-            <input class="inp_class" type="text" name="pes_pai" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome da mãe:</label>
-            <input class="inp_class" type="text" name="pes_mae" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">RG:</label>
-            <input class="inp_class" type="text" name="pes_rg" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">CPF:</label>
-            <input class="inp_class" type="text" name="pes_cpf" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
-            <input class="inp_class" type="date" name="pes_data" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Email</label>
-            <input class="inp_class" type="text" name="pes_email" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Estado civil:</label>
-            <select class="select" name = "pes_estado_civil">
-              <option class="option" value = "1">Solteiro</option>
-              <option class="option" value = "2">Casado</option>
-            </select><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidadania:</label>
-            <input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Gênero:</label>
-            <input class="inp_class" type="radio" name="pes_genero" value = "1">Masculino
-            <input class="inp_class" type="radio" name="pes_genero" value = "2">Feminino<br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class ">Sexo biológico:</label>
-            <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "1">Masculino
-            <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "2">Feminino<br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Telefone:</label>
-            <input class="inp_class" type="text" name="pes_telefone" size = "15"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">País:</label>
-            <input class="inp_class" type="text" name="end_pais" size = "28" value="Brasil"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Estado:</label>
-            <select class="select" name = "end_estado">
-              <option class="option" value="26" selected>SP</option>
-              <option class="option" value="11">MG</option>
-              <option class="option" value="19">RJ</option>
-            </select><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidade:</label>
-            <input class="inp_class" type="text" name="end_cidade" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cep:</label>
-            <input class="inp_class" type="text" name="end_cep" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Bairro:</label>
-            <input class="inp_class" type="text" name="end_bairro" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Rua:</label>
-            <input class="inp_class" type="text" name="end_rua" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Numero:</label>
-            <input class="inp_class" type="text" name="end_numero" size="28"><br>
-          </div>
-
-					<input class="inp_class submit" type="submit" value="Proximo">
+					<label class="lbl_class">Cidade:</label>
+					<input class="inp_class" type="text" name="end_cidade" size="28"><br>
+					<label class="lbl_class">Cep:</label>
+					<input class="inp_class" type="text" name="end_cep" size="28"><br>
+					<label class="lbl_class">Bairro:</label>
+					<input class="inp_class" type="text" name="end_bairro" size="28"><br>
+					<label class="lbl_class">Rua:</label>
+					<input class="inp_class" type="text" name="end_rua" size="28"><br>
+					<label class="lbl_class">Numero:</label>
+					<input class="inp_class" type="text" name="end_numero" size="28"><br>
+					<input class="inp_class" type="submit" value="Proximo">
 				</form>
 				<?php
 			}
@@ -214,145 +156,6 @@
 					// Verifica se a query foi inserida corretamente
 					$okEnd = $sql->inserir($insEnd);
 
-				/////////////////////////fim da inserção de dados Pessoais////////////////////////////////
-
-                    //verifica se a query foi inserida corretamente
-					if ($okPes && $okEnd) {
-						echo "Pessoa cadastrada com sucesso!!!" . $_SESSION['tipo'];
-
-						/* se o usuário logado for recepcionista ele só poderá cadastrar
-						os dados de pacientes do formulário abaixo */
-						echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
-						if ($_SESSION['tipo'] == "recepcao") {
-							?>
-							<br>
-							<h1 class="titulo">Paciente</h1>
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Tipo Sanguineo</label>
-                <input class="inp_class" type="text" name="pac_tipo_sangue" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Remedio</label>
-                <input class="inp_class" type="text" name="pac_remedio" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Doença</label>
-                <input class="inp_class" type="text" name="pac_doenca" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Grau de escolaridade:</label><br>
-                <input class="inp_class" type="radio" name="pac_educacao" value = "Ef1">Ensino Fundamental 1 <br>
-                <input class="inp_class" type="radio" name="pac_educacao" value = "EF2">Ensino Fundamental 2<br>
-                <input class="inp_class" type="radio" name="pac_educacao" value = "EM">Ensino Médio<br>
-                <input class="inp_class" type="radio" name="pac_educacao" value = "ES">Ensino Superior<br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Convênio:</label>
-                <input class="inp_class" type="text" name="pds_convenio_nome" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Número :</label>
-                <input class="inp_class" type="text" name="pds_num_convenio" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">SUS:</label>
-                <input class="inp_class" type="text" name="pds_numero_sus" size="28">
-              </div>
-							<input class="inp_class submmit" type="submit" value = "Confirmar">
-							<?php
-						}
-						/* Se o usuário logado for recepcionista ele só poderá cadastrar
-						os dados de funcionário do formulário abaixo
-						*/
-						else if ($_SESSION['tipo'] == "administracao") {
-							?>
-							<h1 class="titulo">Funcionário</h1>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Cargo:</label>
-                <select class="select" name="fun_cargo">
-                  <option class="option" value="recepcao">Recepcionista</option>
-                  <option class="option" value="medico">Médico</option>
-                  <option class="option" value="enfermeiro">Enfermeiro</option>
-                  <option class="option" value="funcionario">Funcionário</option>
-                </select><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Horario:</label>
-                <input class="inp_class" type="time" name="fun_horario" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Inscrição:</label>
-                <input class="inp_class" type="text" name="fun_inscricao" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Turno:</label>
-                <select class="select" name="fun_turno">
-                  <option class="option" value="manha">Manhã</option>
-                  <option class="option" value="tarde">Tarde</option>
-                  <option class="option" value="noite">Noite</option>
-                </select><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">E-mail:</label>
-                <input class="inp_class" type="text" name="usu_email" size="28"><br>
-              </div>
-
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Senha:</label>
-                <input class="inp_class" type="password" name="usu_senha" size="28"><br>
-              </div>
-
-							<input class="inp_class" type="submit" value="Proximo">
-						<?php
-						}
-						echo "</form>";
-					}
-					else {
-						echo "Erro ao cadastrar pessoa";
-					}
-				}
-			}
-			else if ($_GET['passo'] == 3) {
-				if ($_SESSION['tipo'] == "recepcao") {
-					$metodo->setPac_tipo_sangue		($_POST['pac_tipo_sangue']);
-					$metodo->setPac_remedio			($_POST['pac_remedio']);
-					$metodo->setPac_doenca			($_POST['pac_doenca']);
-					$metodo->setPac_educacao		($_POST['pac_educacao']);
-
-					$metodo->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
-					$metodo->setPds_numero_sus       ($_POST['pds_numero_sus']);
-					$metodo->setPds_num_convenio     ($_POST['pds_num_convenio']);
-
-
-					//$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus =
-					//		  '" . $_POST['pds_numero_sus'] . "';";
-
-					/*if ($qtdPds >= 1) {
-						echo "Paciente já cadastrado!";
-					}
-					else {
-					*/  ////////Seleciona o ultimo id de pessoa e ultimo id de paciente para ser utilizado///////////
-						$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-					   	$pes_id = $sql->selecionar($sel_id);
-
-					   	$sel_id = "SELECT MAX(pac_id) AS pac_id FROM paciente";
-					   	$pac_id = $sql->selecionar($sel_id);
-					   	$pac_id++;
-
-
-
-					   	////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
 						$insPac = "INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
 								'" . $metodo->getPac_tipo_sangue() . "',
 								'" . $metodo->getPac_remedio()     . "',
@@ -464,7 +267,7 @@
 						<?php
 					}
 					else if ($_POST['fun_cargo'] == "recepcao"){
-
+					
 					}
 					echo "</form>";
 				}
