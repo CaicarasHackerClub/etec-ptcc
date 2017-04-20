@@ -15,12 +15,8 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-// <<<<<<< HEAD
 		$selCar = "SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id = u.funcionario_id WHERE u.usu_id = '" . $_SESSION['id_usu']. "';";
 
-// =======
-		$selCar = "SELECT * FROM funcionario WHERE pessoa_pes_id = '" . $_SESSION['id_usu']. "';";
-// >>>>>>> c985b587ffac68aa0b3632909e22081682e09e2c
 		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
