@@ -26,27 +26,27 @@ if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
 
     <div class="group-form">
       <label class="lbl_class">Batimento cardíaco: </label>
-      <input class="inp_class" type="text" size="3" name="batimento" required> bpm <br>
+      <input class="inp_class" type="text" size="3" name="batimento" <!--required--> bpm <br>
     </div>
 
     <div class="group-form">
       <label class="lbl_class">Respiração: </label>
-      <input class="inp_class" type="text" size="3" name="resp" required> rpm <br>
+      <input class="inp_class" type="text" size="3" name="resp" <!--required--> rpm <br>
     </div>
 
     <div class="group-form">
       <label class="lbl_class">Temperatura corporal: </label>
-      <input class="inp_class" type="text" size="2" name="temp" required> ºC <br>
+      <input class="inp_class" type="text" size="2" name="temp" <!--required--> ºC <br>
     </div>
 
     <div class="group-form">
       <label class="lbl_class">PAS: </label>
-      <input class="inp_class" type="text" size="3" name="pas" required> mmHg <br>
+      <input class="inp_class" type="text" size="3" name="pas" <!--required--> mmHg <br>
     </div>
 
     <div class="group-form">
       <label class="lbl_class">PAD: </label>
-      <input class="inp_class" type="text" size="3" name="pad" required> mmHg <br>
+      <input class="inp_class" type="text" size="3" name="pad" <!--required--> mmHg <br>
     </div>
 
     <div class="group-form">
@@ -80,18 +80,24 @@ if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
     $tri = new Triagem();
 
     $id = isset($_POST['id']) && !empty($_POST['id']) ? $_POST['id'] : "0";
-    $temp = isset($_POST['temp']) && !empty($_POST['temp']) ? trim($_POST['temp']) : "0";
-    $pas = isset($_POST['pas']) && !empty($_POST['pas']) ? trim($_POST['pas']) : "0";
-    $pad = isset($_POST['pad']) && !empty($_POST['pad']) ? trim($_POST['pad']) : "0";
+    $temp = isset($_POST['temp']) && !empty($_POST['temp']) ? trim($_POST['temp']) : "0"; //
+    $pas = isset($_POST['pas']) && !empty($_POST['pas']) ? trim($_POST['pas']) : "0"; //
+    $pad = isset($_POST['pad']) && !empty($_POST['pad']) ? trim($_POST['pad']) : "0"; //
     $peso = isset($_POST['peso']) && !empty($_POST['peso']) ? trim($_POST['peso']) : "0";
     $altura = isset($_POST['altura']) && !empty($_POST['altura']) ? trim($_POST['altura']) : "0";
-    $batimento = isset($_POST['batimento']) && !empty($_POST['batimento']) ? trim($_POST['batimento']) : "0";
+    $batimento = isset($_POST['batimento']) && !empty($_POST['batimento']) ? trim($_POST['batimento']) : "0"; //
     $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : "0";
-    $resp = isset($_POST['resp']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0";
+    $resp = isset($_POST['resp']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0"; //
     $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : "0";
     $orgaos = isset($_POST['org']) ? 1 : 0;
     $data = date('Y-m-d');
     $hora = date('H:i');
+
+    // $temp = $sql->verifica($_POST['temp']);
+    // $pas  = $sql->verifica($_POST['pas']);
+    // $pad  = $sql->verifica($_POST['pad']);
+    // $batimento  = $sql->verifica($_POST['batimento']);
+    // $resp = $sql->verifica($_POST['resp']);
 
     $class = isset($_POST['class']) ? $_POST['class'] : "Indefinido";
 

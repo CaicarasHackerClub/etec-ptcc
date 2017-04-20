@@ -644,7 +644,7 @@
           </div>
 
           <div class="group-form group-form-cadastro">
-            <label class="lbl_class lbl-extend-class">Sexo biológico:</label>
+            <label class="lbl_class">Sexo biológico:</label>
             <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "1">Masculino
             <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "2">Feminino<br>
           </div>
