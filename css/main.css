@@ -371,21 +371,27 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 .form .lbl_class, .extend-class{
   color: #fff;
   display: inline-block;
-  width: 190px;
-  padding: 5px;
+  width: 185px;
+  height: 100%;
+  /*padding: 5px;*/
   background-color: #01b26a;
   text-align: right;
   border-radius: 3px 0px 0px 3px;
 }
 
 .form .lbl_class{
-  line-height: 40px;
+  line-height: 45px;
+}
+
+.form .lbl-extend-class{
+  line-height: 15px;
 }
 
 .form .inp_class{
   border-radius: 3px 3px 3px 3px;
   border: 3px solid #01b26a;
   margin-left: 5px;
+  margin-top: 2%;
 }
 
 .form .extend-class{
@@ -446,20 +452,24 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 .form-cadastro .titulo{
-  width: 340px;
+  width: 400px;
 }
 
 .form-cadastro .lbl_class{
-  width: 160px;
+  width: 120px;
 }
 
 .form .group-form-cadastro{
-  width: 390px;
+  width: 38%;
 }
 
 /* Escondemos o radio original */
 .form-classi input[type="radio"] {
   display: none;
+}
+
+.form-classi .lbl_class{
+  height: 55px;
 }
 
 /* Usamos o pseudo-element :before para recriar o novo radio */
@@ -469,6 +479,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 32px;
   height: 32px;
   margin-top: 10px;
+  margin-left: 3px;
   border-radius: 50%;
   /*position: absolute;*/
   left: 0;
