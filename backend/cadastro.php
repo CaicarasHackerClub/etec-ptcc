@@ -15,12 +15,12 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-<<<<<<< HEAD
+// <<<<<<< HEAD
 		$selCar = "SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id = u.funcionario_id WHERE u.usu_id = '" . $_SESSION['id_usu']. "';";
-		
-=======
+
+// =======
 		$selCar = "SELECT * FROM funcionario WHERE pessoa_pes_id = '" . $_SESSION['id_usu']. "';";
->>>>>>> c985b587ffac68aa0b3632909e22081682e09e2c
+// >>>>>>> c985b587ffac68aa0b3632909e22081682e09e2c
 		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
@@ -64,7 +64,7 @@
           </div>
 
           <div class="group-form group-form-cadastro">
-            <label class="lbl_class min-tit">Data de Nascimento:</label>
+            <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
             <input class="inp_class" type="date" name="pes_data" size="28"><br>
           </div>
 
@@ -87,13 +87,13 @@
           </div>
 
           <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Gênero</label>
+            <label class="lbl_class">Gênero:</label>
             <input class="inp_class" type="radio" name="pes_genero" value = "1">Masculino
             <input class="inp_class" type="radio" name="pes_genero" value = "2">Feminino<br>
           </div>
 
           <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Sexo biológico:</label>
+            <label class="lbl_class ">Sexo biológico:</label>
             <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "1">Masculino
             <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "2">Feminino<br>
           </div>
@@ -468,7 +468,7 @@
 						<?php
 					}
 					else if ($_POST['fun_cargo'] == "recepcao"){
-					
+
 					}
 					echo "</form>";
 				}
