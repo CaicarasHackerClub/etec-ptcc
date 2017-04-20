@@ -1,24 +1,38 @@
 'use strict';
 
+const paths = {
+    js: [
+        'js/*.js',
+        '!js/*.min.js'
+    ],
+    css: [
+        'css/*.css'
+    ],
+    php: [
+        'index.php',
+        'backend/*.php'
+    ]
+}
+
 var gulp    = require('gulp'),
     phpcs   = require('gulp-phpcs'),
     jshint  = require('gulp-jshint'),
     csslint = require('gulp-csslint');
 
 gulp.task('js', function() {
-    return gulp.src(['js/*.js', '!js/*.min.js'])
+    return gulp.src(paths.js)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('css', function() {
-    return gulp.src('css/*.css')
+    return gulp.src(paths.css)
         .pipe(csslint())
         .pipe(csslint.formatter(require('csslint-stylish')));
 });
 
 gulp.task('php', function() {
-    return gulp.src(['index.php', 'backend/*.php'])
+    return gulp.src(paths.php)
         .pipe(phpcs({
             bin: '/usr/bin/phpcs',
             encoding: 'utf-8',

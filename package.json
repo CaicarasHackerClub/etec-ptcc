@@ -25,18 +25,13 @@
   },
   "homepage": "https://github.com/CaicarasHackerClub/hug-health#readme",
   "devDependencies": {
+    "gulp": "^3.9.1",
     "csslint": "^1.0.5",
     "csslint-stylish": "0.0.6",
-    "gulp": "^3.9.1",
     "gulp-csslint": "^1.0.0",
-    "gulp-htmllint": "0.0.12",
-    "gulp-jshint": "^2.0.4",
-    "gulp-phpcs": "^1.4.0",
-    "gulp-phplint": "^0.3.4",
-    "gulp-util": "^3.0.8",
-    "htmllint": "^0.6.0",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
-    "phplint": "^1.7.4"
+    "gulp-jshint": "^2.0.4",
+    "gulp-phpcs": "^1.4.0"
   }
 }
