@@ -15,12 +15,8 @@
 		$acao  = isset($_GET['acao'])? $_GET['acao'] : "";
 
 		$con = $sql->conecta();
-<<<<<<< HEAD
+
 		$selCar = "SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id = u.funcionario_id WHERE u.usu_id = '" . $_SESSION['id_usu']. "';";
-		
-=======
-		$selCar = "SELECT * FROM funcionario WHERE pessoa_pes_id = '" . $_SESSION['id_usu']. "';";
->>>>>>> c985b587ffac68aa0b3632909e22081682e09e2c
 		$res = mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 		$cargo = mysqli_fetch_array($res);
 
@@ -75,10 +71,9 @@
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Estado civil:</label>
-            <select class="select" name = "pes_estado_civil">
-              <option class="option" value = "1">Solteiro</option>
-              <option class="option" value = "2">Casado</option>
-            </select><br>
+            <?php
+            	$sql->selectbox("estado_civil");
+            ?>
           </div>
 
           <div class="group-form group-form-cadastro">
@@ -88,14 +83,16 @@
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Gênero</label>
-            <input class="inp_class" type="radio" name="pes_genero" value = "1">Masculino
-            <input class="inp_class" type="radio" name="pes_genero" value = "2">Feminino<br>
+            <?php
+            	$sql->selectbox("genero");
+            ?>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Sexo biológico:</label>
-            <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "1">Masculino
-            <input class="inp_class" type="radio" name="pes_sexo_biologico" value = "2">Feminino<br>
+            <?php
+            	$sql->selectbox("sexo");
+            ?>
           </div>
 
           <div class="group-form group-form-cadastro">
@@ -110,16 +107,16 @@
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Estado:</label>
-            <select class="select" name = "end_estado">
-              <option class="option" value="26" selected>SP</option>
-              <option class="option" value="11">MG</option>
-              <option class="option" value="19">RJ</option>
-            </select><br>
+            <?php
+            	$sql->selectbox("estado");
+            ?>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Cidade:</label>
-            <input class="inp_class" type="text" name="end_cidade" size="28"><br>
+            <?php
+            	$sql->selectbox("cidade");	
+            ?>
           </div>
 
           <div class="group-form group-form-cadastro">
@@ -154,15 +151,15 @@
 				$metodo->setPes_cpf      		($_POST['pes_cpf']);
 				$metodo->setPes_data     		($_POST['pes_data']);
 				$metodo->setPes_email    		($_POST['pes_email']);
-				$metodo->setPes_estado_civil 	($_POST['pes_estado_civil']);
+				$metodo->setPes_estado_civil 	($_POST['estado_civil']);
 				$metodo->setPes_cidadania 		($_POST['pes_cidadania']);
-				$metodo->setPes_genero		 	($_POST['pes_genero']);
-				$metodo->setPes_sexo_biologico	($_POST['pes_sexo_biologico']);
+				$metodo->setPes_genero		 	($_POST['genero']);
+				$metodo->setPes_sexo_biologico	($_POST['sexo']);
 				$metodo->setPes_telefone		($_POST['pes_telefone']);
 
 				$metodo->setEnd_pais			($_POST['end_pais']);
-				$metodo->setEnd_estado			($_POST['end_estado']);
-				$metodo->setEnd_cidade   		($_POST['end_cidade']);
+				$metodo->setEnd_estado			($_POST['estado']);
+				$metodo->setEnd_cidade   		($_POST['cidade']);
 				$metodo->setEnd_cep      		($_POST['end_cep']);
 				$metodo->setEnd_bairro   		($_POST['end_bairro']);
 				$metodo->setEnd_rua			 	($_POST['end_rua']);
@@ -210,9 +207,9 @@
 									'" . $metodo->getEnd_cidade() . "',
 									'" . $metodo->getEnd_cep()    . "',
 									'" . $metodo->getEnd_bairro() . "',
-									'" . $metodo->getEnd_rua() 	 . "',
+									'" . $metodo->getEnd_rua() 	  . "',
 									'" . $metodo->getEnd_numero() . "',
-									'" . $pes_id                 . "'
+									'" . $pes_id                  . "'
 						);";
 
 					// Verifica se a query foi inserida corretamente
@@ -233,7 +230,9 @@
 							<h1 class="titulo">Paciente</h1>
               <div class="group-form group-form-cadastro">
                 <label class="lbl_class">Tipo Sanguineo</label>
-                <input class="inp_class" type="text" name="pac_tipo_sangue" size="28"><br>
+                <?php
+                	$sql->selectbox("tipo_sanguineo");
+                ?>
               </div>
 
               <div class="group-form group-form-cadastro">
@@ -287,6 +286,13 @@
                   <option class="option" value="funcionario">Funcionário</option>
                 </select><br>
               </div>
+              <div class="group-form group-form-cadastro">
+                <label class="lbl_class">Setor:</label>
+                <?php
+                	$sql->selectbox("setor");
+                ?>
+              </div>
+
 
               <div class="group-form group-form-cadastro">
                 <label class="lbl_class">Horario:</label>
@@ -329,14 +335,16 @@
 			}
 			else if ($_GET['passo'] == 3) {
 				if ($_SESSION['tipo'] == "recepcao") {
-					$metodo->setPac_tipo_sangue		($_POST['pac_tipo_sangue']);
+				    $metodo->setPac_tipo_sangue		($_POST['pac_tipo_sangue']);
 					$metodo->setPac_remedio			($_POST['pac_remedio']);
 					$metodo->setPac_doenca			($_POST['pac_doenca']);
 					$metodo->setPac_educacao		($_POST['pac_educacao']);
 
-					$metodo->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
+
+				    $metodo->setPds_convenio_nome    ($_POST['pds_convenio_nome']);
 					$metodo->setPds_numero_sus       ($_POST['pds_numero_sus']);
 					$metodo->setPds_num_convenio     ($_POST['pds_num_convenio']);
+
 
 
 					//$qtdPds = "SELECT * FROM plano_de_saude WHERE pds_sus =
@@ -389,12 +397,14 @@
 					//}
 				}
 				else if ($_SESSION['tipo'] == "administracao") {
-					$metodo->setFun_cargo 		($_POST ['fun_cargo']);
+				    $metodo->setFun_cargo 		($_POST ['fun_cargo']);
 					$metodo->setFun_horario 	($_POST ['fun_horario']);
 					$metodo->setFun_inscricao	($_POST ['fun_inscricao']);
 					$metodo->setFun_turno 		($_POST ['fun_turno']);
+					
 					$metodo->setUsu_email       ($_POST['usu_email']);
 					$metodo->setUsu_senha       ($_POST['usu_senha']);
+					$metodo->setSet_setor       ($_POST['setor']);
 
 					// Seleção e inserção na tabela funcionário
 					//$selFun  = "SELECT fun_inscricao FROM funcionario WHERE '" . $_POST['fun_inscricao'] . "';";
@@ -404,36 +414,37 @@
 						echo"Funcionario já cadastrado!";
 					}
 					else {
-					*/  $selNome = "SELECT MAX(pes_nome) AS pes_nome FROM pessoa";
-						$usu_nome = $sql->fetch($selNome);
-
-
-
-						$okUsu = "INSERT INTO usuario (usu_nome, usu_senha, usu_email, usu_ativo, usu_tipo) VALUES (
-								'" . $usu_nome[1]           . "',
-								'" . $metodo->getUsu_senha(). "',
-								'" . $metodo->getUsu_email(). "',
-								' .          1              . ',
-								' .          1              . '
-
-								);";
-
-						$sel_id = "SELECT MAX(usu_id) AS usu_id FROM usuario";
+					*/  $sel_id = "SELECT MAX(usu_id) AS usu_id FROM usuario";
 					   	$usu_id = $sql->selecionar($sel_id);
 					   	$usu_id++;
+
 
 					   	$sel_id = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
 					   	$pes_id = $sql->selecionar($sel_id);
 
-						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, usuario_usu_id, pessoa_pes_id) VALUES (
+						$insFun	 = "INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
 								'" . $metodo->getFun_cargo()      . "',
 								'" . $metodo->getFun_horario()    . "',
 								'" . $metodo->getFun_inscricao()  . "',
 								'" . $metodo->getFun_turno()      . "',
-								'" .         $usu_id              . "',
-								'" .         $pes_id              . "'
+								'" .         $pes_id              . "',
+								'" . $metodo->getSet_setor()      . "'
 							);";
 
+							$sel_id = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
+							$fun_id = $sql->selecionar($sel_id);
+							$fun_id++;
+
+
+
+						$insUsu = "INSERT INTO usuario (usu_senha, usu_email, usu_ativo, usu_tipo, funcionario_id) VALUES (
+								'" . $metodo->getUsu_senha(). "',
+								'" . $metodo->getUsu_email(). "',
+								'           1                 ',
+								'           1                 ',
+								'" .      $fun_id           . "'
+
+								);";
 						$okFun = $sql->inserir($insFun);
 						$okUsu = $sql->inserir($insUsu);
 						if ($okFun && $okUsu) {
@@ -445,6 +456,7 @@
 
 					//}
 				}
+
 
 				if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro" || $_POST['recepcao']) {
 					echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
