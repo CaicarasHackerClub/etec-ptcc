@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 18/04/2017 às 02:42
+-- Tempo de geração: 20/04/2017 às 04:55
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cidade` (
   `cid_id` int(11) NOT NULL,
-  `cid_nome` varchar(45) COLLATE utf8_bin NOT NULL,
+  `cid_nome` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'Nome da cidade',
   `est_id` int(11) NOT NULL,
   `cid_capital` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -9759,8 +9759,8 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`, `cid_capital`) VALUES
 
 CREATE TABLE `cores` (
   `cor_id` int(11) NOT NULL,
-  `cor_nome` varchar(8) COLLATE utf8_bin NOT NULL,
-  `cor_ativo` tinyint(1) NOT NULL
+  `cor_nome` varchar(8) COLLATE utf8_bin NOT NULL COMMENT 'Grau de risco',
+  `cor_ativo` tinyint(1) NOT NULL COMMENT 'Se está sendo usado ou não.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -9804,7 +9804,14 @@ INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_c
 (5, 'Brasil', 26, 905, '11680-000', 'Estufa 2', 'Comercial', 212, 5),
 (6, 'Brasil', 26, 45, '11680-000', 'Sumaré', 'Longitude', 344, 6),
 (7, 'Brasil', 26, 78, '11680-000', 'Estufa 2', 'Vasco da Gama', 31, 7),
-(8, 'Brasil', 26, 89, '11680-000', 'Ipiranguinha', 'Cascata', 14, 8);
+(8, 'Brasil', 26, 89, '11680-000', 'Ipiranguinha', 'Cascata', 14, 8),
+(9, 'Brasil', 26, 90, '11680-000', 'Folha Seca', 'Maria Vieira', 122, 9),
+(10, 'Brasil', 20, 90, '11680-000', 'Centro', 'Espelhado', 300, 10),
+(11, 'Brasil', 26, 80, '11680-000', 'Caçandoca', 'Montes Verdes', 220, 11),
+(12, 'Brasil', 26, 70, '11680-000', 'Itagua', 'Camarão', 480, 12),
+(13, 'Brasil', 26, 60, '11680-000', 'Centro', 'Voltar', 500, 13),
+(14, 'Brasil', 26, 50, '11680-000', 'Barra Seca', 'Caminhos', 580, 14),
+(15, 'Brasil', 26, 40, '11680-000', 'Horto', 'Flor', 10, 15);
 
 -- --------------------------------------------------------
 
@@ -9925,8 +9932,8 @@ INSERT INTO `especializacao` (`esp_id`, `esp_nome`) VALUES
 
 CREATE TABLE `estado` (
   `est_id` int(11) NOT NULL,
-  `est_nome` varchar(45) COLLATE utf8_bin NOT NULL,
-  `est_sigla` varchar(2) COLLATE utf8_bin NOT NULL
+  `est_nome` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'Nome do estado',
+  `est_sigla` varchar(2) COLLATE utf8_bin NOT NULL COMMENT 'Sigla do estado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10029,7 +10036,7 @@ INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`
 
 CREATE TABLE `genero` (
   `gen_id` int(11) NOT NULL,
-  `gen_genero` varchar(15) COLLATE utf8_bin NOT NULL
+  `gen_genero` varchar(15) COLLATE utf8_bin NOT NULL COMMENT 'Genêro da pessoa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10114,7 +10121,14 @@ CREATE TABLE `paciente` (
 INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`, `pac_educacao`, `pac_hospitalizado`, `pessoa_pes_id`) VALUES
 (1, 1, 'nenhum', 'nenhuma', 4, 0, 3),
 (2, 4, 'nenhum', 'nenhuma', 3, 0, 7),
-(3, 3, 'nenhum', 'nenhuma', 4, 0, 8);
+(3, 3, 'nenhum', 'nenhuma', 4, 0, 8),
+(4, 4, 'nenhum', 'nenhuma', 3, 0, 9),
+(5, 5, 'nenhum', 'nenhuma', 3, 0, 10),
+(6, 3, 'nenhum', 'nenhuma', 4, 0, 11),
+(7, 1, 'nenhum', 'nenhuma', 2, 0, 12),
+(8, 8, 'nenhum', 'nenhuma', 3, 0, 13),
+(9, 6, 'nenhum', 'nenhuma', 4, 0, 14),
+(10, 2, 'nenhum', 'nenhuma', 4, 0, 15);
 
 -- --------------------------------------------------------
 
@@ -10151,7 +10165,14 @@ INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes
 (5, 'luiza Fonseca', 'Pedro Fonseca', 'Maria dias Fonseca', '333.654.765.98', '786.567.823.76', '1984-08-01', 1, 'Luizinha@hot.com', 1, 'Ubatubense', 2, 2, '(12)982456674'),
 (6, 'Rafael Nunes', 'Mario da Cruz Nunes', 'Joana lopes Nunes', '771.123.678.90', '456.765.912.56', '1997-06-25', 1, 'rafanudes@gmail.com', 2, 'Ubatubense', 1, 1, '(12)38765590'),
 (7, 'Orlando Olindo', 'Manuel Olindo ', 'Clara Silva', '33.434.434-3', '876.346.346-34', '1989-04-21', 2, 'olindo@mail.com', 2, 'Ubatubense', 1, 1, '(12)972343434'),
-(8, 'Soraia Santos', 'Dilmar Santos', '', '18.434.434-3', '996.346.346-34', '2005-04-21', 2, 'soraia@sol.com', 1, 'Ubatubense', 2, 2, '(12)981443434');
+(8, 'Soraia Santos', 'Dilmar Santos', '', '18.434.434-3', '996.346.346-34', '2005-04-21', 2, 'soraia@sol.com', 1, 'Ubatubense', 2, 2, '(12)981443434'),
+(9, 'Paulo de Oliveira', 'Manuel de Oliveira', 'Mariane', '55.474.420-X', '370.590.978-54', '2006-07-31', 1, 'paulooli@bol.com.br', 1, 'Ubatubense', 1, 1, '(15)982360434'),
+(10, 'Cassia Eller', 'Carlos', 'Cintia', '48.535.487-8', '320.792.706-90', '1991-07-07', 1, 'cassia@gmail.com', 2, 'Carioca', 2, 3, '(21)982343470'),
+(11, 'Camila', 'Kim', 'Joana', '63.703.398-9', '322.288.190-54', '2005-09-29', 1, 'camila@bol.com.br', 3, 'Ubatubense', 2, 2, '(12)970343434'),
+(12, 'Robervaldo', 'Ronaldo', 'Fetolino', '70.400.429-5', '670.346.346-34', '1960-06-30', 1, 'rober@bol.com.br', 2, 'Ubatubense', 1, 1, '(12)972350434'),
+(13, 'Danilo', 'Robert', '', '49.530.834-10', '754.001.673-12', '1999-08-29', 1, 'Danilo@hotmail.com', 1, 'Ubatubense', 2, 2, '(12)997877675'),
+(14, 'Karol Silva', 'Jonas Silva', 'Lara Silva', '47.833.478-99', '899.356.667-40', '1995-07-30', 1, 'karol@mail.com', 2, 'Ubatubense', 2, 2, '(12)38464589'),
+(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '990.462.393-78', '1977-07-07', 1, 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691');
 
 -- --------------------------------------------------------
 
@@ -10214,7 +10235,7 @@ INSERT INTO `setor` (`set_id`, `set_nome`, `set_descricao`, `set_responsavel`) V
 
 CREATE TABLE `sexo` (
   `sex_id` int(11) NOT NULL,
-  `sex_sexo` varchar(15) COLLATE utf8_bin NOT NULL
+  `sex_sexo` varchar(15) COLLATE utf8_bin NOT NULL COMMENT 'Sexo da pessoa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10521,7 +10542,7 @@ ALTER TABLE `cores`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de tabela `enfermeiro`
 --
@@ -10576,12 +10597,12 @@ ALTER TABLE `medico`
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de tabela `plano_de_saude`
 --
