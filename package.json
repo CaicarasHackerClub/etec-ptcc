@@ -1,0 +1,37 @@
+{
+  "name": "hug-health",
+  "version": "0.1.0",
+  "description": "Sistema de Gestão Hospitalar",
+  "main": "index.php",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaicarasHackerClub/hug-health.git"
+  },
+  "keywords": [
+    "saúde",
+    "hospital",
+    "gestão"
+  ],
+  "author": "Turma 2017 ETEC Ubatuba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CaicarasHackerClub/hug-health/issues"
+  },
+  "homepage": "https://github.com/CaicarasHackerClub/hug-health#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "csslint": "^1.0.5",
+    "csslint-stylish": "0.0.6",
+    "gulp-csslint": "^1.0.0",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-phpcs": "^1.4.0"
+  }
+}

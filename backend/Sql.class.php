@@ -55,6 +55,20 @@ class Sql {
       return $posto[0];
     }
   }
+
+  function selectbox($tabela){
+    $con = $this->conecta();
+    
+    $sel = "SELECT * FROM " . $tabela;
+    $res = mysqli_query ($con,$sel) or die ("Erro : ");
+    
+    echo"<select name='" . $tabela . "'>\n";
+    while ($selecao = mysqli_fetch_array ($res))
+      echo  "<option value=" . $selecao[0] . ">" . $selecao[1] . "</option>\n";
+    echo  "</select><br>\n";
+    
+    mysqli_close($con);
+  }
 }
 
 ?>
