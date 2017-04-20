@@ -13,18 +13,11 @@ class Sql {
 
   function inserir($query) {
     $con = $this->conecta();
-
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
 
     mysqli_close($con);
 
-    if($res) {
-      return TRUE;
-    }
-
-    else {
-      return FALSE;
-    }
+    return $res;
   }
 
   function fetch($query) {
@@ -37,10 +30,21 @@ class Sql {
     return $fetch;
   }
 
+  function num($query) {
+    $con = $this->conecta();
+    $res = mysqli_query($con, $query);
+
+    mysqli_close($con);
+
+    return mysqli_num_rows($res);
+  }
+
   function selecionar($query) {
     $con = $this->conecta();
     $res = mysqli_query($con, $query) or die ("Erro selecionar  r()" . $query . mysqli_error($con));
     $qtd = mysqli_num_rows($res);
+
+    mysqli_close($con);
 
     if($qtd == 0) {
       return $qtd;
@@ -50,8 +54,6 @@ class Sql {
       $posto = mysqli_fetch_array($res);
       return $posto[0];
     }
-
-    mysqli_close($con);
   }
 }
 

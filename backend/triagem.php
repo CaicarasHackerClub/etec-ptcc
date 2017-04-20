@@ -1,29 +1,73 @@
+<!DOCTYPE html>
+<head>
+  <link rel='stylesheet' href='../css/main.css'>
+</head>
 <?php
-  echo "<link rel='stylesheet' href='../css/main.css'>";
+// $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-  // $id = isset($_POST['id']) ? $_POST['id'] : "";
-
-  if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
-  ?>
+if(!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
+?>
   <form class="form" action="triagem.php" method="post">
-    <label class="lbl_class">ID: </label><input class="inp_class" type="text" name="id"><br>
-    <label class="lbl_class">Peso: </label><input class="inp_class" type="text" size="3" name="peso"> kg <br>
-    <label class="lbl_class">Altura: </label><input class="inp_class" type="text" size="3" name="altura"> m <br>
-    <label class="lbl_class">Batimento cardíaco: </label><input class="inp_class" type="text" size="3" name="batimento" required> bpm <br>
-    <label class="lbl_class">Respiração: </label><input class="inp_class" type="text" size="3" name="resp" required> rpm <br>
-    <label class="lbl_class">Temperatura corporal: </label><input class="inp_class" type="text" size="2" name="temp" required> ºC <br>
-    <label class="lbl_class">PAS: </label><input class="inp_class" type="text" size="3" name="pas" required> mmHg <br>
-    <label class="lbl_class">PAD: </label><input class="inp_class" type="text" size="3" name="pad" required> mmHg <br>
-    <label class="lbl_class edit-class">Nível de oxigenação: </label><input class="inp_class" type="text" size="3" name="oxi"> % <br>
-    <label class="lbl_class">Dor: </label>
-    <select class="inp_class" name="dor">
-      <?php
+
+    <div class="group-form">
+      <label class="lbl_class">ID: </label>
+      <input class="inp_class" type="text" size="4" name="id"> <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Peso: </label>
+      <input class="inp_class" type="text" size="3" name="peso"> kg <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Altura: </label>
+      <input class="inp_class" type="text" size="3" name="altura"> m <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Batimento cardíaco: </label>
+      <input class="inp_class" type="text" size="3" name="batimento" required> bpm <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Respiração: </label>
+      <input class="inp_class" type="text" size="3" name="resp" required> rpm <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Temperatura corporal: </label>
+      <input class="inp_class" type="text" size="2" name="temp" required> ºC <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">PAS: </label>
+      <input class="inp_class" type="text" size="3" name="pas" required> mmHg <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">PAD: </label>
+      <input class="inp_class" type="text" size="3" name="pad" required> mmHg <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class edit-class">Nível de oxigenação: </label>
+      <input class="inp_class" type="text" size="3" name="oxi"> % <br>
+    </div>
+
+    <div class="group-form">
+      <label class="lbl_class">Dor: </label>
+      <select class="inp_class" name="dor">
+        <?php
         for($i = 0; $i <= 10; $i++)
-          echo "<option value='$i'> $i </option>";
-      ?>
-    <br>
-    <label class="lbl_class edit-class" for="indi">Indicação de comprometimento dos orgãos vitais </label> <input id="indi" class="inp_class" type="checkbox" name="org"> <br>
-    <input class="inp_class submit" type="submit" name="Recepcao">
+        echo "<option value='$i'> $i </option>";
+        ?>
+      </select> <br>
+    </div>
+    <div class="group-form">
+      <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
+      <input id="indi" class="inp_class" type="checkbox" name="org">
+    </div>
+    <input class="anchor submit" type="submit" name="Recepcao" value="Enviar">
   </form>
   <?php
     }
@@ -142,33 +186,25 @@
       else {
         $tri->setClass("Azul");
       }
-
-      echo "<br> O paciente foi classificado como: " . strtolower($tri->getClass());
       ?>
-      <br>
-      <form class="form" action="triagem.php" method="post">
-        <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">
-        <input type="hidden" class="inp_class" name="altura" value=" <?php echo $tri->getAltura() ?>">
-        <input type="hidden" class="inp_class" name="batimento" value=" <?php echo $tri->getBatimento() ?>">
-        <input type="hidden" class="inp_class" name="resp" value=" <?php echo $tri->getResp() ?>">
-        <input type="hidden" class="inp_class" name="temp" value=" <?php echo $tri->getTemp() ?>">
-        <input type="hidden" class="inp_class" name="pas" value=" <?php echo $tri->getPas() ?>">
-        <input type="hidden" class="inp_class" name="pad" value=" <?php echo $tri->getPad() ?>">
-        <input type="hidden" class="inp_class" name="oxi" value=" <?php echo $tri->getOxi() ?>">
-        <input type="hidden" class="inp_class" name="class" value="<?php echo $tri->getClass() ?>">
-        <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
-        <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
-        <input type="hidden" class="inp_class" name="id" value=" <?php echo $tri->getPacId()  ?> ">
-        <input type="submit" class="inp_class" name="classificar" value="Aceitar cor">
-      </form>
 
-      <h1> Classificação manual: </h1>
-      <form class="form" action="triagem.php" method="post">
-        <input type="radio" class="inp_class" name="class" value="Vermelho" required> Vermelho <br>
-        <input type="radio" class="inp_class" name="class" value="Laranja" required> Laranja  <br>
-        <input type="radio" class="inp_class" name="class" value="Amarelo" required> Amarelo <br>
-        <input type="radio" class="inp_class" name="class" value="Verde" required> Verde  <br>
-        <input type="radio" class="inp_class" name="class" value="Azul" required> Azul  <br>
+      <form class="form form-classi" action="triagem.php" method="post">
+        <h1 class="titulo"> Classificação: </h1>
+        <input type="radio" id="vermelho" class="inp_class" name="class" value="Vermelho" required <?php if($tri->getClass() == "Vermelho") echo "checked"?> >
+        <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
+
+        <input type="radio" id="laranja" class="inp_class" name="class" value="Laranja" required <?php if($tri->getClass() == "Laranja") echo "checked"?> >
+        <label for="laranja" class="lbl-radio-class lbl_class"><p>Laranja</p></label><br>
+
+        <input type="radio" id="amarelo" class="inp_class" name="class" value="Amarelo" required <?php if($tri->getClass() == "Amarelo") echo "checked"?> >
+        <label for="amarelo" class="lbl-radio-class lbl_class"><p>Amarelo</p></label><br>
+
+        <input type="radio" id="verde" class="inp_class" name="class" value="Verde" required <?php if($tri->getClass() == "Verde") echo "checked"?> >
+        <label for="verde" class="lbl-radio-class lbl_class"><p>Verde</p></label><br>
+
+        <input type="radio" id="azul" class="inp_class" name="class" value="Azul" required <?php if($tri->getClass() == "Azul") echo "checked"?> >
+        <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label>
+
         <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">
         <input type="hidden" class="inp_class" name="altura" value=" <?php echo $tri->getAltura() ?>">
         <input type="hidden" class="inp_class" name="batimento" value=" <?php echo $tri->getBatimento() ?>">
@@ -180,7 +216,7 @@
         <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
         <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
         <input type="hidden" class="inp_class" name="id" value=" <?php echo $tri->getPacId()  ?> ">
-        <input type="submit" class="inp_class" name="classificar" value="Classificar">
+        <input type="submit" class="submit" name="classificar" value="Classificar">
       </form>
     <?php
     }
