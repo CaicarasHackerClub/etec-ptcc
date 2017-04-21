@@ -9,7 +9,7 @@ body {
   overflow: hidden;
 }
 
-/*remover checkbox para usar em dispçays menores*/
+/*remover checkbox para usar em displays menores*/
 header{
   display: none;
 }
@@ -29,7 +29,6 @@ header{
   width: 13%;
   height: 100%;
   background-color: #d8fce4;
-  /*background: linear-gradient(#FFF, #9bd3ae, #FFF);*/
   flex-wrap: wrap;
   border-right: 1px solid #29784b;
   border-left: 1px solid #29784b;
@@ -421,7 +420,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 100px;
   margin-top: 10px;
   background-color: #01b26a;
-  border: 0px;
+  border: 0;
   color: #fff;
   border-radius: 3px 3px 3px 3px;
 }
@@ -478,7 +477,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-top: 10px;
   margin-left: 3px;
   border-radius: 50%;
-  /*position: absolute;*/
   left: 0;
   bottom: 1px;
   border: 0;
@@ -493,23 +491,24 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   text-align: center;
 }
 
-.form #vermelho + .lbl-radio-class:before  {
+/*Mudança na cor de fundo dos inputs type radio*/
+.form input[value="Vermelho"] + .lbl-radio-class:before  {
   background-color: red;
 }
 
-.form #laranja + .lbl-radio-class:before  {
+.form input[value="Laranja"] + .lbl-radio-class:before  {
   background-color: orange;
 }
 
-.form #amarelo + .lbl-radio-class:before  {
+.form input[value="Amarelo"] + .lbl-radio-class:before  {
   background-color: yellow;
 }
 
-.form #verde + .lbl-radio-class:before  {
+.form input[value="Verde"] + .lbl-radio-class:before  {
   background-color: green;
 }
 
-.form #azul + .lbl-radio-class:before  {
+.form input[value="Azul"] + .lbl-radio-class:before  {
   background-color: blue;
 }
 
@@ -533,7 +532,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-left: 0%;
   }
 
-  @media (max-height: 700px){
+  @media (max-height: 590px){
     .container .main .cabecalho .group-image .tit-image{
       /*width: 30%;*/
       height: 94%;
@@ -718,7 +717,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-top: 10px;
     margin-left: 23%;
     padding-bottom: 30px;
-}
+  }
 
   .centro-modulo{
     margin-left: 0;
@@ -759,17 +758,17 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     width: 80%;
   }
 
-.conteudoCentro .anchor{
-    width: 37%;
-    margin-left: 22px;
-    padding-left: 10%;
+  .conteudoCentro .anchor{
+      width: 37%;
+      margin-left: 22px;
+      padding-left: 10%;
   }
 
-  /*Formatação dos avatares*/
-.conteudoCentro .avatars{
-    width: 70px;
-    margin: 5px;
-    padding-left: 13%;
+    /*Formatação dos avatares*/
+  .conteudoCentro .avatars{
+      width: 70px;
+      margin: 5px;
+      padding-left: 13%;
   }
 }
 
