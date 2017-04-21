@@ -15,21 +15,21 @@
   $fila->chamar(52);
 
   for ($i = 0; $i < count($cor); $i++) {
-      $res = mysqli_query($con, $cor[$i]);
+    $res = mysqli_query($con, $cor[$i]);
 
-      while ($pac = mysqli_fetch_array($res)) {
-          $data = $pac['tri_data'];
-          $hora = $pac['tri_hora'];
-          $fila->setEspera($fila->calc($data, $hora));
+    while ($pac = mysqli_fetch_array($res)) {
+      $data = $pac['tri_data'];
+      $hora = $pac['tri_hora'];
+      $fila->setEspera($fila->calc($data, $hora));
 
-          $fila->atualizar($pac['id_paciente'], $pac['tri_id'], $i);
+      $fila->atualizar($pac['id_paciente'], $pac['tri_id'], $i);
 
-          if ($fila->getEmConsulta() < $pacMax || $fila->getEspera() >= $tempo[$i]) {
-              $fila->chamar();
-          } else {
-              $fila->cat();
-          }
+      if ($fila->getEmConsulta() < $pacMax || $fila->getEspera() >= $tempo[$i]) {
+        $fila->chamar();
+      } else {
+        $fila->cat();
       }
+    }
   }
 
   mysqli_close($con);

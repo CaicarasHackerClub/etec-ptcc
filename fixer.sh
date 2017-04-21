@@ -17,7 +17,7 @@ fi
 find . -type f -name "*.php" -exec dos2unix {} \;
 
 # Transformar tabs em 4 espaços
-find . -type f -name "*.php" | awk '{print "expand -t 4 ", $0, " > tmp; mv tmp ", $0}' | sh
+find . -type f -name "*.php" | awk '{print "expand -t 2 ", $0, " > tmp; mv tmp ", $0}' | sh
 
 # Eliminar trailing whitespaces
 find . -type f -name "*.php" -exec sed -i -E 's/[[:space:]]+$//' {} \;
