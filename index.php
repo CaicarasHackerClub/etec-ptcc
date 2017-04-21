@@ -13,9 +13,9 @@ session_start();
         ?>
       <img src="img/logos/index.png" class="Img">
           <form class="FormLogin" action="backend/verifica_usuario.php" method="post">
-            <input type="text" name="usu_email" size="28" id="inp_email" placeholder="Usuario"><br>
-            <input type="password" name="usu_senha" size="28" id="inp_senha" placeholder="Senha"><br>
-            <input type="submit" value="Login" id="inp_login">
+            <input type="text" name="usu_email" size="28" class="inp_class" placeholder="Usuario"><br>
+            <input type="password" name="usu_senha" size="28" class="inp_class" placeholder="Senha"><br>
+            <input type="submit" name="subm" value="Login" class="submit">
           </form>
       <?php
 
