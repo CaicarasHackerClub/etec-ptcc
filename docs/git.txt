@@ -11,5 +11,6 @@ $ git log
 ou
 $ git log --oneline
 $ git push origin devel
+$ git checkout -- nome_do_arquivo
 
 Para sair do log usar 'q'
