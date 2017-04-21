@@ -42,7 +42,6 @@ header{
   color: black;
   background-color: #29784b;
   width: 50%;
-  flex-wrap: ;
   font-size: 80%;
 }
 
@@ -220,14 +219,13 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
   height: 100%;
   display: flex;
   flex-flow: column;
-  background-color: #9bd3ae;
+  /*background-color: #9bd3ae;*/
 }
 
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 100%;
   height: 84.5vh;
-  /*border: 0.5px solid #29784b;*/
 }
 
 /*edição na segunda class do da main do centro*/
@@ -526,8 +524,8 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     background-position: center;
     background-position: 15% -1%;*/
     width: 145px;
-    height: 100px;
-    margin-top: 10px;
+    height: 94px;
+    margin-top: 5px;
   }
 
   /*edição no grupo onde fica o icone da página*/
@@ -535,10 +533,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-left: 0%;
   }
 
-  @media (max-height: 590px){
+  @media (max-height: 700px){
     .container .main .cabecalho .group-image .tit-image{
       /*width: 30%;*/
-      height: 100%;
+      height: 94%;
       background-size: 100%;
     }
 
