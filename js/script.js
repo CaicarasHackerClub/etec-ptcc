@@ -2,17 +2,15 @@
 function recebe() {
   var img = JSON.parse(sessionStorage.getItem('img'));
   $("#lbl_triagem").html(JSON.parse(sessionStorage.getItem('nome-modulo')));
-  $('.tit-image').css({
+  $('.tit-image').css( {
     "background": "url("+img+") no-repeat",
     "background-size": "140px",
-    "background-position": "center",
     "background-position": "15% -1%"
   });
 }
 
 /*Funçao que atualiza a hora*/
-setInterval("hora()", 100);
-function hora() {
+setInterval(function() {
   var hora = new Date();
   document.getElementById('hora').innerHTML = hora.toLocaleTimeString();
 
@@ -25,11 +23,11 @@ function hora() {
       $("#config").css("visibility", "visible");
     }
 
-    $('.tit-image').css({
+    $('.tit-image').css( {
       "background-size": "140px",
     });
-  }else{
-    $('.tit-image').css({
+  } else {
+    $('.tit-image').css( {
       "background-size": "70px",
     });
   }
@@ -37,10 +35,10 @@ function hora() {
   if (screen.width <= 711 && screen.width > 650 ) {
     $(".config").css("width", "44%");
   }
-}
+}, 100);
 
 /* Função que mostra o menú lateral */
-var ok = false
+var ok = false;
 function mostrarMenu() {
 
   var nav = document.getElementById('lateral');
@@ -49,7 +47,7 @@ function mostrarMenu() {
   if (!ok) {
     nav.style.marginLeft = "0px";
     ok = true;
-  }else{
+  } else {
     nav.style.marginLeft = "-390px";
     ok = false;
   }
@@ -60,11 +58,11 @@ var okMostrar = false;
 function mostrar(){
   var submodulo = document.getElementById('submodulo_1');
 
-  if (okMostrar == false){
+  if (!okMostrar){
     submodulo.style.position   = "relative";
     submodulo.style.visibility = "visible";
     okMostrar = true;
-  }else {
+  } else {
     submodulo.style.position   = "absolute";
     submodulo.style.visibility = "hidden";
     okMostrar = false;
@@ -76,10 +74,10 @@ var okConfig = false;
 function mostrarConfig(){
   var config = document.getElementById('config');
 
-  if (okConfig == false) {
+  if (!okConfig) {
     config.style.visibility = "visible";
     okConfig = true;
-  }else{
+  } else {
     config.style.visibility = "hidden";
     okConfig = false;
   }
@@ -100,7 +98,7 @@ function mostrarAbas(nomeAba, url, num) {
 }
 
 /*Função que implementa as abas*/
-function abas(num){
+function abas(num) {
   $("#content div:nth-child(1)").show();
   $(".abas li:first div").addClass("selecionada");
 
@@ -109,12 +107,12 @@ function abas(num){
 
   /*Adiciona o hover nos nomes das abas*/
   $(".aba").hover(
-    function(){$(this).addClass("ativa")},
-    function(){$(this).removeClass("ativa")}
+    function(){$(this).addClass("ativa");},
+    function(){$(this).removeClass("ativa");}
   );
 
   /*permite a seleção das abas*/
-  $(".aba").click(function(){
+  $(".aba").click(function() {
     $(".aba").removeClass("selecionada");
     $(this).addClass("selecionada");
     var indice = $(this).parent().index();
@@ -124,14 +122,14 @@ function abas(num){
   });
 
   /*Fecha a aba*/
-  $(".aba > img").click(function(){
+  $(".aba > img").click(function() {
     var aba = $(this).parent().parent();
     var indice = aba.index() + 1;
     aba.remove();
     $("#content div:nth-child("+indice.toString()+")").remove();
     // $(".aba").removeClass("selecionada");
     // $("#content div").hide();
-    if(indice > 1){
+    if(indice > 1) {
         var id = indice - 1;
         $("#content div:nth-child("+id.toString()+")").show();
         $(".abas li:nth-child("+id+") .aba").addClass("selecionada");
