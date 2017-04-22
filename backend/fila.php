@@ -5,29 +5,31 @@
   $sql = new Sql();
   $fila = new Fila();
 
-  $pacMax = 5;
+  $fila->setPacMax(5);
 
-  $cor = $fila->getCor();
+  $sel = $fila->getSel();
   $tempo = $fila->getTempo();
 
   $con = $sql->conecta();
 
-  $fila->chamar(52);
+  // $fila->setPac(7, 1, 0, 0);
+  // $fila->chamar();
 
-  for ($i = 0; $i < count($cor); $i++) {
-    $res = mysqli_query($con, $cor[$i]);
+  for ($i = 0; $i < count($sel); $i++) {
+    $res = mysqli_query($con, $sel[$i]);
 
     while ($pac = mysqli_fetch_array($res)) {
+      $fila->atualizar();
+
       $data = $pac['tri_data'];
       $hora = $pac['tri_hora'];
-      $fila->setEspera($fila->calc($data, $hora));
 
-      $fila->atualizar($pac['id_paciente'], $pac['tri_id'], $i);
+      $fila->setPac($pac['tri_id'], $pac['id_paciente'], $fila->calc($data, $hora), $tempo[$i]);
 
-      if ($fila->getEmConsulta() < $pacMax || $fila->getEspera() >= $tempo[$i]) {
-        $fila->chamar();
+      if ($fila->getEmConsulta() < $fila->getPacMax() || $fila->getEspera() >= $fila->getTempoMax()) {
+          $fila->chamar();
       } else {
-        $fila->cat();
+          $fila->cat();
       }
     }
   }
@@ -35,7 +37,6 @@
   mysqli_close($con);
 
   echo "Pessoas em consulta: " . $fila->getEmConsulta() . "<br>";
-  echo "Pessoas em espera: " . $fila->getEmEspera() . "<br>";
+  echo "Pessoas em espera: " . $fila->getNaFila() . "<br>";
 
   $fila->imprimir();
-?>

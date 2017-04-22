@@ -80,25 +80,25 @@ if (!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
 
     $id = isset($_POST['id']) && !empty($_POST['id']) ? $_POST['id'] : "0";
     $temp = isset($_POST['temp']) && !empty($_POST['temp']) ? trim($_POST['temp']) : "0"; //
-  $pas = isset($_POST['pas']) && !empty($_POST['pas']) ? trim($_POST['pas']) : "0"; //
-  $pad = isset($_POST['pad']) && !empty($_POST['pad']) ? trim($_POST['pad']) : "0"; //
-  $peso = isset($_POST['peso']) && !empty($_POST['peso']) ? trim($_POST['peso']) : "0";
+    $pas = isset($_POST['pas']) && !empty($_POST['pas']) ? trim($_POST['pas']) : "0"; //
+    $pad = isset($_POST['pad']) && !empty($_POST['pad']) ? trim($_POST['pad']) : "0"; //
+    $peso = isset($_POST['peso']) && !empty($_POST['peso']) ? trim($_POST['peso']) : "0";
     $altura = isset($_POST['altura']) && !empty($_POST['altura']) ? trim($_POST['altura']) : "0";
     $batimento = isset($_POST['batimento']) && !empty($_POST['batimento']) ? trim($_POST['batimento']) : "0"; //
-  $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : "0";
+    $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : "0";
     $resp = isset($_POST['resp']) && !empty($_POST['resp']) ? trim($_POST['resp']) : "0"; //
-  $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : "0";
+    $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : "0";
     $orgaos = isset($_POST['org']) ? 1 : 0;
     $data = date('Y-m-d');
     $hora = date('H:i');
 
-  // $temp = $sql->verifica($_POST['temp']);
-  // $pas  = $sql->verifica($_POST['pas']);
-  // $pad  = $sql->verifica($_POST['pad']);
-  // $batimento  = $sql->verifica($_POST['batimento']);
-  // $resp = $sql->verifica($_POST['resp']);
+    // $temp = $sql->verifica($_POST['temp']);
+    // $pas  = $sql->verifica($_POST['pas']);
+    // $pad  = $sql->verifica($_POST['pad']);
+    // $batimento  = $sql->verifica($_POST['batimento']);
+    // $resp = $sql->verifica($_POST['resp']);
 
-  $class = isset($_POST['class']) ? $_POST['class'] : "Indefinido";
+    $class = isset($_POST['class']) ? $_POST['class'] : "Indefinido";
 
     $tri->setPacId($id);
     $tri->setTemp($temp);
@@ -115,29 +115,26 @@ if (!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
     $tri->setData($data);
     $tri->setHora($hora);
 
-  // Se o usuário já tiver clicado no botão "Classificar" ou "Aceitar cor"
-  if (isset($_POST['classificar'])) {
-    $status = $tri->getClass() == "Vermelho" ? "Em consulta" : "Em espera";
-    $tri->setStatus($status);
+    // Se o usuário já tiver clicado no botão "Classificar" ou "Aceitar cor"
+    if (isset($_POST['classificar'])) {
+      $status = $tri->getClass() == "Vermelho" ? "Em consulta" : "Em espera";
+      $tri->setStatus($status);
 
-    $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
-        tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor,
-        tri_orgaos_vitais, tri_data, tri_hora, tri_status, id_paciente) VALUES("
-        . $tri->getTemp() . ", '"  . $tri->getPas()    . "x"   . $tri->getPad()     . "', "
-        . $tri->getPeso() . ", "   . $tri->getAltura() . ", "  . $tri->getBatimento() . ", "
-        . $tri->getOxi()  . ", '"  . $tri->getClass()  . "', " . $tri->getResp()    . ", "
-        . $tri->getDor()  . ", "   . $tri->getOrg()    . ", '" . $tri->getData()    . "', '"
-        . $tri->getHora() . "', '" . $tri->getStatus() . "', " . $tri->getPacId()   . ");";
+      $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
+          tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor,
+          tri_orgaos_vitais, tri_data, tri_hora, tri_status, id_paciente) VALUES("
+          . $tri->getTemp() . ", '"  . $tri->getPas()    . "x"   . $tri->getPad()     . "', "
+          . $tri->getPeso() . ", "   . $tri->getAltura() . ", "  . $tri->getBatimento() . ", "
+          . $tri->getOxi()  . ", '"  . $tri->getClass()  . "', " . $tri->getResp()    . ", "
+          . $tri->getDor()  . ", "   . $tri->getOrg()    . ", '" . $tri->getData()    . "', '"
+          . $tri->getHora() . "', '" . $tri->getStatus() . "', " . $tri->getPacId()   . ");";
 
-    if ($sql->inserir($query)) {
-      echo "Inserido com sucesso";
-    } else {
-      echo "Erro ao inserir";
-    }
-  }
-
-  // Se ainda não tiver realizado a triagem, pede os dados
-  else {
+      if ($sql->inserir($query)) {
+        echo "Inserido com sucesso";
+      } else {
+        echo "Erro ao inserir";
+      }
+  } else {
     // Pegando a idade do paciente
     $fetchId = $sql->fetch("SELECT pessoa_pes_id FROM paciente WHERE pac_id = " . $tri->getPacId() . ";");
     $fetchData = $sql->fetch("SELECT pes_data FROM pessoa WHERE pes_id = " . $fetchId['pessoa_pes_id'] . ";");
@@ -229,7 +226,5 @@ if (!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
     <input type="submit" class="submit" name="classificar" value="Classificar">
     </form>
   <?php
-
   }
-  }
-?>
+}
