@@ -499,25 +499,35 @@
 
             $insMed = "INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
                   '" . $metodo->getMed_crm() . "',
-                  '" . $fun_id         . "'
+                  '" . $fun_id               . "'
                 );";
 
             $sel_id = "SELECT MAX(med_id) AS med_id FROM medico";
             $med_id = $sql->selecionar($sel_id);
             $med_id++;
 
-            $insEps = "INSERT INTO especializacao (esp_nome, medico_med_id) VALUES (
+            $insEsp = "INSERT INTO especializacao (esp_nome, medico_med_id) VALUES (
                   '" . $metodo->getEsp_nome() . "',
                   '" . $med_id        . "'
                 );";
 
+            $sel_id = "SELECT MAX(esp_id) AS esp_id FROM especializacao";
+            $esp_id = $sql->selecionar($sel_id);
+            $esp_id++;
+
+            $insHas = "INSERT INTO medico_has_especializacao (medico_med_id, especializacao_esp_id) VALUES(
+                  '" . $med_id . "'
+                  '" . $esp_id . "'
+                  );";
+
             $okMed = $sql->inserir($insMed);
             $okEsp = $sql->inserir($insEsp);
+            $okHas = $sql->inserir($insHas);
 
-            if ($okMed && $okEsp) {
+            if ($okMed && $okEsp && $okHas) {
                 echo "Médico(a) cadastrado!!";
             } else {
-                echo "Não cadastrado!" . $insMed . "...." . $insEsp ;
+                echo "Não cadastrado!" . $insMed . "...." . $insEsp . "....." . $insHas ;
             }
         } else {
             if ($_POST['fun_cargo'] == "enfermeiro") {
