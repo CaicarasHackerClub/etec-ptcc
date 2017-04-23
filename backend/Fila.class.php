@@ -132,7 +132,7 @@ class Fila extends Sql {
   }
 
   function imprimir() {
-    if ($this->naFila == 0) {
+    if ($this->naFila == 0 || $this->emConsulta < 5) {
       $this->tabela .= "
       <tr>
         <td colspan='4'> Não há ninguém na fila </td>
