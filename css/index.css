@@ -48,24 +48,25 @@ Class Main,FormLogin
 
 /* Dispositivos abaixo de 460px*/
 @media screen and (max-width: 800px) {
-/*Class FormLogin*/
-.FormLogin{
-  width: 50%;
-  height: 220px;
-  margin-left: 23%;
-  margin-top: 340px;
-}
+  /*Class FormLogin*/
+  .FormLogin{
+    width: 50%;
+    height: 220px;
+    margin-left: 23%;
+    margin-top: 340px;
+  }
 
-.FormLogin input{
-  height: 40px;
-}
+  .FormLogin input{
+    height: 40px;
+  }
 }
 /* Dispositivos abaixo de 460px*/
 @media screen and (max-width: 460px) {
-/*Class FormLogin*/
-.FormLogin{
-  width: 80%;
-  height: 220px;
-  margin-left: 8%;
-  margin-top: 340px;
+  /*Class FormLogin*/
+  .FormLogin{
+    width: 80%;
+    height: 220px;
+    margin-left: 8%;
+    margin-top: 340px;
+  }
 }

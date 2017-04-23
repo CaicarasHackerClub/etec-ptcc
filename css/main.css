@@ -383,6 +383,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   line-height: 15px;
 }
 
+.form select[name="cidade"]{
+  width: 200px;
+}
+
 .form .inp_class{
   border-radius: 3px 3px 3px 3px;
   border: 3px solid #01b26a;
