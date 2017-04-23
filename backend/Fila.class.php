@@ -28,10 +28,10 @@ class Fila extends Sql {
 
   function __construct() {
     $this->atualizar();
-    $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Laranja' AND tri_status = 'Em espera';";
-    $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Amarelo' AND tri_status = 'Em espera';";
-    $this->sel[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Verde' AND tri_status = 'Em espera'";
-    $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 'Azul' AND tri_status = 'Em espera';";
+    $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 4 AND tri_status = 'Em espera';";
+    $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 3 AND tri_status = 'Em espera';";
+    $this->sel[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 2 AND tri_status = 'Em espera'";
+    $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 1 AND tri_status = 'Em espera';";
   }
 
   function getTempo() {
@@ -92,6 +92,8 @@ class Fila extends Sql {
   }
 
   function calc($dataPac, $horaPac) {
+    date_default_timezone_set('America/Sao_Paulo');
+
     $data = new DateTime($dataPac);
     $horario = new DateTime($horaPac);
 

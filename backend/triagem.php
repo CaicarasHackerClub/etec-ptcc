@@ -78,6 +78,8 @@ if (!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
   $sql = new Sql();
   $tri = new Triagem();
 
+  date_default_timezone_set('America/Sao_Paulo');
+
   $id = isset($_POST['id']) && !empty($_POST['id']) ? $_POST['id'] : 0;
   $temp = isset($_POST['temp']) && !empty($_POST['temp']) ? trim($_POST['temp']) : 0; //
   $pas = isset($_POST['pas']) && !empty($_POST['pas']) ? trim($_POST['pas']) : 0; //
