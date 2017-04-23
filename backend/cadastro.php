@@ -59,7 +59,7 @@
       </div>
 
       <div class="group-form group-form-cadastro">
-      <label class="lbl_class min-tit">Data de Nascimento:</label>
+      <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
       <input class="inp_class" type="date" name="pes_data" size="28"><br>
       </div>
 
@@ -565,4 +565,3 @@
     ?>
   </body>
 </html>
-
