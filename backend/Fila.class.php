@@ -28,7 +28,7 @@ class Fila extends Sql {
       <th> Tempo de espera </th>
       <th> Classificação </th>
     </thead>
-  <tbody>";
+    <tbody>";
 
   function __construct() {
     $this->atualizar();
@@ -137,10 +137,13 @@ class Fila extends Sql {
     }
   }
 
+  function deletar($id) {
+    parent::inserir("DELETE FROM triagem WHERE tri_id = " . $id . ";");
+  }
+
   function chamar() {
     parent::inserir("UPDATE triagem SET tri_status = 'Em consulta' WHERE tri_id = " . $this->id . ";");
-    echo "Chamada: " . $this->nome . ", ID: " . $this->id  . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax .
-      " minutos <br>";
+    echo "Chamada: #" . $this->id . ", " . $this->nome . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax . " minutos <br>";
   }
 
   function cat() {
@@ -171,6 +174,9 @@ class Fila extends Sql {
           $this->tabela .= ">Vermelho
           <input type='submit' name='reclassificar' value='Reclassificar'>
         </td>
+        <td>
+          <input type='submit' name='deletar' value='Deletar'>
+        </td>
       </form>
     </tr>";
   }
@@ -181,6 +187,8 @@ class Fila extends Sql {
   }
 
   function imprimir() {
+    $this->atualizar();
+
     if ($this->naFila == 0 || $this->emConsulta < 5) {
       $this->tabela .= "
       <tr>

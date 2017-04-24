@@ -14,6 +14,10 @@
     $fila->reclassificar($_POST['id'], $_POST['class']);
   }
 
+  if (isset($_POST['deletar'])) {
+    $fila->deletar($_POST['id']);
+  }
+
   $con = $sql->conecta();
 
   // $fila->setPac(7, 1, 0, 0);
@@ -40,7 +44,9 @@
 
   mysqli_close($con);
 
-  echo "Pessoas em consulta: " . $fila->getEmConsulta() . "<br>";
-  echo "Pessoas em espera: " . $fila->getNaFila() . "<br>";
+  $fila->atualizar();
+
+  echo "<br> Pessoas em consulta: " . $fila->getEmConsulta() . "<br>";
+  echo "Pessoas em espera: " . $fila->getNaFila() . "<br> <br>";
 
   $fila->imprimir();
