@@ -5,7 +5,7 @@
 <?php
 // $id = isset($_POST['id']) ? $_POST['id'] : "";
 
-if (!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
+if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   ?>
   <form class="form" action="triagem.php" method="post">
 
@@ -67,7 +67,7 @@ if (!isset($_POST['Recepcao']) && !isset($_POST['classificar'])) {
     <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
     <input id="indi" class="inp_class" type="checkbox" name="org">
   </div>
-  <input class="anchor submit" type="submit" name="Recepcao" value="Enviar">
+  <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
   </form>
   <?php
 

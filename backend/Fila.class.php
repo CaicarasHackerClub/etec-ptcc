@@ -9,21 +9,25 @@ class Fila extends Sql {
 
   private $id;
   private $nome;
+  private $chegada;
   private $espera;
   private $tempoMax;
+  private $cor;
+  private $numCor;
 
   private $sel;
   private $tempo = array(10, 60, 120, 240);
 
   private $tabela = "
   <table border='1'>
-  <caption> Fila de espera </caption>
-  <thead>
-    <th> # </th>
-    <th> Nome </th>
-    <th> Tempo de espera </th>
-    <th> Classificação </th>
-  </thead>
+    <caption> Fila de espera </caption>
+    <thead>
+      <th> # </th>
+      <th> Nome </th>
+      <th> Chegada </th>
+      <th> Tempo de espera </th>
+      <th> Classificação </th>
+    </thead>
   <tbody>";
 
   function __construct() {
@@ -62,15 +66,19 @@ class Fila extends Sql {
     switch ($this->tempoMax) {
       case 10:
         $this->cor = "Laranja";
+        $this->numCor = 4;
         break;
       case 60:
         $this->cor = "Amarelo";
+        $this->numCor = 3;
         break;
       case 120:
         $this->cor = "Verde";
+        $this->numCor = 2;
         break;
       case 240:
         $this->cor = "Azul";
+        $this->numCor = 1;
         break;
     }
   }
@@ -97,6 +105,8 @@ class Fila extends Sql {
     $data = new DateTime($dataPac);
     $horario = new DateTime($horaPac);
 
+    $this->chegada = $data->format('d/m/Y') . " - " . $horario->format('H:i');
+
     $dias = $data->diff(new DateTime(date('Y-m-d')));
     $horas = $horario->diff(new DateTime(date('H:i')));
 
@@ -108,21 +118,60 @@ class Fila extends Sql {
 
     $tempoFinal = $h*60 + $m;
 
+    if (strlen($tempoFinal) < 2) {
+      $tempoFinal = "0" . $tempoFinal;
+    }
+
     return $tempoFinal;
+  }
+
+  function reclassificar($id, $class) {
+    if(!empty($class)) {
+      if ($class == 5) {
+        parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . ", tri_status = 'Em consulta' WHERE tri_id = " . $id . ";");
+      } else {
+        parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . " WHERE tri_id = " . $id . ";");
+      }
+
+      $this->atualizar();
+    }
   }
 
   function chamar() {
     parent::inserir("UPDATE triagem SET tri_status = 'Em consulta' WHERE tri_id = " . $this->id . ";");
-    echo "Chamada: " . $this->nome . ", ID: " . $this->id  . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax ." minutos <br>";
+    echo "Chamada: " . $this->nome . ", ID: " . $this->id  . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax .
+      " minutos <br>";
   }
 
   function cat() {
     $this->tabela .= "
     <tr>
-      <td>" . $this->id . "</td>
-      <td>" . $this->nome . "</td>
-      <td>" . $this->espera . "/" . $this->tempoMax . " minutos </td>
-      <td>" . $this->cor . "</td>
+      <form action='fila.php' method='post'>
+        <td>" . $this->id . "</td>
+        <td>" . $this->nome . "</td>
+        <td>" . $this->chegada . "</td>
+        <td>" . $this->espera . "/" . $this->tempoMax . " minutos </td>
+        <td>" . $this->cor . "</td>
+        <td>
+          <input type='hidden' name='id' value='" . $this->id . "'>
+          <input type='radio' name='class' value='1'";
+          // $this->tabela .= $this->numCor == 1 ? ' checked' : "";
+          $this->tabela .= "> Azul
+          <input type='radio' name='class' value='2'";
+          // $this->tabela .= $this->numCor == 2 ? ' checked' : "";
+          $this->tabela .= "> Verde
+          <input type='radio' name='class' value='3'";
+          // $this->tabela .= $this->numCor == 3 ? ' checked' : "";
+          $this->tabela .= "> Amarelo
+          <input type='radio' name='class' value='4'";
+          // $this->tabela .= $this->numCor == 4 ? ' checked' : "";
+          $this->tabela .= "> Laranja
+          <input type='radio' name='class' value='5'";
+          // $this->tabela .= $this->numCor == 5 ? ' checked' : "";
+          $this->tabela .= ">Vermelho
+          <input type='submit' name='reclassificar' value='Reclassificar'>
+        </td>
+      </form>
     </tr>";
   }
 
@@ -135,7 +184,7 @@ class Fila extends Sql {
     if ($this->naFila == 0 || $this->emConsulta < 5) {
       $this->tabela .= "
       <tr>
-        <td colspan='4'> Não há ninguém na fila </td>
+        <td colspan='5'> Não há ninguém na fila </td>
       </tr>
       ";
     }

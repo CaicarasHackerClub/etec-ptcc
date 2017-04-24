@@ -10,6 +10,10 @@
   $sel = $fila->getSel();
   $tempo = $fila->getTempo();
 
+  if (isset($_POST['reclassificar'])) {
+    $fila->reclassificar($_POST['id'], $_POST['class']);
+  }
+
   $con = $sql->conecta();
 
   // $fila->setPac(7, 1, 0, 0);
