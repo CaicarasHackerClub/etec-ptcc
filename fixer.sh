@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eux
+set -eu
 
 D2U=$(which dos2unix)
 PCF=$(which php-cs-fixer)
