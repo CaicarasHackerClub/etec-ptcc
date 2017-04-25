@@ -7,7 +7,7 @@
 
 if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   ?>
-  <form class="form" action="triagem.php" method="post">
+  <form class="form form-triagem" action="triagem.php" method="post">
 
   <div class="group-form">
     <label class="lbl_class">ID: </label>
