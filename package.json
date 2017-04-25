@@ -13,10 +13,7 @@
     "php": "phpcs --encoding=utf-8 --standard=PSR2 --colors --tab-width=2 ./*.php ./backend/**.php | tee 2>/dev/null",
     "fixer": "./fixer.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CaicarasHackerClub/hug-health.git"
-  },
+  "repository": "git+https://github.com/CaicarasHackerClub/hug-health.git",
   "keywords": [
     "saúde",
     "hospital",
