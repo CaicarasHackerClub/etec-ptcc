@@ -28,7 +28,7 @@ header{
   align-content: flex-end;
   width: 13%;
   height: 100%;
-  background-color: #d8fce4;
+  background-color: #f1fff7;
   flex-wrap: wrap;
   border-right: 1px solid #29784b;
   border-left: 1px solid #29784b;
@@ -422,6 +422,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 .form .submit{
   height: 40px;
   width: 100px;
+  text-align: center;
   margin-top: 10px;
   background-color: #01b26a;
   border: 0;
@@ -496,23 +497,23 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 /*Mudança na cor de fundo dos inputs type radio*/
-.form input[value="Vermelho"] + .lbl-radio-class:before  {
+.form input[value="5"] + .lbl-radio-class:before  {
   background-color: red;
 }
 
-.form input[value="Laranja"] + .lbl-radio-class:before  {
+.form input[value="4"] + .lbl-radio-class:before  {
   background-color: orange;
 }
 
-.form input[value="Amarelo"] + .lbl-radio-class:before  {
+.form input[value="3"] + .lbl-radio-class:before  {
   background-color: yellow;
 }
 
-.form input[value="Verde"] + .lbl-radio-class:before  {
+.form input[value="2"] + .lbl-radio-class:before  {
   background-color: green;
 }
 
-.form input[value="Azul"] + .lbl-radio-class:before  {
+.form input[value="1"] + .lbl-radio-class:before  {
   background-color: blue;
 }
 

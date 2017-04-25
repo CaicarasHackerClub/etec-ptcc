@@ -23,7 +23,7 @@ FILES=$(find . -type f -name "*.php")
 
 for f in $FILES; do
   echo "$f"
-  expand -t 4 "$f" > tmp
+  expand -t 2 "$f" > tmp
   mv tmp "$f"
 done
 

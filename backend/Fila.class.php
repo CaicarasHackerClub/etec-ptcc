@@ -28,7 +28,7 @@ class Fila extends Sql {
       <th> Tempo de espera </th>
       <th> Classificação </th>
     </thead>
-  <tbody>";
+    <tbody>";
 
   function __construct() {
     $this->atualizar();
@@ -54,9 +54,10 @@ class Fila extends Sql {
     return $this->pacMax;
   }
 
-  function setPac($id, $pes, $espera, $tempoMax) {
+  function setPac($id, $espera, $tempoMax) {
     $this->id = $id;
 
+    $pes = parent::selecionar("SELECT id_paciente FROM triagem WHERE tri_id = " . $this->id . ";");
     $pesId = parent::selecionar("SELECT pessoa_pes_id FROM paciente WHERE pac_id = " . $pes . ";");
     $this->nome = parent::selecionar("SELECT pes_nome FROM pessoa WHERE pes_id = " . $pesId . ";");
 
@@ -137,13 +138,26 @@ class Fila extends Sql {
     }
   }
 
-  function chamar() {
-    parent::inserir("UPDATE triagem SET tri_status = 'Em consulta' WHERE tri_id = " . $this->id . ";");
-    echo "Chamada: " . $this->nome . ", ID: " . $this->id  . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax .
-      " minutos <br>";
+  function deletar($id) {
+    parent::inserir("DELETE FROM triagem WHERE tri_id = " . $id . ";");
   }
 
-  function cat() {
+  function chamar() {
+    // echo "
+    // <form action='fila.php' method='post'>
+    //   <span> Chamada: #" . $this->id . ", " . $this->nome . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax . " minutos </span>
+    //   <input type='hidden' name='id' value='" . $this->id . "'>
+    //   <input type='submit' name='confirmar' value='Confirmar'>
+    // </form>";
+    // $tabela .= "<td> <input type='submit' name='confirmar' value='Confirmar'> </td>";
+
+    $this->tabela .= "
+    <td>
+      <input type='submit' name='chamar' value='Chamar'>
+    </td>";
+  }
+
+  function cat($prox, $pos) {
     $this->tabela .= "
     <tr>
       <form action='fila.php' method='post'>
@@ -155,24 +169,31 @@ class Fila extends Sql {
         <td>
           <input type='hidden' name='id' value='" . $this->id . "'>
           <input type='radio' name='class' value='1'";
-          // $this->tabela .= $this->numCor == 1 ? ' checked' : "";
+          $this->tabela .= $this->numCor == 1 ? ' checked' : "";
           $this->tabela .= "> Azul
           <input type='radio' name='class' value='2'";
-          // $this->tabela .= $this->numCor == 2 ? ' checked' : "";
+          $this->tabela .= $this->numCor == 2 ? ' checked' : "";
           $this->tabela .= "> Verde
           <input type='radio' name='class' value='3'";
-          // $this->tabela .= $this->numCor == 3 ? ' checked' : "";
+          $this->tabela .= $this->numCor == 3 ? ' checked' : "";
           $this->tabela .= "> Amarelo
           <input type='radio' name='class' value='4'";
-          // $this->tabela .= $this->numCor == 4 ? ' checked' : "";
+          $this->tabela .= $this->numCor == 4 ? ' checked' : "";
           $this->tabela .= "> Laranja
           <input type='radio' name='class' value='5'";
-          // $this->tabela .= $this->numCor == 5 ? ' checked' : "";
+          $this->tabela .= $this->numCor == 5 ? ' checked' : "";
           $this->tabela .= ">Vermelho
           <input type='submit' name='reclassificar' value='Reclassificar'>
         </td>
-      </form>
-    </tr>";
+        <td>
+          <input type='submit' name='deletar' value='Deletar'>
+        </td>";
+
+        if ($prox) {
+          $this->chamar();
+        }
+
+        $this->tabela .= "</form> </tr>";
   }
 
   function atualizar() {
@@ -181,7 +202,9 @@ class Fila extends Sql {
   }
 
   function imprimir() {
-    if ($this->naFila == 0 || $this->emConsulta < 5) {
+    $this->atualizar();
+
+    if ($this->naFila == 0) {
       $this->tabela .= "
       <tr>
         <td colspan='5'> Não há ninguém na fila </td>
