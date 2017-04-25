@@ -131,10 +131,14 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
         . $tri->getDor()  . ", "   . $tri->getOrg()    . ", '" . $tri->getData()      . "', '"
         . $tri->getHora() . "', '" . $tri->getStatus() . "', " . $tri->getPacId()     . ");";
 
-    if ($sql->inserir($query)) {
-      echo "Inserido com sucesso";
+    if($sql->num("SELECT tri_id FROM triagem WHERE id_paciente = " . $tri->getPacId() . ";") == 0) {
+      if ($sql->inserir($query)) {
+        echo "Inserido com sucesso";
+      } else {
+        echo "Erro ao inserir";
+      }
     } else {
-      echo "Erro ao inserir";
+      echo "O paciente já passou pela triagem";
     }
   } else {
     // Pegando a idade do paciente

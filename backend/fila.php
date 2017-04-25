@@ -18,9 +18,13 @@
     $fila->deletar($_POST['id']);
   }
 
+  if (isset($_POST['chamar'])) {
+    $fila->inserir("UPDATE triagem SET tri_status = 'Em consulta' WHERE tri_id = " . $_POST['id'] . ";");
+  }
+
   $con = $sql->conecta();
 
-  // $fila->setPac(7, 1, 0, 0);
+  // $fila->setPac(5, 0, 0);
   // $fila->chamar();
 
   for ($i = 0; $i < count($sel); $i++) {
@@ -32,12 +36,14 @@
       $data = $pac['tri_data'];
       $hora = $pac['tri_hora'];
 
-      $fila->setPac($pac['tri_id'], $pac['id_paciente'], $fila->calc($data, $hora), $tempo[$i]);
+      $fila->setPac($pac['tri_id'], $fila->calc($data, $hora), $tempo[$i]);
 
-      if ($fila->getEmConsulta() < $fila->getPacMax() || $fila->getEspera() >= $fila->getTempoMax()) {
-          $fila->chamar();
+      $pos++;
+
+      if ($pos <= $fila->getPacMax() - $fila->getEmConsulta()  && $fila->getEmConsulta() < $fila->getPacMax() || $fila->getEspera() >= $fila->getTempoMax()) {
+        $fila->cat(true, $pos);
       } else {
-          $fila->cat();
+        $fila->cat(false, $pos);
       }
     }
   }
@@ -46,7 +52,10 @@
 
   $fila->atualizar();
 
-  echo "<br> Pessoas em consulta: " . $fila->getEmConsulta() . "<br>";
-  echo "Pessoas em espera: " . $fila->getNaFila() . "<br> <br>";
+  echo "
+  <div>
+    Pessoas em consulta: " . $fila->getEmConsulta() . " <br>
+    Pessoas em espera: " . $fila->getNaFila() . "
+  </div>";
 
   $fila->imprimir();
