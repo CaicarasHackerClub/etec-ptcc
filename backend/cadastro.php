@@ -178,7 +178,7 @@
           ?>
           <a href="?acao=cadastro">Voltar</a>
           <?php
-        } else {
+        } else  {
           ////////////////////Insere os dados do formulário anterior no banco/////////////////////////
           $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES (
               '". $metodo->getPes_nome()          ."',
