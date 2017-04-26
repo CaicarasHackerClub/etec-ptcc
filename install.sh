@@ -24,4 +24,12 @@ echo "* Dando permissões de execusão para o fixer.sh"
 chmod a+x fixer.sh
 echo "* Instalando módulos"
 yarn install
+echo "* Configurando Sniffers"
+sudo phpcs --config-set ignore_errors_on_exit 1
+sudo phpcs --config-set ignore_warnings_on_exit 1
+sudo phpcs --config-set default_standard PSR2
+sudo phpcs --config-set colors 1
+sudo phpcs --config-set encoding utf-8
+sudo phpcs --config-set tab_with 2
+sudo phpcs --config-set php_version 70
 
