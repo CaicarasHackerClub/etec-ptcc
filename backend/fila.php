@@ -14,8 +14,12 @@
     $fila->reclassificar($_POST['id'], $_POST['class']);
   }
 
-  if (isset($_POST['deletar'])) {
-    $fila->deletar($_POST['id']);
+  if (isset($_POST['remover'])) {
+    $fila->remover($_POST['id']);
+  }
+
+  if (isset($_POST['desistir'])) {
+    $fila->desistir($_POST['id']);
   }
 
   if (isset($_POST['chamar'])) {

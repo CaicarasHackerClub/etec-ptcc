@@ -138,8 +138,12 @@ class Fila extends Sql {
     }
   }
 
-  function deletar($id) {
+  function remover($id) {
     parent::inserir("DELETE FROM triagem WHERE tri_id = " . $id . ";");
+  }
+
+  function desistir($id) {
+    parent::inserir("UPDATE triagem SET tri_status = 'Desistente' WHERE tri_id = " . $id . ";");
   }
 
   function chamar() {
@@ -171,29 +175,43 @@ class Fila extends Sql {
           <input type='radio' name='class' value='1'";
           $this->tabela .= $this->numCor == 1 ? ' checked' : "";
           $this->tabela .= "> Azul
+        </td>
+        <td>
           <input type='radio' name='class' value='2'";
           $this->tabela .= $this->numCor == 2 ? ' checked' : "";
           $this->tabela .= "> Verde
+        </td>
+        <td>
           <input type='radio' name='class' value='3'";
           $this->tabela .= $this->numCor == 3 ? ' checked' : "";
           $this->tabela .= "> Amarelo
+        </td>
+        <td>
           <input type='radio' name='class' value='4'";
           $this->tabela .= $this->numCor == 4 ? ' checked' : "";
           $this->tabela .= "> Laranja
+        </td>
+        <td>
           <input type='radio' name='class' value='5'";
           $this->tabela .= $this->numCor == 5 ? ' checked' : "";
-          $this->tabela .= ">Vermelho
+          $this->tabela .= "> Vermelho
+        </td>
+        <td>
           <input type='submit' name='reclassificar' value='Reclassificar'>
         </td>
         <td>
-          <input type='submit' name='deletar' value='Deletar'>
-        </td>";
+          <input type='submit' name='desistir' value='Desistente'>
+        </td>
+        <td>
+          <input type='submit' name='remover' value='Remover'>
+        </td>
+    ";
 
-        if ($prox) {
-          $this->chamar();
-        }
+    if ($prox) {
+      $this->chamar();
+    }
 
-        $this->tabela .= "</form> </tr>";
+    $this->tabela .= "</form> </tr>";
   }
 
   function atualizar() {
