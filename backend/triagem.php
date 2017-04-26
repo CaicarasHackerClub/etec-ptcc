@@ -72,7 +72,6 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
   </form>
   <?php
-
 } else {
   include_once 'Sql.class.php';
   include_once 'Triagem.class.php';
@@ -121,7 +120,7 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
 
   // Se o usuário já tiver clicado no botão "Classificar" ou "Aceitar cor"
   if (isset($_POST['classificar'])) {
-    $status = $tri->getClass() == 5 ? 2 : 1;
+    $status = $tri->getClass() == 5 ? 3 : 1;
     $tri->setStatus($status);
 
     $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
@@ -133,7 +132,9 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
         . $tri->getDor()  . ", "   . $tri->getOrg()    . ", '" . $tri->getData()      . "', '"
         . $tri->getHora() . "', '" . $tri->getStatus() . "', " . $tri->getPacId()     . ");";
 
-    if($sql->num("SELECT tri_id FROM triagem WHERE id_paciente = " . $tri->getPacId() . ";") == 0) {
+    $rows = "SELECT tri_id FROM triagem WHERE id_paciente = " . $tri->getPacId() . " AND tri_status <> 5 AND tri_status <> 6 ;";
+
+    if ($sql->num($rows) == 0) {
       if ($sql->inserir($query)) {
         echo "Inserido com sucesso";
       } else {
@@ -196,29 +197,44 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
 
     <form class="form form-classi" action="triagem.php" method="post">
     <h1 class="titulo"> Classificação: </h1>
-    <input type="radio" id="vermelho" class="inp_class" name="class" value="5" required <?php if ($tri->getClass() == 5) {
+    <input type="radio" id="vermelho" class="inp_class" name="class" value="5" required
+    <?php
+    if ($tri->getClass() == 5) {
       echo "checked";
     } ?> >
+
     <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
 
-    <input type="radio" id="laranja" class="inp_class" name="class" value="4" required <?php if ($tri->getClass() == 4) {
+    <input type="radio" id="laranja" class="inp_class" name="class" value="4" required
+    <?php
+    if ($tri->getClass() == 4) {
       echo "checked";
     } ?> >
+
     <label for="laranja" class="lbl-radio-class lbl_class"><p>Laranja</p></label><br>
 
-    <input type="radio" id="amarelo" class="inp_class" name="class" value="3" required <?php if ($tri->getClass() == 3) {
+    <input type="radio" id="amarelo" class="inp_class" name="class" value="3" required
+    <?php
+    if ($tri->getClass() == 3) {
       echo "checked";
     } ?> >
+
     <label for="amarelo" class="lbl-radio-class lbl_class"><p>Amarelo</p></label><br>
 
-    <input type="radio" id="verde" class="inp_class" name="class" value="2" required <?php if ($tri->getClass() == 2) {
+    <input type="radio" id="verde" class="inp_class" name="class" value="2" required
+    <?php
+    if ($tri->getClass() == 2) {
       echo "checked";
     } ?> >
+
     <label for="verde" class="lbl-radio-class lbl_class"><p>Verde</p></label><br>
 
-    <input type="radio" id="azul" class="inp_class" name="class" value="1" required <?php if ($tri->getClass() == 1) {
+    <input type="radio" id="azul" class="inp_class" name="class" value="1" required
+    <?php
+    if ($tri->getClass() == 1) {
       echo "checked";
     } ?> >
+
     <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label>
 
     <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">

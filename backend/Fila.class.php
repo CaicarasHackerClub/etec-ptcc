@@ -14,6 +14,7 @@ class Fila extends Sql {
   private $tempoMax;
   private $cor;
   private $numCor;
+  private $prox;
 
   private $sel;
   private $tempo = array(10, 60, 120, 240);
@@ -32,10 +33,10 @@ class Fila extends Sql {
 
   function __construct() {
     $this->atualizar();
-    $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 4 AND tri_status = 1;";
-    $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 3 AND tri_status = 1;";
-    $this->sel[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 2 AND tri_status = 1;";
-    $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 1 AND tri_status = 1;";
+    $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 4 AND (tri_status = 1 OR tri_status = 2);";
+    $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 3 AND (tri_status = 1 OR tri_status = 2);";
+    $this->sel[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 2 AND (tri_status = 1 OR tri_status = 2);";
+    $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 1 AND (tri_status = 1 OR tri_status = 2);";
   }
 
   function getTempo() {
@@ -126,10 +127,14 @@ class Fila extends Sql {
     return $tempoFinal;
   }
 
+  function setProx($prox) {
+    $this->prox = $prox;
+  }
+
   function reclassificar($id, $class) {
-    if(!empty($class)) {
+    if (!empty($class)) {
       if ($class == 5) {
-        parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . ", tri_status = 2 WHERE tri_id = " . $id . ";");
+        parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . ", tri_status = 3 WHERE tri_id = " . $id . ";");
       } else {
         parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . " WHERE tri_id = " . $id . ";");
       }
@@ -143,7 +148,7 @@ class Fila extends Sql {
   }
 
   function desistir($id) {
-    parent::inserir("UPDATE triagem SET tri_status = 4 WHERE tri_id = " . $id . ";");
+    parent::inserir("UPDATE triagem SET tri_status = 6 WHERE tri_id = " . $id . ";");
   }
 
   function proximo() {
@@ -153,15 +158,20 @@ class Fila extends Sql {
     //   <input type='hidden' name='id' value='" . $this->id . "'>
     //   <input type='submit' name='confirmar' value='Confirmar'>
     // </form>";
-    // $tabela .= "<td> <input type='submit' name='confirmar' value='Confirmar'> </td>";
 
-    $this->tabela .= "
-    <td>
-      <input type='submit' name='chamar' value='Chamar'>
-    </td>";
+    if ($this->prox) {
+      parent::inserir("UPDATE triagem SET tri_status = 2 WHERE tri_id = " . $this->id);
+
+      $this->tabela .= "
+      <td>
+        <input type='submit' name='chamar' value='Chamar'>
+      </td>";
+    } else {
+      parent::inserir("UPDATE triagem SET tri_status = 1 WHERE tri_id = " . $this->id . ";");
+    }
   }
 
-  function cat($prox, $pos) {
+  function cat() {
     $this->tabela .= "
     <tr>
       <form action='fila.php' method='post'>
@@ -207,20 +217,24 @@ class Fila extends Sql {
         </td>
     ";
 
-    if ($prox) {
-      $this->proximo();
-    }
+    $this->proximo();
 
     $this->tabela .= "</form> </tr>";
   }
 
   function atualizar() {
-    $this->naFila = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 1;");
-    $this->emConsulta = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 2;");
+    $this->naFila = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 1 OR tri_status = 2;");
+    $this->emConsulta = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 3 OR tri_status = 4;");
   }
 
   function imprimir() {
     $this->atualizar();
+
+    echo "
+    <div>
+      Pessoas em consulta: " . $this->emConsulta . " <br>
+      Pessoas em espera: " . $this->naFila . "
+    </div>";
 
     if ($this->naFila == 0) {
       $this->tabela .= "

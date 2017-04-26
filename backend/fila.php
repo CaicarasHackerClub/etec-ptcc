@@ -25,7 +25,7 @@
   }
 
   if (isset($_POST['chamar'])) {
-    $fila->inserir("UPDATE triagem SET tri_status = 2 WHERE tri_id = " . $_POST['id'] . ";");
+    $fila->inserir("UPDATE triagem SET tri_status = 3 WHERE tri_id = " . $_POST['id'] . ";");
   }
 
   $con = $sql->conecta();
@@ -46,22 +46,17 @@
 
       $pos++;
 
-      if ($pos <= $fila->getPacMax() - $fila->getEmConsulta()  && $fila->getEmConsulta() < $fila->getPacMax() || $fila->getEspera() >= $fila->getTempoMax()) {
-        $fila->cat(true, $pos);
+      if ($pos <= $fila->getPacMax() - $fila->getEmConsulta() && $fila->getEmConsulta() < $fila->getPacMax()
+        || $fila->getEspera() >= $fila->getTempoMax()) {
+        $fila->setProx(true);
       } else {
-        $fila->cat(false, $pos);
+        $fila->setProx(false);
       }
+
+      $fila->cat();
     }
   }
 
   mysqli_close($con);
-
-  $fila->atualizar();
-
-  echo "
-  <div>
-    Pessoas em consulta: " . $fila->getEmConsulta() . " <br>
-    Pessoas em espera: " . $fila->getNaFila() . "
-  </div>";
 
   $fila->imprimir();
