@@ -17,6 +17,7 @@
     $con=$sql->conecta();
 
     $selCar="SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id=u.funcionario_id WHERE u.usu_id='" . $_SESSION['id_usu']. "';";
+
     $res=mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
     $cargo=mysqli_fetch_array($res);
 
@@ -339,7 +340,6 @@
         }
       }
 
-          //INDENTAÇÃO CORRIGIDA ATÉ AQUI
       if ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
           $metodo->setPac_tipo_sangue   ($_POST['pac_tipo_sangue']);
@@ -485,13 +485,15 @@
         }
       } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
-        if ($_POST['fun_cargo'] == "medico") {
-          $metodo->setMed_crm        ($_POST['med_crm']);
-          $metodo->setEsp_nome       ('especializacao');
+        if ($_SESSION['fun_cargo'] == "medico") {
+          $metodo->setMed_crm($_POST['med_crm']);
+          $metodo->setEsp_nome('especializacao');
 
+          $esp=$metodo->getEsp_nome();
+          echo $esp;
           //$selMed="SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
 
-          $sqel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
           $fun_id=$sql->selecionar($sel_id);
 
           $insMed="INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
@@ -503,26 +505,20 @@
           $med_id=$sql->selecionar($sel_id);
           $med_id++;
 
-
-          $sel_id="SELECT MAX(esp_id) AS esp_id FROM especializacao";
-          $esp_id=$sql->selecionar($sel_id);
-          $esp_id++;
-
           $insHas="INSERT INTO medico_has_especializacao (medico_med_id, especializacao_esp_id) VALUES(
-                 '" . $med_id . "'
-                 '" . $esp_id . "'
+                  '" . $med_id                . "',
+                  '" . $metodo->getEsp_nome() . "'
                   );";
 
           $okMed=$sql->inserir($insMed);
-          $okEsp=$sql->inserir($insEsp);
           $okHas=$sql->inserir($insHas);
 
-          if ($okMed && $okEsp && $okHas) {
+          if ($okMed && $okHas) {
             echo "Médico(a) cadastrado!!";
           } else {
-            echo "Não cadastrado!" . $insMed . "...." . $insEsp . "....." . $insHas ;
+            echo "Não cadastrado!" . $insMed . "...." . $insHas ;
           }
-        } elseif ($_POST['fun_cargo'] == "enfermeiro") {
+        } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
           $metodo->setEnf_registro($_POST['enf_registro']);
 
           $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
