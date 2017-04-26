@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "css": "csslint --ignore=order-alphabetical,box-model css/**.css",
     "js": "jshint --reporter=node_modules/jshint-stylish js/**.js",
-    "php": "phpcs ./*.php ./backend/**.php",
+    "php": "phpcs --standard=.phpcs/CodeSniffer/Custom",
     "fixer": "./fixer.sh"
   },
   "repository": "git+https://github.com/CaicarasHackerClub/hug-health.git",
