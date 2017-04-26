@@ -121,7 +121,7 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
 
   // Se o usuário já tiver clicado no botão "Classificar" ou "Aceitar cor"
   if (isset($_POST['classificar'])) {
-    $status = $tri->getClass() == 5 ? "Em consulta" : "Em espera";
+    $status = $tri->getClass() == 5 ? 2 : 1;
     $tri->setStatus($status);
 
     $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
@@ -181,7 +181,8 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
             if ($tri->getPas() >= 220 && $tri->getPad() >= 120 && $tri->getOrg() == 0) {
               $tri->setClass(3);
             } else {
-              if ($idade >= 60 || $tri->getPas() >= 180 && $tri->getPas() < 220 && $tri->getPad() >= 120 && $tri->getPad() < 130 && $tri->getOrg == 0) {
+              if ($idade >= 60 || $tri->getPas() >= 180 && $tri->getPas() < 220 && $tri->getPad() >= 120
+                && $tri->getPad() < 130 && $tri->getOrg == 0) {
                 $tri->setClass(2);
                 echo "Idade do paciente: " . $idade;
               } else {

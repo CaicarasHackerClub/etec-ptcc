@@ -32,10 +32,10 @@ class Fila extends Sql {
 
   function __construct() {
     $this->atualizar();
-    $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 4 AND tri_status = 'Em espera';";
-    $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 3 AND tri_status = 'Em espera';";
-    $this->sel[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 2 AND tri_status = 'Em espera'";
-    $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 1 AND tri_status = 'Em espera';";
+    $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 4 AND tri_status = 1;";
+    $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 3 AND tri_status = 1;";
+    $this->sel[2] = "SELECT * FROM triagem WHERE tri_classe_risco = 2 AND tri_status = 1;";
+    $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 1 AND tri_status = 1;";
   }
 
   function getTempo() {
@@ -106,7 +106,7 @@ class Fila extends Sql {
     $data = new DateTime($dataPac);
     $horario = new DateTime($horaPac);
 
-    $this->chegada = $data->format('d/m/Y') . " - " . $horario->format('H:i');
+    $this->chegada = $data->format('d/m') . " - " . $horario->format('H:i');
 
     $dias = $data->diff(new DateTime(date('Y-m-d')));
     $horas = $horario->diff(new DateTime(date('H:i')));
@@ -129,7 +129,7 @@ class Fila extends Sql {
   function reclassificar($id, $class) {
     if(!empty($class)) {
       if ($class == 5) {
-        parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . ", tri_status = 'Em consulta' WHERE tri_id = " . $id . ";");
+        parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . ", tri_status = 2 WHERE tri_id = " . $id . ";");
       } else {
         parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . " WHERE tri_id = " . $id . ";");
       }
@@ -143,10 +143,10 @@ class Fila extends Sql {
   }
 
   function desistir($id) {
-    parent::inserir("UPDATE triagem SET tri_status = 'Desistente' WHERE tri_id = " . $id . ";");
+    parent::inserir("UPDATE triagem SET tri_status = 4 WHERE tri_id = " . $id . ";");
   }
 
-  function chamar() {
+  function proximo() {
     // echo "
     // <form action='fila.php' method='post'>
     //   <span> Chamada: #" . $this->id . ", " . $this->nome . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax . " minutos </span>
@@ -168,7 +168,7 @@ class Fila extends Sql {
         <td>" . $this->id . "</td>
         <td>" . $this->nome . "</td>
         <td>" . $this->chegada . "</td>
-        <td>" . $this->espera . "/" . $this->tempoMax . " minutos </td>
+        <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
         <td>" . $this->cor . "</td>
         <td>
           <input type='hidden' name='id' value='" . $this->id . "'>
@@ -208,15 +208,15 @@ class Fila extends Sql {
     ";
 
     if ($prox) {
-      $this->chamar();
+      $this->proximo();
     }
 
     $this->tabela .= "</form> </tr>";
   }
 
   function atualizar() {
-    $this->naFila = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 'Em espera'");
-    $this->emConsulta = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 'Em consulta';");
+    $this->naFila = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 1;");
+    $this->emConsulta = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 2;");
   }
 
   function imprimir() {

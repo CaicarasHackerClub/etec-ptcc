@@ -10,6 +10,8 @@
   $sel = $fila->getSel();
   $tempo = $fila->getTempo();
 
+  $pos = 0;
+
   if (isset($_POST['reclassificar'])) {
     $fila->reclassificar($_POST['id'], $_POST['class']);
   }
@@ -23,7 +25,7 @@
   }
 
   if (isset($_POST['chamar'])) {
-    $fila->inserir("UPDATE triagem SET tri_status = 'Em consulta' WHERE tri_id = " . $_POST['id'] . ";");
+    $fila->inserir("UPDATE triagem SET tri_status = 2 WHERE tri_id = " . $_POST['id'] . ";");
   }
 
   $con = $sql->conecta();
