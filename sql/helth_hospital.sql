@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 26/04/2017 às 06:02
+-- Tempo de geração: 26/04/2017 às 16:26
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10256,7 +10256,7 @@ INSERT INTO `sexo` (`sex_id`, `sex_sexo`) VALUES
 
 CREATE TABLE `status_triagem` (
   `stt_id` int(11) NOT NULL,
-  `stt_nome` varchar(15) COLLATE utf8_bin NOT NULL
+  `stt_nome` varchar(22) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10265,10 +10265,11 @@ CREATE TABLE `status_triagem` (
 
 INSERT INTO `status_triagem` (`stt_id`, `stt_nome`) VALUES
 (1, 'Em Espera'),
-(2, 'Em Consulta'),
-(3, 'Atendido'),
-(4, 'Desistiu'),
-(5, 'Outro');
+(2, 'Próximo'),
+(3, 'Aguardando Atendimento'),
+(4, 'Em Consulta'),
+(5, 'Atendido'),
+(6, 'Desistiu');
 
 -- --------------------------------------------------------
 
@@ -10657,7 +10658,7 @@ ALTER TABLE `sexo`
 -- AUTO_INCREMENT de tabela `status_triagem`
 --
 ALTER TABLE `status_triagem`
-  MODIFY `stt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `stt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de tabela `tipo_sanguineo`
 --
