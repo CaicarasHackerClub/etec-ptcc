@@ -9,14 +9,14 @@
     <?php
     //Verifica usuario e senha do index.php (login)
 
-    if (!isset ($_SESSION['id_usu'])) {
+    if (!isset($_SESSION['id_usu'])) {
       if ($_POST['usu_email'] == "" || $_POST['usu_senha'] == "") {
         //Direciona pro formulário de acesso
         //echo "Digite os campos corretamente";
         echo "<script>alert('Digite os campos corretamente')
                 location.href='index.php';</script>;";
       } else {
-        include_once ("Sql.class.php");
+        include_once("Sql.class.php");
         $sql = new Sql;
 
         $sel= "SELECT * FROM usuario WHERE usu_senha = '".$_POST['usu_senha'].
@@ -26,7 +26,7 @@
         if ($qtd >= 1) {
           $_SESSION['id_usu'] = $qtd;
           echo "Logado !!! <br>";
-          $log_data = date ("y-m-d");
+          $log_data = date("y-m-d");
           $log_ip = $_SERVER['REMOTE_ADDR'];
           $log_id = $_SESSION['id_usu'];
           $sel = "SELECT * FROM login_acesso WHERE
