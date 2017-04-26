@@ -24,4 +24,5 @@ echo "* Dando permissões de execusão para o fixer.sh"
 chmod a+x fixer.sh
 echo "* Instalando módulos"
 yarn install
+echo "* Configurando Sniffers"
 
