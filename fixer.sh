@@ -33,6 +33,9 @@ find . -type f -name "*.php" -exec dos2unix {} \;
 # Eliminar trailing whitespaces
 find . -type f -name "*.php" -exec sed -i -E 's/[[:space:]]+$//' {} \;
 
+# phpcbf fix
+phpcbf --standard=.phpcs/CodeSniffer/Custom *.php backend/*.php
+
 # TODO Problema com indentação a 2 espaços (phpcbf)
 # php-cs-fixer
 # find . -type f -name "*.php" -exec php-cs-fixer fix {} \
