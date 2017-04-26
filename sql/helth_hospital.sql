@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 26/04/2017 às 16:26
+-- Tempo de geração: 27/04/2017 às 00:28
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9994,17 +9994,6 @@ INSERT INTO `estado_civil` (`etc_id`, `etc_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `fila_de_espera`
---
-
-CREATE TABLE `fila_de_espera` (
-  `fde_id` int(11) NOT NULL,
-  `hora` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `funcionario`
 --
 
@@ -10187,18 +10176,6 @@ CREATE TABLE `plano_de_saude` (
   `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do cartão SUS',
   `pds_num_convenio` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do convenio ou plano de saude',
   `pac_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `quadro_clinico`
---
-
-CREATE TABLE `quadro_clinico` (
-  `id_quadro` int(11) NOT NULL,
-  `qdc_quadro` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `qdc_gravidade` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -10429,12 +10406,6 @@ ALTER TABLE `estado_civil`
   ADD PRIMARY KEY (`etc_id`);
 
 --
--- Índices de tabela `fila_de_espera`
---
-ALTER TABLE `fila_de_espera`
-  ADD PRIMARY KEY (`fde_id`);
-
---
 -- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
@@ -10500,12 +10471,6 @@ ALTER TABLE `plano_de_saude`
   ADD UNIQUE KEY `pds_num_convenio` (`pds_num_convenio`),
   ADD UNIQUE KEY `pds_numero_sus` (`pds_numero_sus`),
   ADD KEY `fk_plano_de_saude_paciente1_idx` (`pac_id`);
-
---
--- Índices de tabela `quadro_clinico`
---
-ALTER TABLE `quadro_clinico`
-  ADD PRIMARY KEY (`id_quadro`);
 
 --
 -- Índices de tabela `setor`
@@ -10600,11 +10565,6 @@ ALTER TABLE `estado`
 ALTER TABLE `estado_civil`
   MODIFY `etc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de tabela `fila_de_espera`
---
-ALTER TABLE `fila_de_espera`
-  MODIFY `fde_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
@@ -10639,11 +10599,6 @@ ALTER TABLE `pessoa`
 --
 ALTER TABLE `plano_de_saude`
   MODIFY `pds_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de tabela `quadro_clinico`
---
-ALTER TABLE `quadro_clinico`
-  MODIFY `id_quadro` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `setor`
 --
