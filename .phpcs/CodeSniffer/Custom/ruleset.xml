@@ -20,4 +20,5 @@
     <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
     <exclude name="Generic.Files.LineLength.TooLong"/>
   </rule>
+  <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
 </ruleset>
