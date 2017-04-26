@@ -441,9 +441,9 @@
           $insUsu="INSERT INTO usuario (usu_senha, usu_email, usu_ativo, usu_tipo, funcionario_id) VALUES (
                     '" . $metodo->getUsu_senha(). "',
                     '" . $metodo->getUsu_email(). "',
-                    '     1         ',
-                    '     1         ',
-                    '" .    $fun_id     . "'
+                    '     1                        ',
+                    '     1                        ',
+                    '" .    $fun_id             . "'
                   );";
 
           $okFun=$sql->inserir($insFun);
@@ -474,6 +474,9 @@
             } else {
               echo "Não está sendo cadastrado medico ou enfermeiro";
             }
+            ?>
+            <input type="submit" value="Confirmar">
+          <?php
           } else {
             echo header ("Location:cadastro.php&passo=4");
           }
