@@ -1,0 +1,60 @@
+/* Escondemos o radio original */
+.form-classi input[type="radio"] {
+  display: none;
+}
+
+.form-classi .lbl_class{
+  height: 55px;
+}
+
+/* Usamos o pseudo-element :before para recriar o novo radio */
+.form .lbl-radio-class:before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+  margin-left: 3px;
+  border-radius: 50%;
+  left: 0;
+  bottom: 1px;
+  border: 0;
+}
+
+/* CSS Responsavel por definir o estilo para radio Checkado */
+.form input[type="radio"]:checked + .lbl-radio-class:before {
+  content: "\2022";
+  color: #fff;
+  font-size: 50px;
+  line-height: 35px;
+  text-align: center;
+}
+
+/*Mudança na cor de fundo dos inputs type radio*/
+.form input[value="5"] + .lbl-radio-class:before  {
+  background-color: red;
+}
+
+.form input[value="4"] + .lbl-radio-class:before  {
+  background-color: orange;
+}
+
+.form input[value="3"] + .lbl-radio-class:before  {
+  background-color: yellow;
+}
+
+.form input[value="2"] + .lbl-radio-class:before  {
+  background-color: green;
+}
+
+.form input[value="1"] + .lbl-radio-class:before  {
+  background-color: blue;
+}
+
+.form-classi .lbl_class{
+  width: 150px;
+  text-align: left;
+  margin-top: 10px;
+  border-radius:  3px 3px 3px 3px;
+  margin-left: 40%;
+}

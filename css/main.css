@@ -352,7 +352,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 /*EDIÇÕES NOS FORULÁRIOS DE TRIAGEM*/
 .form {
   width: 100%;
-  height: 90vh;
+  height: 98vh;
   display: inline-block;
   font-family: sans-serif;
   /*border: 1px solid;*/
@@ -398,6 +398,11 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   height: 100%;
 }
 
+.form-triagem{
+  border: 1px solid;
+  overflow-x: auto;
+}
+
 .form .group-form, .extend-group-form{
   width: 337px;
   height: 50px;
@@ -435,14 +440,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 40px;
 }
 
-.form-classi .lbl_class{
-  width: 150px;
-  text-align: left;
-  margin-top: 10px;
-  border-radius:  3px 3px 3px 3px;
-  margin-left: 40%;
-}
-
 .form-classi .titulo, .form-cadastro .titulo{
   display: inline-block;
   margin-left: 36%;
@@ -462,93 +459,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form .group-form-cadastro{
   width: 440px;
-}
-
-/* Escondemos o radio original */
-.form-classi input[type="radio"] {
-  display: none;
-}
-
-.form-classi .lbl_class{
-  height: 55px;
-}
-
-/* Usamos o pseudo-element :before para recriar o novo radio */
-.form .lbl-radio-class:before {
-  content: "";
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  margin-top: 10px;
-  margin-left: 3px;
-  border-radius: 50%;
-  left: 0;
-  bottom: 1px;
-  border: 0;
-}
-
-/* CSS Responsavel por definir o estilo para radio Checkado */
-.form input[type="radio"]:checked + .lbl-radio-class:before {
-  content: "\2022";
-  color: #fff;
-  font-size: 50px;
-  line-height: 35px;
-  text-align: center;
-}
-
-/*Mudança na cor de fundo dos inputs type radio*/
-.form input[value="5"] + .lbl-radio-class:before  {
-  background-color: red;
-}
-
-.form input[value="4"] + .lbl-radio-class:before  {
-  background-color: orange;
-}
-
-.form input[value="3"] + .lbl-radio-class:before  {
-  background-color: yellow;
-}
-
-.form input[value="2"] + .lbl-radio-class:before  {
-  background-color: green;
-}
-
-.form input[value="1"] + .lbl-radio-class:before  {
-  background-color: blue;
-}
-
-@media (min-width: 651px){
-  /*grupo contido no cabeçalho*/
-  .container .main .cabecalho .config{
-    width: 45%;
-  }
-
-  .container .main .cabecalho .group-image .tit-image{
-    /*background-size: 140px;
-    background-position: center;
-    background-position: 15% -1%;*/
-    width: 145px;
-    height: 94px;
-    margin-top: 5px;
-  }
-
-  /*edição no grupo onde fica o icone da página*/
-  .container .main .cabecalho .cabecalho-group{
-    margin-left: 0%;
-  }
-
-  @media (max-height: 590px){
-    .container .main .cabecalho .group-image .tit-image{
-      /*width: 30%;*/
-      height: 94%;
-      background-size: 100%;
-    }
-
-    .container .main .cabecalho .group-image .tit-text{
-      margin-top: 1em;
-      padding-bottom: 15%;
-    }
-  }
 }
 
 @media (max-width: 1054px){
@@ -617,11 +527,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       width: 120%;
       text-align: center;
       padding-left: 20%;
-    }
-
-    .form{
-      margin-left: 0;
-      overflow: scroll;
     }
 
     .form .group-form{
@@ -791,5 +696,35 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   .container .lateral .sub-logo{
     visibility: hidden;
+  }
+}
+
+@media (min-width: 651px){
+  /*grupo contido no cabeçalho*/
+  .container .main .cabecalho .config{
+    width: 45%;
+  }
+
+  .container .main .cabecalho .group-image .tit-image{
+    width: 145px;
+    height: 94px;
+    margin-top: 5px;
+  }
+
+  /*edição no grupo onde fica o icone da página*/
+  .container .main .cabecalho .cabecalho-group{
+    margin-left: 0%;
+  }
+
+  @media (max-height: 590px){
+    .container .main .cabecalho .group-image .tit-image{
+      height: 94%;
+      background-size: 100%;
+    }
+
+    .container .main .cabecalho .group-image .tit-text{
+      margin-top: 1em;
+      padding-bottom: 15%;
+    }
   }
 }
