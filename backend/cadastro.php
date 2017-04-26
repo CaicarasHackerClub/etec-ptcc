@@ -220,7 +220,7 @@
           //verifica se a query foi inserida corretamente
           if ($okPes && $okEnd) {
             echo "Pessoa cadastrada com sucesso!!!" . $_SESSION['tipo'];
-          }
+
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
             echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
@@ -333,9 +333,12 @@
 
             } else {
               echo "Apenas adm e recepcionistas";
+            }
           } else {
             echo "Erro ao cadastrar pessoa!";
           }
+        }
+      }
 
           //INDENTAÇÃO CORRIGIDA ATÉ AQUI
       if ($_GET['passo'] == 3) {
