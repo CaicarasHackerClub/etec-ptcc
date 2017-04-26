@@ -152,9 +152,12 @@ function enviar(val) {
         img = $("#img-recepcao").attr('src');
         name = $("#name-recep").html();
         break;
-    default:
+    case 3:
         img = $("#img-admin").attr('src');
         name = $("#name-admin").html();
+    default:
+        img = $("#img-portaria").attr('src');
+        name = $("#name-portaria").html();
   }
 
   var image = JSON.stringify(img);

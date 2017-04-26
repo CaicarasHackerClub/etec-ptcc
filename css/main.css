@@ -78,7 +78,7 @@ header{
   flex-wrap: wrap;
   width: 100%;
   margin-top: 2%;
-  padding-left: 17%;
+  padding-left: 4%;
 }
 
 /*Formatação e posicionamento dos ícones do centro*/
@@ -398,11 +398,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   height: 100%;
 }
 
-.form-triagem{
-  border: 1px solid;
-  overflow-x: auto;
-}
-
 .form .group-form, .extend-group-form{
   width: 337px;
   height: 50px;
@@ -527,10 +522,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       width: 120%;
       text-align: center;
       padding-left: 20%;
-    }
-
-    .form .group-form{
-      margin-left: 1%;
     }
 }
 
