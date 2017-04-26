@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <link rel='stylesheet' href='../css/main.css'>
+  <link rel='stylesheet' href='../css/triagem.css'>
   <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <?php
