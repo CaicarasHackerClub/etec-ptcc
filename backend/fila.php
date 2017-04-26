@@ -1,8 +1,6 @@
 <?php
-  include_once 'Sql.class.php';
   include_once 'Fila.class.php';
 
-  $sql = new Sql();
   $fila = new Fila();
 
   $fila->setPacMax(5);
@@ -28,13 +26,11 @@
     $fila->inserir("UPDATE triagem SET tri_status = 3 WHERE tri_id = " . $_POST['id'] . ";");
   }
 
-  $con = $sql->conecta();
-
   // $fila->setPac(5, 0, 0);
   // $fila->chamar();
 
   for ($i = 0; $i < count($sel); $i++) {
-    $res = mysqli_query($con, $sel[$i]);
+    $res = $fila->inserir($sel[$i]);
 
     while ($pac = mysqli_fetch_array($res)) {
       $fila->atualizar();
@@ -56,7 +52,5 @@
       $fila->cat();
     }
   }
-
-  mysqli_close($con);
 
   $fila->imprimir();

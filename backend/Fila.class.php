@@ -31,7 +31,7 @@ class Fila extends Sql {
     </thead>
     <tbody>";
 
-  function __construct() {
+  public function __construct() {
     $this->atualizar();
     $this->sel[0] = "SELECT * FROM triagem WHERE tri_classe_risco = 4 AND (tri_status = 1 OR tri_status = 2);";
     $this->sel[1] = "SELECT * FROM triagem WHERE tri_classe_risco = 3 AND (tri_status = 1 OR tri_status = 2);";
@@ -39,23 +39,23 @@ class Fila extends Sql {
     $this->sel[3] = "SELECT * FROM triagem WHERE tri_classe_risco = 1 AND (tri_status = 1 OR tri_status = 2);";
   }
 
-  function getTempo() {
+  public function getTempo() {
     return $this->tempo;
   }
 
-  function getSel() {
+  public function getSel() {
     return $this->sel;
   }
 
-  function setPacMax($pacMax) {
+  public function setPacMax($pacMax) {
     $this->pacMax = $pacMax;
   }
 
-  function getPacMax() {
+  public function getPacMax() {
     return $this->pacMax;
   }
 
-  function setPac($id, $espera, $tempoMax) {
+  public function setPac($id, $espera, $tempoMax) {
     $this->id = $id;
 
     $pes = parent::selecionar("SELECT id_paciente FROM triagem WHERE tri_id = " . $this->id . ";");
@@ -85,23 +85,23 @@ class Fila extends Sql {
     }
   }
 
-  function getEspera() {
+  public function getEspera() {
     return $this->espera;
   }
 
-  function getTempoMax() {
+  public function getTempoMax() {
     return $this->tempoMax;
   }
 
-  function getNaFila() {
+  public function getNaFila() {
     return $this->naFila;
   }
 
-  function getEmConsulta() {
+  public function getEmConsulta() {
     return $this->emConsulta;
   }
 
-  function calc($dataPac, $horaPac) {
+  public function calc($dataPac, $horaPac) {
     date_default_timezone_set('America/Sao_Paulo');
 
     $data = new DateTime($dataPac);
@@ -127,11 +127,11 @@ class Fila extends Sql {
     return $tempoFinal;
   }
 
-  function setProx($prox) {
+  public function setProx($prox) {
     $this->prox = $prox;
   }
 
-  function reclassificar($id, $class) {
+  public function reclassificar($id, $class) {
     if (!empty($class)) {
       if ($class == 5) {
         parent::inserir("UPDATE triagem SET tri_classe_risco = " . $class . ", tri_status = 3 WHERE tri_id = " . $id . ";");
@@ -143,15 +143,15 @@ class Fila extends Sql {
     }
   }
 
-  function remover($id) {
+  public function remover($id) {
     parent::inserir("DELETE FROM triagem WHERE tri_id = " . $id . ";");
   }
 
-  function desistir($id) {
+  public function desistir($id) {
     parent::inserir("UPDATE triagem SET tri_status = 6 WHERE tri_id = " . $id . ";");
   }
 
-  function proximo() {
+  public function proximo() {
     // echo "
     // <form action='fila.php' method='post'>
     //   <span> Chamada: #" . $this->id . ", " . $this->nome . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax . " minutos </span>
@@ -171,7 +171,7 @@ class Fila extends Sql {
     }
   }
 
-  function cat() {
+  public function cat() {
     $this->tabela .= "
     <tr>
       <form action='fila.php' method='post'>
@@ -222,12 +222,12 @@ class Fila extends Sql {
     $this->tabela .= "</form> </tr>";
   }
 
-  function atualizar() {
+  public function atualizar() {
     $this->naFila = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 1 OR tri_status = 2;");
     $this->emConsulta = parent::num("SELECT tri_id FROM triagem WHERE tri_status = 3 OR tri_status = 4;");
   }
 
-  function imprimir() {
+  public function imprimir() {
     $this->atualizar();
 
     echo "

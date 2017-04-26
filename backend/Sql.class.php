@@ -6,12 +6,12 @@ class Sql {
   // $password = "helth";
   // $db = "helth_hospital";
     //
-  function conecta() {
+  public function conecta() {
     include 'conectar.php';
     return $con;
   }
 
-  function inserir($query) {
+  public function inserir($query) {
     $con = $this->conecta();
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
 
@@ -20,7 +20,7 @@ class Sql {
     return $res;
   }
 
-  function fetch($query) {
+  public function fetch($query) {
     $con = $this->conecta();
     $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . "<br> Query: " . $query);
     $fetch = mysqli_fetch_array($res);
@@ -30,7 +30,7 @@ class Sql {
     return $fetch;
   }
 
-  function num($query) {
+  public function num($query) {
     $con = $this->conecta();
     $res = mysqli_query($con, $query);
 
@@ -39,9 +39,9 @@ class Sql {
     return mysqli_num_rows($res);
   }
 
-  function selecionar($query) {
+  public function selecionar($query) {
     $con = $this->conecta();
-    $res = mysqli_query($con, $query) or die ("Erro selecionar  r()" . $query . mysqli_error($con));
+    $res = mysqli_query($con, $query) or die("Erro selecionar  r()" . $query . mysqli_error($con));
     $qtd = mysqli_num_rows($res);
 
     mysqli_close($con);
@@ -54,14 +54,14 @@ class Sql {
     }
   }
 
-  function selectbox($tabela) {
+  public function selectbox($tabela) {
     $con = $this->conecta();
 
     $sel = "SELECT * FROM " . $tabela;
-    $res = mysqli_query ($con,$sel) or die ("Erro : ");
+    $res = mysqli_query($con, $sel) or die("Erro : ");
 
     echo"<select name='" . $tabela . "'>\n";
-    while ($selecao = mysqli_fetch_array ($res)) {
+    while ($selecao = mysqli_fetch_array($res)) {
       echo  "<option value=" . $selecao[0] . ">" . $selecao[1] . "</option>\n";
     }
     echo  "</select><br>\n";
@@ -69,5 +69,3 @@ class Sql {
     mysqli_close($con);
   }
 }
-
-?>

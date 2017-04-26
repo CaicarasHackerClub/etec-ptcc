@@ -17,125 +17,123 @@ class Triagem {
   private $hora;
   private $status;
 
-  function setPacId($pacId) {
+  public function setPacId($pacId) {
     $this->pacId = $pacId;
   }
 
-  function getPacId() {
+  public function getPacId() {
     return $this->pacId;
   }
 
-  function setPeso($peso) {
+  public function setPeso($peso) {
     $this->peso = $peso;
   }
 
-  function getPeso() {
+  public function getPeso() {
     return $this->peso;
   }
 
-  function setAltura($altura) {
+  public function setAltura($altura) {
     $this->altura = $altura;
   }
 
-  function getAltura() {
+  public function getAltura() {
     return $this->altura;
   }
 
-  function setBatimento($batimento) {
+  public function setBatimento($batimento) {
     $this->batimento = $batimento;
   }
 
-  function getBatimento() {
+  public function getBatimento() {
     return $this->batimento;
   }
 
-  function setClass($class) {
+  public function setClass($class) {
     $this->class = $class;
   }
 
-  function getClass() {
+  public function getClass() {
     return $this->class;
   }
 
-  function setResp($resp) {
+  public function setResp($resp) {
     $this->resp = $resp;
   }
 
-  function getResp() {
+  public function getResp() {
     return $this->resp;
   }
 
-  function setTemp($temp) {
+  public function setTemp($temp) {
     $this->temp = $temp;
   }
 
-  function getTemp() {
+  public function getTemp() {
     return $this->temp;
   }
 
-  function setPas($pas) {
+  public function setPas($pas) {
     $this->pas = $pas;
   }
 
-  function getPas() {
+  public function getPas() {
     return $this->pas;
   }
 
-  function setPad($pad) {
+  public function setPad($pad) {
     $this->pad = $pad;
   }
 
-  function getPad() {
+  public function getPad() {
     return $this->pad;
   }
 
-  function setOxi($oxi) {
+  public function setOxi($oxi) {
     $this->oxi = $oxi;
   }
 
-  function getOxi() {
+  public function getOxi() {
     return $this->oxi;
   }
 
-  function setDor($dor) {
+  public function setDor($dor) {
     $this->dor = $dor;
   }
 
-  function getDor() {
+  public function getDor() {
     return $this->dor;
   }
 
-  function setOrg($org) {
+  public function setOrg($org) {
     $this->org = $org;
   }
 
-  function getOrg() {
+  public function getOrg() {
     return $this->org;
   }
 
-  function setData($data) {
+  public function setData($data) {
     $this->data = $data;
   }
 
-  function getData() {
+  public function getData() {
     return $this->data;
   }
 
-  function setHora($hora) {
+  public function setHora($hora) {
     $this->hora = $hora;
   }
 
-  function getHora() {
+  public function getHora() {
     return $this->hora;
   }
 
-  function setStatus($status) {
+  public function setStatus($status) {
     $this->status = $status;
   }
 
-  function getStatus() {
+  public function getStatus() {
     return $this->status;
   }
 }
-
-?>
