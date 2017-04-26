@@ -407,6 +407,7 @@
           $metodo->setUsu_senha ($_POST['usu_senha']);
           $metodo->setSet_setor ($_POST['setor']);
 
+          $_SESSION['fun_cargo'] = $_POST['fun_cargo'];
           // Seleção e inserção na tabela funcionário
           //$selFun ="SELECT fun_inscricao FROM funcionario WHERE '" . $_POST['fun_inscricao'] . "';";
 
@@ -432,7 +433,6 @@
                   '" . $metodo->getSet_setor()    . "'
                 );";
 
-          echo $insFun;
 
           $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
           $fun_id=$sql->selecionar($sel_id);
@@ -456,7 +456,7 @@
           if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro" ||
             $_POST['fun_cargo'] == "recepcao") {
             echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
-            if ($_POST['fun_cargo'] == "medico") {
+            if ($_SESSION['fun_cargo'] == "medico") {
               ?>
               <h1>Médico</h1>
               <label class="lbl_class">CRM:</label>
@@ -464,7 +464,7 @@
               <label class="lbl_class">Especialização:</label>
               <input class="inp_class" type="text" name="esp_nome" size="28"><br>
               <?php
-            } else if ($_POST['fun_cargo'] == "enfermeiro") {
+            } else if ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
               ?>
               <h1>Enfermeiro</h1>
@@ -535,7 +535,6 @@
           } else {
             echo "Não cadastrado!!!";
           }
-        // INDENTACAO ATE AQUI
         } else {
           echo "Não é enfermeiro ou médico";
         }
@@ -553,3 +552,4 @@
     ?>
   </body>
 </html>
+
