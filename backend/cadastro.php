@@ -7,9 +7,9 @@
   </head>
   <body>
     <?php
-    include_once ("Posto.class.php");
+    include_once("Posto.class.php");
     $metodo=new Metodo;
-    include_once ("Sql.class.php");
+    include_once("Sql.class.php");
     $sql=new Sql;
 
     $acao =isset($_GET['acao'])? $_GET['acao'] : "";
@@ -141,7 +141,7 @@
         </form>
         <?php
 
-      } else if ($_GET['passo'] == 2) {
+      } elseif ($_GET['passo'] == 2) {
         $metodo->setPes_nome          ($_POST['pes_nome']);
         $metodo->setPes_pai           ($_POST['pes_pai']);
         $metodo->setPes_mae           ($_POST['pes_mae']);
@@ -274,7 +274,7 @@
               </div>
               <input class="inp_class submmit" type="submit" value="Confirmar">
               <?php
-            } else if ($_SESSION['tipo'] == "administracao"){
+            } elseif ($_SESSION['tipo'] == "administracao") {
               /* Se o usuário logado for administrativo ele só poderá cadastrar
               os dados de funcionário do formulário abaixo
               */
@@ -330,7 +330,6 @@
                 <input class="inp_class" type="submit" value="Proximo">
                 </form>
                 <?php
-
             } else {
               echo "Apenas adm e recepcionistas";
             }
@@ -397,7 +396,7 @@
                   echo "Não cadastrado!!!!!!!!!";
             }
             //}
-        } else if ($_SESSION['tipo'] == "administracao") {
+        } elseif ($_SESSION['tipo'] == "administracao") {
           $metodo->setFun_cargo     ($_POST ['fun_cargo']);
           $metodo->setFun_horario   ($_POST ['fun_horario']);
           $metodo->setFun_inscricao ($_POST ['fun_inscricao']);
@@ -465,7 +464,7 @@
               <?php
                 $sql->selectbox("especializacao");
 
-            } else if ($_SESSION['fun_cargo'] == "enfermeiro") {
+            } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
               ?>
               <h1>Enfermeiro</h1>
@@ -479,12 +478,12 @@
             <input type="submit" value="Confirmar">
           <?php
           } else {
-            echo header ("Location:cadastro.php&passo=4");
+            echo header("Location:cadastro.php&passo=4");
           }
         } else {
           header("Location:cadastro.php?passo=4");
         }
-      } else if ($_GET['passo'] == 4) {
+      } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
         if ($_POST['fun_cargo'] == "medico") {
           $metodo->setMed_crm        ($_POST['med_crm']);
@@ -523,7 +522,7 @@
           } else {
             echo "Não cadastrado!" . $insMed . "...." . $insEsp . "....." . $insHas ;
           }
-        } else if ($_POST['fun_cargo'] == "enfermeiro") {
+        } elseif ($_POST['fun_cargo'] == "enfermeiro") {
           $metodo->setEnf_registro($_POST['enf_registro']);
 
           $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
@@ -540,10 +539,9 @@
         }
       ////////////////////Fim do cadastro//////
         echo "Confirmação final - Passo 4";
-
-      } else if ($acao == "logoff") {
+      } elseif ($acao == "logoff") {
         session_destroy();
-        unset ($_SESSION['tipo']);
+        unset($_SESSION['tipo']);
         echo "<script>alert('Tchau!! Volte sempre!!')
         location.href='index.php';</script>;";
       }
@@ -552,4 +550,3 @@
     ?>
   </body>
 </html>
-
