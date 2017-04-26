@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 20/04/2017 às 04:55
+-- Tempo de geração: 26/04/2017 às 06:02
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9851,7 +9851,8 @@ INSERT INTO `escolaridade` (`esc_id`, `esc_nome`) VALUES
 (1, 'Ensino Fundamental 1'),
 (2, 'Ensino Fundamental 2'),
 (3, 'Ensino Medio'),
-(4, 'Ensino Superior');
+(4, 'Ensino Superior'),
+(5, 'Analfabeto');
 
 -- --------------------------------------------------------
 
@@ -10250,6 +10251,28 @@ INSERT INTO `sexo` (`sex_id`, `sex_sexo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `status_triagem`
+--
+
+CREATE TABLE `status_triagem` (
+  `stt_id` int(11) NOT NULL,
+  `stt_nome` varchar(15) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `status_triagem`
+--
+
+INSERT INTO `status_triagem` (`stt_id`, `stt_nome`) VALUES
+(1, 'Em Espera'),
+(2, 'Em Consulta'),
+(3, 'Atendido'),
+(4, 'Desistiu'),
+(5, 'Outro');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `sub_setor`
 --
 
@@ -10316,7 +10339,7 @@ CREATE TABLE `triagem` (
   `tri_orgaos_vitais` tinyint(1) DEFAULT NULL COMMENT 'se esta comprometido ou não',
   `tri_data` date DEFAULT NULL COMMENT 'data da entrada',
   `tri_hora` time DEFAULT NULL COMMENT 'hora da entrada',
-  `tri_status` varchar(11) COLLATE utf8_bin DEFAULT NULL COMMENT 'status da triagem',
+  `tri_status` int(11) DEFAULT NULL COMMENT 'status da triagem',
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -10496,6 +10519,12 @@ ALTER TABLE `sexo`
   ADD PRIMARY KEY (`sex_id`);
 
 --
+-- Índices de tabela `status_triagem`
+--
+ALTER TABLE `status_triagem`
+  ADD PRIMARY KEY (`stt_id`);
+
+--
 -- Índices de tabela `sub_setor`
 --
 ALTER TABLE `sub_setor`
@@ -10514,7 +10543,8 @@ ALTER TABLE `tipo_sanguineo`
 ALTER TABLE `triagem`
   ADD PRIMARY KEY (`tri_id`),
   ADD KEY `fk_triagem_paciente1_idx` (`id_paciente`),
-  ADD KEY `tri_classe_risco` (`tri_classe_risco`);
+  ADD KEY `tri_classe_risco` (`tri_classe_risco`),
+  ADD KEY `tri_status` (`tri_status`);
 
 --
 -- Índices de tabela `usuario`
@@ -10552,7 +10582,7 @@ ALTER TABLE `enfermeiro`
 -- AUTO_INCREMENT de tabela `escolaridade`
 --
 ALTER TABLE `escolaridade`
-  MODIFY `esc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `esc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de tabela `especializacao`
 --
@@ -10623,6 +10653,11 @@ ALTER TABLE `setor`
 --
 ALTER TABLE `sexo`
   MODIFY `sex_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de tabela `status_triagem`
+--
+ALTER TABLE `status_triagem`
+  MODIFY `stt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de tabela `tipo_sanguineo`
 --
@@ -10721,7 +10756,8 @@ ALTER TABLE `sub_setor`
 --
 ALTER TABLE `triagem`
   ADD CONSTRAINT `fk_triagem_paciente1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `triagem_ibfk_1` FOREIGN KEY (`tri_classe_risco`) REFERENCES `cores` (`cor_id`);
+  ADD CONSTRAINT `triagem_ibfk_1` FOREIGN KEY (`tri_classe_risco`) REFERENCES `cores` (`cor_id`),
+  ADD CONSTRAINT `triagem_ibfk_2` FOREIGN KEY (`tri_status`) REFERENCES `status_triagem` (`stt_id`);
 
 --
 -- Restrições para tabelas `usuario`
