@@ -462,8 +462,9 @@
               <label class="lbl_class">CRM:</label>
               <input class="inp_class" type="text" name="med_crm" size="28"><br>
               <label class="lbl_class">Especialização:</label>
-              <input class="inp_class" type="text" name="esp_nome" size="28"><br>
               <?php
+                $sql->selectbox("especializacao");
+
             } else if ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
               ?>
@@ -487,7 +488,7 @@
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
         if ($_POST['fun_cargo'] == "medico") {
           $metodo->setMed_crm        ($_POST['med_crm']);
-          $metodo->setEsp_nome       ($_POST['esp_nome']);
+          $metodo->setEsp_nome       ('especializacao');
 
           //$selMed="SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
 
@@ -503,10 +504,6 @@
           $med_id=$sql->selecionar($sel_id);
           $med_id++;
 
-          $insEsp="INSERT INTO especializacao (esp_nome, medico_med_id) VALUES (
-                  '" . $metodo->getEsp_nome() . "',
-                  '" . $med_id        . "'
-                );";
 
           $sel_id="SELECT MAX(esp_id) AS esp_id FROM especializacao";
           $esp_id=$sql->selecionar($sel_id);
