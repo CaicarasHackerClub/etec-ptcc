@@ -1,4 +1,6 @@
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-family: sans-serif;/*adicionar fonte*/
 }
@@ -44,7 +46,7 @@ header{
   font-size: 80%;
 }
 
-.lateral #user{
+.lateral .user{
   border-right: 1px solid white;
 }
 
@@ -53,13 +55,13 @@ header{
   width: 7%;
   position: absolute;
   display: block;
-  top: 0%;
+  top: 0;
   margin-left: 2.5%;
   margin-top: 5px;
 }
 
 /*formatação da hora na lateral*/
-#hora{
+.hora{
   margin-left: 30%;
   font-size: 13pt;
 }
@@ -180,7 +182,7 @@ header{
 
 /*edição nos links de submódulos*/
 .container .lateral .main-lateral .submodulo{
-  margin: 0%;
+  margin: 0;
   width: 100%;
 }
 
@@ -212,7 +214,6 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 
 /*edição no conteudo central da pagina*/
 .conteudoCentro .main{
-  display: inline-block;
   /*border: 0.5px solid #29784b;*/
   width: 100%;
   height: 100%;
@@ -231,7 +232,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 .centro-modulo{
   padding: 0;
   margin-left: 0;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 /*
@@ -248,7 +249,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 /*informações no cabeçalho*/
 .container .main .cabecalho .cabecalho-group .tit-sub-modulo{
-  margin-bottom: 0%;
+  margin-bottom: 0;
   border: 0;
 }
 
@@ -292,13 +293,13 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   height:100%;
 }
 
-.TabControl #header{
+.TabControl .header{
   width:100%;
   overflow:hidden;
   cursor:pointer;
 }
 
-.TabControl #content{
+.TabControl .content{
   width:100%;
   background-color: #fff;
   /*border: solid 1px #01b26a;*/
@@ -372,7 +373,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   /*padding: 5px;*/
   background-color: #01b26a;
   text-align: right;
-  border-radius: 3px 0px 0px 3px;
+  border-radius: 3px 0 0 3px;
 }
 
 .form .lbl_class{
@@ -461,7 +462,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     /*Div lateral com botões deslogar e usuário*/
     .lateral{
       width: 140px;
-      margin-left: 0px;
+      margin-left: 0;
     }
 
     .container .main .cabecalho .config{
@@ -481,7 +482,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     }
 
 
-    .lateral #user{
+    .lateral .user{
       border-bottom: 1px solid white;
       border-right: none;
     }
@@ -498,7 +499,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       width: 70%;
     }
 
-    .lateral #hora{
+    .lateral .hora{
       font-size: 90%;
       margin-left: 10%;
       visibility: hidden;
@@ -510,7 +511,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     }
 
     .centro-modulo{
-      padding-left: 0%;
+      padding-left: 0;
     }
 
     .conteudoCentro .anchor{
@@ -560,7 +561,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-left: 40%;
   }
 
-  .main .cabecalho .group-image #lbl_triagem{
+  .main .cabecalho .group-image .lbl_triagem{
     font-size: 14pt;
     margin: 0;
     margin-top: 24px;
@@ -580,7 +581,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-top: 53px;
     margin-left: -390px;
     height: 90.5vh;
-    border-right: 0px;
+    border-right: 0;
   }
 
   /*Formatação dos botões da lateral */
@@ -607,7 +608,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   .cabecalho {
     display: flex;
     flex-direction: row;
-    margin-top: 0px;
+    margin-top: 0;
     background: #9bd3ae;
     height: 50px;
   }
@@ -626,7 +627,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   }
 
   /*Formatação do botão da lateral*/
-  #btn_slide{
+  .btn_slide{
     width: 40px;
     height: 30px;
     margin-top: 7px;
@@ -704,7 +705,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
   /*edição no grupo onde fica o icone da página*/
   .container .main .cabecalho .cabecalho-group{
-    margin-left: 0%;
+    margin-left: 0;
   }
 
   @media (max-height: 590px){
