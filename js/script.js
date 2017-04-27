@@ -155,6 +155,7 @@ function enviar(val) {
     case 3:
         img = $("#img-admin").attr('src');
         name = $("#name-admin").html();
+        break;
     default:
         img = $("#img-portaria").attr('src');
         name = $("#name-portaria").html();
