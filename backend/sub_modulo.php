@@ -22,20 +22,20 @@
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
       </ul>
-      <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" ><img src="../img/icons/triagem.png" class="icon-modulo"  alt=""> <p>Triagem</p></a>
-      <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
-      <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/portaria.png" class="icon-modulo" alt=""><p>Portaria</p></a>
+      <a href="#" Class="anchor" id="triagem" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" ><img src="../img/icons/triagem.png" class="icon-modulo"  alt=""> <p>Triagem</p></a>
+      <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
+      <a href="#" Class="anchor" id="fila" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/portaria.png" class="icon-modulo" alt=""><p>Portaria</p></a>
     </main>
-    <a href="#" id="user" class="nav_user">Usuário</a>
+    <a href="#" id="user" class="nav_user user">Usuário</a>
     <a href="#" class="nav_user">Deslogar</a>
-    <div id="hora"></div>
+    <div id="hora" class="hora"></div>
     </nav>
 
     <div class="main">
 
     <div class="cabecalho sub-cabecalho">
       <header>
-      <img src="../img/icons/botao_menu.png" id="btn_slide" onclick="mostrarMenu()" >
+      <img src="../img/icons/botao_menu.png" class="btn_slide" id="btn_slide" onclick="mostrarMenu()" >
       <img src="../img/icons/opcoes.png" id="btn_slide-down" onclick="mostrarConfig()" class="button">
       </header>
       <div class="config cabecalho-group" id="config">
@@ -45,7 +45,7 @@
       </div>
       <div class="group-image cabecalho-group" >
       <div class="tit-sub-modulo tit-image"></div>
-      <label class="tit-sub-modulo tit-text" id="lbl_triagem"></label>
+      <label class="tit-sub-modulo tit-text lbl_triagem" id="lbl_triagem"></label>
       </div>
     </div>
 
@@ -53,12 +53,12 @@
       <div class="main">
       <main class="main main-centro" id="main-centro">
         <div class="TabControl">
-          <div id="header">
-            <ul class="abas" id="abas">
+          <div class="header">
+            <ul id="abas" class="abas" id="abas">
 
             </ul>
           </div>
-          <div id="content">
+          <div id="content" class="content">
 
           </div>
         </div>

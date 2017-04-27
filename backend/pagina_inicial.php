@@ -14,16 +14,16 @@
   <div class="container">
     <nav class="lateral" id="lateral">
     <img class="logo" src="../img/logos/index.png">
-    <a href="#" id="user" class="nav_user">Usuário</a>
+    <a href="#" id="user" class="nav_user user">Usuário</a>
     <a href="#" class="nav_user">Deslogar</a>
-    <div id="hora"></div>
+    <div class="hora" id="hora"></div>
     </nav>
 
     <div class="main">
 
     <div class="cabecalho">
       <header>
-      <img src="../img/icons/botao_menu.png" id="btn_slide" onclick="mostrarMenu()" >
+      <img src="../img/icons/botao_menu.png" class="btn_slide" onclick="mostrarMenu()" >
       </header>
       <h1 class="titulo">Hug & Health</h1>
     </div>
