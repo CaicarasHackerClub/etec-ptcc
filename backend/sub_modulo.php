@@ -24,7 +24,7 @@
       </ul>
       <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" ><img src="../img/icons/triagem.png" class="icon-modulo"  alt=""> <p>Triagem</p></a>
       <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
-      <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Portaria</p></a>
+      <a href="#" Class="anchor" id="modulo_3" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/portaria.png" class="icon-modulo" alt=""><p>Portaria</p></a>
     </main>
     <a href="#" id="user" class="nav_user">Usuário</a>
     <a href="#" class="nav_user">Deslogar</a>

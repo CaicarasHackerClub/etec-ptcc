@@ -48,7 +48,7 @@
       <input type="hidden" name=Nome_pag value="Administracao">
       </form> -->
 
-      <a class="anchor" href="../backend/sub_modulo.php" onclick="enviar(4)"><img class="avatars" id="img-portaria" src="../img/avatars/adm.png"><p class="txt_avatar" id="name-portaria">Portaria</p></a>
+      <a class="anchor" href="../backend/sub_modulo.php" onclick="enviar(4)"><img class="avatars" id="img-portaria" src="../img/avatars/portaria.png"><p class="txt_avatar" id="name-portaria">Portaria</p></a>
 
     </div>
 
