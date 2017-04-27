@@ -38,6 +38,7 @@ class Metodo {
 
   //medico
   private $med_crm;
+
   // especializacao
   private $esp_nome;
 
