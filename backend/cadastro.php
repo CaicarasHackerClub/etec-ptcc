@@ -248,15 +248,9 @@
 
               <div class="group-form group-form-cadastro">
                 <label class="lbl_class">Grau de escolaridade:</label>
-                <br>
-                <input class="inp_class" type="radio" name="pac_educacao" value="Ef1">Ensino Fundamental 1
-                <br>
-                <input class="inp_class" type="radio" name="pac_educacao" value="EF2">Ensino Fundamental 2
-                <br>
-                <input class="inp_class" type="radio" name="pac_educacao" value="EM">Ensino Médio
-                <br>
-                <input class="inp_class" type="radio" name="pac_educacao" value="ES">Ensino Superior
-                <br>
+                <?php
+                  $sql->selectbox("escolaridade");
+                ?>
               </div>
 
               <div class="group-form group-form-cadastro">
@@ -342,10 +336,10 @@
 
       if ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
-          $metodo->setPac_tipo_sangue   ($_POST['pac_tipo_sangue']);
+          $metodo->setPac_tipo_sangue   ('tipo_sanguineo');
           $metodo->setPac_remedio       ($_POST['pac_remedio']);
           $metodo->setPac_doenca        ($_POST['pac_doenca']);
-          $metodo->setPac_educacao      ($_POST['pac_educacao']);
+          $metodo->setPac_educacao      ('escolaridade');
 
           $metodo->setPds_convenio_nome  ($_POST['pds_convenio_nome']);
           $metodo->setPds_numero_sus     ($_POST['pds_numero_sus']);
@@ -463,10 +457,11 @@
               <label class="lbl_class">Especialização:</label>
               <?php
                 $sql->selectbox("especializacao");
-
+              ?>
+            <?php
             } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
-              ?>
+            ?>
               <h1>Enfermeiro</h1>
               <label class="lbl_class">Registro:</label>
               <input class="inp_class" type="text" name="enf_registro" size="28"><br>
@@ -523,7 +518,14 @@
 
           $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
 
-          $insEnf="INSERT INTO enfermeiro (enf_registro) VALUES('" . $metodo->getEnf_registro() . "');";
+          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+          $fun_id=$sql->selecionar($sel_id);
+
+
+          $insEnf="INSERT INTO enfermeiro (enf_registro, funcionario_fun_id) VALUES(
+                  '" . $metodo->getEnf_registro() . "',
+                  '" . $fun_id                    . "'
+                  );";
           $okEnf= $sql->inserir($insEnf);
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
