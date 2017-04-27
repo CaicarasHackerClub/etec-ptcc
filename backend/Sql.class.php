@@ -5,10 +5,25 @@ class Sql {
   // $user = "helth";
   // $password = "helth";
   // $db = "helth_hospital";
-    //
+
   public function conecta() {
     include 'conectar.php';
     return $con;
+  }
+
+  public function selecionar($query) {
+    $con = $this->conecta();
+    $res = mysqli_query($con, $query) or die("Erro selecionar  r()" . $query . mysqli_error($con));
+    $qtd = mysqli_num_rows($res);
+
+    mysqli_close($con);
+
+    if ($qtd == 0) {
+      return $qtd;
+    } else {
+      $posto = mysqli_fetch_array($res);
+      return $posto[0];
+    }
   }
 
   public function inserir($query) {
@@ -39,21 +54,6 @@ class Sql {
     return mysqli_num_rows($res);
   }
 
-  public function selecionar($query) {
-    $con = $this->conecta();
-    $res = mysqli_query($con, $query) or die("Erro selecionar  r()" . $query . mysqli_error($con));
-    $qtd = mysqli_num_rows($res);
-
-    mysqli_close($con);
-
-    if ($qtd == 0) {
-      return $qtd;
-    } else {
-      $posto = mysqli_fetch_array($res);
-      return $posto[0];
-    }
-  }
-
   public function selectbox($tabela) {
     $con = $this->conecta();
 
@@ -67,5 +67,27 @@ class Sql {
     echo  "</select><br>\n";
 
     mysqli_close($con);
+  }
+
+  public function blank($campos) {
+    $b = 0;
+    $s = "";
+
+    foreach ($campos as $key => $c) {
+      if ($c == "") {
+        $b++;
+        $s .= $b . '. O campo "' . $key . '" não pode ser deixado em branco.\n';
+      }
+    }
+
+    if ($s != "") {
+      $s = $b . ' erro(s):\n\n' . $s;
+      echo "
+        <script type='text/javascript'>
+          alert('$s');
+          history.back();
+        </script>
+      ";
+    }
   }
 }

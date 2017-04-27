@@ -82,24 +82,28 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   date_default_timezone_set('America/Sao_Paulo');
 
   $id = isset($_POST['id']) && !empty($_POST['id']) ? $_POST['id'] : 0;
-  $temp = isset($_POST['temp']) && !empty($_POST['temp']) ? trim($_POST['temp']) : 0; //
-  $pas = isset($_POST['pas']) && !empty($_POST['pas']) ? trim($_POST['pas']) : 0; //
-  $pad = isset($_POST['pad']) && !empty($_POST['pad']) ? trim($_POST['pad']) : 0; //
+  $temp = isset($_POST['temp']) ? trim($_POST['temp']) : ""; //
+  $pas = isset($_POST['pas']) ? trim($_POST['pas']) : ""; //
+  $pad = isset($_POST['pad']) ? trim($_POST['pad']) : ""; //
   $peso = isset($_POST['peso']) && !empty($_POST['peso']) ? trim($_POST['peso']) : 0;
   $altura = isset($_POST['altura']) && !empty($_POST['altura']) ? trim($_POST['altura']) : 0;
-  $batimento = isset($_POST['batimento']) && !empty($_POST['batimento']) ? trim($_POST['batimento']) : 0; //
+  $batimento = isset($_POST['batimento']) ? trim($_POST['batimento']) : ""; //
   $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : 0;
-  $resp = isset($_POST['resp']) && !empty($_POST['resp']) ? trim($_POST['resp']) : 0; //
+  $resp = isset($_POST['resp']) ? trim($_POST['resp']) : ""; //
   $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : 0;
   $orgaos = isset($_POST['org']) ? 1 : 0;
   $data = date('Y-m-d');
   $hora = date('H:i');
 
-  // $temp = $sql->verifica($_POST['temp']);
-  // $pas  = $sql->verifica($_POST['pas']);
-  // $pad  = $sql->verifica($_POST['pad']);
-  // $batimento  = $sql->verifica($_POST['batimento']);
-  // $resp = $sql->verifica($_POST['resp']);
+  $blank = [
+    'Temperatura corporal' => $temp,
+    'PAS' => $pas,
+    'PAD' => $pad,
+    'Batimento cardíaco' => $batimento,
+    'Respiração' => $resp,
+  ];
+
+  $sql->blank($blank);
 
   $class = isset($_POST['class']) ? $_POST['class'] : "0";
 
