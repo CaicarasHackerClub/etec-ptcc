@@ -22,7 +22,6 @@
     $cargo=mysqli_fetch_array($res);
 
     $_SESSION['tipo']=$cargo['fun_cargo'];
-
     ?>
     <a href="?acao=cadastro">Cadastro</a>
     <a href="?acao=logoff">Sair</a>
@@ -143,26 +142,26 @@
         <?php
 
       } elseif ($_GET['passo'] == 2) {
-        $metodo->setPes_nome          ($_POST['pes_nome']);
-        $metodo->setPes_pai           ($_POST['pes_pai']);
-        $metodo->setPes_mae           ($_POST['pes_mae']);
-        $metodo->setPes_rg            ($_POST['pes_rg']);
-        $metodo->setPes_cpf           ($_POST['pes_cpf']);
-        $metodo->setPes_data          ($_POST['pes_data']);
-        $metodo->setPes_email         ($_POST['pes_email']);
-        $metodo->setPes_estado_civil  ($_POST['estado_civil']);
-        $metodo->setPes_cidadania     ($_POST['pes_cidadania']);
-        $metodo->setPes_genero        ($_POST['genero']);
+        $metodo->setPes_nome($_POST['pes_nome']);
+        $metodo->setPes_pai($_POST['pes_pai']);
+        $metodo->setPes_mae($_POST['pes_mae']);
+        $metodo->setPes_rg($_POST['pes_rg']);
+        $metodo->setPes_cpf($_POST['pes_cpf']);
+        $metodo->setPes_data($_POST['pes_data']);
+        $metodo->setPes_email($_POST['pes_email']);
+        $metodo->setPes_estado_civil($_POST['estado_civil']);
+        $metodo->setPes_cidadania($_POST['pes_cidadania']);
+        $metodo->setPes_genero($_POST['genero']);
         $metodo->setPes_sexo_biologico($_POST['sexo']);
-        $metodo->setPes_telefone      ($_POST['pes_telefone']);
+        $metodo->setPes_telefone($_POST['pes_telefone']);
 
-        $metodo->setEnd_pais        ($_POST['end_pais']);
-        $metodo->setEnd_estado      ($_POST['estado']);
-        $metodo->setEnd_cidade      ($_POST['cidade']);
-        $metodo->setEnd_cep         ($_POST['end_cep']);
-        $metodo->setEnd_bairro      ($_POST['end_bairro']);
-        $metodo->setEnd_rua         ($_POST['end_rua']);
-        $metodo->setEnd_numero      ($_POST['end_numero']);
+        $metodo->setEnd_pais($_POST['end_pais']);
+        $metodo->setEnd_estado($_POST['estado']);
+        $metodo->setEnd_cidade($_POST['cidade']);
+        $metodo->setEnd_cep($_POST['end_cep']);
+        $metodo->setEnd_bairro($_POST['end_bairro']);
+        $metodo->setEnd_rua($_POST['end_rua']);
+        $metodo->setEnd_numero($_POST['end_numero']);
 
         // Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
         $selPes="SELECT * FROM pessoa WHERE pes_cpf='" . $_POST ['pes_cpf'] . "';";
@@ -336,14 +335,14 @@
 
       if ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
-          $metodo->setPac_tipo_sangue   ($_POST['tipo_sanguineo']);
-          $metodo->setPac_remedio       ($_POST['pac_remedio']);
-          $metodo->setPac_doenca        ($_POST['pac_doenca']);
-          $metodo->setPac_educacao      ($_POST['escolaridade']);
+          $metodo->setPac_tipo_sangue($_POST['tipo_sanguineo']);
+          $metodo->setPac_remedio($_POST['pac_remedio']);
+          $metodo->setPac_doenca($_POST['pac_doenca']);
+          $metodo->setPac_educacao($_POST['escolaridade']);
 
-          $metodo->setPds_convenio_nome  ($_POST['pds_convenio_nome']);
-          $metodo->setPds_numero_sus     ($_POST['pds_numero_sus']);
-          $metodo->setPds_num_convenio   ($_POST['pds_num_convenio']);
+          $metodo->setPds_convenio_nome($_POST['pds_convenio_nome']);
+          $metodo->setPds_numero_sus($_POST['pds_numero_sus']);
+          $metodo->setPds_num_convenio($_POST['pds_num_convenio']);
 
 
 
@@ -391,14 +390,14 @@
             }
             //}
         } elseif ($_SESSION['tipo'] == "administracao") {
-          $metodo->setFun_cargo     ($_POST ['fun_cargo']);
-          $metodo->setFun_horario   ($_POST ['fun_horario']);
-          $metodo->setFun_inscricao ($_POST ['fun_inscricao']);
-          $metodo->setFun_turno     ($_POST ['fun_turno']);
+          $metodo->setFun_cargo($_POST ['fun_cargo']);
+          $metodo->setFun_horario($_POST ['fun_horario']);
+          $metodo->setFun_inscricao($_POST ['fun_inscricao']);
+          $metodo->setFun_turno($_POST ['fun_turno']);
 
-          $metodo->setUsu_email ($_POST['usu_email']);
-          $metodo->setUsu_senha ($_POST['usu_senha']);
-          $metodo->setSet_setor ($_POST['setor']);
+          $metodo->setUsu_email($_POST['usu_email']);
+          $metodo->setUsu_senha($_POST['usu_senha']);
+          $metodo->setSet_setor($_POST['setor']);
 
           $_SESSION['fun_cargo'] = $_POST['fun_cargo'];
           // Seleção e inserção na tabela funcionário
@@ -446,8 +445,7 @@
           } else {
             echo "Erro ao cadastrar";
           }
-          if ($_POST['fun_cargo'] == "medico" || $_POST['fun_cargo'] == "enfermeiro" ||
-            $_POST['fun_cargo'] == "recepcao") {
+          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
             echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
             if ($_SESSION['fun_cargo'] == "medico") {
               ?>
@@ -477,7 +475,7 @@
             <input type="submit" value="Confirmar">
           <?php
           } else {
-            echo header("Location:cadastro.php&passo=4");
+            header("Location:cadastro.php&passo=4");
           }
         } else {
           header("Location:cadastro.php?passo=4");
