@@ -336,10 +336,10 @@
 
       if ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
-          $metodo->setPac_tipo_sangue   ('tipo_sanguineo');
+          $metodo->setPac_tipo_sangue   ($_POST['tipo_sanguineo']);
           $metodo->setPac_remedio       ($_POST['pac_remedio']);
           $metodo->setPac_doenca        ($_POST['pac_doenca']);
-          $metodo->setPac_educacao      ('escolaridade');
+          $metodo->setPac_educacao      ($_POST['escolaridade']);
 
           $metodo->setPds_convenio_nome  ($_POST['pds_convenio_nome']);
           $metodo->setPds_numero_sus     ($_POST['pds_numero_sus']);
@@ -452,19 +452,23 @@
             if ($_SESSION['fun_cargo'] == "medico") {
               ?>
               <h1>Médico</h1>
-              <label class="lbl_class">CRM:</label>
-              <input class="inp_class" type="text" name="med_crm" size="28"><br>
-              <label class="lbl_class">Especialização:</label>
+              <div class="group-form group-form-cadastro">
+                <label class="lbl_class">CRM:</label>
+                <input class="inp_class" type="text" name="med_crm" size="28"><br>
+                <label class="lbl_class">Especialização:</label>
               <?php
                 $sql->selectbox("especializacao");
               ?>
+              </div>
             <?php
             } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
             ?>
               <h1>Enfermeiro</h1>
-              <label class="lbl_class">Registro:</label>
-              <input class="inp_class" type="text" name="enf_registro" size="28"><br>
+              <div class="group-form group-form-cadastro">
+                <label class="lbl_class">Registro:</label>
+                <input class="inp_class" type="text" name="enf_registro" size="28"><br>
+              </div>
               <?php
             } else {
               echo "Não está sendo cadastrado medico ou enfermeiro";
@@ -482,7 +486,7 @@
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
         if ($_SESSION['fun_cargo'] == "medico") {
           $metodo->setMed_crm($_POST['med_crm']);
-          $metodo->setEsp_nome('especializacao');
+          $metodo->setEsp_nome($_POST['especializacao']);
 
           $esp=$metodo->getEsp_nome();
           echo $esp;
