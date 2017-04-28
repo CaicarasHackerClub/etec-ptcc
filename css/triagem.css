@@ -58,3 +58,44 @@
   border-radius:  3px 3px 3px 3px;
   margin-left: 40%;
 }
+
+.form-triagem {
+  overflow: auto;
+  border: 1px solid;
+  width: 100%;
+}
+
+.form-triagem .group-form {
+  margin-left: 6%;
+}
+
+@media (min-width: 650px) {
+  .form-triagem .group-form {
+    /*margin-left: 1%;*/
+  }
+}
+
+/* Dispositivos pequenos (tablets, 768px e superiores) */
+@media (min-width: 768px) {
+  .form-triagem .group-form {
+    /*margin-left: 3%;*/
+  }
+}
+
+/* Dispositivos médios (desktops, 992px e superiores) */
+@media (min-width: 992px) {
+}
+
+/* Dispositivos grandes (desktops grandes, 1200px e superiores) */
+@media (min-width: 1144px) {
+
+}
+
+.form-triagem {
+  width: 100%;
+  height: 100vh;
+}
+
+.form-triagem .group-form {
+  margin-left: 15%;
+}

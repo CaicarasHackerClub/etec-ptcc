@@ -325,6 +325,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   text-align:center;
   padding-top:5px;
   background-color: #01b26a;
+  border-right: 1px solid #29784b;
 }
 
 .ativa{
@@ -357,7 +358,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   font-family: sans-serif;
   /*border: 1px solid;*/
-  margin-left: 6%;
   overflow:scroll;
 }
 
