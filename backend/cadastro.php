@@ -452,19 +452,23 @@
             if ($_SESSION['fun_cargo'] == "medico") {
               ?>
               <h1>Médico</h1>
-              <label class="lbl_class">CRM:</label>
-              <input class="inp_class" type="text" name="med_crm" size="28"><br>
-              <label class="lbl_class">Especialização:</label>
+              <div class="group-form group-form-cadastro">
+                <label class="lbl_class">CRM:</label>
+                <input class="inp_class" type="text" name="med_crm" size="28"><br>
+                <label class="lbl_class">Especialização:</label>
               <?php
                 $sql->selectbox("especializacao");
               ?>
+              </div>
             <?php
             } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
             ?>
               <h1>Enfermeiro</h1>
-              <label class="lbl_class">Registro:</label>
-              <input class="inp_class" type="text" name="enf_registro" size="28"><br>
+              <div class="group-form group-form-cadastro">
+                <label class="lbl_class">Registro:</label>
+                <input class="inp_class" type="text" name="enf_registro" size="28"><br>
+              </div>
               <?php
             } else {
               echo "Não está sendo cadastrado medico ou enfermeiro";
