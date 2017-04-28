@@ -1,3 +1,5 @@
+<meta http-equiv="refresh" content="30">
+
 <?php
   include_once 'Fila.class.php';
 
