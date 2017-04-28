@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 27/04/2017 às 00:28
+-- Tempo de geração: 29/04/2017 às 01:08
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10001,7 +10001,7 @@ CREATE TABLE `funcionario` (
   `fun_id` int(11) NOT NULL,
   `fun_cargo` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'cargo ocupado pelo funcionário',
   `fun_horario` time NOT NULL COMMENT 'quantas horas trabalha por dia o funcionário',
-  `fun_inscricao` int(9) NOT NULL COMMENT 'número que foi registrado ou carteira do funcionario',
+  `fun_inscricao` varchar(9) COLLATE utf8_bin NOT NULL COMMENT 'número que foi registrado ou carteira do funcionario',
   `fun_turno` varchar(8) COLLATE utf8_bin NOT NULL COMMENT 'em qual turno trabalha ',
   `pessoa_pes_id` int(11) NOT NULL,
   `setor_set_id` int(11) NOT NULL
@@ -10012,11 +10012,11 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `pessoa_pes_id`, `setor_set_id`) VALUES
-(1, 'medico', '08:00:00', 1111111, 'noturno', 1, 3),
-(2, 'enfermeiro', '08:00:00', 1111112, 'noturno', 2, 5),
-(3, 'administracao', '07:00:00', 1222222, 'noturno', 4, 1),
-(4, 'recepcao', '07:00:00', 13333333, 'noturno', 5, 1),
-(5, 'recpcionista', '07:00:00', 1444444, 'noturno', 6, 4);
+(1, 'medico', '08:00:00', '1111111', 'noturno', 1, 3),
+(2, 'enfermeiro', '08:00:00', '1111112', 'noturno', 2, 5),
+(3, 'administracao', '07:00:00', '1222222', 'noturno', 4, 1),
+(4, 'recepcao', '07:00:00', '13333333', 'noturno', 5, 1),
+(5, 'recpcionista', '07:00:00', '1444444', 'noturno', 6, 4);
 
 -- --------------------------------------------------------
 
@@ -10097,8 +10097,8 @@ CREATE TABLE `medico_has_especializacao` (
 CREATE TABLE `paciente` (
   `pac_id` int(11) NOT NULL,
   `pac_tipo_sangue` int(11) DEFAULT NULL COMMENT 'tipo sanguíneo',
-  `pac_remedio` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'se tomar remédio, avisair quais',
-  `pac_doenca` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'se tiver alguma doença avisar quais',
+  `pac_remedio` text COLLATE utf8_bin COMMENT 'se tomar remédio, avisair quais',
+  `pac_doenca` text COLLATE utf8_bin COMMENT 'se tiver alguma doença avisar quais',
   `pac_educacao` int(11) DEFAULT NULL COMMENT 'nivel de escolaridade',
   `pac_hospitalizado` tinyint(1) DEFAULT NULL COMMENT 'se está ou não hospitalizado',
   `pessoa_pes_id` int(11) NOT NULL
