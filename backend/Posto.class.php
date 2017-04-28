@@ -187,7 +187,7 @@ class Metodo {
   }
 
   //setor
-  public function setSet_setor($setor){
+  public function setSet_setor($setor) {
     $this->set_setor = $setor;
   }
   //get pessoa
