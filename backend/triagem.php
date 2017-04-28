@@ -10,66 +10,67 @@
 if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   ?>
   <form class="form form-triagem" action="triagem.php" method="post">
+    <div class="content-form">
+      <div class="group-form">
+        <label class="lbl_class">ID: </label>
+        <input class="inp_class" type="text" size="4" name="id"> <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">ID: </label>
-    <input class="inp_class" type="text" size="4" name="id"> <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">Peso: </label>
+        <input class="inp_class" type="text" size="3" name="peso"> kg <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">Peso: </label>
-    <input class="inp_class" type="text" size="3" name="peso"> kg <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">Altura: </label>
+        <input class="inp_class" type="text" size="3" name="altura"> m <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">Altura: </label>
-    <input class="inp_class" type="text" size="3" name="altura"> m <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">Batimento cardíaco: </label>
+        <input class="inp_class" type="text" size="3" name="batimento" <!--required--> bpm <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">Batimento cardíaco: </label>
-    <input class="inp_class" type="text" size="3" name="batimento" <!--required--> bpm <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">Respiração: </label>
+        <input class="inp_class" type="text" size="3" name="resp" <!--required--> rpm <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">Respiração: </label>
-    <input class="inp_class" type="text" size="3" name="resp" <!--required--> rpm <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">Temperatura corporal: </label>
+        <input class="inp_class" type="text" size="2" name="temp" <!--required--> ºC <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">Temperatura corporal: </label>
-    <input class="inp_class" type="text" size="2" name="temp" <!--required--> ºC <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">PAS: </label>
+        <input class="inp_class" type="text" size="3" name="pas" <!--required--> mmHg <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">PAS: </label>
-    <input class="inp_class" type="text" size="3" name="pas" <!--required--> mmHg <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class">PAD: </label>
+        <input class="inp_class" type="text" size="3" name="pad" <!--required--> mmHg <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class">PAD: </label>
-    <input class="inp_class" type="text" size="3" name="pad" <!--required--> mmHg <br>
-  </div>
+      <div class="group-form">
+        <label class="lbl_class edit-class">Nível de oxigenação: </label>
+        <input class="inp_class" type="text" size="3" name="oxi"> % <br>
+      </div>
 
-  <div class="group-form">
-    <label class="lbl_class edit-class">Nível de oxigenação: </label>
-    <input class="inp_class" type="text" size="3" name="oxi"> % <br>
-  </div>
-
-  <div class="group-form">
-    <label class="lbl_class">Dor: </label>
-    <select class="inp_class" name="dor">
-    <?php
-    for ($i = 0; $i <= 10; $i++) {
-      echo "<option value='$i'> $i </option>";
-    } ?>
-    </select> <br>
-  </div>
-  <div class="group-form">
-    <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
-    <input id="indi" class="inp_class" type="checkbox" name="org">
-  </div>
-  <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
+      <div class="group-form">
+        <label class="lbl_class">Dor: </label>
+        <select class="inp_class" name="dor">
+          <?php
+          for ($i = 0; $i <= 10; $i++) {
+            echo "<option value='$i'> $i </option>";
+          } ?>
+        </select> <br>
+      </div>
+      <div class="group-form">
+        <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
+        <input id="indi" class="inp_class" type="checkbox" name="org">
+      </div>
+      <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
+    </div>
   </form>
   <?php
 } else {
