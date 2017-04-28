@@ -2,3 +2,4 @@ backend/conectar.php
 .php_cs.cache
 node_modules
 *.sw[pon]
+*.log
