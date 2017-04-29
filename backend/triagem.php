@@ -18,42 +18,42 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
 
       <div class="group-form">
         <label class="lbl_class">Peso: </label>
-        <input class="inp_class" type="text" size="3" name="peso"> kg <br>
+        <input class="inp_class" type="text" size="3" name="peso"> <p>kg</p> <br>
       </div>
 
       <div class="group-form">
         <label class="lbl_class">Altura: </label>
-        <input class="inp_class" type="text" size="3" name="altura"> m <br>
+        <input class="inp_class" type="text" size="3" name="altura"> <p>m</p> <br>
       </div>
 
       <div class="group-form">
-        <label class="lbl_class">Batimento cardíaco: </label>
-        <input class="inp_class" type="text" size="3" name="batimento" <!--required--> bpm <br>
+        <label class="lbl_class min-class">Batimento cardíaco: </label>
+        <input class="inp_class" type="text" size="3" name="batimento" <!--required--> <p>bpm</p> <br>
       </div>
 
       <div class="group-form">
-        <label class="lbl_class">Respiração: </label>
-        <input class="inp_class" type="text" size="3" name="resp" <!--required--> rpm <br>
+        <label class="lbl_class ">Respiração: </label>
+        <input class="inp_class" type="text" size="3" name="resp" <!--required--> <p>rpm</p> <br>
       </div>
 
       <div class="group-form">
-        <label class="lbl_class">Temperatura corporal: </label>
-        <input class="inp_class" type="text" size="2" name="temp" <!--required--> ºC <br>
+        <label class="lbl_class">Temperatura: </label>
+        <input class="inp_class" type="text" size="2" name="temp" <!--required--> <p>ºC </p> <br>
       </div>
 
       <div class="group-form">
         <label class="lbl_class">PAS: </label>
-        <input class="inp_class" type="text" size="3" name="pas" <!--required--> mmHg <br>
+        <input class="inp_class" type="text" size="3" name="pas" <!--required--> <p>mmHg</p> <br>
       </div>
 
       <div class="group-form">
         <label class="lbl_class">PAD: </label>
-        <input class="inp_class" type="text" size="3" name="pad" <!--required--> mmHg <br>
+        <input class="inp_class" type="text" size="3" name="pad" <!--required--> <p>mmHg</p> <br>
       </div>
 
       <div class="group-form">
-        <label class="lbl_class edit-class">Nível de oxigenação: </label>
-        <input class="inp_class" type="text" size="3" name="oxi"> % <br>
+        <label class="lbl_class min-class">Nível de oxigenação: </label>
+        <input class="inp_class" type="text" size="3" name="oxi"> <p>%</p> <br>
       </div>
 
       <div class="group-form">
