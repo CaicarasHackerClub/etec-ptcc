@@ -104,8 +104,8 @@
 
 @media (max-width: 761px) {
   .form-triagem .group-form {
-    width: 41%;
-    margin-left: 6%;
+    width: 38%;
+    margin-left: 8%;
   }
 
   .form-triagem .group-form .min-class{
@@ -113,13 +113,13 @@
   }
 
   .form-triagem .group-form .lbl_class{
-    width: 50%;
+    width: 47%;
   }
 }
 
 @media (max-width: 643px) {
   .form-triagem .group-form {
-    width: 48%;
+    width: 47%;
     margin-left: 1%;
   }
 
@@ -134,7 +134,7 @@
 
 @media (max-width: 480px) {
   .form-triagem .group-form {
-    width: 320px;
+    width: 300px;
     margin-right: 10px;
   }
 
@@ -142,7 +142,11 @@
     font-size: 10pt;
   }
 
+  .form-triagem .group-form .lbl_class{
+    width: 170px;
+  }
+
   .form-triagem .group-form .min-class{
-    line-height: 50px;
+    line-height: 45px;
   }
 }
