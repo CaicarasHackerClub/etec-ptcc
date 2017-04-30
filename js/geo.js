@@ -32,9 +32,9 @@ $(function() {
 
   infoWindowSC.open(map, markerSC);
 
-  $('.form-search').submit(function(ev) {
+  $('.search-form').submit(function(ev) {
     ev.preventDefault();
-    var pessoa = $('.in-search').val();
+    var pessoa = $('.search-in').val();
 
     $.get('geolocalizar.php', { pessoa: pessoa })
       .done(function(data) {
