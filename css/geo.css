@@ -23,17 +23,18 @@ html, body {
 
 .search-wrapper {
   position: relative;
-  color: #777;
 }
 
 .fa-search {
   position: absolute;
   top: 0.6em;
   left: 0.3em;
+  color: #777;
 }
 
 .search-in {
   font-size: 1em;
+  color: #777;
   width: 100%;
   padding: 0.6em;
   padding-left: 1.5em;
