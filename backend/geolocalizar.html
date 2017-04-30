@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Geo</title>
+    <title>Geo Health</title>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -12,81 +12,27 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style media="screen">
-      html, body {
-        margin: 0;
-        padding: 0;
-      }
-      .row {
-        display: flex;
-        flex-flow: row;
-        width: 100%;
-      }
-      .control {
-        width: 20%;
-        height: 100vh;
-      }
-      .map {
-        width: 80%;
-        height: 100vh;
-      }
-      .info ul {
-        list-style: none;
-      }
-    </style>
+
+    <link rel="stylesheet" href="../css/geo.css">
   </head>
   <body>
     <div class="container">
       <div class="row">
 
         <aside class="control">
-          <form class="" action="" method="">
-            <input type="text" name="" value="">
-            <button type="button" name="button">Search</button>
+          <form class="form-search">
+            <input type="search" name="" value="" class="in-search" placeholder="Paciente">
           </form>
+          <div class="info"></div>
         </aside>
 
         <main id="map" class="map"></main>
       </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../js/geo.js"></script>
 
-    <script>
-      var map;
-      var santaCasa = {lat: -23.4350898, lng: -45.0714174};
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: santaCasa
-        });
-
-        var markerSC = new google.maps.Marker({
-          title: 'Santa Casa',
-          map: map,
-          animation: google.maps.Animation.DROP,
-          position: santaCasa
-        });
-
-        markerSC.addListener('click', function() {
-          infoWindowSC.open(map, markerSC);
-        });
-
-        var infoSC = '<div class="info">' +
-        '<h3>Santa Casa Ubatuba</h3>' +
-          '<ul>' +
-            '<li><a href="http://santacasaubatuba.org.br">santacasaubatuba.org.br</a></li>' +
-            '<li>R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil</li>' +
-            '<li>+55 12 3834-3230</li>' +
-          '</ul>' +
-        '</div>';
-
-        var infoWindowSC = new google.maps.InfoWindow({
-          content: infoSC
-        });
-      }
-
-    </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&callback=initMap">
     </script>
