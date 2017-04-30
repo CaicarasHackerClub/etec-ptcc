@@ -2,28 +2,24 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 .row {
   display: flex;
   flex-flow: row;
   width: 100%;
 }
+
 .control {
   width: 20%;
   height: 100vh;
 }
+
 .in-search {
   width: 100%;
   padding: 0.6em;
 }
+
 .map {
   width: 80%;
   height: 100vh;
-}
-.ul-info{
-  width: 100%;
-  padding-left: 0.5em;
-  list-style: none;
-}
-.infoWin ul {
-  list-style: none;
 }
