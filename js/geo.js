@@ -26,11 +26,11 @@ $(function() {
     content: infoSC
   });
 
-  infoWindowSC.open(map, markerSC);
-
   markerSC.addListener('click', function() {
     infoWindowSC.open(map, markerSC);
   });
+
+  infoWindowSC.open(map, markerSC);
 
   $('.form-search').submit(function(ev) {
     ev.preventDefault();

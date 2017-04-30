@@ -23,3 +23,9 @@ html, body {
   width: 80%;
   height: 100vh;
 }
+
+.ul-info{
+  width: 100%;
+  padding-left: 0.5em;
+  list-style: none;
+}
