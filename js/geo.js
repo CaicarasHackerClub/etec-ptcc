@@ -1,8 +1,7 @@
-var map;
-var santaCasa = {lat: -23.4350898, lng: -45.0714174};
+$(function() {
+  var santaCasa = {lat: -23.4350898, lng: -45.0714174};
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: santaCasa
   });
@@ -12,10 +11,6 @@ function initMap() {
     map: map,
     animation: google.maps.Animation.DROP,
     position: santaCasa
-  });
-
-  markerSC.addListener('click', function() {
-    infoWindowSC.open(map, markerSC);
   });
 
   var infoSC = '<div class="poi-info-window gm-style">' +
@@ -29,6 +24,12 @@ function initMap() {
 
   var infoWindowSC = new google.maps.InfoWindow({
     content: infoSC
+  });
+
+  infoWindowSC.open(map, markerSC);
+
+  markerSC.addListener('click', function() {
+    infoWindowSC.open(map, markerSC);
   });
 
   $('.form-search').submit(function(ev) {
@@ -61,4 +62,4 @@ function initMap() {
 
       });
   });
-}
+});
