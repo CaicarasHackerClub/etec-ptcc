@@ -38,14 +38,16 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
-    center: santaCasa
+    center: santaCasa,
+    mapTypeControl: false,
+    streetViewControl: false
   });
 
   var markerSC = new google.maps.Marker({
     title: 'Santa Casa',
     map: map,
     animation: google.maps.Animation.DROP,
-    position: santaCasa
+    position: santaCasa,
   });
 
   var infoSC = '<div class="poi-info-window gm-style">' +
