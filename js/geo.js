@@ -1,6 +1,27 @@
 var map;
 var santaCasa = {lat: -23.4350898, lng: -45.0714174};
 
+function makeInfoWindow(info) {
+  var infoW = '<div class="poi-info-window gm-style">' +
+    '<div class="address">%address%</div>' +
+    '</div>';
+  var infoWTitle = '<div class="title full-width">%title%</div>';
+  var infoWLine = '<div class="address-line full-width">%line%</div>';
+  var infoWLink = '<div class="view-link"><a href="%url%">%value%</a></div>';
+
+  var tmpStr = infoWTitle.replace(/%title%/, info.title);
+  info.lines.forEach(function(line) {
+    tmpStr += infoWLine.replace(/%line%/, line);
+  });
+  info.links.forEach(function(link) {
+    tmpStr += infoWLink
+      .replace(/%url%/, link.url)
+      .replace(/%value%/, link.value);
+  });
+
+  return infoW.replace(/%address%/, tmpStr);
+}
+
 $(function() {
 
   function getEndereco(rua, numero, bairro, cidade, cep) {
@@ -112,17 +133,29 @@ function initMap() {
 
   var markerSC = setMarkerByPosition(santaCasa, 'Santa Casa de Ubatuba');
 
-  var infoSC = '<div class="poi-info-window gm-style">' +
-      '<div class="address">' +
-        '<div class="title full-width">Santa Casa de Ubatuba</div>' +
-        '<div class="address-line full-width">R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil</div>' +
-        '<div class="address-line full-width">+55 12 3834-3230</div>' +
-        '<div class="view-link"><a href="http://santacasaubatuba.org.br">santacasaubatuba.org.br</a></div>' +
-      '</div>' +
-    '</div>';
+  // var infoSC = '<div class="poi-info-window gm-style">' +
+  //     '<div class="address">' +
+  //       '<div class="title full-width">Santa Casa de Ubatuba</div>' +
+  //       '<div class="address-line full-width">R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil</div>' +
+  //       '<div class="address-line full-width">+55 12 3834-3230</div>' +
+  //       '<div class="view-link"><a href="http://santacasaubatuba.org.br">santacasaubatuba.org.br</a></div>' +
+  //     '</div>' +
+  //   '</div>';
+
+  var infoSC = makeInfoWindow({
+    title: 'Santa Casa de Ubatuba',
+    lines: [
+      'R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil',
+      '+55 12 3834-3230'
+    ],
+    links: [{
+      url: 'http://santacasaubatuba.org.br',
+      value: 'santacasaubatuba.org.br'
+    }]
+  });
 
   var infoWindowSC = new google.maps.InfoWindow({
-    content: infoSC
+    content: infoSC,
   });
 
   markerSC.addListener('click', function() {
