@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 29/04/2017 às 01:08
--- Versão do servidor: 10.1.21-MariaDB
--- Versão do PHP: 7.1.1
+-- Generation Time: May 01, 2017 at 04:46 PM
+-- Server version: 5.7.18-0ubuntu0.16.04.1
+-- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `helth_hospital`
+-- Database: `helth_hospital`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cidade`
+-- Table structure for table `cidade`
 --
 
 CREATE TABLE `cidade` (
@@ -34,7 +34,7 @@ CREATE TABLE `cidade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `cidade`
+-- Dumping data for table `cidade`
 --
 
 INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`, `cid_capital`) VALUES
@@ -9754,7 +9754,7 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`, `cid_capital`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cores`
+-- Table structure for table `cores`
 --
 
 CREATE TABLE `cores` (
@@ -9764,7 +9764,7 @@ CREATE TABLE `cores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `cores`
+-- Dumping data for table `cores`
 --
 
 INSERT INTO `cores` (`cor_id`, `cor_nome`, `cor_ativo`) VALUES
@@ -9777,7 +9777,7 @@ INSERT INTO `cores` (`cor_id`, `cor_nome`, `cor_ativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `endereco`
+-- Table structure for table `endereco`
 --
 
 CREATE TABLE `endereco` (
@@ -9793,30 +9793,30 @@ CREATE TABLE `endereco` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `endereco`
+-- Dumping data for table `endereco`
 --
 
 INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`, `pessoa_pes_id`) VALUES
-(1, 'Brasil', 26, 910, '11680-000', 'Centro', 'Central', 314, 1),
-(2, 'Brasil', 26, 456, '11680-000', 'Centro', 'Castro Alves', 507, 2),
-(3, 'Brasil', 26, 234, '11680-000', 'Centro', 'Taubaté', 314, 3),
-(4, 'Brasil', 26, 1, '11680-000', 'Ipiranguinha', 'Cascata', 288, 4),
-(5, 'Brasil', 26, 905, '11680-000', 'Estufa 2', 'Comercial', 212, 5),
-(6, 'Brasil', 26, 45, '11680-000', 'Sumaré', 'Longitude', 344, 6),
-(7, 'Brasil', 26, 78, '11680-000', 'Estufa 2', 'Vasco da Gama', 31, 7),
-(8, 'Brasil', 26, 89, '11680-000', 'Ipiranguinha', 'Cascata', 14, 8),
-(9, 'Brasil', 26, 90, '11680-000', 'Folha Seca', 'Maria Vieira', 122, 9),
-(10, 'Brasil', 20, 90, '11680-000', 'Centro', 'Espelhado', 300, 10),
-(11, 'Brasil', 26, 80, '11680-000', 'Caçandoca', 'Montes Verdes', 220, 11),
-(12, 'Brasil', 26, 70, '11680-000', 'Itagua', 'Camarão', 480, 12),
-(13, 'Brasil', 26, 60, '11680-000', 'Centro', 'Voltar', 500, 13),
-(14, 'Brasil', 26, 50, '11680-000', 'Barra Seca', 'Caminhos', 580, 14),
-(15, 'Brasil', 26, 40, '11680-000', 'Horto', 'Flor', 10, 15);
+(1, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 715, 1),
+(2, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 346, 2),
+(3, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Praça Exaltação da Santa Cruz', 350, 3),
+(4, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Cunhambebe', 1123, 4),
+(5, 'Brasil', 26, 9510, '11680-000', 'Estufa 1', 'XV de Novembro', 308, 5),
+(6, 'Brasil', 26, 9510, '11680-000', 'Itaguá', 'Antônio Atanázio', 273, 6),
+(7, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'América', 200, 7),
+(8, 'Brasil', 26, 9510, '11680-000', 'Itaguá', 'Robillard de Marigny', 501, 8),
+(9, 'Brasil', 26, 9510, '11680-000', 'Acaraú', 'Valdelice', 21, 9),
+(10, 'Brasil', 20, 9510, '11680-000', 'Acaraú', 'Gabriel Tenório', 44, 10),
+(11, 'Brasil', 26, 9510, '11680-000', 'Jardim Carolina', 'Rodovia Oswaldo Cruz', 1300, 11),
+(12, 'Brasil', 26, 9510, '11680-000', 'Marafunda', 'Sebastião Camargo', 180, 12),
+(13, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Est. Cascata', 380, 13),
+(14, 'Brasil', 26, 9510, '11680-000', 'Horto Forestal', 'Rodovia Oswaldo Cruz', 4502, 14),
+(15, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'República', 40, 15);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `enfermeiro`
+-- Table structure for table `enfermeiro`
 --
 
 CREATE TABLE `enfermeiro` (
@@ -9826,7 +9826,7 @@ CREATE TABLE `enfermeiro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `enfermeiro`
+-- Dumping data for table `enfermeiro`
 --
 
 INSERT INTO `enfermeiro` (`enf_id`, `enf_registro`, `funcionario_fun_id`) VALUES
@@ -9835,7 +9835,7 @@ INSERT INTO `enfermeiro` (`enf_id`, `enf_registro`, `funcionario_fun_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `escolaridade`
+-- Table structure for table `escolaridade`
 --
 
 CREATE TABLE `escolaridade` (
@@ -9844,7 +9844,7 @@ CREATE TABLE `escolaridade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `escolaridade`
+-- Dumping data for table `escolaridade`
 --
 
 INSERT INTO `escolaridade` (`esc_id`, `esc_nome`) VALUES
@@ -9857,7 +9857,7 @@ INSERT INTO `escolaridade` (`esc_id`, `esc_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `especializacao`
+-- Table structure for table `especializacao`
 --
 
 CREATE TABLE `especializacao` (
@@ -9866,7 +9866,7 @@ CREATE TABLE `especializacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `especializacao`
+-- Dumping data for table `especializacao`
 --
 
 INSERT INTO `especializacao` (`esp_id`, `esp_nome`) VALUES
@@ -9928,7 +9928,7 @@ INSERT INTO `especializacao` (`esp_id`, `esp_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estado`
+-- Table structure for table `estado`
 --
 
 CREATE TABLE `estado` (
@@ -9938,7 +9938,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `estado`
+-- Dumping data for table `estado`
 --
 
 INSERT INTO `estado` (`est_id`, `est_nome`, `est_sigla`) VALUES
@@ -9973,7 +9973,7 @@ INSERT INTO `estado` (`est_id`, `est_nome`, `est_sigla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estado_civil`
+-- Table structure for table `estado_civil`
 --
 
 CREATE TABLE `estado_civil` (
@@ -9982,7 +9982,7 @@ CREATE TABLE `estado_civil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `estado_civil`
+-- Dumping data for table `estado_civil`
 --
 
 INSERT INTO `estado_civil` (`etc_id`, `etc_nome`) VALUES
@@ -9994,7 +9994,7 @@ INSERT INTO `estado_civil` (`etc_id`, `etc_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `funcionario`
+-- Table structure for table `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -10008,7 +10008,7 @@ CREATE TABLE `funcionario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `funcionario`
+-- Dumping data for table `funcionario`
 --
 
 INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `pessoa_pes_id`, `setor_set_id`) VALUES
@@ -10021,7 +10021,7 @@ INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `genero`
+-- Table structure for table `genero`
 --
 
 CREATE TABLE `genero` (
@@ -10030,7 +10030,7 @@ CREATE TABLE `genero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `genero`
+-- Dumping data for table `genero`
 --
 
 INSERT INTO `genero` (`gen_id`, `gen_genero`) VALUES
@@ -10041,7 +10041,7 @@ INSERT INTO `genero` (`gen_id`, `gen_genero`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `login_acesso`
+-- Table structure for table `login_acesso`
 --
 
 CREATE TABLE `login_acesso` (
@@ -10052,7 +10052,7 @@ CREATE TABLE `login_acesso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `login_acesso`
+-- Dumping data for table `login_acesso`
 --
 
 INSERT INTO `login_acesso` (`log_id`, `log_data`, `log_ip`, `usuario_usu_id`) VALUES
@@ -10061,7 +10061,7 @@ INSERT INTO `login_acesso` (`log_id`, `log_data`, `log_ip`, `usuario_usu_id`) VA
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `medico`
+-- Table structure for table `medico`
 --
 
 CREATE TABLE `medico` (
@@ -10071,7 +10071,7 @@ CREATE TABLE `medico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `medico`
+-- Dumping data for table `medico`
 --
 
 INSERT INTO `medico` (`med_id`, `med_crm`, `funcionario_fun_id`) VALUES
@@ -10080,7 +10080,7 @@ INSERT INTO `medico` (`med_id`, `med_crm`, `funcionario_fun_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `medico_has_especializacao`
+-- Table structure for table `medico_has_especializacao`
 --
 
 CREATE TABLE `medico_has_especializacao` (
@@ -10091,7 +10091,7 @@ CREATE TABLE `medico_has_especializacao` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `paciente`
+-- Table structure for table `paciente`
 --
 
 CREATE TABLE `paciente` (
@@ -10105,7 +10105,7 @@ CREATE TABLE `paciente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `paciente`
+-- Dumping data for table `paciente`
 --
 
 INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`, `pac_educacao`, `pac_hospitalizado`, `pessoa_pes_id`) VALUES
@@ -10123,7 +10123,7 @@ INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `pessoa`
+-- Table structure for table `pessoa`
 --
 
 CREATE TABLE `pessoa` (
@@ -10144,7 +10144,7 @@ CREATE TABLE `pessoa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `pessoa`
+-- Dumping data for table `pessoa`
 --
 
 INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`) VALUES
@@ -10167,7 +10167,7 @@ INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `plano_de_saude`
+-- Table structure for table `plano_de_saude`
 --
 
 CREATE TABLE `plano_de_saude` (
@@ -10181,7 +10181,7 @@ CREATE TABLE `plano_de_saude` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `setor`
+-- Table structure for table `setor`
 --
 
 CREATE TABLE `setor` (
@@ -10192,7 +10192,7 @@ CREATE TABLE `setor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `setor`
+-- Dumping data for table `setor`
 --
 
 INSERT INTO `setor` (`set_id`, `set_nome`, `set_descricao`, `set_responsavel`) VALUES
@@ -10208,7 +10208,7 @@ INSERT INTO `setor` (`set_id`, `set_nome`, `set_descricao`, `set_responsavel`) V
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `sexo`
+-- Table structure for table `sexo`
 --
 
 CREATE TABLE `sexo` (
@@ -10217,7 +10217,7 @@ CREATE TABLE `sexo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `sexo`
+-- Dumping data for table `sexo`
 --
 
 INSERT INTO `sexo` (`sex_id`, `sex_sexo`) VALUES
@@ -10228,7 +10228,7 @@ INSERT INTO `sexo` (`sex_id`, `sex_sexo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `status_triagem`
+-- Table structure for table `status_triagem`
 --
 
 CREATE TABLE `status_triagem` (
@@ -10237,7 +10237,7 @@ CREATE TABLE `status_triagem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `status_triagem`
+-- Dumping data for table `status_triagem`
 --
 
 INSERT INTO `status_triagem` (`stt_id`, `stt_nome`) VALUES
@@ -10251,7 +10251,7 @@ INSERT INTO `status_triagem` (`stt_id`, `stt_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `sub_setor`
+-- Table structure for table `sub_setor`
 --
 
 CREATE TABLE `sub_setor` (
@@ -10261,7 +10261,7 @@ CREATE TABLE `sub_setor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `sub_setor`
+-- Dumping data for table `sub_setor`
 --
 
 INSERT INTO `sub_setor` (`sbs_id`, `sbs_nome`, `setor_set_id`) VALUES
@@ -10275,7 +10275,7 @@ INSERT INTO `sub_setor` (`sbs_id`, `sbs_nome`, `setor_set_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo_sanguineo`
+-- Table structure for table `tipo_sanguineo`
 --
 
 CREATE TABLE `tipo_sanguineo` (
@@ -10284,7 +10284,7 @@ CREATE TABLE `tipo_sanguineo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `tipo_sanguineo`
+-- Dumping data for table `tipo_sanguineo`
 --
 
 INSERT INTO `tipo_sanguineo` (`tis_id`, `tis_nome`) VALUES
@@ -10300,7 +10300,7 @@ INSERT INTO `tipo_sanguineo` (`tis_id`, `tis_nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `triagem`
+-- Table structure for table `triagem`
 --
 
 CREATE TABLE `triagem` (
@@ -10324,7 +10324,7 @@ CREATE TABLE `triagem` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -10337,7 +10337,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Fazendo dump de dados para tabela `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`, `funcionario_id`) VALUES
@@ -10348,24 +10348,24 @@ INSERT INTO `usuario` (`usu_id`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tip
 (5, '123', 'etec3@etec', 1, 1, 5);
 
 --
--- Índices de tabelas apagadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `cidade`
+-- Indexes for table `cidade`
 --
 ALTER TABLE `cidade`
   ADD PRIMARY KEY (`cid_id`),
   ADD KEY `est_id` (`est_id`);
 
 --
--- Índices de tabela `cores`
+-- Indexes for table `cores`
 --
 ALTER TABLE `cores`
   ADD PRIMARY KEY (`cor_id`);
 
 --
--- Índices de tabela `endereco`
+-- Indexes for table `endereco`
 --
 ALTER TABLE `endereco`
   ADD PRIMARY KEY (`end_id`),
@@ -10374,7 +10374,7 @@ ALTER TABLE `endereco`
   ADD KEY `end_cidade` (`end_cidade`);
 
 --
--- Índices de tabela `enfermeiro`
+-- Indexes for table `enfermeiro`
 --
 ALTER TABLE `enfermeiro`
   ADD PRIMARY KEY (`enf_id`),
@@ -10382,31 +10382,31 @@ ALTER TABLE `enfermeiro`
   ADD KEY `fk_enfermeiro_funcionario1_idx` (`funcionario_fun_id`);
 
 --
--- Índices de tabela `escolaridade`
+-- Indexes for table `escolaridade`
 --
 ALTER TABLE `escolaridade`
   ADD PRIMARY KEY (`esc_id`);
 
 --
--- Índices de tabela `especializacao`
+-- Indexes for table `especializacao`
 --
 ALTER TABLE `especializacao`
   ADD PRIMARY KEY (`esp_id`);
 
 --
--- Índices de tabela `estado`
+-- Indexes for table `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`est_id`);
 
 --
--- Índices de tabela `estado_civil`
+-- Indexes for table `estado_civil`
 --
 ALTER TABLE `estado_civil`
   ADD PRIMARY KEY (`etc_id`);
 
 --
--- Índices de tabela `funcionario`
+-- Indexes for table `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`fun_id`),
@@ -10415,20 +10415,20 @@ ALTER TABLE `funcionario`
   ADD KEY `setor_set_id` (`setor_set_id`);
 
 --
--- Índices de tabela `genero`
+-- Indexes for table `genero`
 --
 ALTER TABLE `genero`
   ADD PRIMARY KEY (`gen_id`);
 
 --
--- Índices de tabela `login_acesso`
+-- Indexes for table `login_acesso`
 --
 ALTER TABLE `login_acesso`
   ADD PRIMARY KEY (`log_id`),
   ADD KEY `fk_login_acesso_usuario1_idx` (`usuario_usu_id`);
 
 --
--- Índices de tabela `medico`
+-- Indexes for table `medico`
 --
 ALTER TABLE `medico`
   ADD PRIMARY KEY (`med_id`),
@@ -10436,7 +10436,7 @@ ALTER TABLE `medico`
   ADD KEY `fk_medico_funcionario1_idx` (`funcionario_fun_id`);
 
 --
--- Índices de tabela `medico_has_especializacao`
+-- Indexes for table `medico_has_especializacao`
 --
 ALTER TABLE `medico_has_especializacao`
   ADD PRIMARY KEY (`medico_med_id`,`especializacao_esp_id`),
@@ -10444,7 +10444,7 @@ ALTER TABLE `medico_has_especializacao`
   ADD KEY `fk_medico_has_especializacao_medico1_idx` (`medico_med_id`);
 
 --
--- Índices de tabela `paciente`
+-- Indexes for table `paciente`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`pac_id`),
@@ -10453,7 +10453,7 @@ ALTER TABLE `paciente`
   ADD KEY `pac_educacao` (`pac_educacao`);
 
 --
--- Índices de tabela `pessoa`
+-- Indexes for table `pessoa`
 --
 ALTER TABLE `pessoa`
   ADD PRIMARY KEY (`pes_id`),
@@ -10464,7 +10464,7 @@ ALTER TABLE `pessoa`
   ADD KEY `pes_genero` (`pes_genero`);
 
 --
--- Índices de tabela `plano_de_saude`
+-- Indexes for table `plano_de_saude`
 --
 ALTER TABLE `plano_de_saude`
   ADD PRIMARY KEY (`pds_id`),
@@ -10473,38 +10473,38 @@ ALTER TABLE `plano_de_saude`
   ADD KEY `fk_plano_de_saude_paciente1_idx` (`pac_id`);
 
 --
--- Índices de tabela `setor`
+-- Indexes for table `setor`
 --
 ALTER TABLE `setor`
   ADD PRIMARY KEY (`set_id`);
 
 --
--- Índices de tabela `sexo`
+-- Indexes for table `sexo`
 --
 ALTER TABLE `sexo`
   ADD PRIMARY KEY (`sex_id`);
 
 --
--- Índices de tabela `status_triagem`
+-- Indexes for table `status_triagem`
 --
 ALTER TABLE `status_triagem`
   ADD PRIMARY KEY (`stt_id`);
 
 --
--- Índices de tabela `sub_setor`
+-- Indexes for table `sub_setor`
 --
 ALTER TABLE `sub_setor`
   ADD PRIMARY KEY (`sbs_id`),
   ADD KEY `fk_sub_setor_setor1_idx` (`setor_set_id`);
 
 --
--- Índices de tabela `tipo_sanguineo`
+-- Indexes for table `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
   ADD PRIMARY KEY (`tis_id`);
 
 --
--- Índices de tabela `triagem`
+-- Indexes for table `triagem`
 --
 ALTER TABLE `triagem`
   ADD PRIMARY KEY (`tri_id`),
@@ -10513,7 +10513,7 @@ ALTER TABLE `triagem`
   ADD KEY `tri_status` (`tri_status`);
 
 --
--- Índices de tabela `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`usu_id`),
@@ -10521,126 +10521,126 @@ ALTER TABLE `usuario`
   ADD KEY `funcionario_id` (`funcionario_id`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `cidade`
+-- AUTO_INCREMENT for table `cidade`
 --
 ALTER TABLE `cidade`
   MODIFY `cid_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9715;
 --
--- AUTO_INCREMENT de tabela `cores`
+-- AUTO_INCREMENT for table `cores`
 --
 ALTER TABLE `cores`
   MODIFY `cor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT de tabela `endereco`
+-- AUTO_INCREMENT for table `endereco`
 --
 ALTER TABLE `endereco`
   MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT de tabela `enfermeiro`
+-- AUTO_INCREMENT for table `enfermeiro`
 --
 ALTER TABLE `enfermeiro`
   MODIFY `enf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `escolaridade`
+-- AUTO_INCREMENT for table `escolaridade`
 --
 ALTER TABLE `escolaridade`
   MODIFY `esc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT de tabela `especializacao`
+-- AUTO_INCREMENT for table `especializacao`
 --
 ALTER TABLE `especializacao`
   MODIFY `esp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
--- AUTO_INCREMENT de tabela `estado`
+-- AUTO_INCREMENT for table `estado`
 --
 ALTER TABLE `estado`
   MODIFY `est_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
--- AUTO_INCREMENT de tabela `estado_civil`
+-- AUTO_INCREMENT for table `estado_civil`
 --
 ALTER TABLE `estado_civil`
   MODIFY `etc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de tabela `funcionario`
+-- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
   MODIFY `fun_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT de tabela `genero`
+-- AUTO_INCREMENT for table `genero`
 --
 ALTER TABLE `genero`
   MODIFY `gen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de tabela `login_acesso`
+-- AUTO_INCREMENT for table `login_acesso`
 --
 ALTER TABLE `login_acesso`
   MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `medico`
+-- AUTO_INCREMENT for table `medico`
 --
 ALTER TABLE `medico`
   MODIFY `med_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `paciente`
+-- AUTO_INCREMENT for table `paciente`
 --
 ALTER TABLE `paciente`
   MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT de tabela `pessoa`
+-- AUTO_INCREMENT for table `pessoa`
 --
 ALTER TABLE `pessoa`
   MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT de tabela `plano_de_saude`
+-- AUTO_INCREMENT for table `plano_de_saude`
 --
 ALTER TABLE `plano_de_saude`
   MODIFY `pds_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de tabela `setor`
+-- AUTO_INCREMENT for table `setor`
 --
 ALTER TABLE `setor`
   MODIFY `set_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT de tabela `sexo`
+-- AUTO_INCREMENT for table `sexo`
 --
 ALTER TABLE `sexo`
   MODIFY `sex_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de tabela `status_triagem`
+-- AUTO_INCREMENT for table `status_triagem`
 --
 ALTER TABLE `status_triagem`
   MODIFY `stt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT de tabela `tipo_sanguineo`
+-- AUTO_INCREMENT for table `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
   MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT de tabela `triagem`
+-- AUTO_INCREMENT for table `triagem`
 --
 ALTER TABLE `triagem`
   MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de tabela `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- Restrições para dumps de tabelas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `cidade`
+-- Constraints for table `cidade`
 --
 ALTER TABLE `cidade`
   ADD CONSTRAINT `cidade_ibfk_1` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`);
 
 --
--- Restrições para tabelas `endereco`
+-- Constraints for table `endereco`
 --
 ALTER TABLE `endereco`
   ADD CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`end_estado`) REFERENCES `estado` (`est_id`),
@@ -10648,39 +10648,39 @@ ALTER TABLE `endereco`
   ADD CONSTRAINT `fk_endereco_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `enfermeiro`
+-- Constraints for table `enfermeiro`
 --
 ALTER TABLE `enfermeiro`
   ADD CONSTRAINT `fk_enfermeiro_funcionario1` FOREIGN KEY (`funcionario_fun_id`) REFERENCES `funcionario` (`fun_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `funcionario`
+-- Constraints for table `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`setor_set_id`) REFERENCES `setor` (`set_id`);
 
 --
--- Restrições para tabelas `login_acesso`
+-- Constraints for table `login_acesso`
 --
 ALTER TABLE `login_acesso`
   ADD CONSTRAINT `fk_login_acesso_usuario1` FOREIGN KEY (`usuario_usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `medico`
+-- Constraints for table `medico`
 --
 ALTER TABLE `medico`
   ADD CONSTRAINT `fk_medico_funcionario1` FOREIGN KEY (`funcionario_fun_id`) REFERENCES `funcionario` (`fun_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `medico_has_especializacao`
+-- Constraints for table `medico_has_especializacao`
 --
 ALTER TABLE `medico_has_especializacao`
   ADD CONSTRAINT `medico_has_especializacao_ibfk_1` FOREIGN KEY (`medico_med_id`) REFERENCES `medico` (`med_id`),
   ADD CONSTRAINT `medico_has_especializacao_ibfk_2` FOREIGN KEY (`especializacao_esp_id`) REFERENCES `especializacao` (`esp_id`);
 
 --
--- Restrições para tabelas `paciente`
+-- Constraints for table `paciente`
 --
 ALTER TABLE `paciente`
   ADD CONSTRAINT `fk_paciente_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -10688,7 +10688,7 @@ ALTER TABLE `paciente`
   ADD CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`pac_educacao`) REFERENCES `escolaridade` (`esc_id`);
 
 --
--- Restrições para tabelas `pessoa`
+-- Constraints for table `pessoa`
 --
 ALTER TABLE `pessoa`
   ADD CONSTRAINT `pessoa_ibfk_1` FOREIGN KEY (`pes_estado_civil`) REFERENCES `estado_civil` (`etc_id`),
@@ -10696,19 +10696,19 @@ ALTER TABLE `pessoa`
   ADD CONSTRAINT `pessoa_ibfk_3` FOREIGN KEY (`pes_genero`) REFERENCES `genero` (`gen_id`);
 
 --
--- Restrições para tabelas `plano_de_saude`
+-- Constraints for table `plano_de_saude`
 --
 ALTER TABLE `plano_de_saude`
   ADD CONSTRAINT `fk_plano_de_saude_paciente1` FOREIGN KEY (`pac_id`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `sub_setor`
+-- Constraints for table `sub_setor`
 --
 ALTER TABLE `sub_setor`
   ADD CONSTRAINT `fk_sub_setor_setor1` FOREIGN KEY (`setor_set_id`) REFERENCES `setor` (`set_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para tabelas `triagem`
+-- Constraints for table `triagem`
 --
 ALTER TABLE `triagem`
   ADD CONSTRAINT `fk_triagem_paciente1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -10716,7 +10716,7 @@ ALTER TABLE `triagem`
   ADD CONSTRAINT `triagem_ibfk_2` FOREIGN KEY (`tri_status`) REFERENCES `status_triagem` (`stt_id`);
 
 --
--- Restrições para tabelas `usuario`
+-- Constraints for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`fun_id`);
