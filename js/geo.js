@@ -26,6 +26,7 @@ $(function() {
   function showDemografia() {
     $.getJSON('geolocalizar.php', { tipo: 'demografia' })
     .done(function(data) {
+      map.setZoom(13);
       data.forEach(function(item) {
         var pessoa = JSON.parse(item);
         var title = pessoa.pes_nome;
@@ -72,6 +73,7 @@ $(function() {
 
         var address = getEndereco(data.end_rua, data.end_numero, data.end_bairro, data.end_cidade, data.end_cep);
         var title = data.pes_nome;
+        map.setZoom(18);
         setMarkerByAddress(address, title);
       })
       .fail(function() {alert('Fail');});
