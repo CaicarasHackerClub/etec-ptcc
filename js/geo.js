@@ -1,6 +1,20 @@
 var map;
 var santaCasa = {lat: -23.4350898, lng: -45.0714174};
 
+function showByName(nome) {
+  $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: nome })
+  .done(function(data) {
+    data = JSON.parse(data);
+    showInfoEndereco(data);
+
+    var address = getEndereco(data.end_rua, data.end_numero, data.end_bairro, data.end_cidade, data.end_cep);
+    var title = data.pes_nome;
+    map.setZoom(18);
+    setMarkerByAddress(address, title);
+  })
+  .fail(function() {alert('Fail');});
+}
+
 function makeInfoWindow(info) {
   var infoW = '<div class="poi-info-window gm-style">' +
     '<div class="address">%address%</div>' +
@@ -22,30 +36,28 @@ function makeInfoWindow(info) {
   return infoW.replace(/%address%/, tmpStr);
 }
 
-$(function() {
+function getEndereco(rua, numero, bairro, cidade, cep) {
+  var endereco = '%rua%,+%numero%-+%bairro%,+%cidade%,+%cep%'
+  .replace(/%rua%/, rua)
+  .replace(/%numero%/, numero)
+  .replace(/%bairro%/, bairro)
+  .replace(/%cidade%/, cidade)
+  .replace(/%cep%/, cep);
+  return endereco;
+}
 
-  function getEndereco(rua, numero, bairro, cidade, cep) {
-    var endereco = '%rua%,+%numero%-+%bairro%,+%cidade%,+%cep%'
-    .replace(/%rua%/, rua)
-    .replace(/%numero%/, numero)
-    .replace(/%bairro%/, bairro)
-    .replace(/%cidade%/, cidade)
-    .replace(/%cep%/, cep);
-    return endereco;
-  }
+function showInfoEndereco(data) {
+  $('.ul-info').remove();
+  $('.info').append('<ul class="ul-info"></ul>');
+  $('.ul-info').append('<li>Rua: ' + data.end_rua + '</li>');
+  $('.ul-info').append('<li>Número: ' + data.end_numero + '</li>');
+  $('.ul-info').append('<li>Bairro: ' + data.end_bairro + '</li>');
+  $('.ul-info').append('<li>Cidade: ' + data.end_cidade + '</li>');
+  $('.ul-info').append('<li>CEP: ' + data.end_cep + '</li>');
+}
 
-  function showInfoEndereco(data) {
-    $('.ul-info').remove();
-    $('.info').append('<ul class="ul-info"></ul>');
-    $('.ul-info').append('<li>Rua: ' + data.end_rua + '</li>');
-    $('.ul-info').append('<li>Número: ' + data.end_numero + '</li>');
-    $('.ul-info').append('<li>Bairro: ' + data.end_bairro + '</li>');
-    $('.ul-info').append('<li>Cidade: ' + data.end_cidade + '</li>');
-    $('.ul-info').append('<li>CEP: ' + data.end_cep + '</li>');
-  }
-
-  function showDemografia() {
-    $.getJSON('geolocalizar.php', { tipo: 'demografia' })
+function showDemografia() {
+  $.getJSON('geolocalizar.php', { tipo: 'demografia' })
     .done(function(data) {
       map.setZoom(13);
       data.forEach(function(item) {
@@ -54,52 +66,18 @@ $(function() {
         var address = getEndereco(
           pessoa.end_rua, pessoa.end_numero, pessoa.end_bairro, pessoa.end_cidade, pessoa.end_cep);
           setMarkerByAddress(address, title);
-        });
-      })
-      .fail(function() {alert('Fail');});
-  }
+      });
+    })
+    .fail(function() {alert('Fail');});
+}
 
-  function showSantaCasa() {
-    map.panTo(santaCasa);
-  }
+function showSantaCasa() {
+  map.panTo(santaCasa);
+  map.setZoom(15);
+}
 
-  function showPostosSaude() {
-  }
-
-  $('.sel-visualizar').change(function() {
-    var optSel = $(this).val();
-    switch (optSel) {
-      case 'demografia':
-          showDemografia();
-        break;
-      case 'santa casa':
-          showSantaCasa();
-        break;
-      case 'postos de saude':
-          showPostosSaude();
-        break;
-      default:
-
-    }
-  });
-
-  $('.search-form').submit(function(ev) {
-    ev.preventDefault();
-    var pessoa = $('.search-in').val();
-
-    $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: pessoa })
-      .done(function(data) {
-        data = JSON.parse(data);
-        showInfoEndereco(data);
-
-        var address = getEndereco(data.end_rua, data.end_numero, data.end_bairro, data.end_cidade, data.end_cep);
-        var title = data.pes_nome;
-        map.setZoom(18);
-        setMarkerByAddress(address, title);
-      })
-      .fail(function() {alert('Fail');});
-  });
-});
+function showPostosSaude() {
+}
 
 function setMarkerByAddress(address, title) {
   var geocoder = new google.maps.Geocoder();
@@ -133,15 +111,6 @@ function initMap() {
 
   var markerSC = setMarkerByPosition(santaCasa, 'Santa Casa de Ubatuba');
 
-  // var infoSC = '<div class="poi-info-window gm-style">' +
-  //     '<div class="address">' +
-  //       '<div class="title full-width">Santa Casa de Ubatuba</div>' +
-  //       '<div class="address-line full-width">R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil</div>' +
-  //       '<div class="address-line full-width">+55 12 3834-3230</div>' +
-  //       '<div class="view-link"><a href="http://santacasaubatuba.org.br">santacasaubatuba.org.br</a></div>' +
-  //     '</div>' +
-  //   '</div>';
-
   var infoSC = makeInfoWindow({
     title: 'Santa Casa de Ubatuba',
     lines: [
@@ -158,9 +127,35 @@ function initMap() {
     content: infoSC,
   });
 
+  infoWindowSC.open(map, markerSC);
+
   markerSC.addListener('click', function() {
     infoWindowSC.open(map, markerSC);
   });
-
-  infoWindowSC.open(map, markerSC);
 }
+
+$(function() {
+
+  $('.sel-visualizar').change(function() {
+    var optSel = $(this).val();
+    switch (optSel) {
+      case 'demografia':
+          showDemografia();
+        break;
+      case 'santa casa':
+          showSantaCasa();
+        break;
+      case 'postos de saude':
+          showPostosSaude();
+        break;
+      default:
+
+    }
+  });
+
+  $('.search-form').submit(function(ev) {
+    ev.preventDefault();
+    var pessoa = $('.search-in').val();
+    showByName(pessoa);
+  });
+});
