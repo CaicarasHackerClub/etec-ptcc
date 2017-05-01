@@ -5,7 +5,7 @@ $(function() {
     ev.preventDefault();
     var pessoa = $('.search-in').val();
 
-    $.get('geolocalizar.php', { pessoa: pessoa })
+    $.get('geolocalizar.php', { tipo: 'endereço', pessoa: pessoa })
       .done(function(data) {
         var address = data.end_rua + '+' + data.end_numero;
         $('.ul-info').remove();
