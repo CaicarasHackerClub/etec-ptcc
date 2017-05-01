@@ -1,37 +1,56 @@
 var map;
 
 $(function() {
+  $.getJSON('geolocalizar.php', { tipo: 'demografia' })
+    .done(function(data) {
+      data.forEach(function(pessoa) {
+        var json = JSON.parse(pessoa);
+        var address = json.end_rua + '+' + json.end_numero;
+        var title = json.pes_nome;
+        setMarkerByAddress(address, title);
+      });
+    })
+    .fail(function() {alert('Fail');});
+
   $('.search-form').submit(function(ev) {
     ev.preventDefault();
     var pessoa = $('.search-in').val();
 
-    $.get('geolocalizar.php', { tipo: 'endereço', pessoa: pessoa })
+    $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: pessoa })
       .done(function(data) {
-        var address = data.end_rua + '+' + data.end_numero;
         $('.ul-info').remove();
         $('.info').append('<ul class="ul-info"></ul>');
         $('.ul-info').append('<li>Rua: ' + data.end_rua + '</li>');
         $('.ul-info').append('<li>Número: ' + data.end_numero + '</li>');
 
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ address: address }, function(results, status) {
-          if (status === 'OK') {
-            map.setCenter(results[0].geometry.location);
-
-            new google.maps.Marker({
-              title: pessoa,
-              map: map,
-              animation: google.maps.Animation.DROP,
-              position: results[0].geometry.location
-            });
-          }
-        });
+        var address = data.end_rua + '+' + data.end_numero;
+        var title = data.pes_nome;
+        setMarkerByAddress(address, title);
       })
-      .fail(function() {
-
-      });
+      .fail(function() {alert('Fail');});
   });
 });
+
+function setMarkerByAddress(address, title) {
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ address: address }, function(results, status) {
+    if (status === 'OK') {
+      var position = results[0].geometry.location;
+      map.setCenter(position);
+      setMarkerByPosition(position, title);
+    }
+  });
+}
+
+function setMarkerByPosition(position, title) {
+  var marker = new google.maps.Marker({
+    title: title,
+    map: map,
+    animation: google.maps.Animation.DROP,
+    position: position
+  });
+  return marker;
+}
 
 function initMap() {
   var santaCasa = {lat: -23.4350898, lng: -45.0714174};
@@ -43,12 +62,7 @@ function initMap() {
     streetViewControl: false
   });
 
-  var markerSC = new google.maps.Marker({
-    title: 'Santa Casa',
-    map: map,
-    animation: google.maps.Animation.DROP,
-    position: santaCasa,
-  });
+  var markerSC = setMarkerByPosition(santaCasa, 'Santa Casa de Ubatuba');
 
   var infoSC = '<div class="poi-info-window gm-style">' +
       '<div class="address">' +
