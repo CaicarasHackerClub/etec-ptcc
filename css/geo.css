@@ -32,19 +32,22 @@ html, body {
   color: #777;
 }
 
-.search-in {
+.search-in, .sel-visualizar {
   font-size: 1em;
   color: #777;
   width: 100%;
   padding: 0.6em;
-  padding-left: 1.6em;
   background-color: rgb(249, 249, 249);
   border: none;
   border-bottom: solid 2px rgb(222, 222, 222);
   border-radius: 0;
 }
 
-.search-in:focus {
+.search-in {
+  padding-left: 1.6em;
+}
+
+.search-in:focus, .sel-visualizar:focus {
   outline: 0;
   border-bottom: 2px solid #4272db;
   color: #333;
