@@ -3,10 +3,11 @@ var map;
 $(function() {
   $.getJSON('geolocalizar.php', { tipo: 'demografia' })
     .done(function(data) {
-      data.forEach(function(pessoa) {
-        var json = JSON.parse(pessoa);
-        var address = json.end_rua + '+' + json.end_numero;
-        var title = json.pes_nome;
+      data.forEach(function(item) {
+        var pessoa = JSON.parse(item);
+        var title = pessoa.pes_nome;
+        var address = getEndereco(
+          pessoa.end_rua, pessoa.end_numero, pessoa.end_bairro, pessoa.end_cidade, pessoa.end_cep);
         setMarkerByAddress(address, title);
       });
     })
@@ -18,18 +19,32 @@ $(function() {
 
     $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: pessoa })
       .done(function(data) {
+        data = JSON.parse(data);
         $('.ul-info').remove();
         $('.info').append('<ul class="ul-info"></ul>');
         $('.ul-info').append('<li>Rua: ' + data.end_rua + '</li>');
         $('.ul-info').append('<li>Número: ' + data.end_numero + '</li>');
+        $('.ul-info').append('<li>Bairro: ' + data.end_bairro + '</li>');
+        $('.ul-info').append('<li>Cidade: ' + data.end_cidade + '</li>');
+        $('.ul-info').append('<li>CEP: ' + data.end_cep + '</li>');
 
-        var address = data.end_rua + '+' + data.end_numero;
+        var address = getEndereco(data.end_rua, data.end_numero, data.end_bairro, data.end_cidade, data.end_cep);
         var title = data.pes_nome;
         setMarkerByAddress(address, title);
       })
       .fail(function() {alert('Fail');});
   });
 });
+
+function getEndereco(rua, numero, bairro, cidade, cep) {
+  var endereco = '%rua%,+%numero%-+%bairro%,+%cidade%,+%cep%'
+    .replace(/%rua%/, rua)
+    .replace(/%numero%/, numero)
+    .replace(/%bairro%/, bairro)
+    .replace(/%cidade%/, cidade)
+    .replace(/%cep%/, cep);
+  return endereco;
+}
 
 function setMarkerByAddress(address, title) {
   var geocoder = new google.maps.Geocoder();

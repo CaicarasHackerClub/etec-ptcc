@@ -9,7 +9,7 @@
     $mysqli = new Sql;
     $con = $mysqli->conecta();
 
-    $query = "SELECT e.end_rua, e.end_numero, e.end_cidade "
+    $query = "SELECT e.end_rua, e.end_numero, e.end_bairro, e.end_cidade, e.end_cep "
     . "FROM endereco e "
     . "INNER JOIN pessoa p "
     . "ON e.pessoa_pes_id = p.pes_id "
@@ -19,7 +19,10 @@
 
     mysqli_close($con);
 
-    return mysqli_fetch_assoc($res);
+    $row = mysqli_fetch_assoc($res);
+    $row['end_cidade'] = getCidade($row['end_cidade']);
+
+    return json_encode($row);
   }
 
   function getDemografia() {
@@ -27,7 +30,7 @@
     $mysqli = new Sql;
     $con = $mysqli->conecta();
 
-    $query = "SELECT p.pes_nome, e.end_rua, e.end_numero, e.end_cidade "
+    $query = "SELECT p.pes_nome, e.end_rua, e.end_numero, e.end_bairro, e.end_cidade, e.end_cep "
     . "FROM endereco e "
     . "INNER JOIN pessoa p "
     . "ON e.pessoa_pes_id = p.pes_id;";
@@ -38,10 +41,24 @@
 
     $demo = array();
     while ($row = mysqli_fetch_assoc($res)) {
+      $row['end_cidade'] = getCidade($row['end_cidade']);
       $demo[] = json_encode($row);
     }
 
     return $demo;
+  }
+
+  function getCidade($cid_id) {
+
+    $mysqli = new Sql;
+    $con = $mysqli->conecta();
+
+    $query = "SELECT `cid_nome` FROM `cidade` WHERE `cid_id` = '$cid_id';";
+    $res = mysqli_query($con, $query) or die("Erro: " . mysqli_error($con) . ", Query: $query");
+
+    mysqli_close($con);
+
+    return mysqli_fetch_row($res)[0];
   }
 
   if (!is_null($tipo)) {
