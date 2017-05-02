@@ -23,8 +23,6 @@
 
     $_SESSION['tipo']=$cargo['fun_cargo'];
     ?>
-    <a href="?acao=cadastro">Cadastro</a>
-    <a href="?acao=logoff">Sair</a>
     <?php
     if ($acao == "cadastro") {
       if (!isset($_GET['passo'])) {
