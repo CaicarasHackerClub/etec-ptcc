@@ -25,7 +25,7 @@ session_start();
       <a href="?acao=logoff">Sair</a>
       <?php
       if ($acao == "cadastro") {
-        header("Location:backend/cadastro.php");
+        header("Location:backend/cadastro.php?acao=cadastro");
       } else {
         if ($acao == "logoff") {
           session_destroy();
