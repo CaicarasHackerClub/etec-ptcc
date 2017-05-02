@@ -1,5 +1,8 @@
 var map;
 var santaCasa = {lat: -23.4350898, lng: -45.0714174};
+// var iconHome = 'http://maps.google.com/mapfiles/kml/pal2/icon10.png';
+var iconHome = 'http://labs.google.com/ridefinder/images/mm_20_orange.png';
+var iconHealth = 'http://maps.google.com/mapfiles/kml/pal3/icon46.png';
 
 function showByName(nome) {
   $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: nome })
@@ -86,17 +89,18 @@ function setMarkerByAddress(address, title) {
     if (status === 'OK') {
       var position = results[0].geometry.location;
       map.setCenter(position);
-      setMarkerByPosition(position, title);
+      setMarkerByPosition(position, title, iconHome);
     }
   });
 }
 
-function setMarkerByPosition(position, title) {
+function setMarkerByPosition(position, title, icon) {
   var marker = new google.maps.Marker({
     title: title,
     map: map,
     animation: google.maps.Animation.DROP,
-    position: position
+    position: position,
+    icon: icon
   });
   return marker;
 }
@@ -123,7 +127,7 @@ function initMap() {
     streetViewControl: false
   });
 
-  var markerSC = setMarkerByPosition(santaCasa, 'Santa Casa de Ubatuba');
+  var markerSC = setMarkerByPosition(santaCasa, 'Santa Casa de Ubatuba', iconHealth);
 
   var infoSC = makeInfoWindow({
     title: 'Santa Casa de Ubatuba',
