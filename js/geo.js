@@ -59,6 +59,7 @@ function showInfoEndereco(data) {
 function showDemografia() {
   $.getJSON('geolocalizar.php', { tipo: 'demografia' })
     .done(function(data) {
+      $('.ul-info').remove();
       map.setZoom(13);
       data.forEach(function(item) {
         var pessoa = JSON.parse(item);
