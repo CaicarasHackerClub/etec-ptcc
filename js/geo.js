@@ -3,6 +3,7 @@ var santaCasa = {lat: -23.4350898, lng: -45.0714174};
 // var iconHome = 'http://maps.google.com/mapfiles/kml/pal2/icon10.png';
 var iconHome = 'http://labs.google.com/ridefinder/images/mm_20_orange.png';
 var iconHealth = 'http://maps.google.com/mapfiles/kml/pal3/icon46.png';
+var iconSearch = 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png';
 
 function showByName(nome) {
   $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: nome })
@@ -14,7 +15,7 @@ function showByName(nome) {
     var address = getEndereco(data.end_rua, data.end_numero, data.end_bairro, data.end_cidade, data.end_cep);
     var title = data.pes_nome;
     map.setZoom(18);
-    setMarkerByAddress(address, title);
+    setMarkerByAddress(address, title, iconSearch);
   })
   .fail(function() {alert('Fail');});
 }
@@ -69,7 +70,7 @@ function showDemografia() {
         var title = pessoa.pes_nome;
         var address = getEndereco(
           pessoa.end_rua, pessoa.end_numero, pessoa.end_bairro, pessoa.end_cidade, pessoa.end_cep);
-          setMarkerByAddress(address, title);
+          setMarkerByAddress(address, title, iconHome);
       });
     })
     .fail(function() {alert('Fail');});
@@ -83,13 +84,13 @@ function showSantaCasa() {
 function showPostosSaude() {
 }
 
-function setMarkerByAddress(address, title) {
+function setMarkerByAddress(address, title, icon) {
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({ address: address }, function(results, status) {
     if (status === 'OK') {
       var position = results[0].geometry.location;
       map.setCenter(position);
-      setMarkerByPosition(position, title, iconHome);
+      setMarkerByPosition(position, title, icon);
     }
   });
 }
