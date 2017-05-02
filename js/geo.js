@@ -4,6 +4,7 @@ var santaCasa = {lat: -23.4350898, lng: -45.0714174};
 function showByName(nome) {
   $.getJSON('geolocalizar.php', { tipo: 'endereço', pessoa: nome })
   .done(function(data) {
+    resetSelect(true);
     data = JSON.parse(data);
     showInfoEndereco(data);
 
@@ -59,7 +60,6 @@ function showInfoEndereco(data) {
 function showDemografia() {
   $.getJSON('geolocalizar.php', { tipo: 'demografia' })
     .done(function(data) {
-      $('.ul-info').remove();
       map.setZoom(13);
       data.forEach(function(item) {
         var pessoa = JSON.parse(item);
@@ -101,6 +101,19 @@ function setMarkerByPosition(position, title) {
   return marker;
 }
 
+function resetSelect(visualizar) {
+  $('.ul-info').remove();
+  if (visualizar) {
+    $('.sel-visualizar').prepend('<option value="visualizar" selected>Visualizar</option>');
+  } else {
+    $('.sel-visualizar').children('option[value="visualizar"]').remove();
+  }
+}
+
+function resetSearch() {
+  $('.search-in').val('');
+}
+
 function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -138,6 +151,8 @@ function initMap() {
 $(function() {
 
   $('.sel-visualizar').change(function() {
+    resetSelect(false);
+    resetSearch();
     var optSel = $(this).val();
     switch (optSel) {
       case 'demografia':
