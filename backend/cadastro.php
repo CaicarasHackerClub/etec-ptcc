@@ -655,7 +655,7 @@
         </form>
 
       <?php
-      }elseif ($_GET['passo'] == 5) {
+      } elseif ($_GET['passo'] == 5) {
         echo "Foi clicado em proximo!!"; //teste
 
         $maxId="SELECT MAX(fun_id) AS fun_id FROM funcionario";
@@ -667,6 +667,47 @@
         $id=$sql->selecionar($maxId);
         $sel="SELECT * FROM usuario WHERE usu_id='" . $id . "';";
         $usuario=$sql->fetch($sel);
+      ?>
+        <h1 class="titulo">Funcionário</h1>
+
+        <div class="group-form group-form-cadastro">
+          <label class="lbl_class">Cargo:</label>
+            <input class="inp_class" type="time" name="fun_CARGO" size="28" desabled value<?=$funcionario[1]?>><br>
+          </div>
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Setor:</label>
+            <?php
+            $sql->selectbox("setor");
+            ?>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Horario:</label>
+            <input class="inp_class" type="time" name="fun_horario" size="28"><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Inscrição:</label>
+            <input class="inp_class" type="text" name="fun_inscricao" size="28"><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Turno:</label>
+            <input class="inp_class" type="time" name="fun_turno" size="28" desabled><br>
+          </div>
+
+                <div class="group-form group-form-cadastro">
+                  <label class="lbl_class">E-mail:</label>
+                  <input class="inp_class" type="text" name="usu_email" size="28"><br>
+                </div>
+
+                <div class="group-form group-form-cadastro">
+                  <label class="lbl_class">Senha:</label>
+                  <input class="inp_class" type="password" name="usu_senha" size="28"><br>
+                </div>
+
+                <input class="inp_class" type="submit" value="Proximo">
+                </form>
 
       } elseif ($acao == "logoff") {
         session_destroy();

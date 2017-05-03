@@ -28,7 +28,7 @@ session_start();
       <a href="?acao=logoff">Sair</a>
       <?php
       if ($acao == "cadastro") {
-        if (!isset($_POST['doc'])){
+        if (!isset($_POST['doc'])) {
         ?>
           <form action="index.php?acao=cadastro" method="post">
             <label>Numero do documento:</label>
@@ -39,11 +39,11 @@ session_start();
         } else {
           $tam=strlen($_POST['doc']);
           echo $tam;
-          if (($tam < 11 ) || ($tam > 15)){
+          if (($tam < 11 ) || ($tam > 15)) {
             echo "Digite o CPF ou Cartão SUS novamente!";
-          } elseif (($tam > 11) && ($tam < 15)){
+          } elseif (($tam > 11) && ($tam < 15)) {
             echo "Digite corretamente o documento (CPF/SUS)";
-          } elseif ($tam == 15){
+          } elseif ($tam == 15) {
             $sel="SELECT * FROM plano_de_saude WHERE pds_numero_sus = '" . $_POST['doc'] . "';";
             $qtd=$sql->selecionar($sel);
               if ($qtd>=1) {
