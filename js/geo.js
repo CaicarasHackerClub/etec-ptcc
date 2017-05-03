@@ -8,6 +8,7 @@ function initMap() {
   // Modelos de dados
   var model = {
     mapModel: {
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
       zoom: 15,
       mapTypeControl: false,
       streetViewControl: false
@@ -276,10 +277,11 @@ function initMap() {
 
     showDemografia: function() {
       $.getJSON('geolocalizar.php', { tipo: 'demografia' })
-
         .done(function(data) {
           view.clearDemoMarkers();
           control.clearDemoMarkers();
+
+          var bounds = new google.maps.LatLngBounds();
 
           data.forEach(function(item) {
             var pessoa = JSON.parse(item);
@@ -309,11 +311,9 @@ function initMap() {
                   icon: model.icon.iconDemo,
                 });
 
-                var santaCasa = model.marker.models[0].marker.position;
-                map.panTo(santaCasa);
-                map.setZoom(13);
-
                 control.addDemoMarker(marker);
+                bounds.extend(marker.getPosition());
+                map.fitBounds(bounds);
               }
             })
             .fail(function() { alert('Fail'); });
