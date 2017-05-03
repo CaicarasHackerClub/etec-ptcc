@@ -536,7 +536,138 @@
           echo "Não é enfermeiro ou médico";
         }
       ////////////////////Fim do cadastro//////
-        echo "Confirmação final - Passo 4";
+        $maxId1="SELECT MAX(pes_id) AS pes_id FROM pessoa";
+        $id1=$sql->selecionar($maxId1);
+        $sel1="SELECT * FROM pessoa WHERE pes_id='" . $id1 . "';";
+        $pessoa=$sql->fetch($sel1);
+
+        $maxId2="SELECT MAX(end_id) AS end_id FROM endereco";
+        $id2=$sql->selecionar($maxId2);
+        $sel2="SELECT * FROM pessoa WHERE pes_id='" . $id2 . "';";
+        $endereco=$sql->fetch($sel2);
+
+        $maxId3="SELECT MAX(usu_id) AS usu_id FROM usuario";
+        $id3=$sql->selecionar($maxId3);
+        $sel3="SELECT * FROM usuario WHERE usu_id='" . $id3 . "';";
+        $usuario=$sql->fetch($sel3);
+        ?>
+
+        <form class="form form-cadastro" action="cadastro.php?acao=cadastro&passo=5" method="post">
+          <h1 class="titulo">Confirmação Final</h1>
+          <br>
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Nome:</label>
+            <input class="inp_class" type="text" name="pes_nome" size="28" disabled value=<?=$pessoa[1]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Nome do pai:</label>
+            <input class="inp_class" type="text" name="pes_pai" size="28" disabled value=<?=$pessoa[2]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Nome da mãe:</label>
+            <input class="inp_class" type="text" name="pes_mae" size="28" disabled value=<?=$pessoa[3]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">RG:</label>
+            <input class="inp_class" type="text" name="pes_rg" size="28" disabled value=<?=$pessoa[4]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">CPF:</label>
+            <input class="inp_class" type="text" name="pes_cpf" size="28" disabled value=<?=$pessoa[5]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
+            <input class="inp_class" type="date" name="pes_data" size="28" value=<?=$pessoa[6]?>><br>
+           </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Email</label>
+            <input class="inp_class" type="text" name="pes_email" size="28" value=<?=$pessoa[7]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Estado civil:</label>
+            <input class="inp_class" type="text" name="pes_estado_civil" size="28" value=<?=$pessoa[8]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Cidadania:</label>
+            <input class="inp_class" type="text" name="pes_cidadania" size="28" value=<?=$pessoa[9]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Gênero</label>
+            <input class="inp_class" type="text" name="pes_genero" size="28" value=<?=$pessoa[10]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Sexo biológico:</label>
+            <input class="inp_class" type="text" name="pes_sexo_biologico" size="28" value=<?=$pessoa[11]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Telefone:</label>
+            <input class="inp_class" type="text" name="pes_telefone" size="15" value=<?=$pessoa[12]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">País:</label>
+            <input class="inp_class" type="text" name="end_pais" size="28" value=<?=$endereco[1]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Estado:</label>
+            <input class="inp_class" type="text" name="end_estado" size="28" value=<?=$endereco[2]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Cidade:</label>
+            <input class="inp_class" type="text" name="end_cidade" size="28" value=<?=$endereco[3]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Cep:</label>
+            <input class="inp_class" type="text" name="end_cep" size="28" value=<?=$endereco[4]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Bairro:</label>
+            <input class="inp_class" type="text" name="end_bairro" size="28" value=<?=$endereco[5]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Rua:</label>
+            <input class="inp_class" type="text" name="end_rua" size="28" value=<?=$endereco[6]?>><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Numero:</label>
+            <input class="inp_class" type="text" name="end_numero" size="28" value=<?=$endereco[7]?>><br>
+          </div>
+
+          <input type="button" value="Alterar" onclick="habilita()">
+          <input class="inp_class submit" type="submit" value="Proximo"><br>
+        </form>
+
+      <?php
+      }elseif ($_GET['passo'] == 5) {
+        echo "Foi clicado em proximo!!"; //teste
+
+        $maxId="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+        $id=$sql->selecionar($maxId);
+        $sel="SELECT * FROM funcionario WHERE fun_id='" . $id . "';";
+        $funcionario=$sql->fetch($sel);
+
+        $maxId="SELECT MAX(usu_id) AS usu_id FROM usuario";
+        $id=$sql->selecionar($maxId);
+        $sel="SELECT * FROM usuario WHERE usu_id='" . $id . "';";
+        $usuario=$sql->fetch($sel);
+
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
