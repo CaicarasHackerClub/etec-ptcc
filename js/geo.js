@@ -190,62 +190,76 @@ function initMap() {
           data = JSON.parse(data);
           view.resetSelect(true);
 
-          $.getJSON('https://maps.googleapis.com/maps/api/geocode/json', {
-            address: control.getAddressUrl([
-              data.end_rua,
-              data.end_numero,
-              data.end_bairro,
-              data.end_cidade,
-              data.end_cep
-            ]),
-            language: 'pt',
-            region: 'BR',
-            key: 'AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc'})
+          if (data.pes_nome) {
+            $.getJSON('https://maps.googleapis.com/maps/api/geocode/json', {
+              address: control.getAddressUrl([
+                data.end_rua,
+                data.end_numero,
+                data.end_bairro,
+                data.end_cidade,
+                data.end_cep
+              ]),
+              language: 'pt',
+              region: 'BR',
+              key: 'AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc'})
 
-          .done(function(geocode) {
-            var result = geocode.results[0];
-            var position = result.geometry.location;
+              .done(function(geocode) {
+                if (geocode.status === google.maps.GeocoderStatus.OK) {
+                  var result = geocode.results[0];
+                  var position = result.geometry.location;
 
-            if (geocode.status === 'OK') {
-              var marker = new google.maps.Marker({
-                map: map,
-                position: position,
-                title: data.pes_nome,
-                animation: google.maps.Animation.DROP,
-                icon: model.icon.iconSearch
-              });
+                  var searchMarkers = control.getSearchMarkers();
 
-              view.showInfoAddress(result.formatted_address);
-              control.addSearchMarker(marker);
+                  var isMarker = false;
+                  isMarker = searchMarkers.some(function(mkr) {
+                    return mkr.getTitle() === data.pes_nome &&
+                    mkr.getPosition().equals(new google.maps.LatLng(position));
+                  });
 
-              map.panTo(position);
-              map.setZoom(18);
+                  if (!isMarker) {
+                    var marker = new google.maps.Marker({
+                      map: map,
+                      position: position,
+                      title: data.pes_nome,
+                      animation: google.maps.Animation.DROP,
+                      icon: model.icon.iconSearch
+                    });
+                    control.addSearchMarker(marker);
+                  }
 
-              if (!control.getStatus('search')) {
-                control.toggleStatus('search');
-              }
+                  view.showInfoAddress(result.formatted_address);
 
-              if (!control.getStatus('btnClearSearch')) {
-                var $btnClearSearch = $('<button class="btn btn-clear-search">Limpar Buscas</button>');
-                $('.buttons').append($btnClearSearch);
+                  map.panTo(position);
+                  map.setZoom(18);
 
-                control.toggleStatus('btnClearSearch');
+                  if (!control.getStatus('search')) {
+                    control.toggleStatus('search');
+                  }
 
-                $('.btn-clear-search').click(function() {
-                  $(this).remove();
-                  // view.resetSelect(true);
-                  view.resetSearch();
+                  if (!control.getStatus('btnClearSearch')) {
+                    var $btnClearSearch = $('<button class="btn btn-clear-search">Limpar Buscas</button>');
+                    $('.buttons').append($btnClearSearch);
 
-                  view.clearSearchMarkers();
-                  control.clearSearchMarkers();
+                    control.toggleStatus('btnClearSearch');
 
-                  control.toggleStatus('btnClearSearch');
-                  control.toggleStatus('search');
-                });
-              }
-            }
-          })
-          .fail(function() { alert('Fail'); });
+                    $('.btn-clear-search').click(function() {
+                      $(this).remove();
+                      // view.resetSelect(true);
+                      view.resetSearch();
+
+                      view.clearSearchMarkers();
+                      control.clearSearchMarkers();
+
+                      control.toggleStatus('btnClearSearch');
+                      control.toggleStatus('search');
+                    });
+                  }
+                }
+              })
+              .fail(function() { alert('Fail'); });
+          } else {
+            alert('Nome não cadastrado no Banco de Dados');
+          }
         })
         .fail(function() { alert('Fail'); }
       );
@@ -262,7 +276,11 @@ function initMap() {
 
     showDemografia: function() {
       $.getJSON('geolocalizar.php', { tipo: 'demografia' })
+
         .done(function(data) {
+          view.clearDemoMarkers();
+          control.clearDemoMarkers();
+
           data.forEach(function(item) {
             var pessoa = JSON.parse(item);
             var title = pessoa.pes_nome;
