@@ -35,6 +35,7 @@ body {
 
 .search-in,
 .sel-visualizar,
+.info-inner,
 .btn {
   font-size: 1em;
   color: #777;
@@ -42,7 +43,7 @@ body {
   padding: 0.6em;
   background-color: rgb(249, 249, 249);
   border: none;
-  border-bottom: solid 2px rgb(222, 222, 222);
+  border-bottom: solid 1px rgb(222, 222, 222);
   border-radius: 0;
 }
 
@@ -50,20 +51,25 @@ body {
   padding-left: 1.6em;
 }
 
+.info-inner {
+  color: #333;
+}
+
 .search-in:focus,
 .search-in:hover,
 .sel-visualizar:focus,
 .sel-visualizar:hover,
+.info-inner:hover,
 .btn:hover {
   outline: 0;
-  border-bottom: 2px solid #4272db;
+  border-bottom: 1px solid #4272db;
   color: #333;
 }
 
 .search-in:hover,
 .sel-visualizar:hover,
 .btn:hover {
-  background-color: rgb(227, 227, 227);
+  background-color: rgb(227, 235, 240);
 }
 
 .map {
