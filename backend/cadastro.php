@@ -582,17 +582,17 @@
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
-            <input class="inp_class" type="date" name="pes_data" size="28" value=<?=$pessoa[6]?>><br>
+            <input class="inp_class" type="date" name="pes_data" size="28" disabled value=<?=$pessoa[6]?>><br>
            </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Email</label>
-            <input class="inp_class" type="text" name="pes_email" size="28" value=<?=$pessoa[7]?>><br>
+            <input class="inp_class" type="text" name="pes_email" size="28" disabled value=<?=$pessoa[7]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Estado civil:</label>
-            <input class="inp_class" type="text" name="pes_estado_civil" size="28" value=<?=$pessoa[8]?>><br>
+            <input class="inp_class" type="text" name="pes_estado_civil" size="28" disabled value=<?=$pessoa[8]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
@@ -602,52 +602,52 @@
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Gênero</label>
-            <input class="inp_class" type="text" name="pes_genero" size="28" value=<?=$pessoa[10]?>><br>
+            <input class="inp_class" type="text" name="pes_genero" size="28" disabled value=<?=$pessoa[10]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Sexo biológico:</label>
-            <input class="inp_class" type="text" name="pes_sexo_biologico" size="28" value=<?=$pessoa[11]?>><br>
+            <input class="inp_class" type="text" name="pes_sexo_biologico" size="28" disabled value=<?=$pessoa[11]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Telefone:</label>
-            <input class="inp_class" type="text" name="pes_telefone" size="15" value=<?=$pessoa[12]?>><br>
+            <input class="inp_class" type="text" name="pes_telefone" size="15" disabled value=<?=$pessoa[12]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">País:</label>
-            <input class="inp_class" type="text" name="end_pais" size="28" value=<?=$endereco[1]?>><br>
+            <input class="inp_class" type="text" name="end_pais" size="28" disabled value=<?=$endereco[1]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Estado:</label>
-            <input class="inp_class" type="text" name="end_estado" size="28" value=<?=$endereco[2]?>><br>
+            <input class="inp_class" type="text" name="end_estado" size="28" disabled value=<?=$endereco[2]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Cidade:</label>
-            <input class="inp_class" type="text" name="end_cidade" size="28" value=<?=$endereco[3]?>><br>
+            <input class="inp_class" type="text" name="end_cidade" size="28" disabled value=<?=$endereco[3]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Cep:</label>
-            <input class="inp_class" type="text" name="end_cep" size="28" value=<?=$endereco[4]?>><br>
+            <input class="inp_class" type="text" name="end_cep" size="28" disabled value=<?=$endereco[4]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Bairro:</label>
-            <input class="inp_class" type="text" name="end_bairro" size="28" value=<?=$endereco[5]?>><br>
+            <input class="inp_class" type="text" name="end_bairro" size="28" disabled value=<?=$endereco[5]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Rua:</label>
-            <input class="inp_class" type="text" name="end_rua" size="28" value=<?=$endereco[6]?>><br>
+            <input class="inp_class" type="text" name="end_rua" size="28" disabled value=<?=$endereco[6]?>><br>
           </div>
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Numero:</label>
-            <input class="inp_class" type="text" name="end_numero" size="28" value=<?=$endereco[7]?>><br>
+            <input class="inp_class" type="text" name="end_numero" size="28" disabled value=<?=$endereco[7]?>><br>
           </div>
 
           <input type="button" value="Alterar" onclick="habilita()">
