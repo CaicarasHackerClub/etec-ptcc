@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -32,7 +33,9 @@ html, body {
   color: #777;
 }
 
-.search-in, .sel-visualizar {
+.search-in,
+.sel-visualizar,
+.btn {
   font-size: 1em;
   color: #777;
   width: 100%;
@@ -47,10 +50,20 @@ html, body {
   padding-left: 1.6em;
 }
 
-.search-in:focus, .sel-visualizar:focus {
+.search-in:focus,
+.search-in:hover,
+.sel-visualizar:focus,
+.sel-visualizar:hover,
+.btn:hover {
   outline: 0;
   border-bottom: 2px solid #4272db;
   color: #333;
+}
+
+.search-in:hover,
+.sel-visualizar:hover,
+.btn:hover {
+  background-color: rgb(227, 227, 227);
 }
 
 .map {
@@ -58,8 +71,6 @@ html, body {
   height: 100vh;
 }
 
-.ul-info {
-  width: 100%;
-  padding-left: 0.5em;
-  list-style: none;
+.info-inner {
+  padding: 1em 0.5em;
 }

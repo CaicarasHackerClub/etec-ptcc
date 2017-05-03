@@ -9,7 +9,7 @@
     $mysqli = new Sql;
     $con = $mysqli->conecta();
 
-    $query = "SELECT e.end_rua, e.end_numero, e.end_bairro, e.end_cidade, e.end_cep "
+    $query = "SELECT p.pes_nome, e.end_rua, e.end_numero, e.end_bairro, e.end_cidade, e.end_cep "
     . "FROM endereco e "
     . "INNER JOIN pessoa p "
     . "ON e.pessoa_pes_id = p.pes_id "
