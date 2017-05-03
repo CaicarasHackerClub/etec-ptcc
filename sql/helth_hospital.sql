@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/05/2017 às 00:49
+-- Tempo de geração: 03/05/2017 às 06:15
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10148,21 +10148,21 @@ CREATE TABLE `pessoa` (
 --
 
 INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`) VALUES
-(1, 'Karina Ramos', 'Mathos Ramos', 'Larisa Matos', '43.434.434-3', '346.346.346-34', '2005-04-21', 1, 'karina@bol.com.br', 1, 'Ubatubense', 2, 2, '(12)982343434'),
-(2, 'Marta wender', 'Joao da Silva', 'Jorge Wender', '366.457.987.98', '445.346.987.65', '2003-08-01', 2, 'martinhawender@email.com.br', 3, 'Paulista', 2, 2, '(12)981236789'),
-(3, 'Paula dos Santos', 'Roberto Nascimento', 'Larisa Pereira', '33.050.250-3', '123.456.789-10', '1996-12-06', 3, 'Paulinha@gmail.com', 4, 'Paraense', 2, 2, '(35)997667890'),
-(4, 'Kleber Ramos', 'Jose Ramos', 'Pata Mathos', '909.876.897.76', '763.765.899.09', '1988-02-10', 1, 'klberzinho@email.com', 2, 'Ubatubense', 1, 1, '(12)987667894'),
-(5, 'luiza Fonseca', 'Pedro Fonseca', 'Maria dias Fonseca', '333.654.765.98', '786.567.823.76', '1984-08-01', 1, 'Luizinha@hot.com', 1, 'Ubatubense', 2, 2, '(12)982456674'),
-(6, 'Rafael Nunes', 'Mario da Cruz Nunes', 'Joana lopes Nunes', '771.123.678.90', '456.765.912.56', '1997-06-25', 1, 'rafanudes@gmail.com', 2, 'Ubatubense', 1, 1, '(12)38765590'),
-(7, 'Orlando Olindo', 'Manuel Olindo ', 'Clara Silva', '33.434.434-3', '876.346.346-34', '1989-04-21', 2, 'olindo@mail.com', 2, 'Ubatubense', 1, 1, '(12)972343434'),
-(8, 'Soraia Santos', 'Dilmar Santos', '', '18.434.434-3', '996.346.346-34', '2005-04-21', 2, 'soraia@sol.com', 1, 'Ubatubense', 2, 2, '(12)981443434'),
-(9, 'Paulo de Oliveira', 'Manuel de Oliveira', 'Mariane', '55.474.420-X', '370.590.978-54', '2006-07-31', 1, 'paulooli@bol.com.br', 1, 'Ubatubense', 1, 1, '(15)982360434'),
-(10, 'Cassia Eller', 'Carlos', 'Cintia', '48.535.487-8', '320.792.706-90', '1991-07-07', 1, 'cassia@gmail.com', 2, 'Carioca', 2, 3, '(21)982343470'),
-(11, 'Camila', 'Kim', 'Joana', '63.703.398-9', '322.288.190-54', '2005-09-29', 1, 'camila@bol.com.br', 3, 'Ubatubense', 2, 2, '(12)970343434'),
-(12, 'Robervaldo', 'Ronaldo', 'Fetolino', '70.400.429-5', '670.346.346-34', '1960-06-30', 1, 'rober@bol.com.br', 2, 'Ubatubense', 1, 1, '(12)972350434'),
-(13, 'Danilo', 'Robert', '', '49.530.834-10', '754.001.673-12', '1999-08-29', 1, 'Danilo@hotmail.com', 1, 'Ubatubense', 2, 2, '(12)997877675'),
-(14, 'Karol Silva', 'Jonas Silva', 'Lara Silva', '47.833.478-99', '899.356.667-40', '1995-07-30', 1, 'karol@mail.com', 2, 'Ubatubense', 2, 2, '(12)38464589'),
-(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '990.462.393-78', '1977-07-07', 1, 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691');
+(1, 'Karina Ramos', 'Mathos Ramos', 'Larisa Matos', '43.434.434-3', '34634634634', '2005-04-21', 1, 'karina@bol.com.br', 1, 'Ubatubense', 2, 2, '(12)982343434'),
+(2, 'Marta wender', 'Joao da Silva', 'Jorge Wender', '366.457.987.98', '44534698765', '2003-08-01', 2, 'martinhawender@email.com.br', 3, 'Paulista', 2, 2, '(12)981236789'),
+(3, 'Paula dos Santos', 'Roberto Nascimento', 'Larisa Pereira', '33.050.250-3', '12345678910', '1996-12-06', 3, 'Paulinha@gmail.com', 4, 'Paraense', 2, 2, '(35)997667890'),
+(4, 'Kleber Ramos', 'Jose Ramos', 'Pata Mathos', '909.876.897.76', '76376589909', '1988-02-10', 1, 'klberzinho@email.com', 2, 'Ubatubense', 1, 1, '(12)987667894'),
+(5, 'luiza Fonseca', 'Pedro Fonseca', 'Maria dias Fonseca', '333.654.765.98', '78656782376', '1984-08-01', 1, 'Luizinha@hot.com', 1, 'Ubatubense', 2, 2, '(12)982456674'),
+(6, 'Rafael Nunes', 'Mario da Cruz Nunes', 'Joana lopes Nunes', '771.123.678.90', '45676591256', '1997-06-25', 1, 'rafanudes@gmail.com', 2, 'Ubatubense', 1, 1, '(12)38765590'),
+(7, 'Orlando Olindo', 'Manuel Olindo ', 'Clara Silva', '33.434.434-3', '87634634634', '1989-04-21', 2, 'olindo@mail.com', 2, 'Ubatubense', 1, 1, '(12)972343434'),
+(8, 'Soraia Santos', 'Dilmar Santos', '', '18.434.434-3', '99634634634', '2005-04-21', 2, 'soraia@sol.com', 1, 'Ubatubense', 2, 2, '(12)981443434'),
+(9, 'Paulo de Oliveira', 'Manuel de Oliveira', 'Mariane', '55.474.420-X', '37059097854', '2006-07-31', 1, 'paulooli@bol.com.br', 1, 'Ubatubense', 1, 1, '(15)982360434'),
+(10, 'Cassia Eller', 'Carlos', 'Cintia', '48.535.487-8', '32079270690', '1991-07-07', 1, 'cassia@gmail.com', 2, 'Carioca', 2, 3, '(21)982343470'),
+(11, 'Camila', 'Kim', 'Joana', '63.703.398-9', '32228819054', '2005-09-29', 1, 'camila@bol.com.br', 3, 'Ubatubense', 2, 2, '(12)970343434'),
+(12, 'Robervaldo', 'Ronaldo', 'Fetolino', '70.400.429-5', '67034634634', '1960-06-30', 1, 'rober@bol.com.br', 2, 'Ubatubense', 1, 1, '(12)972350434'),
+(13, 'Danilo', 'Robert', '', '49.530.834-10', '75400167312', '1999-08-29', 1, 'Danilo@hotmail.com', 1, 'Ubatubense', 2, 2, '(12)997877675'),
+(14, 'Karol Silva', 'Jonas Silva', 'Lara Silva', '47.833.478-99', '89935666740', '1995-07-30', 1, 'karol@mail.com', 2, 'Ubatubense', 2, 2, '(12)38464589'),
+(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '99046239378', '1977-07-07', 1, 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691');
 
 -- --------------------------------------------------------
 
