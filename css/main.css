@@ -8,7 +8,7 @@
 body {
   margin: 0;
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 /*remover checkbox para usar em displays menores*/
@@ -21,7 +21,7 @@ header{
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
+  height: 98vh;
 }
 
 /*conteúdo da lateral, hora, usuário, logar, etc..*/
@@ -71,7 +71,7 @@ header{
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 97vh;
 }
 
 /*Div que contém triagem, Recepção e Administração*/
@@ -108,6 +108,7 @@ header{
   display: flex;
   font-size: 17pt;
   width: 100%;
+  height: 103px;
 }
 
 .sub-cabecalho{
@@ -216,7 +217,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 .conteudoCentro .main{
   /*border: 0.5px solid #29784b;*/
   width: 100%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-flow: column;
   /*background-color: #9bd3ae;*/
@@ -225,7 +226,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 100%;
-  height: 84.5vh;
+  height: 83.2vh;
 }
 
 /*edição na segunda class do da main do centro*/
@@ -300,11 +301,11 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 .TabControl .content{
-  width:100%;
+  width: 100%;
   background-color: #fff;
   /*border: solid 1px #01b26a;*/
   overflow: hidden;
-  height:100%;
+  height: 97%;
 }
 
 .TabControl .abas{
@@ -481,7 +482,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
       margin-left: 35px;
     }
 
-
     .lateral .user{
       border-bottom: 1px solid white;
       border-right: none;
@@ -561,7 +561,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-left: 40%;
   }
 
-  .main .cabecalho .group-image .lbl_triagem{
+  .container .main .cabecalho .group-image .tit-text{
     font-size: 14pt;
     margin: 0;
     margin-top: 24px;
@@ -633,6 +633,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
     margin-top: 7px;
     margin-left: 7px;
   }
+
 }
 
 @media (max-width: 433px){
@@ -676,19 +677,28 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 @media (max-height: 500px){
   .container .lateral .main-lateral{
-    height: 30%;
+    height: 50%;
     overflow: auto;
+  }
+
+  .container .lateral {
+    height: 500px;
   }
 }
 
 @media (max-height: 280px){
-  .cabecalho .titulo{
+  /*.cabecalho .titulo{
     width: 32%;
   }
 
   .container .lateral .sub-logo{
     visibility: hidden;
   }
+
+  .container .lateral .main-lateral{
+    height: 70%;
+  }*/
+
 }
 
 @media (min-width: 651px){
