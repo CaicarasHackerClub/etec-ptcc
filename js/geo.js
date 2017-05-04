@@ -4,7 +4,6 @@ function initMap() {
   // Objetos globais
   var map;
 
-  // TODO: definir constantes para SAUDE, DEMO, SEARCH, etc.
   var INITIAL = 'initial';
   var SAUDE = 'saude';
   var DEMO = 'demografia';
@@ -146,7 +145,7 @@ function initMap() {
         var marker = new google.maps.Marker(model.marker);
         marker.setMap(map);
         // Adicionar aos marcadores iniciais
-        control.addMarker(marker, tipo);
+        control.addMarker(marker, INITIAL);
         // Mostrar popup
         if (model.infoWin) {
           view.showInfoWindow(model.infoWin, marker);
@@ -217,7 +216,7 @@ function initMap() {
                       animation: google.maps.Animation.DROP,
                       icon: model.icon.iconSearch
                     });
-                    control.addMarker(marker, tipo);
+                    control.addMarker(marker, SEARCH);
                   }
 
                   view.showInfoAddress(result.formatted_address);
@@ -243,7 +242,7 @@ function initMap() {
       map.setZoom(15);
     },
 
-    showPostosSaude: function() {
+    showSaude: function() {
       view.clearMarkers(SAUDE);
       control.clearMarkers(SAUDE);
 
@@ -267,7 +266,7 @@ function initMap() {
               icon: model.icon.iconHealth,
             });
 
-            control.addMarker(marker, tipo);
+            control.addMarker(marker, SAUDE);
             bounds.extend(marker.getPosition());
             map.fitBounds(bounds);
 
@@ -321,7 +320,7 @@ function initMap() {
                   icon: model.icon.iconDemo,
                 });
 
-                control.addMarker(marker, tipo);
+                control.addMarker(marker, DEMO);
                 bounds.extend(marker.getPosition());
                 map.fitBounds(bounds);
               }
@@ -426,7 +425,7 @@ function initMap() {
               view.showSantaCasa();
             break;
           case 'saude':
-              view.showPostosSaude();
+              view.showSaude();
             break;
           default:
 
