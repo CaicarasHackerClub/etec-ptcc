@@ -5,7 +5,14 @@ function initMap() {
   var map;
 
   // TODO: definir constantes para SAUDE, DEMO, SEARCH, etc.
+  var INITIAL = 'initial';
+  var SAUDE = 'saude';
+  var DEMO = 'demografia';
+  var SEARCH = 'search';
+
   // TODO: salvar latlng em BD e só procurar quando não tem salvo.
+  // TODO: transformar select e buttons em checkboxses
+  // FIXME: corrigir chamadas a model em view
 
 
   // Modelos de dados
@@ -83,24 +90,9 @@ function initMap() {
       return model.marker.models;
     },
 
-    // Obter marcadores iniciais
-    getInitialMarkers: function() {
-      return model.marker.colections.initial;
-    },
-
-    // Obter marcadores de buscas recentes
-    getSearchMarkers: function() {
-      return model.marker.colections.search;
-    },
-
-    // Obter marcadores demográficos
-    getDemoMarkers: function() {
-      return model.marker.colections.demografia;
-    },
-
     // Obter marcadores saúde
-    getSaudeMarkers: function() {
-      return model.marker.colections.saude;
+    getMarkers: function(tipo) {
+      return model.marker.colections[tipo];
     },
 
     // Formata url para API request
@@ -108,44 +100,21 @@ function initMap() {
       return data.join('+');
     },
 
-    // Adiciona marcador a marcadores iniciais
-    addInitialMarker: function(marker) {
-      model.marker.colections.initial.push(marker);
-    },
-
-    // Adiciona marcador a marcadores de busca
-    addSearchMarker: function(marker) {
-      model.marker.colections.search.push(marker);
-    },
-
-    // Adiciona marcador a demográficos
-    addDemoMarker: function(marker) {
-      model.marker.colections.demografia.push(marker);
-    },
-
-    // Adiciona marcador a saúde
-    addSaudeMarker: function(marker) {
-      model.marker.colections.saude.push(marker);
-    },
-
     getStatus: function(tipo) {
       return model.status[tipo];
+    },
+
+    // Adiciona marcador
+    addMarker: function(marker, tipo) {
+      model.marker.colections[tipo].push(marker);
     },
 
     toggleStatus: function(tipo) {
       model.status[tipo] = !model.status[tipo];
     },
 
-    clearDemoMarkers: function() {
-      model.marker.colections.demografia.length = 0;
-    },
-
-    clearSearchMarkers: function() {
-      model.marker.colections.search.length = 0;
-    },
-
-    clearSaudeMarkers: function() {
-      model.marker.colections.saude.length = 0;
+    clearMarkers: function(tipo) {
+      model.marker.colections[tipo].length = 0;
     },
 
     init: function() {
@@ -157,6 +126,10 @@ function initMap() {
 
   // Vistas
   var view = {
+
+    templates: {
+      buttons: '<button class="btn btn-clear-%tipo%">Limpar %nome%</button>',
+    },
 
     // Mostrar o mapa e inicializar o objeto global map
     showMap: function() {
@@ -173,7 +146,7 @@ function initMap() {
         var marker = new google.maps.Marker(model.marker);
         marker.setMap(map);
         // Adicionar aos marcadores iniciais
-        control.addInitialMarker(marker);
+        control.addMarker(marker, tipo);
         // Mostrar popup
         if (model.infoWin) {
           view.showInfoWindow(model.infoWin, marker);
@@ -228,7 +201,7 @@ function initMap() {
                   var result = geocode.results[0];
                   var position = result.geometry.location;
 
-                  var searchMarkers = control.getSearchMarkers();
+                  var searchMarkers = control.getMarkers(SEARCH);
 
                   var isMarker = false;
                   isMarker = searchMarkers.some(function(mkr) {
@@ -244,7 +217,7 @@ function initMap() {
                       animation: google.maps.Animation.DROP,
                       icon: model.icon.iconSearch
                     });
-                    control.addSearchMarker(marker);
+                    control.addMarker(marker, tipo);
                   }
 
                   view.showInfoAddress(result.formatted_address);
@@ -252,28 +225,7 @@ function initMap() {
                   map.panTo(position);
                   map.setZoom(18);
 
-                  if (!control.getStatus('search')) {
-                    control.toggleStatus('search');
-                  }
-
-                  if (!control.getStatus('btnClearSearch')) {
-                    var $btnClearSearch = $('<button class="btn btn-clear-search">Limpar Buscas</button>');
-                    $('.buttons').append($btnClearSearch);
-
-                    control.toggleStatus('btnClearSearch');
-
-                    $('.btn-clear-search').click(function() {
-                      $(this).remove();
-                      // view.resetSelect(true);
-                      view.resetSearch();
-
-                      view.clearSearchMarkers();
-                      control.clearSearchMarkers();
-
-                      control.toggleStatus('btnClearSearch');
-                      control.toggleStatus('search');
-                    });
-                  }
+                  view.toggleViewStatus(SEARCH, 'Busca');
                 }
               })
               .fail(function() { alert('Fail'); });
@@ -292,8 +244,8 @@ function initMap() {
     },
 
     showPostosSaude: function() {
-      view.clearSaudeMarkers();
-      control.clearSaudeMarkers();
+      view.clearMarkers(SAUDE);
+      control.clearMarkers(SAUDE);
 
       var santaCasa = model.marker.models[0].marker.position;
       var places = new google.maps.places.PlacesService(map);
@@ -315,7 +267,7 @@ function initMap() {
               icon: model.icon.iconHealth,
             });
 
-            control.addSaudeMarker(marker);
+            control.addMarker(marker, tipo);
             bounds.extend(marker.getPosition());
             map.fitBounds(bounds);
 
@@ -328,28 +280,7 @@ function initMap() {
             });
           });
 
-          if (!control.getStatus('saude')) {
-            control.toggleStatus('saude');
-          }
-
-          if (!control.getStatus('btnClearSaude')) {
-            var $btnClearSaude = $('<button class="btn btn-clear-saude">Limpar Saúde</button>');
-            $('.buttons').append($btnClearSaude);
-
-            control.toggleStatus('btnClearSaude');
-
-            $('.btn-clear-saude').click(function() {
-              $(this).remove();
-              view.resetSelect(true);
-              view.resetSearch();
-
-              view.clearSaudeMarkers();
-              control.clearSaudeMarkers();
-
-              control.toggleStatus('saude');
-              control.toggleStatus('btnClearSaude');
-            });
-          }
+          view.toggleViewStatus(SAUDE, 'Saúde');
         }
       });
     },
@@ -357,8 +288,8 @@ function initMap() {
     showDemografia: function() {
       $.getJSON('geolocalizar.php', { tipo: 'demografia' })
         .done(function(data) {
-          view.clearDemoMarkers();
-          control.clearDemoMarkers();
+          view.clearMarkers(DEMO);
+          control.clearMarkers(DEMO);
 
           var bounds = new google.maps.LatLngBounds();
 
@@ -390,7 +321,7 @@ function initMap() {
                   icon: model.icon.iconDemo,
                 });
 
-                control.addDemoMarker(marker);
+                control.addMarker(marker, tipo);
                 bounds.extend(marker.getPosition());
                 map.fitBounds(bounds);
               }
@@ -398,29 +329,35 @@ function initMap() {
             .fail(function() { alert('Fail'); });
           });
 
-          if (!control.getStatus('demografia')) {
-            control.toggleStatus('demografia');
-          }
-
-          if (!control.getStatus('btnClearDemo')) {
-            var $btnClearDemo = $('<button class="btn btn-clear-demo">Limpar Demografia</button>');
-            $('.buttons').append($btnClearDemo);
-
-            control.toggleStatus('btnClearDemo');
-
-            $('.btn-clear-demo').click(function() {
-              $(this).remove();
-              view.resetSelect(true);
-
-              view.clearDemoMarkers();
-              control.clearDemoMarkers();
-
-              control.toggleStatus('demografia');
-              control.toggleStatus('btnClearDemo');
-            });
-          }
+          view.toggleViewStatus(DEMO, 'Demografia');
         })
         .fail(function() {alert('Fail');});
+    },
+
+    toggleViewStatus: function(tipo, nome) {
+      if (!control.getStatus(tipo)) {
+        control.toggleStatus(tipo);
+
+        var $btnClear= $(view.templates.buttons
+          .replace(/%tipo%/, tipo)
+          .replace(/%nome%/, nome));
+
+        $('.buttons').append($btnClear);
+
+        $('.btn-clear-' + tipo).click(function() {
+          control.toggleStatus(tipo);
+
+          $(this).remove();
+
+          view.resetSelect(true);
+          if (tipo === SEARCH) {
+            view.resetSearch();
+          }
+
+          view.clearMarkers(tipo);
+          control.clearMarkers(tipo);
+        });
+      }
     },
 
     // Criar conteudo para popup informativo dos marcadores
@@ -446,30 +383,9 @@ function initMap() {
       return InfoWindowTemplate.replace(/%address%/, tmpStr);
     },
 
-    // Apaga marcadores iniciais
-    clearInitialMarkers: function() {
-      control.getInitialMarkers().forEach(function(marker) {
-        marker.setMap(null);
-      });
-    },
-
-    // Apaga marcadores demográficos
-    clearDemoMarkers: function() {
-      control.getDemoMarkers().forEach(function(marker) {
-        marker.setMap(null);
-      });
-    },
-
-    // Apaga marcadores de busca
-    clearSearchMarkers: function() {
-      control.getSearchMarkers().forEach(function(marker) {
-        marker.setMap(null);
-      });
-    },
-
-    // Apaga marcadores de saúde
-    clearSaudeMarkers: function() {
-      control.getSaudeMarkers().forEach(function(marker) {
+    // Apaga marcadores da tela
+    clearMarkers: function(tipo) {
+      control.getMarkers(tipo).forEach(function(marker) {
         marker.setMap(null);
       });
     },
@@ -509,7 +425,7 @@ function initMap() {
           case 'santa casa':
               view.showSantaCasa();
             break;
-          case 'postos de saude':
+          case 'saude':
               view.showPostosSaude();
             break;
           default:
