@@ -37,6 +37,7 @@ body {
 .sel-visualizar,
 .info-inner,
 .btn {
+  text-align: left;
   font-size: 1em;
   color: #777;
   width: 100%;

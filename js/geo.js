@@ -4,6 +4,9 @@ function initMap() {
   // Objetos globais
   var map;
 
+  // TODO: definir constantes para SAUDE, DEMO, SEARCH, etc.
+  // TODO: salvar latlng em BD e só procurar quando não tem salvo.
+
 
   // Modelos de dados
   var model = {
@@ -25,7 +28,7 @@ function initMap() {
       models: [{
         marker: {
           title: 'Santa Casa de Ubatuba',
-          position: {lat: -23.4350898, lng: -45.0714174},
+          position: new google.maps.LatLng({lat: -23.4350898, lng: -45.0714174}),
           animation: google.maps.Animation.DROP,
         },
         infoWin: {
@@ -45,15 +48,17 @@ function initMap() {
         initial: [],
         search: [],
         demografia: [],
-        postosSaude: [],
+        saude: [],
       },
     },
 
     status: {
       search: false,
       demografia: false,
+      saude: false,
       btnClearDemo: false,
       btnClearSearch: false,
+      btnClearSaude: false,
     },
 
     init: function() {
@@ -93,6 +98,11 @@ function initMap() {
       return model.marker.colections.demografia;
     },
 
+    // Obter marcadores saúde
+    getSaudeMarkers: function() {
+      return model.marker.colections.saude;
+    },
+
     // Formata url para API request
     getAddressUrl: function(data) {
       return data.join('+');
@@ -113,6 +123,11 @@ function initMap() {
       model.marker.colections.demografia.push(marker);
     },
 
+    // Adiciona marcador a saúde
+    addSaudeMarker: function(marker) {
+      model.marker.colections.saude.push(marker);
+    },
+
     getStatus: function(tipo) {
       return model.status[tipo];
     },
@@ -127,6 +142,10 @@ function initMap() {
 
     clearSearchMarkers: function() {
       model.marker.colections.search.length = 0;
+    },
+
+    clearSaudeMarkers: function() {
+      model.marker.colections.saude.length = 0;
     },
 
     init: function() {
@@ -273,6 +292,66 @@ function initMap() {
     },
 
     showPostosSaude: function() {
+      view.clearSaudeMarkers();
+      control.clearSaudeMarkers();
+
+      var santaCasa = model.marker.models[0].marker.position;
+      var places = new google.maps.places.PlacesService(map);
+      var bounds = new google.maps.LatLngBounds();
+      var request = {
+        location: santaCasa,
+        radius: 30000,
+        type: 'hospital'
+      };
+
+      places.nearbySearch(request, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          results.forEach(function(place) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location,
+              title: place.name,
+              // icon: place.icon,
+              icon: model.icon.iconHealth,
+            });
+
+            control.addSaudeMarker(marker);
+            bounds.extend(marker.getPosition());
+            map.fitBounds(bounds);
+
+            marker.addListener('click', function() {
+              places.getDetails(place, function(result, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  view.showInfoAddress(result.formatted_address);
+                }
+              });
+            });
+          });
+
+          if (!control.getStatus('saude')) {
+            control.toggleStatus('saude');
+          }
+
+          if (!control.getStatus('btnClearSaude')) {
+            var $btnClearSaude = $('<button class="btn btn-clear-saude">Limpar Saúde</button>');
+            $('.buttons').append($btnClearSaude);
+
+            control.toggleStatus('btnClearSaude');
+
+            $('.btn-clear-saude').click(function() {
+              $(this).remove();
+              view.resetSelect(true);
+              view.resetSearch();
+
+              view.clearSaudeMarkers();
+              control.clearSaudeMarkers();
+
+              control.toggleStatus('saude');
+              control.toggleStatus('btnClearSaude');
+            });
+          }
+        }
+      });
     },
 
     showDemografia: function() {
@@ -384,6 +463,13 @@ function initMap() {
     // Apaga marcadores de busca
     clearSearchMarkers: function() {
       control.getSearchMarkers().forEach(function(marker) {
+        marker.setMap(null);
+      });
+    },
+
+    // Apaga marcadores de saúde
+    clearSaudeMarkers: function() {
+      control.getSaudeMarkers().forEach(function(marker) {
         marker.setMap(null);
       });
     },

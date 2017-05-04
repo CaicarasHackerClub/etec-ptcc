@@ -62,7 +62,6 @@
   }
 
   if (!is_null($tipo)) {
-
     switch ($tipo) {
       case 'endereço':
         $pessoa = isset($_GET['pessoa']) ? $_GET['pessoa'] : null;
