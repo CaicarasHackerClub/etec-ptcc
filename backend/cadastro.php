@@ -696,19 +696,19 @@
             <input class="inp_class" type="time" name="fun_turno" size="28" desabled><br>
           </div>
 
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">E-mail:</label>
-                  <input class="inp_class" type="text" name="usu_email" size="28"><br>
-                </div>
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">E-mail:</label>
+            <input class="inp_class" type="text" name="usu_email" size="28"><br>
+          </div>
 
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Senha:</label>
-                  <input class="inp_class" type="password" name="usu_senha" size="28"><br>
-                </div>
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Senha:</label>
+            <input class="inp_class" type="password" name="usu_senha" size="28"><br>
+          </div>
 
-                <input class="inp_class" type="submit" value="Proximo">
-                </form>
-
+          <input class="inp_class" type="submit" value="Proximo">
+        </form>
+      <?php
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
