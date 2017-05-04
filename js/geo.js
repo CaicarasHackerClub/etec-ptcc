@@ -8,6 +8,7 @@ function initMap() {
   var SAUDE = 'saude';
   var DEMO = 'demografia';
   var SEARCH = 'search';
+  var SANTA_CASA = new google.maps.LatLng({lat: -23.4350898, lng: -45.0714174});
 
   // TODO: salvar latlng em BD e só procurar quando não tem salvo.
   // TODO: transformar select e buttons em checkboxses
@@ -16,8 +17,9 @@ function initMap() {
 
   // Modelos de dados
   var model = {
-    mapModel: {
+    map: {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: SANTA_CASA,
       zoom: 15,
       mapTypeControl: false,
       streetViewControl: false
@@ -34,7 +36,7 @@ function initMap() {
       models: [{
         marker: {
           title: 'Santa Casa de Ubatuba',
-          position: new google.maps.LatLng({lat: -23.4350898, lng: -45.0714174}),
+          position: SANTA_CASA,
           animation: google.maps.Animation.DROP,
         },
         infoWin: {
@@ -68,8 +70,6 @@ function initMap() {
     },
 
     init: function() {
-      // Determinar o centro de visualização do mapa na Santa Casa
-      this.mapModel.center = this.marker.models[0].marker.position;
       // Definir o icone do marcador da Santa Casa
       this.marker.models[0].marker.icon = this.icon.iconHome;
     }
@@ -80,8 +80,8 @@ function initMap() {
   var control = {
 
     // Obter as configurações inciais do mapa
-    getMapModel: function() {
-      return model.mapModel;
+    getMap: function() {
+      return model.map;
     },
 
     // Obter as configurações dos marcadores iniciais
@@ -132,7 +132,7 @@ function initMap() {
 
     // Mostrar o mapa e inicializar o objeto global map
     showMap: function() {
-      var map = new google.maps.Map(document.getElementById('map'), control.getMapModel());
+      var map = new google.maps.Map(document.getElementById('map'), control.getMap());
       return map;
     },
 
@@ -237,8 +237,7 @@ function initMap() {
     },
 
     showSantaCasa: function() {
-      var santaCasa = model.marker.models[0].marker.position;
-      map.panTo(santaCasa);
+      map.panTo(SANTA_CASA);
       map.setZoom(15);
     },
 
@@ -246,11 +245,10 @@ function initMap() {
       view.clearMarkers(SAUDE);
       control.clearMarkers(SAUDE);
 
-      var santaCasa = model.marker.models[0].marker.position;
       var places = new google.maps.places.PlacesService(map);
       var bounds = new google.maps.LatLngBounds();
       var request = {
-        location: santaCasa,
+        location: SANTA_CASA,
         radius: 30000,
         type: 'hospital'
       };
@@ -349,9 +347,7 @@ function initMap() {
           $(this).remove();
 
           view.resetSelect(true);
-          if (tipo === SEARCH) {
-            view.resetSearch();
-          }
+          view.resetSearch();
 
           view.clearMarkers(tipo);
           control.clearMarkers(tipo);
