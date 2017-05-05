@@ -171,16 +171,20 @@ function geoApp() {
       }
 
       marker.addListener('click', function() {
-          var geocoder = new google.maps.Geocoder();
-          var location = marker.getPosition();
+          if (result) {
+            view.showInfoAddress(result.formatted_address);
+          } else {
+            var geocoder = new google.maps.Geocoder();
+            var location = marker.getPosition();
 
-          geocoder.geocode({location: location}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-              if (results[0]) {
-                view.showInfoAddress(results[0].formatted_address);
+            geocoder.geocode({location: location}, function(results, status) {
+              if (status === google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                  view.showInfoAddress(results[0].formatted_address);
+                }
               }
-            }
-          });
+            });
+          }
       });
 
       control.addMarker(marker, tipo);
