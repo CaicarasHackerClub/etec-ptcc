@@ -183,6 +183,20 @@ function initMap() {
 
     createMarker: function(tipo, properties) {
       var marker = new google.maps.Marker(properties);
+
+      marker.addListener('click', function() {
+        var geocoder = new google.maps.Geocoder();
+        var location = marker.getPosition();
+
+        geocoder.geocode({location: location}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+              view.showInfoAddress(results[0].formatted_address);
+            }
+          }
+        });
+      });
+
       control.addMarker(marker, tipo);
     },
 
@@ -280,13 +294,6 @@ function initMap() {
             });
             view.setBounds();
 
-            // marker.addListener('click', function() {
-            //   places.getDetails(place, function(result, status) {
-            //     if (status === google.maps.places.PlacesServiceStatus.OK) {
-            //       view.showInfoAddress(result.formatted_address);
-            //     }
-            //   });
-            // });
           });
 
           view.toggleViewStatus(SAUDE, 'Saúde');
