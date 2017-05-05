@@ -12,7 +12,6 @@ function geoApp() {
 
   // TODO: salvar latlng em BD e só procurar quando não tem salvo.
   // TODO: transformar select e buttons em checkboxses
-  // FIXME: corrigir chamadas a model em view
 
 
   // Modelos de dados
@@ -143,6 +142,9 @@ function geoApp() {
       buttons: '<button class="btn btn-clear-%tipo%">Limpar %nome%</button>',
     },
 
+    // Criar e abrir popup informativo
+    infowindow: new google.maps.InfoWindow(),
+
     // Mostrar o mapa e inicializar o objeto global map
     showMap: function() {
       var map = new google.maps.Map(document.getElementById('map'), control.getMap());
@@ -150,16 +152,20 @@ function geoApp() {
     },
 
     // Mostrar popups informativos dos marcadores
-    showInfoWindow: function(model, marker) {
-      // Preencher plantilhas HTML
-      var content = view.getContentInfoWindow(model);
-      // Criar e abrir popup informativo
-      var info = new google.maps.InfoWindow({ content: content });
-      // Evento clicar para abrir
-      marker.addListener('click', function() {
-        info.open(map, marker);
-      });
-      return info;
+    setInfoWindow: function(model, marker) {
+      if (view.infowindow.marker != marker) {
+        view.infowindow.marker = marker;
+        // Preencher plantilhas HTML
+        var content = view.getContentInfoWindow(model);
+        view.infowindow.setContent(content);
+        // Evento clicar para abrir
+        marker.addListener('click', function() {
+          view.infowindow.open(map, this);
+        });
+        view.infowindow.addListener('closeclick', function() {
+          view.infowindow.marker = null;
+        });
+      }
     },
 
     createMarker: function(tipo, properties, result) {
@@ -405,8 +411,8 @@ function geoApp() {
       map = view.showMap();
       var santaCasa = view.createMarker(HOME, model.santaCasa.marker);
       santaCasa.setZIndex(google.maps.Marker.MAX_ZINDEX);
-      var infowindow = view.showInfoWindow(model.santaCasa.infowindow, santaCasa);
-      infowindow.open(map, santaCasa);
+      view.setInfoWindow(model.santaCasa.infowindow, santaCasa);
+      view.infowindow.open(map, santaCasa);
 
       // Search Evento
       $('.search-form').submit(function(ev) {
