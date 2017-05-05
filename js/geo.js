@@ -181,20 +181,24 @@ function initMap() {
       });
     },
 
-    createMarker: function(tipo, properties) {
+    createMarker: function(tipo, properties, result) {
       var marker = new google.maps.Marker(properties);
 
-      marker.addListener('click', function() {
-        var geocoder = new google.maps.Geocoder();
-        var location = marker.getPosition();
+      if (result) {
+        view.showInfoAddress(result.formatted_address);
+      }
 
-        geocoder.geocode({location: location}, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            if (results[0]) {
-              view.showInfoAddress(results[0].formatted_address);
+      marker.addListener('click', function() {
+          var geocoder = new google.maps.Geocoder();
+          var location = marker.getPosition();
+
+          geocoder.geocode({location: location}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+              if (results[0]) {
+                view.showInfoAddress(results[0].formatted_address);
+              }
             }
-          }
-        });
+          });
       });
 
       control.addMarker(marker, tipo);
@@ -250,10 +254,9 @@ function initMap() {
                     title: data.pes_nome,
                     animation: google.maps.Animation.DROP,
                     icon: model.icon.iconSearch
-                  });
+                  }, result);
 
                   view.setBounds();
-                  view.showInfoAddress(result.formatted_address);
                   view.toggleViewStatus(SEARCH, 'Busca');
                 }
               })
