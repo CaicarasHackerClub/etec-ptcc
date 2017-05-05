@@ -1,14 +1,14 @@
-function initMap() {
+function geoApp() {
   "use strict";
 
   // Objetos globais
   var map;
 
-  var INITIAL = 'initial';
+  var HOME = 'home';
   var SAUDE = 'saude';
   var DEMO = 'demografia';
   var SEARCH = 'search';
-  var SANTA_CASA = new google.maps.LatLng({lat: -23.4350898, lng: -45.0714174});
+  var CENTER = new google.maps.LatLng({lat: -23.4350898, lng: -45.0714174});
 
   // TODO: salvar latlng em BD e só procurar quando não tem salvo.
   // TODO: transformar select e buttons em checkboxses
@@ -19,7 +19,7 @@ function initMap() {
   var model = {
     map: {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: SANTA_CASA,
+      center: CENTER,
       zoom: 15,
       mapTypeControl: false,
       streetViewControl: false
@@ -32,28 +32,28 @@ function initMap() {
       search: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
     },
 
-    marker: {
-      models: [{
-        marker: {
-          title: 'Santa Casa de Ubatuba',
-          position: SANTA_CASA,
-          animation: google.maps.Animation.DROP,
-        },
-        infoWin: {
-          title: 'Santa Casa de Ubatuba',
-          lines: [
-            'R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil',
-            '+55 12 3834-3230'
-          ],
-          links: [{
-            url: 'http://santacasaubatuba.org.br',
-            value: 'santacasaubatuba.org.br'
-          }]
-        }
-      }],
+    santaCasa: {
+      marker: {
+        title: 'Santa Casa de Ubatuba',
+        position: CENTER,
+        animation: google.maps.Animation.DROP,
+      },
+      infowindow: {
+        title: 'Santa Casa de Ubatuba',
+        lines: [
+          'R. Conceição, 135 - Centro, Ubatuba - SP, 11680-000, Brazil',
+          '+55 12 3834-3230'
+        ],
+        links: [{
+          url: 'http://santacasaubatuba.org.br',
+          value: 'santacasaubatuba.org.br'
+        }]
+      }
+    },
 
-      colections: {
-        initial: [],
+    marker: {
+      colection: {
+        home: [],
         search: [],
         demografia: [],
         saude: [],
@@ -70,8 +70,7 @@ function initMap() {
     },
 
     init: function() {
-      // Definir o icone do marcador da Santa Casa
-      this.marker.models[0].marker.icon = this.icon.home;
+      this.santaCasa.marker.icon = this.icon.home;
     }
   };
 
@@ -84,14 +83,9 @@ function initMap() {
       return model.map;
     },
 
-    // Obter as configurações dos marcadores iniciais
-    getInitialModels: function() {
-      return model.marker.models;
-    },
-
-    // Obter marcadores saúde
-    getMarkers: function(tipo) {
-      return model.marker.colections[tipo];
+    // Obter coleção de marcadores
+    getMarkerColection: function(tipo) {
+      return model.marker.colection[tipo];
     },
 
     // Formata url para API request
@@ -109,27 +103,26 @@ function initMap() {
 
     // Adiciona marcador
     addMarker: function(marker, tipo) {
-      model.marker.colections[tipo].push(marker);
+      model.marker.colection[tipo].push(marker);
     },
 
     getAllLatLng: function() {
       var result = [];
-      var colections = model.marker.colections;
+      var colection = model.marker.colection;
 
-      for (var key in colections) {
-        if (colections.hasOwnProperty(key)) {
-          var colection = colections[key];
-          for (var i = 0; i < colection.length; i++) {
-            result.push(colection[i].getPosition());
+      for (var key in colection) {
+        if (colection.hasOwnProperty(key)) {
+          var markers = colection[key];
+          for (var i = 0; i < markers.length; i++) {
+            result.push(markers[i].getPosition());
           }
         }
       }
-
       return result;
     },
 
     clearMarkers: function(tipo) {
-      model.marker.colections[tipo].length = 0;
+      model.marker.colection[tipo].length = 0;
     },
 
     toggleStatus: function(tipo) {
@@ -156,23 +149,6 @@ function initMap() {
       return map;
     },
 
-    // Mostrar os marcadores iniciais e os popups de informação se tiver
-    showInitialMarkers: function() {
-      var initialModels = control.getInitialModels();
-
-      initialModels.forEach(function(model) {
-        // Criar marcador com informação do modelo
-        var marker = new google.maps.Marker(model.marker);
-        marker.setMap(map);
-        // Adicionar aos marcadores iniciais
-        control.addMarker(marker, INITIAL);
-        // Mostrar popup
-        if (model.infoWin) {
-          view.showInfoWindow(model.infoWin, marker);
-        }
-      });
-    },
-
     // Mostrar popups informativos dos marcadores
     showInfoWindow: function(model, marker) {
       // Preencher plantilhas HTML
@@ -183,10 +159,12 @@ function initMap() {
       marker.addListener('click', function() {
         info.open(map, marker);
       });
+      return info;
     },
 
     createMarker: function(tipo, properties, result) {
       var marker = new google.maps.Marker(properties);
+      marker.setMap(map);
 
       if (result) {
         view.showInfoAddress(result.formatted_address);
@@ -206,6 +184,8 @@ function initMap() {
       });
 
       control.addMarker(marker, tipo);
+
+      return marker;
     },
 
     setBounds: function() {
@@ -253,7 +233,6 @@ function initMap() {
                   var position = result.geometry.location;
 
                   view.createMarker(SEARCH, {
-                    map: map,
                     position: position,
                     title: data.pes_nome,
                     animation: google.maps.Animation.DROP,
@@ -274,7 +253,7 @@ function initMap() {
     },
 
     showSantaCasa: function() {
-      map.panTo(SANTA_CASA);
+      map.panTo(CENTER);
       map.setZoom(15);
     },
 
@@ -284,7 +263,7 @@ function initMap() {
 
       var places = new google.maps.places.PlacesService(map);
       var request = {
-        location: SANTA_CASA,
+        location: CENTER,
         radius: 30000,
         type: 'hospital'
       };
@@ -293,7 +272,6 @@ function initMap() {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           results.forEach(function(place) {
             view.createMarker(SAUDE, {
-              map: map,
               position: place.geometry.location,
               title: place.name,
               // icon: place.icon,
@@ -338,7 +316,6 @@ function initMap() {
 
               if (geocode.status === 'OK') {
                 view.createMarker(DEMO, {
-                  map: map,
                   position: position,
                   title: pessoa.pes_nome,
                   icon: control.getIcon(DEMO),
@@ -403,7 +380,7 @@ function initMap() {
 
     // Apaga marcadores da tela
     clearMarkers: function(tipo) {
-      control.getMarkers(tipo).forEach(function(marker) {
+      control.getMarkerColection(tipo).forEach(function(marker) {
         marker.setMap(null);
       });
     },
@@ -422,7 +399,10 @@ function initMap() {
 
     init: function() {
       map = view.showMap();
-      view.showInitialMarkers();
+      var santaCasa = view.createMarker(HOME, model.santaCasa.marker);
+      santaCasa.setZIndex(google.maps.Marker.MAX_ZINDEX);
+      var infowindow = view.showInfoWindow(model.santaCasa.infowindow, santaCasa);
+      infowindow.open(map, santaCasa);
 
       // Search Evento
       $('.search-form').submit(function(ev) {
