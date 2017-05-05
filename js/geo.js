@@ -26,10 +26,10 @@ function initMap() {
     },
 
     icon: {
-      iconDemo: 'http://labs.google.com/ridefinder/images/mm_20_orange.png',
-      iconHome: 'http://maps.google.com/mapfiles/kml/pal2/icon10.png',
-      iconHealth: 'http://maps.google.com/mapfiles/kml/pal3/icon46.png',
-      iconSearch: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
+      demografia: 'http://labs.google.com/ridefinder/images/mm_20_orange.png',
+      home: 'http://maps.google.com/mapfiles/kml/pal2/icon10.png',
+      saude: 'http://maps.google.com/mapfiles/kml/pal3/icon46.png',
+      search: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
     },
 
     marker: {
@@ -71,7 +71,7 @@ function initMap() {
 
     init: function() {
       // Definir o icone do marcador da Santa Casa
-      this.marker.models[0].marker.icon = this.icon.iconHome;
+      this.marker.models[0].marker.icon = this.icon.home;
     }
   };
 
@@ -97,6 +97,10 @@ function initMap() {
     // Formata url para API request
     getAddressUrl: function(data) {
       return data.join('+');
+    },
+
+    getIcon: function(tipo) {
+      return model.icon[tipo];
     },
 
     getStatus: function(tipo) {
@@ -253,7 +257,7 @@ function initMap() {
                     position: position,
                     title: data.pes_nome,
                     animation: google.maps.Animation.DROP,
-                    icon: model.icon.iconSearch
+                    icon: control.getIcon(SEARCH),
                   }, result);
 
                   view.setBounds();
@@ -293,7 +297,7 @@ function initMap() {
               position: place.geometry.location,
               title: place.name,
               // icon: place.icon,
-              icon: model.icon.iconHealth,
+              icon: control.getIcon(SAUDE),
             });
             view.setBounds();
 
@@ -337,7 +341,7 @@ function initMap() {
                   map: map,
                   position: position,
                   title: pessoa.pes_nome,
-                  icon: model.icon.iconDemo,
+                  icon: control.getIcon(DEMO),
                 });
                 view.setBounds();
               }
