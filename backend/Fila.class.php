@@ -180,34 +180,26 @@ class Fila extends Sql {
         <td>" . $this->chegada . "</td>
         <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
         <td>" . $this->cor . "</td>
-        <div class=''>
-          <td>
+        <td>
+          <div class=''>
             <input type='hidden' name='id' value='" . $this->id . "'>
             <input type='radio' name='class' value='1'";
             $this->tabela .= $this->numCor == 1 ? ' checked' : "";
             $this->tabela .= "> Azul
-          </td>
-          <td>
             <input type='radio' name='class' value='2'";
             $this->tabela .= $this->numCor == 2 ? ' checked' : "";
             $this->tabela .= "> Verde
-          </td>
-          <td>
             <input type='radio' name='class' value='3'";
             $this->tabela .= $this->numCor == 3 ? ' checked' : "";
             $this->tabela .= "> Amarelo
-          </td>
-          <td>
             <input type='radio' name='class' value='4'";
             $this->tabela .= $this->numCor == 4 ? ' checked' : "";
             $this->tabela .= "> Laranja
-          </td>
-          <td>
             <input type='radio' name='class' value='5'";
             $this->tabela .= $this->numCor == 5 ? ' checked' : "";
             $this->tabela .= "> Vermelho
-          </td>
-        </div>
+          </div>
+        </td>
         <td>
           <input type='submit' name='reclassificar' value='Reclassificar'>
         </td>
