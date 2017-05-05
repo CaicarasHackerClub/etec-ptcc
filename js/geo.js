@@ -108,12 +108,28 @@ function initMap() {
       model.marker.colections[tipo].push(marker);
     },
 
-    toggleStatus: function(tipo) {
-      model.status[tipo] = !model.status[tipo];
+    getAllLatLng: function() {
+      var result = [];
+      var colections = model.marker.colections;
+
+      for (var key in colections) {
+        if (colections.hasOwnProperty(key)) {
+          var colection = colections[key];
+          for (var i = 0; i < colection.length; i++) {
+            result.push(colection[i].getPosition());
+          }
+        }
+      }
+
+      return result;
     },
 
     clearMarkers: function(tipo) {
       model.marker.colections[tipo].length = 0;
+    },
+
+    toggleStatus: function(tipo) {
+      model.status[tipo] = !model.status[tipo];
     },
 
     init: function() {
@@ -165,6 +181,20 @@ function initMap() {
       });
     },
 
+    createMarker: function(tipo, properties) {
+      var marker = new google.maps.Marker(properties);
+      control.addMarker(marker, tipo);
+    },
+
+    setBounds: function() {
+      var bounds = new google.maps.LatLngBounds();
+      var allLatLng = control.getAllLatLng();
+      allLatLng.forEach(function(latLng) {
+        bounds.extend(latLng);
+      });
+      map.fitBounds(bounds);
+    },
+
     // Mostrar informação de endereço no aside
     showInfoAddress: function(address) {
       $('.info-inner').remove();
@@ -200,30 +230,16 @@ function initMap() {
                   var result = geocode.results[0];
                   var position = result.geometry.location;
 
-                  var searchMarkers = control.getMarkers(SEARCH);
-
-                  var isMarker = false;
-                  isMarker = searchMarkers.some(function(mkr) {
-                    return mkr.getTitle() === data.pes_nome &&
-                    mkr.getPosition().equals(new google.maps.LatLng(position));
+                  view.createMarker(SEARCH, {
+                    map: map,
+                    position: position,
+                    title: data.pes_nome,
+                    animation: google.maps.Animation.DROP,
+                    icon: model.icon.iconSearch
                   });
 
-                  if (!isMarker) {
-                    var marker = new google.maps.Marker({
-                      map: map,
-                      position: position,
-                      title: data.pes_nome,
-                      animation: google.maps.Animation.DROP,
-                      icon: model.icon.iconSearch
-                    });
-                    control.addMarker(marker, SEARCH);
-                  }
-
+                  view.setBounds();
                   view.showInfoAddress(result.formatted_address);
-
-                  map.panTo(position);
-                  map.setZoom(18);
-
                   view.toggleViewStatus(SEARCH, 'Busca');
                 }
               })
@@ -246,7 +262,6 @@ function initMap() {
       control.clearMarkers(SAUDE);
 
       var places = new google.maps.places.PlacesService(map);
-      var bounds = new google.maps.LatLngBounds();
       var request = {
         location: SANTA_CASA,
         radius: 30000,
@@ -256,25 +271,22 @@ function initMap() {
       places.nearbySearch(request, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           results.forEach(function(place) {
-            var marker = new google.maps.Marker({
+            view.createMarker(SAUDE, {
               map: map,
               position: place.geometry.location,
               title: place.name,
               // icon: place.icon,
               icon: model.icon.iconHealth,
             });
+            view.setBounds();
 
-            control.addMarker(marker, SAUDE);
-            bounds.extend(marker.getPosition());
-            map.fitBounds(bounds);
-
-            marker.addListener('click', function() {
-              places.getDetails(place, function(result, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                  view.showInfoAddress(result.formatted_address);
-                }
-              });
-            });
+            // marker.addListener('click', function() {
+            //   places.getDetails(place, function(result, status) {
+            //     if (status === google.maps.places.PlacesServiceStatus.OK) {
+            //       view.showInfoAddress(result.formatted_address);
+            //     }
+            //   });
+            // });
           });
 
           view.toggleViewStatus(SAUDE, 'Saúde');
@@ -311,16 +323,13 @@ function initMap() {
               var position = result.geometry.location;
 
               if (geocode.status === 'OK') {
-                var marker = new google.maps.Marker({
+                view.createMarker(DEMO, {
                   map: map,
                   position: position,
                   title: pessoa.pes_nome,
                   icon: model.icon.iconDemo,
                 });
-
-                control.addMarker(marker, DEMO);
-                bounds.extend(marker.getPosition());
-                map.fitBounds(bounds);
+                view.setBounds();
               }
             })
             .fail(function() { alert('Fail'); });
