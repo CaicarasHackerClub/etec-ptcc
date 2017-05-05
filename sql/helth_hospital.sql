@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 03/05/2017 às 06:15
+-- Tempo de geração: 05/05/2017 às 19:36
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9789,6 +9789,8 @@ CREATE TABLE `endereco` (
   `end_bairro` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'Bairro onde mora a pessoa',
   `end_rua` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'logradouro da pessoa',
   `end_numero` int(9) NOT NULL COMMENT 'numero da casa/apt/etc da pessoa',
+  `end_lat` varchar(11) COLLATE utf8_bin NOT NULL COMMENT 'Latitude do endereço para a geolocalzação',
+  `end_lng` varchar(11) COLLATE utf8_bin NOT NULL COMMENT 'Longitude do endereço para a geolocalização',
   `pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -9796,22 +9798,22 @@ CREATE TABLE `endereco` (
 -- Fazendo dump de dados para tabela `endereco`
 --
 
-INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`, `pessoa_pes_id`) VALUES
-(1, 'Brasil', 26, 9510, '11680-000', 'Centro', 'av Iperoig', 314, 1),
-(2, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Castro Alves', 507, 2),
-(3, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Conceição', 314, 3),
-(4, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 288, 4),
-(5, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Comercial', 212, 5),
-(6, 'Brasil', 26, 9510, '11680-000', 'Estufa 1', 'Taubaté ', 344, 6),
-(7, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Vasco da Gama', 31, 7),
-(8, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 14, 8),
-(9, 'Brasil', 26, 9510, '11680-000', 'Folha Seca', 'Irene Gomes', 122, 9),
-(10, 'Brasil', 20, 9510, '11680-000', 'Centro', 'Liberdade', 34, 10),
-(11, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Minas Gerais', 220, 11),
-(12, 'Brasil', 26, 9510, '11680-000', 'Itagua', 'Raimundo Correa', 80, 12),
-(13, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 328, 13),
-(14, 'Brasil', 26, 9510, '11680-000', 'Barra Seca', 'Juscelino Monteiro', 580, 14),
-(15, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Portuguesa Santista', 458, 15);
+INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`, `end_lat`, `end_lng`, `pessoa_pes_id`) VALUES
+(1, 'Brasil', 26, 9510, '11680-000', 'Centro', 'av Iperoig', 314, '', '', 1),
+(2, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Castro Alves', 507, '', '', 2),
+(3, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Conceição', 314, '', '', 3),
+(4, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 288, '', '', 4),
+(5, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Comercial', 212, '', '', 5),
+(6, 'Brasil', 26, 9510, '11680-000', 'Estufa 1', 'Taubaté ', 344, '', '', 6),
+(7, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Vasco da Gama', 31, '', '', 7),
+(8, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 14, '', '', 8),
+(9, 'Brasil', 26, 9510, '11680-000', 'Folha Seca', 'Irene Gomes', 122, '', '', 9),
+(10, 'Brasil', 20, 9510, '11680-000', 'Centro', 'Liberdade', 34, '', '', 10),
+(11, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Minas Gerais', 220, '', '', 11),
+(12, 'Brasil', 26, 9510, '11680-000', 'Itagua', 'Raimundo Correa', 80, '', '', 12),
+(13, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 328, '', '', 13),
+(14, 'Brasil', 26, 9510, '11680-000', 'Barra Seca', 'Juscelino Monteiro', 580, '', '', 14),
+(15, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Portuguesa Santista', 458, '', '', 15);
 
 -- --------------------------------------------------------
 
