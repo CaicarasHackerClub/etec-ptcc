@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 05/05/2017 às 23:43
+-- Tempo de geração: 07/05/2017 às 18:27
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9777,6 +9777,29 @@ INSERT INTO `cores` (`cor_id`, `cor_nome`, `cor_ativo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `doenca`
+--
+
+CREATE TABLE `doenca` (
+  `doe_id` int(11) NOT NULL,
+  `doe_nome` varchar(30) COLLATE utf8_bin NOT NULL COMMENT 'Nome da doença'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `doenca_pessoa`
+--
+
+CREATE TABLE `doenca_pessoa` (
+  `dop` int(11) NOT NULL,
+  `dop_doe_id` int(11) NOT NULL,
+  `dop_pes_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `endereco`
 --
 
@@ -10039,6 +10062,30 @@ INSERT INTO `genero` (`gen_id`, `gen_genero`) VALUES
 (1, 'masculino'),
 (2, 'feminino'),
 (3, 'lgbt');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `geo_camada`
+--
+
+CREATE TABLE `geo_camada` (
+  `gec_id` int(11) NOT NULL,
+  `gec_nome` varchar(30) COLLATE utf8_bin NOT NULL COMMENT 'nome da camada da visualização',
+  `gec_desc` varchar(125) COLLATE utf8_bin NOT NULL COMMENT 'descrição'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `geo_camada_end`
+--
+
+CREATE TABLE `geo_camada_end` (
+  `gce_id` int(11) NOT NULL,
+  `gce_end_id` int(11) NOT NULL,
+  `gce_cam_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -10367,6 +10414,20 @@ ALTER TABLE `cores`
   ADD PRIMARY KEY (`cor_id`);
 
 --
+-- Índices de tabela `doenca`
+--
+ALTER TABLE `doenca`
+  ADD PRIMARY KEY (`doe_id`);
+
+--
+-- Índices de tabela `doenca_pessoa`
+--
+ALTER TABLE `doenca_pessoa`
+  ADD PRIMARY KEY (`dop`),
+  ADD KEY `dop_doe_id` (`dop_doe_id`),
+  ADD KEY `dop_pes_id` (`dop_pes_id`);
+
+--
 -- Índices de tabela `endereco`
 --
 ALTER TABLE `endereco`
@@ -10421,6 +10482,20 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `genero`
   ADD PRIMARY KEY (`gen_id`);
+
+--
+-- Índices de tabela `geo_camada`
+--
+ALTER TABLE `geo_camada`
+  ADD PRIMARY KEY (`gec_id`);
+
+--
+-- Índices de tabela `geo_camada_end`
+--
+ALTER TABLE `geo_camada_end`
+  ADD PRIMARY KEY (`gce_id`),
+  ADD KEY `gce_end_id` (`gce_end_id`),
+  ADD KEY `gce_cam_id` (`gce_cam_id`);
 
 --
 -- Índices de tabela `login_acesso`
@@ -10537,6 +10612,16 @@ ALTER TABLE `cidade`
 ALTER TABLE `cores`
   MODIFY `cor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT de tabela `doenca`
+--
+ALTER TABLE `doenca`
+  MODIFY `doe_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de tabela `doenca_pessoa`
+--
+ALTER TABLE `doenca_pessoa`
+  MODIFY `dop` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
@@ -10576,6 +10661,16 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `genero`
   MODIFY `gen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de tabela `geo_camada`
+--
+ALTER TABLE `geo_camada`
+  MODIFY `gec_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de tabela `geo_camada_end`
+--
+ALTER TABLE `geo_camada_end`
+  MODIFY `gce_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `login_acesso`
 --
@@ -10642,6 +10737,13 @@ ALTER TABLE `cidade`
   ADD CONSTRAINT `cidade_ibfk_1` FOREIGN KEY (`est_id`) REFERENCES `estado` (`est_id`);
 
 --
+-- Restrições para tabelas `doenca_pessoa`
+--
+ALTER TABLE `doenca_pessoa`
+  ADD CONSTRAINT `doenca_pessoa_ibfk_1` FOREIGN KEY (`dop_doe_id`) REFERENCES `doenca` (`doe_id`),
+  ADD CONSTRAINT `doenca_pessoa_ibfk_2` FOREIGN KEY (`dop_pes_id`) REFERENCES `pessoa` (`pes_id`);
+
+--
 -- Restrições para tabelas `endereco`
 --
 ALTER TABLE `endereco`
@@ -10661,6 +10763,13 @@ ALTER TABLE `enfermeiro`
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`setor_set_id`) REFERENCES `setor` (`set_id`);
+
+--
+-- Restrições para tabelas `geo_camada_end`
+--
+ALTER TABLE `geo_camada_end`
+  ADD CONSTRAINT `geo_camada_end_ibfk_1` FOREIGN KEY (`gce_end_id`) REFERENCES `endereco` (`end_id`),
+  ADD CONSTRAINT `geo_camada_end_ibfk_2` FOREIGN KEY (`gce_cam_id`) REFERENCES `geo_camada` (`gec_id`);
 
 --
 -- Restrições para tabelas `login_acesso`
