@@ -3,3 +3,4 @@ backend/conectar.php
 node_modules
 *.sw[pon]
 *.log
+backend/test.php

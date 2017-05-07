@@ -318,6 +318,7 @@ function geoApp() {
               ]),
               language: 'pt',
               region: 'BR',
+              // TODO: constant KEY
               key: 'AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc'})
 
             .done(function(geocode) {
