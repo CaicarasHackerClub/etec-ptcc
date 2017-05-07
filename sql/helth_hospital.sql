@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 07/05/2017 às 18:27
+-- Tempo de geração: 08/05/2017 às 00:44
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9812,8 +9812,8 @@ CREATE TABLE `endereco` (
   `end_bairro` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'Bairro onde mora a pessoa',
   `end_rua` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'logradouro da pessoa',
   `end_numero` int(9) NOT NULL COMMENT 'numero da casa/apt/etc da pessoa',
-  `end_lat` float(10,6) NOT NULL COMMENT 'Latitude do endereço para a geolocalzação',
-  `end_lng` float(10,6) NOT NULL COMMENT 'Longitude do endereço para a geolocalização',
+  `end_lat` float(10,6) DEFAULT NULL COMMENT 'Latitude do endereço para a geolocalzação',
+  `end_lng` float(10,6) DEFAULT NULL COMMENT 'Longitude do endereço para a geolocalização',
   `pessoa_pes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
