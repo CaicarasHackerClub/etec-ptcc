@@ -7,6 +7,18 @@
   height: 55px;
 }
 
+.form .lbl-radio-class{
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  line-height: 20px;
+}
+
+.form .lbl-radio-class p{
+  margin-top: -28px;
+  margin-left: 37%;
+}
+
 /* Usamos o pseudo-element :before para recriar o novo radio */
 .form .lbl-radio-class:before {
   content: "";
@@ -14,14 +26,14 @@
   width: 32px;
   height: 32px;
   margin-top: 10px;
-  margin-left: 3px;
+  margin-left: 10%;
   border-radius: 50%;
   left: 0;
   bottom: 1px;
   border: 0;
 }
 
-/* CSS Responsavel por definir o estilo para radio Checkado */
+/* CSS Responsavel por definir o estilo para radio Checado */
 .form input[type="radio"]:checked + .lbl-radio-class:before {
   content: "\2022";
   color: #fff;
@@ -52,21 +64,23 @@
 }
 
 .form-classi .lbl_class{
-  width: 10%;
+  width: 14%;
   text-align: left;
   margin-top: 10px;
   border-radius:  3px 3px 3px 3px;
-  margin-left: 40%;
+  margin-left: 44%;
+}
+
+.form-classi .titulo {
+  display: inline-block;
+  font-size: 2em;
+  margin-left: 41%;
 }
 
 .form-triagem {
   height: 100vh;
   /*overflow: auto;*/
   width: 100%;
-}
-
-.form-triagem .group-form .lbl_class{
-  width: 57%;
 }
 
 .form-triagem .group-form {
@@ -99,6 +113,15 @@
   .form-triagem .group-form .lbl_class{
     width: 43.5%;
   }
+
+  .form-classi .lbl_class{
+    width: 20%;
+    margin-left: 40%;
+  }
+
+  .form-classi .titulo {
+    margin-left: 37%;
+  }
 }
 
 @media (max-width: 761px) {
@@ -114,6 +137,15 @@
   .form-triagem .group-form .lbl_class{
     width: 47%;
   }
+
+  .form-classi .lbl_class{
+    width: 24%;
+    margin-left: 38%;
+  }
+
+  .form-classi .titulo {
+    margin-left: 34%;
+  }
 }
 
 @media (max-width: 643px) {
@@ -128,6 +160,15 @@
 
   .form-triagem .group-form p {
     font-size: 60%;
+  }
+
+  .form-classi .lbl_class{
+    width: 26%;
+    margin-left: 37%;
+  }
+
+  .form-classi .titulo {
+    margin-left: 31%;
   }
 }
 
@@ -147,5 +188,14 @@
 
   .form-triagem .group-form .min-class{
     line-height: 45px;
+  }
+
+  .form-classi .titulo {
+    margin-left: 10%;
+  }
+
+  .form-classi .lbl_class{
+    width: 191px;
+    margin-left: 1%;
   }
 }
