@@ -217,7 +217,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 .conteudoCentro .main{
   /*border: 0.5px solid #29784b;*/
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-flow: column;
   /*background-color: #9bd3ae;*/
@@ -362,11 +362,11 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   overflow:scroll;
 }
 
-.form-cadastro{
+.form-cadastro {
   margin-left: 0;
 }
 
-.form .lbl_class, .extend-class{
+.form .lbl_class, .extend-class {
   color: #fff;
   display: inline-block;
   width: 185px;
@@ -377,15 +377,15 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   border-radius: 3px 0 0 3px;
 }
 
-.form .lbl_class{
+.form .lbl_class {
   line-height: 45px;
 }
 
-.form .lbl-extend-class{
+.form .lbl-extend-class {
   line-height: 15px;
 }
 
-.form select[name="cidade"]{
+.form select[name="cidade"] {
   width: 200px;
 }
 
@@ -414,13 +414,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 270px;
 }
 
-.form .lbl-radio-class{
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-  line-height: 20px;
-}
-
 .form .submit{
   height: 40px;
   width: 100px;
@@ -430,11 +423,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   border: 0;
   color: #fff;
   border-radius: 3px 3px 3px 3px;
-}
-
-.form .lbl-radio-class p{
-  margin-top: -28px;
-  margin-left: 40px;
 }
 
 .form-classi .titulo, .form-cadastro .titulo{
