@@ -366,6 +366,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 0;
 }
 
+.auto-endereco {
+  display: none;
+}
+
 .form .lbl_class, .extend-class {
   color: #fff;
   display: inline-block;
