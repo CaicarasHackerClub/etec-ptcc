@@ -96,7 +96,7 @@
             <input class="inp_class" type="text" name="pes_telefone" size="15"><br>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div class="extend group-form group-form-cadastro">
             <label class="lbl_class">Endereço:</label>
             <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
               placeholder="Procurar endereço" onfocus="geolocate()"><br>
