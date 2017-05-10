@@ -102,44 +102,47 @@
               placeholder="Procurar endereço" onfocus="geolocate()"><br>
           </div>
 
-          <div id="country" class="group-form group-form-cadastro">
-            <label class="lbl_class">País:</label>
-            <input class="inp_class" type="text" name="end_pais" size="28" value="Brasil"><br>
-          </div>
+          <!-- Seção Auto Endereço -->
+          <div id="auto-endereco">
+            <div id="route" class="group-form group-form-cadastro">
+              <label class="lbl_class">Rua:</label>
+              <input class="inp_class" type="text" name="end_rua" size="28"><br>
+            </div>
 
-          <div id="administrative_area_level_1" class="group-form group-form-cadastro">
-            <label class="lbl_class">Estado:</label>
-            <?php
-              $sql->selectbox("estado");
-            ?>
-          </div>
+            <div id="street_number" class="group-form group-form-cadastro">
+              <label class="lbl_class">Numero:</label>
+              <input class="inp_class" type="text" name="end_numero" size="28"><br>
+            </div>
 
-          <div id="administrative_area_level_2" class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidade:</label>
-            <?php
+            <div id="sublocality_level_1" class="group-form group-form-cadastro">
+              <label class="lbl_class">Bairro:</label>
+              <input class="inp_class" type="text" name="end_bairro" size="28"><br>
+            </div>
+
+            <div id="administrative_area_level_2" class="group-form group-form-cadastro">
+              <label class="lbl_class">Cidade:</label>
+              <?php
               $sql->selectbox("cidade");
-            ?>
-          </div>
+              ?>
+            </div>
 
-          <div id="postal_code" class="group-form group-form-cadastro">
-            <label class="lbl_class">Cep:</label>
-            <input class="inp_class" type="text" name="end_cep" size="28"><br>
-          </div>
+            <div id="administrative_area_level_1" class="group-form group-form-cadastro">
+              <label class="lbl_class">Estado:</label>
+              <?php
+              $sql->selectbox("estado");
+              ?>
+            </div>
 
-          <div id="sublocality_level_1" class="group-form group-form-cadastro">
-            <label class="lbl_class">Bairro:</label>
-            <input class="inp_class" type="text" name="end_bairro" size="28"><br>
-          </div>
+            <div id="postal_code" class="group-form group-form-cadastro">
+              <label class="lbl_class">Cep:</label>
+              <input class="inp_class" type="text" name="end_cep" size="28"><br>
+            </div>
 
-          <div id="route" class="group-form group-form-cadastro">
-            <label class="lbl_class">Rua:</label>
-            <input class="inp_class" type="text" name="end_rua" size="28"><br>
-          </div>
-
-          <div id="street_number" class="group-form group-form-cadastro">
-            <label class="lbl_class">Numero:</label>
-            <input class="inp_class" type="text" name="end_numero" size="28"><br>
-          </div>
+            <div id="country" class="group-form group-form-cadastro">
+              <label class="lbl_class">País:</label>
+              <input class="inp_class" type="text" name="end_pais" size="28" value="Brasil"><br>
+            </div>
+          </div> <!-- Seção Auto Endereço FIM -->
 
           <input class="inp_class submit" type="submit" value="Proximo">
         </form>
