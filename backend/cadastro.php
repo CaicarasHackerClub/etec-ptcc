@@ -724,6 +724,8 @@
     }
     mysqli_close($con);
     ?>
-    <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places">
+    <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places&callback=initAutocomplete"
+        async defer></script>
+    <script src="../js/geo.js"></script>
   </body>
 </html>
