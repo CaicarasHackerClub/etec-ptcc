@@ -97,40 +97,46 @@
           </div>
 
           <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Endereço:</label>
+            <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
+              placeholder="Procurar endereço" onfocus="geolocate()"><br>
+          </div>
+
+          <div id="country" class="group-form group-form-cadastro">
             <label class="lbl_class">País:</label>
             <input class="inp_class" type="text" name="end_pais" size="28" value="Brasil"><br>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div id="administrative_area_level_1" class="group-form group-form-cadastro">
             <label class="lbl_class">Estado:</label>
             <?php
               $sql->selectbox("estado");
             ?>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div id="administrative_area_level_2" class="group-form group-form-cadastro">
             <label class="lbl_class">Cidade:</label>
             <?php
               $sql->selectbox("cidade");
             ?>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div id="postal_code" class="group-form group-form-cadastro">
             <label class="lbl_class">Cep:</label>
             <input class="inp_class" type="text" name="end_cep" size="28"><br>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div id="sublocality_level_1" class="group-form group-form-cadastro">
             <label class="lbl_class">Bairro:</label>
             <input class="inp_class" type="text" name="end_bairro" size="28"><br>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div id="route" class="group-form group-form-cadastro">
             <label class="lbl_class">Rua:</label>
             <input class="inp_class" type="text" name="end_rua" size="28"><br>
           </div>
 
-          <div class="group-form group-form-cadastro">
+          <div id="street_number" class="group-form group-form-cadastro">
             <label class="lbl_class">Numero:</label>
             <input class="inp_class" type="text" name="end_numero" size="28"><br>
           </div>
@@ -718,5 +724,6 @@
     }
     mysqli_close($con);
     ?>
+    <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places">
   </body>
 </html>
