@@ -99,11 +99,13 @@
           <div class="extend group-form group-form-cadastro">
             <label class="lbl_class">Endereço:</label>
             <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
-              placeholder="Procurar endereço" onfocus="geolocate()"><br>
+              placeholder="Procurar endereço" onfocus="geolocate()">
+            <button type="button" name="auto" id="btn-auto">Auto</button>
+            <button type="button" name="manual" id="btn-manual">Manual</button><br>
           </div>
 
           <!-- Seção Auto Endereço -->
-          <div id="auto-endereco">
+          <div id="auto-endereco" class="auto-endereco">
             <div id="route" class="group-form group-form-cadastro">
               <label class="lbl_class">Rua:</label>
               <input class="inp_class" type="text" name="end_rua" size="28"><br>
