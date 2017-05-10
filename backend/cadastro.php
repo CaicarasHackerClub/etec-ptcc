@@ -30,6 +30,7 @@
         <form class="form form-cadastro" action="cadastro.php?acao=cadastro&passo=2" method="post">
           <h1 class="titulo">Cadastro de Pessoa</h1>
           <br>
+
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Nome:</label>
             <input class="inp_class" type="text" name="pes_nome" size="28"><br>
@@ -43,6 +44,11 @@
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Nome da mãe:</label>
             <input class="inp_class" type="text" name="pes_mae" size="28"><br>
+          </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Cidadania:</label>
+            <input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
           </div>
 
           <div class="group-form group-form-cadastro">
@@ -61,21 +67,23 @@
           </div>
 
           <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Email</label>
-            <input class="inp_class" type="text" name="pes_email" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
             <label class="lbl_class">Estado civil:</label>
             <?php
-              $sql->selectbox("estado_civil");
+            $sql->selectbox("estado_civil");
             ?>
           </div>
 
           <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidadania:</label>
-            <input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
+            <label class="lbl_class">Email:</label>
+            <input class="inp_class" type="text" name="pes_email" size="28"><br>
           </div>
+
+          <div class="group-form group-form-cadastro">
+            <label class="lbl_class">Telefone:</label>
+            <input class="inp_class" type="text" name="pes_telefone" size="15"><br>
+          </div>
+
+
 
           <div class="group-form group-form-cadastro">
             <label class="lbl_class">Gênero</label>
@@ -91,10 +99,6 @@
             ?>
           </div>
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Telefone:</label>
-            <input class="inp_class" type="text" name="pes_telefone" size="15"><br>
-          </div>
 
           <div class="extend group-form group-form-cadastro">
             <label class="lbl_class">Endereço:</label>
