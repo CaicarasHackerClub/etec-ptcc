@@ -92,7 +92,7 @@ $endereco = $sql->fetch($selEnd);
           $val = " value=\"" . $pessoa[4] . "\"";
         }
     ?>
-    <input class="inp_class" type="text" name="pes_cpf" size="28"><br>
+    <input class="inp_class" type="text" name="pes_cpf" size="28"  <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
@@ -105,7 +105,7 @@ $endereco = $sql->fetch($selEnd);
           $val = " value=\"" . $pessoa[5] . "\"";
         }
     ?>
-    <input class="inp_class" type="date" name="pes_data" size="28"><br>
+    <input class="inp_class" type="date" name="pes_data" size="28"  <?=$dis . $val; ?>><br>
   </div>
     <div class="group-form group-form-cadastro">
     <label class="lbl_class">Email</label>
@@ -118,7 +118,7 @@ $endereco = $sql->fetch($selEnd);
           $val = " value=\"" . $pessoa[6] . "\"";
         }
     ?>
-    <input class="inp_class" type="text" name="pes_email" size="28"><br>
+    <input class="inp_class" type="text" name="pes_email" size="28"  <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Estado civil:</label>
@@ -185,36 +185,44 @@ $endereco = $sql->fetch($selEnd);
   <div id="auto-endereco">
     <div id="route" class="group-form group-form-cadastro">
     <label class="lbl_class">Rua:</label>
-    <input class="inp_class" type="text" name="end_rua" size="28"><br>
+    <input class="inp_class" type="text" name="end_rua" size="28"  <?=$dis . $val; ?>><br>
   </div>
   <div id="street_number" class="group-form group-form-cadastro">
     <label class="lbl_class">Numero:</label>
-    <input class="inp_class" type="text" name="end_numero" size="28"><br>
+    <input class="inp_class" type="text" name="end_numero" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div id="sublocality_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Bairro:</label>
-    <input class="inp_class" type="text" name="end_bairro" size="28"><br>
+    <input class="inp_class" type="text" name="end_bairro" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div id="administrative_area_level_2" class="group-form group-form-cadastro">
     <label class="lbl_class">Cidade:</label>
-  <?php
-    $sql->selectbox("cidade");
-  ?>
+    <?php
+      if ($_SESSION['form'] == 1){
+        $sql->selectbox("cidade");
+      } else {
+        echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\" disabled value=" . $endereco[4] . "<br>";
+      }
+    ?>
   </div>
   <div id="administrative_area_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Estado:</label>
     <?php
-    $sql->selectbox("estado");
+      if ($_SESSION['form'] == 1){
+        $sql->selectbox("estado");
+      } else {
+        echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\" disabled value=" . $endereco[5] . "<br>";
+      }
     ?>
   </div>
 
   <div id="postal_code" class="group-form group-form-cadastro">
     <label class="lbl_class">Cep:</label>
-    <input class="inp_class" type="text" name="end_cep" size="28"><br>
+    <input class="inp_class" type="text" name="end_cep" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div id="country" class="group-form group-form-cadastro">
     <label class="lbl_class">País:</label>
-    <input class="inp_class" type="text" name="end_pais" size="28" value="Brasil"><br>
+    <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
   </div>
   </div> <!-- Seção Auto Endereço FIM -->
   <input class="inp_class submit" type="submit" value="Proximo">
