@@ -28,7 +28,8 @@
       if (!isset($_GET['passo'])) {
         //formulário dados pessoais em arquivo separado, sendo incluso.
         $_SESSION['form'] == 1;
-        include 'form_pessoa';
+
+        include 'form_pessoa.php';
 
       } elseif ($_GET['passo'] == 2) {
         $metodo->setPes_nome($_POST['pes_nome']);
@@ -609,6 +610,7 @@
     }
     mysqli_close($con);
     ?>
+    <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places&callback=initAutocomplete"
         async defer></script>
     <script src="../js/geo.js"></script>
