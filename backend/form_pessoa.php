@@ -270,9 +270,7 @@ $endereco = $sql->fetch($selEnd);
     <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
   </div>
   </div> <!-- Seção Auto Endereço FIM -->
-  <input class="inp_class submit" type="submit" value="Proximo">
-</form>
-    <?php
+  <?php
     if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
       echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
     }
