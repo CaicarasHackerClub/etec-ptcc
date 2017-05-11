@@ -28,7 +28,7 @@
       if (!isset($_GET['passo'])) {
         //formulário dados pessoais em arquivo separado, sendo incluso.
         $_SESSION['form'] == 1;
-        include ('form_pessoa');
+        include ('form_pessoa.php');
 
       } elseif ($_GET['passo'] == 2) {
         $metodo->setPes_nome($_POST['pes_nome']);
