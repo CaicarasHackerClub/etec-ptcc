@@ -26,133 +26,10 @@
     <?php
     if ($acao == "cadastro") {
       if (!isset($_GET['passo'])) {
-        ?>
-        <form class="form form-cadastro" action="cadastro.php?acao=cadastro&passo=2" method="post">
-          <h1 class="titulo">Cadastro de Pessoa</h1>
-          <br>
+        //formulário dados pessoais em arquivo separado, sendo incluso.
+        $_SESSION['form'] == 1;
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome:</label>
-            <input class="inp_class" type="text" name="pes_nome" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome do pai:</label>
-            <input class="inp_class" type="text" name="pes_pai" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome da mãe:</label>
-            <input class="inp_class" type="text" name="pes_mae" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidadania:</label>
-            <input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">RG:</label>
-            <input class="inp_class" type="text" name="pes_rg" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">CPF:</label>
-            <input class="inp_class" type="text" name="pes_cpf" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
-            <input class="inp_class" type="date" name="pes_data" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Estado civil:</label>
-            <?php
-            $sql->selectbox("estado_civil");
-            ?>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Email:</label>
-            <input class="inp_class" type="text" name="pes_email" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Telefone:</label>
-            <input class="inp_class" type="text" name="pes_telefone" size="15"><br>
-          </div>
-
-
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Gênero</label>
-            <?php
-              $sql->selectbox("genero");
-            ?>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Sexo biológico:</label>
-            <?php
-              $sql->selectbox("sexo");
-            ?>
-          </div>
-
-
-          <div class="extend group-form group-form-cadastro">
-            <label class="lbl_class">Endereço:</label>
-            <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
-              placeholder="Procurar endereço" onfocus="geolocate()">
-            <button type="button" name="auto" id="btn-auto">Auto</button>
-            <button type="button" name="manual" id="btn-manual">Manual</button><br>
-          </div>
-
-          <!-- Seção Auto Endereço -->
-          <div id="auto-endereco" class="auto-endereco">
-            <div id="route" class="group-form group-form-cadastro">
-              <label class="lbl_class">Rua:</label>
-              <input class="inp_class" type="text" name="end_rua" size="28"><br>
-            </div>
-
-            <div id="street_number" class="group-form group-form-cadastro">
-              <label class="lbl_class">Numero:</label>
-              <input class="inp_class" type="text" name="end_numero" size="28"><br>
-            </div>
-
-            <div id="sublocality_level_1" class="group-form group-form-cadastro">
-              <label class="lbl_class">Bairro:</label>
-              <input class="inp_class" type="text" name="end_bairro" size="28"><br>
-            </div>
-
-            <div id="administrative_area_level_2" class="group-form group-form-cadastro">
-              <label class="lbl_class">Cidade:</label>
-              <?php
-              $sql->selectbox("cidade");
-              ?>
-            </div>
-
-            <div id="administrative_area_level_1" class="group-form group-form-cadastro">
-              <label class="lbl_class">Estado:</label>
-              <?php
-              $sql->selectbox("estado");
-              ?>
-            </div>
-
-            <div id="postal_code" class="group-form group-form-cadastro">
-              <label class="lbl_class">Cep:</label>
-              <input class="inp_class" type="text" name="end_cep" size="28"><br>
-            </div>
-
-            <div id="country" class="group-form group-form-cadastro">
-              <label class="lbl_class">País:</label>
-              <input class="inp_class" type="text" name="end_pais" size="28" value="Brasil"><br>
-            </div>
-          </div> <!-- Seção Auto Endereço FIM -->
-
-          <input class="inp_class submit" type="submit" value="Proximo">
-        </form>
-        <?php
+        include 'form_pessoa.php';
 
       } elseif ($_GET['passo'] == 2) {
         $metodo->setPes_nome($_POST['pes_nome']);
@@ -733,6 +610,7 @@
     }
     mysqli_close($con);
     ?>
+    <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places&callback=initAutocomplete"
         async defer></script>
     <script src="../js/geo.js"></script>
