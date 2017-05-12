@@ -30,6 +30,7 @@
         $_SESSION['form'] == 1;
 
         include 'form_pessoa.php';
+        $_GET['passo'] = "";
 
       } elseif ($_GET['passo'] == 2) {
         $metodo->setPes_nome($_POST['pes_nome']);
