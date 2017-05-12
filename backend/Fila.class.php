@@ -55,7 +55,7 @@ class Fila extends Sql {
     return $this->pacMax;
   }
 
-  public function setPac($id, $espera, $tempoMax) {
+  public function setPac($id, $espera, $cor) {
     $this->id = $id;
 
     $pes = parent::selecionar("SELECT id_paciente FROM triagem WHERE tri_id = " . $this->id . ";");
@@ -63,26 +63,39 @@ class Fila extends Sql {
     $this->nome = parent::selecionar("SELECT pes_nome FROM pessoa WHERE pes_id = " . $pesId . ";");
 
     $this->espera = $espera;
-    $this->tempoMax = $tempoMax;
 
-    switch ($this->tempoMax) {
-      case 10:
-        $this->cor = "Laranja";
-        $this->numCor = 4;
-        break;
-      case 60:
-        $this->cor = "Amarelo";
-        $this->numCor = 3;
-        break;
-      case 120:
-        $this->cor = "Verde";
-        $this->numCor = 2;
-        break;
-      case 240:
-        $this->cor = "Azul";
+    switch ($cor) {
+      case 1:
+        $this->cor = 'Azul';
         $this->numCor = 1;
+        $this->tempoMax = '240';
+        break;
+      case 2:
+        $this->cor = 'Verde';
+        $this->numCor = 2;
+        $this->tempoMax = '120';
+        break;
+      case 3:
+        $this->cor = 'Amarelo';
+        $this->numCor = 3;
+        $this->tempoMax = '60';
+        break;
+      case 4:
+        $this->cor = 'Laranja';
+        $this->numCor = 4;
+        $this->tempoMax = '10';
+        break;
+      case 5:
+        $this->cor = 'Vermelho';
+        $this->numCor = 5;
+        $this->tempoMax = '00';
         break;
     }
+  }
+
+  public function getPac() {
+    $pac = [$this->id, $this->nome, $this->cor, $this->espera, $this->tempoMax];
+    return $pac;
   }
 
   public function getEspera() {
@@ -143,22 +156,11 @@ class Fila extends Sql {
     }
   }
 
-  public function remover($id) {
-    parent::inserir("DELETE FROM triagem WHERE tri_id = " . $id . ";");
-  }
-
   public function desistir($id) {
     parent::inserir("UPDATE triagem SET tri_status = 6 WHERE tri_id = " . $id . ";");
   }
 
   public function proximo() {
-    // echo "
-    // <form action='fila.php' method='post'>
-    //   <span> Chamada: #" . $this->id . ", " . $this->nome . ", tempo de espera: " . $this->espera . "/" . $this->tempoMax . " minutos </span>
-    //   <input type='hidden' name='id' value='" . $this->id . "'>
-    //   <input type='submit' name='confirmar' value='Confirmar'>
-    // </form>";
-
     if ($this->prox) {
       parent::inserir("UPDATE triagem SET tri_status = 2 WHERE tri_id = " . $this->id);
 

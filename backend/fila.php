@@ -36,7 +36,7 @@
       $data = $pac['tri_data'];
       $hora = $pac['tri_hora'];
 
-      $fila->setPac($pac['tri_id'], $fila->calc($data, $hora), $tempo[$i]);
+      $fila->setPac($pac['tri_id'], $fila->calc($data, $hora), $pac['tri_classe_risco']);
 
       $pos++;
 
