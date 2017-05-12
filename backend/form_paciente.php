@@ -1,10 +1,10 @@
 <?php
 if ($_SESSION['form'] == 1) {
-  $tipo = "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
+  $tipo = "cadastro.php?acao=cadastro&passo=3";
 } elseif ($_SESSION['form'] == 2) {
-  $tipo = "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=6\" method=\"post\">";
+  $tipo = "cadastro.php?acao=cadastro&passo=6";
 } else {
-  $tipo = "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
+  $tipo = "cadastro.php?acao=cadastro&passo=3";
 }
 ?>
 <!--Formulário de dados da pessoa como paciente-->
