@@ -1,5 +1,7 @@
+<meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="refresh" content="30">
-
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/fila.css">
 <?php
   include_once 'Fila.class.php';
 
