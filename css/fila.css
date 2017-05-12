@@ -1,0 +1,97 @@
+/*Tabela*/
+table {
+	border-collapse: collapse;
+  border: 0;
+}
+thead {
+	background-color: #01b26c;
+	color: #FFFFFF;
+	border-bottom: 1px solid #ddd;
+}
+
+.tr_fila:nth-child(even) {
+   background-color: #9bd3ae;
+}
+
+.tr_fila:hover {
+	background-color: #01b26c;
+	color: white;
+}
+
+.submit {
+	width: 90%;
+	line-height: 26px;
+	margin: 5px;
+	transition: 500ms;
+  color: #fff;
+}
+
+.submit[name='desistir'] {
+	background-color: #000;
+}
+
+.submit[name='reclassificar'] {
+	background-color: #b7b7b7;
+}
+
+.submit[name='chamar'] {
+	background-color: #4444ff;
+}
+
+.submit:hover {
+	background-color: #fff;
+	color: #000;
+}
+
+/*Modal*/
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	opacity:0;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modal:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modal > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #9bd3ae;
+}
+
+.fechar {
+	background: #01b26c;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	border-radius: 12px;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.fechar:hover {
+	background: #ccc;
+	color: #000;
+}
+
+/*Background contador pacientes consulta/espera*/
+.pessoas {
+	width: 200px;
+	background: #01b26c;
+}
