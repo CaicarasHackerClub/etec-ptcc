@@ -13,7 +13,7 @@ $selPes = "SELECT * FROM paciente WHERE pac_id='" . $idPac . "';";
 $paciente = $sql->fetch($selPac);
 ?>
 <!--Formulário de dados da pessoa como paciente-->
-<form class="Form" action="cadastro.php?acao=cadastro&passo=3" method="post">
+<form class="Form" action="<?=$tipo?>" method="post">
   <h1 class="titulo">Paciente</h1>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Tipo Sanguineo</label>
