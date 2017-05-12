@@ -95,7 +95,7 @@ $paciente = $sql->fetch($selPac);
       $val = "";
     } else {
       $dis = " disabled";
-      $val = " value=\"" . $paciente[2] . "\"";
+      $val = " value=\"" . $paciente[6] . "\"";
     }
     ?>
     <input class="inp_class" type="text" name="pds_numero_sus" size="28">
