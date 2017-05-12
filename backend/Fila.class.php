@@ -166,7 +166,7 @@ class Fila extends Sql {
 
       $this->tabela .= "
       <td>
-        <input type='submit' name='chamar' value='Chamar'>
+        <input class='submit' type='submit' name='chamar' value='Chamar'>
       </td>";
     } else {
       parent::inserir("UPDATE triagem SET tri_status = 1 WHERE tri_id = " . $this->id . ";");
@@ -175,38 +175,42 @@ class Fila extends Sql {
 
   public function cat() {
     $this->tabela .= "
-    <tr>
-      <form action='fila.php' method='post'>
+    <tr class='tr_fila'>
+      <form action='fila.php' class='form' method='post'>
         <td>" . $this->id . "</td>
         <td>" . $this->nome . "</td>
         <td>" . $this->chegada . "</td>
         <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
         <td>" . $this->cor . "</td>
+
+          <div id='abrirModal' class='modal'>
+          	<div>
+          		<a href='#fechar' title='Fechar' class='fechar'>x</a>
+              <input type='hidden' name='id' value='" . $this->id . "'>
+              <input type='radio' name='class' value='1'";
+              $this->tabela .= $this->numCor == 1 ? ' checked' : "";
+              $this->tabela .= "> Azul
+              <input type='radio' name='class' value='2'";
+              $this->tabela .= $this->numCor == 2 ? ' checked' : "";
+              $this->tabela .= "> Verde
+              <input type='radio' name='class' value='3'";
+              $this->tabela .= $this->numCor == 3 ? ' checked' : "";
+              $this->tabela .= "> Amarelo
+              <input type='radio' name='class' value='4'";
+              $this->tabela .= $this->numCor == 4 ? ' checked' : "";
+              $this->tabela .= "> Laranja
+              <input type='radio' name='class' value='5'";
+              $this->tabela .= $this->numCor == 5 ? ' checked' : "";
+              $this->tabela .= "> Vermelho
+				      <input class='submit' type='submit' name='reclassificar' value='Reclassificar'>
+				   </div>
+         </div>
+
         <td>
-          <div class=''>
-            <input type='hidden' name='id' value='" . $this->id . "'>
-            <input type='radio' name='class' value='1'";
-            $this->tabela .= $this->numCor == 1 ? ' checked' : "";
-            $this->tabela .= "> Azul
-            <input type='radio' name='class' value='2'";
-            $this->tabela .= $this->numCor == 2 ? ' checked' : "";
-            $this->tabela .= "> Verde
-            <input type='radio' name='class' value='3'";
-            $this->tabela .= $this->numCor == 3 ? ' checked' : "";
-            $this->tabela .= "> Amarelo
-            <input type='radio' name='class' value='4'";
-            $this->tabela .= $this->numCor == 4 ? ' checked' : "";
-            $this->tabela .= "> Laranja
-            <input type='radio' name='class' value='5'";
-            $this->tabela .= $this->numCor == 5 ? ' checked' : "";
-            $this->tabela .= "> Vermelho
-          </div>
+          <a class='submit anchor' name='reclassificar' href='#abrirModal'>Reclassificar</a>
         </td>
         <td>
-          <input type='submit' name='reclassificar' value='Reclassificar'>
-        </td>
-        <td>
-          <input type='submit' name='desistir' value='Desistente'>
+          <input class='submit' type='submit' name='desistir' value='Desistente'>
         </td>
     ";
 
@@ -224,9 +228,9 @@ class Fila extends Sql {
     $this->atualizar();
 
     echo "
-    <div>
-      Pessoas em consulta: " . $this->emConsulta . " <br>
-      Pessoas em espera: " . $this->naFila . "
+    <div class='pessoas'>
+      <label class='lbl_class'>Pessoas em consulta: " . $this->emConsulta . " <label><hr>
+      <label class='lbl_class'>Pessoas em espera: " . $this->naFila . "</labal>
     </div>";
 
     if ($this->naFila == 0) {
