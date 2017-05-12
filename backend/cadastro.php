@@ -344,21 +344,6 @@
           echo "Não é enfermeiro ou médico";
         }
       ////////////////////Fim do cadastro//////
-        $maxId1="SELECT MAX(pes_id) AS pes_id FROM pessoa";
-        $id1=$sql->selecionar($maxId1);
-        $sel1="SELECT * FROM pessoa WHERE pes_id='" . $id1 . "';";
-        $pessoa=$sql->fetch($sel1);
-
-        $maxId2="SELECT MAX(end_id) AS end_id FROM endereco";
-        $id2=$sql->selecionar($maxId2);
-        $sel2="SELECT * FROM pessoa WHERE pes_id='" . $id2 . "';";
-        $endereco=$sql->fetch($sel2);
-
-        $maxId3="SELECT MAX(usu_id) AS usu_id FROM usuario";
-        $id3=$sql->selecionar($maxId3);
-        $sel3="SELECT * FROM usuario WHERE usu_id='" . $id3 . "';";
-        $usuario=$sql->fetch($sel3);
-
         // Formulário de dados pessoais da confirmação final
         $_SESSION['form'] == 2;
 
@@ -366,16 +351,6 @@
 
       } elseif ($_GET['passo'] == 5) {
         echo "Foi clicado em proximo!!"; //teste
-
-        $maxId="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-        $id=$sql->selecionar($maxId);
-        $sel="SELECT * FROM funcionario WHERE fun_id='" . $id . "';";
-        $funcionario=$sql->fetch($sel);
-
-        $maxId="SELECT MAX(usu_id) AS usu_id FROM usuario";
-        $id=$sql->selecionar($maxId);
-        $sel="SELECT * FROM usuario WHERE usu_id='" . $id . "';";
-        $usuario=$sql->fetch($sel);
 
         $_SESSION['form'] == 2;
 
