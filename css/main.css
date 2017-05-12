@@ -359,11 +359,15 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   font-family: sans-serif;
   /*border: 1px solid;*/
-  overflow:scroll;
+  /*overflow:scroll;*/
 }
 
 .form-cadastro {
   margin-left: 0;
+}
+
+.auto-endereco {
+  display: none;
 }
 
 .form .lbl_class, .extend-class {
@@ -406,7 +410,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   height: 50px;
   background-color: #9bd3ae;
   margin-top: 2%;
-  margin-left: 10%;
+  margin-left: 7%;
   border-radius: 3px 3px 3px 3px;
 }
 
@@ -452,7 +456,22 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form-cadastro .extend .inp_class{
   width: 80%;
-  margin-left: %;
+}
+
+.form-cadastro .grupo-info {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.form-cadastro .hidden-group {
+  visibility: hidden;
+  position: absolute;
+}
+
+.form-cadastro .grupo-info .legenda {
+  color: #01b26a;
+  font-size: 16pt;
 }
 
 @media (max-width: 1054px){

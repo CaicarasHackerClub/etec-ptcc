@@ -1,32 +1,42 @@
 var placeSearch, autocomplete;
 var componentForm = {
-  street_number: 'short_name',
   route: 'long_name',
-  locality: 'long_name',
+  street_number: 'short_name',
+  sublocality_level_1: 'long_name',
   administrative_area_level_1: 'short_name',
+  administrative_area_level_2: 'short_name',
+  postal_code: 'short_name',
   country: 'long_name',
-  postal_code: 'short_name'
 };
 
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById('autocomplete'), {types: ['geocode']});
-  autocomplete.addListener('place_changed', fillInAddress);
+  // autocomplete.addListener('place_changed', fillInAddress);
+  $('#btn-auto').click(function() {
+    if ($('#autocomplete').val()) {
+      $('#auto-endereco').show();
+      fillInAddress();
+    } else {
+      alert('Por favor, digite um endereço.');
+    }
+  });
 }
 
 function fillInAddress() {
   var place = autocomplete.getPlace();
 
   for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
+    if (document.getElementById(component)) {
+      document.getElementById(component).value = '';
+    }
   }
 
   for (var i = 0; i < place.address_components.length; i++) {
     var addressType = place.address_components[i].types[0];
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
+      $('#' + addressType).children('input').val(val);
     }
   }
 }
