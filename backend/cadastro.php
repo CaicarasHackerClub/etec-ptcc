@@ -114,67 +114,22 @@
 
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
-            echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=3\" method=\"post\">";
             if ($_SESSION['tipo'] == "recepcao") {
+
               $_SESSION['form'] == 1;
+              /*formulário para o preenchimento de dados
+              do paciente que está sendo cadastrado*/
               include 'form_paciente.php';
 
             } elseif ($_SESSION['tipo'] == "administracao") {
               /* Se o usuário logado for administrativo ele só poderá cadastrar
               os dados de funcionário do formulário abaixo
               */
-                ?>
-                <h1 class="titulo">Funcionário</h1>
+              $_SESSION['form'] == 1;
+              /*formulário para o preenchimento de dados
+              do funcionario que está sendo cadastrado*/
+              include 'form_funcionario.php';
 
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Cargo:</label>
-                  <select class="select" name="fun_cargo">
-                    <option class="option" value="recepcao">Recepcionista</option>
-                    <option class="option" value="medico">Médico</option>
-                    <option class="option" value="enfermeiro">Enfermeiro</option>
-                    <option class="option" value="funcionario">Funcionário</option>
-                  </select>
-                  <br>
-                </div>
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Setor:</label>
-                  <?php
-                    $sql->selectbox("setor");
-                  ?>
-                </div>
-
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Horario:</label>
-                  <input class="inp_class" type="time" name="fun_horario" size="28"><br>
-                </div>
-
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Inscrição:</label>
-                  <input class="inp_class" type="text" name="fun_inscricao" size="28"><br>
-                </div>
-
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Turno:</label>
-                  <select class="select" name="fun_turno">
-                    <option class="option" value="manha">Manhã</option>
-                    <option class="option" value="tarde">Tarde</option>
-                    <option class="option" value="noite">Noite</option>
-                  </select><br>
-                </div>
-
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">E-mail:</label>
-                  <input class="inp_class" type="text" name="usu_email" size="28"><br>
-                </div>
-
-                <div class="group-form group-form-cadastro">
-                  <label class="lbl_class">Senha:</label>
-                  <input class="inp_class" type="password" name="usu_senha" size="28"><br>
-                </div>
-
-                <input class="inp_class" type="submit" value="Proximo">
-                </form>
-                <?php
             } else {
               echo "Apenas adm e recepcionistas";
             }
