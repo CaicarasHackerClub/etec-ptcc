@@ -358,111 +358,12 @@
         $id3=$sql->selecionar($maxId3);
         $sel3="SELECT * FROM usuario WHERE usu_id='" . $id3 . "';";
         $usuario=$sql->fetch($sel3);
-        ?>
 
-        <form class="form form-cadastro" action="cadastro.php?acao=cadastro&passo=5" method="post">
-          <h1 class="titulo">Confirmação Final</h1>
-          <br>
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome:</label>
-            <input class="inp_class" type="text" name="pes_nome" size="28" disabled value=<?=$pessoa[1]?>><br>
-          </div>
+        // Formulário de dados pessoais da confirmação final
+        $_SESSION['form'] == 2;
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome do pai:</label>
-            <input class="inp_class" type="text" name="pes_pai" size="28" disabled value=<?=$pessoa[2]?>><br>
-          </div>
+        include 'form_pessoa.php';
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Nome da mãe:</label>
-            <input class="inp_class" type="text" name="pes_mae" size="28" disabled value=<?=$pessoa[3]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">RG:</label>
-            <input class="inp_class" type="text" name="pes_rg" size="28" disabled value=<?=$pessoa[4]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">CPF:</label>
-            <input class="inp_class" type="text" name="pes_cpf" size="28" disabled value=<?=$pessoa[5]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
-            <input class="inp_class" type="date" name="pes_data" size="28" disabled value=<?=$pessoa[6]?>><br>
-           </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Email</label>
-            <input class="inp_class" type="text" name="pes_email" size="28" disabled value=<?=$pessoa[7]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Estado civil:</label>
-            <input class="inp_class" type="text" name="pes_estado_civil" size="28" disabled value=<?=$pessoa[8]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidadania:</label>
-            <input class="inp_class" type="text" name="pes_cidadania" size="28" value=<?=$pessoa[9]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Gênero</label>
-            <input class="inp_class" type="text" name="pes_genero" size="28" disabled value=<?=$pessoa[10]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Sexo biológico:</label>
-            <input class="inp_class" type="text" name="pes_sexo_biologico" size="28" disabled value=<?=$pessoa[11]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Telefone:</label>
-            <input class="inp_class" type="text" name="pes_telefone" size="15" disabled value=<?=$pessoa[12]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">País:</label>
-            <input class="inp_class" type="text" name="end_pais" size="28" disabled value=<?=$endereco[1]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Estado:</label>
-            <input class="inp_class" type="text" name="end_estado" size="28" disabled value=<?=$endereco[2]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cidade:</label>
-            <input class="inp_class" type="text" name="end_cidade" size="28" disabled value=<?=$endereco[3]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Cep:</label>
-            <input class="inp_class" type="text" name="end_cep" size="28" disabled value=<?=$endereco[4]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Bairro:</label>
-            <input class="inp_class" type="text" name="end_bairro" size="28" disabled value=<?=$endereco[5]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Rua:</label>
-            <input class="inp_class" type="text" name="end_rua" size="28" disabled value=<?=$endereco[6]?>><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Numero:</label>
-            <input class="inp_class" type="text" name="end_numero" size="28" disabled value=<?=$endereco[7]?>><br>
-          </div>
-
-          <input type="button" value="Alterar" onclick="habilita()">
-          <input class="inp_class submit" type="submit" value="Proximo"><br>
-        </form>
-
-      <?php
       } elseif ($_GET['passo'] == 5) {
         echo "Foi clicado em proximo!!"; //teste
 
@@ -475,48 +376,11 @@
         $id=$sql->selecionar($maxId);
         $sel="SELECT * FROM usuario WHERE usu_id='" . $id . "';";
         $usuario=$sql->fetch($sel);
-      ?>
-        <h1 class="titulo">Funcionário</h1>
 
-        <div class="group-form group-form-cadastro">
-          <label class="lbl_class">Cargo:</label>
-            <input class="inp_class" type="time" name="fun_CARGO" size="28" desabled value<?=$funcionario[1]?>><br>
-          </div>
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Setor:</label>
-            <?php
-            $sql->selectbox("setor");
-            ?>
-          </div>
+        $_SESSION['form'] == 2;
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Horario:</label>
-            <input class="inp_class" type="time" name="fun_horario" size="28"><br>
-          </div>
+        include 'form_funcionario';
 
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Inscrição:</label>
-            <input class="inp_class" type="text" name="fun_inscricao" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Turno:</label>
-            <input class="inp_class" type="time" name="fun_turno" size="28" desabled><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">E-mail:</label>
-            <input class="inp_class" type="text" name="usu_email" size="28"><br>
-          </div>
-
-          <div class="group-form group-form-cadastro">
-            <label class="lbl_class">Senha:</label>
-            <input class="inp_class" type="password" name="usu_senha" size="28"><br>
-          </div>
-
-          <input class="inp_class" type="submit" value="Proximo">
-        </form>
-      <?php
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
