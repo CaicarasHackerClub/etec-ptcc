@@ -5,7 +5,7 @@
 <link rel='stylesheet' href='../css/main.css'>
 <?php
 include_once("Sql.class.php");
-$sql = New Sql;
+$sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=2";
@@ -31,11 +31,10 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Nome:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
-
           $dis = " disabled";
           $val = " value=\"" . $pessoa[1] . "\"";
         }
@@ -45,7 +44,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Nome do pai:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -58,7 +57,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Nome da mãe:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -71,7 +70,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">RG:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -84,7 +83,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">CPF:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -97,7 +96,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -110,7 +109,7 @@ $endereco = $sql->fetch($selEnd);
     <div class="group-form group-form-cadastro">
     <label class="lbl_class">Email</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -123,7 +122,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Estado civil:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $sql->selectbox("estado_civil");
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\" disabled value=" . $pessoa[8] . "<br>";
@@ -133,7 +132,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Cidadania:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -146,7 +145,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Gênero</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $sql->selectbox("genero");
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\" disabled value=" . $pessoa[10] . "<br>";
@@ -156,7 +155,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Sexo biológico:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $sql->selectbox("sexo");
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\" disabled value=" . $pessoa[10] . "<br>";
@@ -166,7 +165,7 @@ $endereco = $sql->fetch($selEnd);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Telefone:</label>
     <?php
-        if ($_SESSION['form'] == 1){
+        if ($_SESSION['form'] == 1) {
           $dis = "";
           $val = "";
         } else {
@@ -186,7 +185,7 @@ $endereco = $sql->fetch($selEnd);
     <div id="route" class="group-form group-form-cadastro">
     <label class="lbl_class">Rua:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
       } else {
@@ -199,7 +198,7 @@ $endereco = $sql->fetch($selEnd);
   <div id="street_number" class="group-form group-form-cadastro">
     <label class="lbl_class">Numero:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
       } else {
@@ -212,7 +211,7 @@ $endereco = $sql->fetch($selEnd);
   <div id="sublocality_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Bairro:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
       } else {
@@ -225,7 +224,7 @@ $endereco = $sql->fetch($selEnd);
   <div id="administrative_area_level_2" class="group-form group-form-cadastro">
     <label class="lbl_class">Cidade:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $sql->selectbox("cidade");
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\" disabled value=" . $endereco[4] . "<br>";
@@ -235,7 +234,7 @@ $endereco = $sql->fetch($selEnd);
   <div id="administrative_area_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Estado:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $sql->selectbox("estado");
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\" disabled value=" . $endereco[5] . "<br>";
@@ -246,7 +245,7 @@ $endereco = $sql->fetch($selEnd);
   <div id="postal_code" class="group-form group-form-cadastro">
     <label class="lbl_class">Cep:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
       } else {
@@ -259,7 +258,7 @@ $endereco = $sql->fetch($selEnd);
   <div id="country" class="group-form group-form-cadastro">
     <label class="lbl_class">País:</label>
     <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
       } else {
