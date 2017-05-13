@@ -23,7 +23,7 @@
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
       </ul>
       <a href="#" Class="anchor" id="triagem" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" ><img src="../img/icons/triagem.png" class="icon-modulo"  alt=""> <p>Triagem</p></a>
-      <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Cadastro', '../backend/cadastro.php', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
+      <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Cadastro', '../index.php?acao=cadastro', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
       <a href="#" Class="anchor" id="fila" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/portaria.png" class="icon-modulo" alt=""><p>Portaria</p></a>
     </main>
     <a href="#" id="user" class="nav_user user">Usuário</a>
