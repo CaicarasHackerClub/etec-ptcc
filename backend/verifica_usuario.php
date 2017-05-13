@@ -57,7 +57,7 @@
           echo
           "<script>
             alert('Bem vindo!!');
-            location.href='../index.php';
+            location.href='../backend/pagina_inicial.php';
           </script>;";
         } else {
           //Direciona pro formulário de acesso
