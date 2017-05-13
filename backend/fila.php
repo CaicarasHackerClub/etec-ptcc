@@ -15,7 +15,23 @@
   $pos = 0;
 
   if (isset($_POST['reclassificar'])) {
-    $fila->reclassificar($_POST['id'], $_POST['class']);
+    if (isset($_POST['senha']) && !empty($_POST['senha'])) {
+      $num = $fila->num("SELECT usu_id FROM usuario WHERE usu_senha = '" . $_POST['senha'] . "';");
+
+      if ($num != 0) {
+        $fila->reclassificar($_POST['id'], $_POST['class']);
+        $alert = "Paciente reclassificado com sucesso";
+      } else {
+        $alert = "Não há nenhum usuário cadastrado com essa senha";
+      }
+    } else {
+      $alert = "Digite uma senha.";
+    }
+
+    echo
+    "<script type='text/javascript'>
+      alert('" . $alert . "');
+    </script>";
   }
 
   if (isset($_POST['desistir'])) {

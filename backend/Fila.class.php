@@ -17,7 +17,7 @@ class Fila extends Sql {
   private $prox;
 
   private $sel;
-  private $tempo = array(10, 60, 120, 240);
+  private $tempo = [10, 60, 120, 240];
 
   private $tabela = "
   <table border='1'>
@@ -182,9 +182,10 @@ class Fila extends Sql {
         <td>" . $this->chegada . "</td>
         <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
         <td>" . $this->cor . "</td>
-
           <div id='abrirModal' class='modal'>
           	<div>
+              Paciente: " . $this->nome . " <br>
+              Classificação: " . strtolower($this->cor) . " <br>
           		<a href='#fechar' title='Fechar' class='fechar'>x</a>
               <input type='hidden' name='id' value='" . $this->id . "'>
               <input type='radio' name='class' value='1'";
@@ -201,8 +202,9 @@ class Fila extends Sql {
               $this->tabela .= "> Laranja
               <input type='radio' name='class' value='5'";
               $this->tabela .= $this->numCor == 5 ? ' checked' : "";
-              $this->tabela .= "> Vermelho
-				      <input class='submit' type='submit' name='reclassificar' value='Reclassificar'>
+              $this->tabela .= "> Vermelho <br> <br>
+              <input type='password' name='senha'> <br>
+              <input class='submit' type='submit' name='reclassificar' value='Reclassificar'>
 				   </div>
          </div>
 
