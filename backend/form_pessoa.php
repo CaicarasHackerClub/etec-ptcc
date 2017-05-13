@@ -5,7 +5,7 @@
 <link rel='stylesheet' href='../css/main.css'>
 <?php
 include_once("Sql.class.php");
-$sql = new Sql;
+$sql = New Sql;
 
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=2";
