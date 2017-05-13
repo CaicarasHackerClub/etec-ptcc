@@ -424,8 +424,8 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   text-align: center;
   margin-top: 10px;
   background-color: #01b26a;
-  border: 0;
   color: #fff;
+  border: 0;
   border-radius: 3px 3px 3px 3px;
 }
 
@@ -472,6 +472,55 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 .form-cadastro .grupo-info .legenda {
   color: #01b26a;
   font-size: 16pt;
+}
+
+/* Escondemos o radio original */
+.form-classi input[type="radio"]{
+  display: none;
+}
+
+/* Usamos o pseudo-element :before para recriar o novo radio */
+.lbl-radio-class:before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+  margin-left: 10%;
+  border-radius: 50%;
+  left: 0;
+  bottom: 1px;
+  border: 0;
+}
+
+/* CSS Responsavel por definir o estilo para radio Checado */
+input[type="radio"]:checked + .lbl-radio-class:before {
+  content: "\2022";
+  color: #fff;
+  font-size: 50px;
+  line-height: 35px;
+  text-align: center;
+}
+
+/*Mudança na cor de fundo dos inputs type radio*/
+input[value="5"] + .lbl-radio-class:before  {
+  background-color: #f00;
+}
+
+input[value="4"] + .lbl-radio-class:before  {
+  background-color: orange;
+}
+
+input[value="3"] + .lbl-radio-class:before  {
+  background-color: yellow;
+}
+
+input[value="2"] + .lbl-radio-class:before  {
+  background-color: green;
+}
+
+input[value="1"] + .lbl-radio-class:before  {
+  background-color: blue;
 }
 
 @media (max-width: 1054px){
