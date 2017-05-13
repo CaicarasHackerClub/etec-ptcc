@@ -27,7 +27,7 @@
     if ($acao == "cadastro") {
       if (!isset($_GET['passo'])) {
         //formulário dados pessoais em arquivo separado, sendo incluso.
-        $_SESSION['form'] == 1;
+        $_SESSION['form'] = 1;
 
         include 'form_pessoa.php';
         $_GET['passo'] = "";
@@ -116,7 +116,7 @@
             os dados de pacientes do formulário abaixo */
             if ($_SESSION['tipo'] == "recepcao") {
 
-              $_SESSION['form'] == 1;
+              $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do paciente que está sendo cadastrado*/
               include 'form_paciente.php';
@@ -125,7 +125,7 @@
               /* Se o usuário logado for administrativo ele só poderá cadastrar
               os dados de funcionário do formulário abaixo
               */
-              $_SESSION['form'] == 1;
+              $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do funcionario que está sendo cadastrado*/
               include 'form_funcionario.php';
