@@ -1,4 +1,4 @@
-$(document).ready(function(){
+// $(document).ready(function(){
   function recebe() {
     var img = JSON.parse(sessionStorage.getItem('img'));
     $("#lbl_triagem").html(JSON.parse(sessionStorage.getItem('nome-modulo')));
@@ -40,6 +40,7 @@ $(document).ready(function(){
       var hora = new Date();
       $('#hora').html(hora.toLocaleTimeString());
     }
+
 
     if (screen.width > 650) {
       if ($("#lateral").css("margin-left") == "-390px") {
@@ -199,4 +200,4 @@ $(document).ready(function(){
     sessionStorage.setItem('img', image );
     sessionStorage.setItem('nome-modulo', txt );
   }
-});
+// });
