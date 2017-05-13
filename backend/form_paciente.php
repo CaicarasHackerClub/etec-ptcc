@@ -36,7 +36,7 @@ $paciente = $sql->fetch($selPac);
         $val = " value=\"" . $paciente[2] . "\"";
       }
       ?>
-    <input class="inp_class" type="text" name="pac_remedio" size="28"><br>
+    <input class="inp_class" type="text" name="pac_remedio" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Doença</label>
@@ -49,7 +49,7 @@ $paciente = $sql->fetch($selPac);
         $val = " value=\"" . $paciente[2] . "\"";
       }
     ?>
-    <input class="inp_class" type="text" name="pac_doenca" size="28"><br>
+    <input class="inp_class" type="text" name="pac_doenca" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Grau de escolaridade:</label>
@@ -72,7 +72,7 @@ $paciente = $sql->fetch($selPac);
         $val = " value=\"" . $paciente[4] . "\"";
       }
     ?>
-    <input class="inp_class" type="text" name="pds_convenio_nome" size="28"><br>
+    <input class="inp_class" type="text" name="pds_convenio_nome" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Número :</label>
@@ -85,7 +85,7 @@ $paciente = $sql->fetch($selPac);
         $val = " value=\"" . $paciente[5] . "\"";
       }
     ?>
-    <input class="inp_class" type="text" name="pds_num_convenio" size="28"><br>
+    <input class="inp_class" type="text" name="pds_num_convenio" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">SUS:</label>
@@ -98,7 +98,7 @@ $paciente = $sql->fetch($selPac);
       $val = " value=\"" . $paciente[6] . "\"";
     }
     ?>
-    <input class="inp_class" type="text" name="pds_numero_sus" size="28">
+    <input class="inp_class" type="text" name="pds_numero_sus" size="28" <?=$dis . $val; ?>><br>
   </div>
   <input class="inp_class submmit" type="submit" value="Confirmar">
 </form>
