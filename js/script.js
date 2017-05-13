@@ -1,4 +1,4 @@
-// $(document).ready(function(){
+
   function recebe() {
     var img = JSON.parse(sessionStorage.getItem('img'));
     $("#lbl_triagem").html(JSON.parse(sessionStorage.getItem('nome-modulo')));
@@ -8,30 +8,6 @@
       "background-position": "15% -1%"
     });
   }
-
-  $("#inp-tel").keydown(function () {
-
-    // $('.form input').each(function() {
-    //   if ($(this).val() == "") {
-    //     $(this).css({
-    //       "border-color":"#f00"
-    //     });
-    //   }
-    // });
-
-    if($("#inp-tel").val().length == 10) {
-      $(".visible-group").css({
-        "visibility":"hidden",
-        "position":"absolute"
-      });
-
-      $(".hidden-group").css({
-        "visibility":"visible",
-        "position":"relative"
-      });
-    }
-  });
-
 
   /*Funçao que atualiza a hora*/
   setInterval(function() {
@@ -173,7 +149,27 @@
       }
     });
   }
+  $(document).ready(function(){
+    $("#inp-env").click(function () {
 
+      // $('.form input').each(function() {
+      //   if ($(this).val() == "") {
+      //     $(this).css({
+      //       "border-color":"#f00"
+      //     });
+      //   }
+      // });
+      $(".visible-group").css({
+        "visibility":"hidden",
+        "position":"absolute"
+      });
+
+      $(".hidden-group").css({
+        "visibility":"visible",
+        "position":"relative"
+      });
+    });
+  });
   function enviar(val) {
     var img;
     var name;
@@ -200,4 +196,3 @@
     sessionStorage.setItem('img', image );
     sessionStorage.setItem('nome-modulo', txt );
   }
-// });
