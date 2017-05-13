@@ -289,4 +289,3 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class submit" type="submit" value="Proximo"><br>
   </fieldset>
   </form>
-}
