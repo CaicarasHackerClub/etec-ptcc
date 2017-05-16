@@ -28,7 +28,15 @@ $selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
 $endereco = $sql->fetch($selEnd);
 ?>
 <form class="Form form-cadastro" action="<?=$tipo?>" method="post">
-  <h1 class="titulo">Cadastro de Pessoa</h1>
+  <?php
+  if ($_SESSION['form'] == 1) {
+    echo "<h1 class=\"titulo\">Cadastro de Pessoa</h1>";
+  } elseif ($_SESSION['form'] == 2) {
+    echo "<h1 class=\"titulo\">Confirmação Final</h1>";
+  } else {
+    echo "<h1 class=\"titulo\">Atualização de Dados</h1>";
+  }
+  ?>
   <br>
   <fieldset class="grupo-info visible-group">
     <legend class="legenda">Dados Pessoais</legend>
