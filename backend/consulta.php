@@ -13,7 +13,6 @@
 
     <?php
   } else {
-
     ?>
 
     <table border="1">

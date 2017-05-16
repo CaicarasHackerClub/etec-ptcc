@@ -7,7 +7,7 @@
 <script type="text/javascript" src="../js/script.js" ></script>
 <?php
 include_once("Sql.class.php");
-$sql = New Sql;
+$sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=2";

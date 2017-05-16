@@ -115,7 +115,6 @@
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
             if ($_SESSION['tipo'] == "recepcao") {
-
               $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do paciente que está sendo cadastrado*/
@@ -288,75 +287,70 @@
         }
       } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
-          if ($_SESSION['fun_cargo'] == "medico") {
-            $metodo->setMed_crm($_POST['med_crm']);
-            $metodo->setEsp_nome($_POST['especializacao']);
+        if ($_SESSION['fun_cargo'] == "medico") {
+          $metodo->setMed_crm($_POST['med_crm']);
+          $metodo->setEsp_nome($_POST['especializacao']);
 
-            $esp=$metodo->getEsp_nome();
-            echo $esp;
-            //$selMed="SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
+          $esp=$metodo->getEsp_nome();
+          echo $esp;
+          //$selMed="SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
 
-            $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-            $fun_id=$sql->selecionar($sel_id);
+          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+          $fun_id=$sql->selecionar($sel_id);
 
-            $insMed="INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
-                    '" . $metodo->getMed_crm() . "',
-                    '" . $fun_id               . "'
-                    );";
+          $insMed="INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
+                  '" . $metodo->getMed_crm() . "',
+                  '" . $fun_id               . "'
+                  );";
 
-            $sel_id="SELECT MAX(med_id) AS med_id FROM medico";
-            $med_id=$sql->selecionar($sel_id);
-            $med_id++;
+          $sel_id="SELECT MAX(med_id) AS med_id FROM medico";
+          $med_id=$sql->selecionar($sel_id);
+          $med_id++;
 
-            $insHas="INSERT INTO medico_has_especializacao (medico_med_id, especializacao_esp_id) VALUES(
-                    '" . $med_id                . "',
-                    '" . $metodo->getEsp_nome() . "'
-                    );";
+          $insHas="INSERT INTO medico_has_especializacao (medico_med_id, especializacao_esp_id) VALUES(
+                  '" . $med_id                . "',
+                  '" . $metodo->getEsp_nome() . "'
+                  );";
 
-            $okMed=$sql->inserir($insMed);
-            $okHas=$sql->inserir($insHas);
+          $okMed=$sql->inserir($insMed);
+          $okHas=$sql->inserir($insHas);
 
-            if ($okMed && $okHas) {
-              echo "Médico(a) cadastrado!!";
+          if ($okMed && $okHas) {
+            echo "Médico(a) cadastrado!!";
 
-              $_SESSION['form'] = 2;
+            $_SESSION['form'] = 2;
 
-              include 'form_pessoa.php';
+            include 'form_pessoa.php';
 
-            } else {
-              echo "Não cadastrado!" . $insMed . "...." . $insHas ;
-            }
-
-          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-            $metodo->setEnf_registro($_POST['enf_registro']);
-
-            $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
-
-            $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-            $fun_id=$sql->selecionar($sel_id);
-
-
-            $insEnf="INSERT INTO enfermeiro (enf_registro, funcionario_fun_id) VALUES(
-                    '" . $metodo->getEnf_registro() . "',
-                    '" . $fun_id                    . "'
-                    );";
-            $okEnf= $sql->inserir($insEnf);
-            if ($okEnf) {
-              echo "Enfermeiro(a) Cadastrado!";
-            } else {
-              echo "Não cadastrado!!!";
-            }
           } else {
-            echo "Não é enfermeiro ou médico";
+            echo "Não cadastrado!" . $insMed . "...." . $insHas ;
           }
-      ////////////////////Fim do cadastro//////
-        // Formulário de dados pessoais da confirmação final
 
+        } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+          $metodo->setEnf_registro($_POST['enf_registro']);
+          $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
+
+          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+          $fun_id=$sql->selecionar($sel_id);
+
+          $insEnf="INSERT INTO enfermeiro (enf_registro, funcionario_fun_id) VALUES(
+                  '" . $metodo->getEnf_registro() . "',
+                  '" . $fun_id                    . "'
+                  );";
+          $okEnf= $sql->inserir($insEnf);
+          if ($okEnf) {
+            echo "Enfermeiro(a) Cadastrado!";
+          } else {
+            echo "Não cadastrado!!!";
+          }
+        } else {
+          echo "Não é enfermeiro ou médico";
+        }
+    ////////////////////Fim do cadastro//////
+      // Formulário de dados pessoais da confirmação final
       } elseif ($_GET['passo'] == 5) {
         echo "Foi clicado em proximo!!"; //teste
-
         $_SESSION['form'] == 2;
-
         include 'form_funcionario';
 
       } elseif ($acao == "logoff") {

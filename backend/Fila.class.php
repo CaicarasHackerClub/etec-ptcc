@@ -183,10 +183,10 @@ class Fila extends Sql {
         <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
         <td>" . $this->cor . "</td>
           <div id='abrirModal' class='modal'>
-          	<div>
+            <div>
               Paciente: " . $this->nome . " <br>
               Classificação: " . strtolower($this->cor) . " <br>
-          		<a href='#fechar' title='Fechar' class='fechar'>x</a>
+              <a href='#fechar' title='Fechar' class='fechar'>x</a>
               <input type='hidden' name='id' value='" . $this->id . "'>
 
               <input type='radio' id='azul' name='class' value='1'";
@@ -216,7 +216,7 @@ class Fila extends Sql {
 
               <input type='password' name='senha' class='inp_class'> <br>
               <input class='submit' type='submit' name='reclassificar' value='Reclassificar'>
-				   </div>
+           </div>
          </div>
 
         <td>

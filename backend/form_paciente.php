@@ -1,6 +1,6 @@
 <?php
 include_once("Sql.class.php");
-$sql = New Sql;
+$sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=3";
@@ -21,7 +21,7 @@ $paciente = $sql->fetch($selPac);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Tipo Sanguineo</label>
       <?php
-      if ($_SESSION['form'] == 1){
+      if ($_SESSION['form'] == 1) {
         $sql->selectbox("tipo_sanguineo");
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"pac_tipo_sanguineo\" size=\"28\" disabled value = " . $paciente[1] . "><br>";
@@ -57,7 +57,7 @@ $paciente = $sql->fetch($selPac);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Grau de escolaridade:</label>
     <?php
-    if ($_SESSION['form'] == 1){
+    if ($_SESSION['form'] == 1) {
       $sql->selectbox("escolaridade");
     } else {
       echo "<input class=\"inp_class\" type=\"text\" name=\"pac_escolaridade\" size=\"28\" disabled value = " . $paciente[3] . "><br>";
