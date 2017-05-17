@@ -16,6 +16,10 @@ header{
   display: none;
 }
 
+input {
+  padding-left: 1em;
+}
+
 /*div que pega a tela inteira*/
 .container {
   display: flex;
@@ -448,7 +452,11 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 .form .group-form-cadastro {
-  width: 440px;
+  width: 40%;
+}
+
+.form .group-form-cadastro .inp_class {
+  width: 65%;
 }
 
 .form-cadastro .extend {
@@ -468,6 +476,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 .form-cadastro .hidden-group {
   visibility: hidden;
   position: absolute;
+  display: none;
 }
 
 .form-cadastro .grupo-info .legenda {
