@@ -319,7 +319,6 @@
             echo "Médico(a) cadastrado!!";
 
             $_SESSION['form'] = 2;
-
             include 'form_pessoa.php';
 
           } else {
@@ -340,6 +339,10 @@
           $okEnf= $sql->inserir($insEnf);
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
+
+            $_SESSION['form'] = 2;
+            include 'form_pessoa.php';
+
           } else {
             echo "Não cadastrado!!!";
           }
@@ -349,10 +352,35 @@
     ////////////////////Fim do cadastro//////
       // Formulário de dados pessoais da confirmação final
       } elseif ($_GET['passo'] == 5) {
-        echo "Foi clicado em proximo!!"; //teste
-        $_SESSION['form'] == 2;
-        include 'form_funcionario.php';
+        //echo "Foi clicado em proximo!!"; //teste
+        //Se houver alterações no formulário "pessoa" será feito aqui.
+        if ($_SESSION['tipo'] == "administracao") {
 
+          $_SESSION['form'] == 2;
+          include 'form_funcionario.php';
+        } else {
+
+          $_SESSION['form'] == 2;
+          include 'form_paciente.php';
+        }
+
+      } elseif ($_GET['passo'] == 6){
+        if ($_SESSION['tipo']) == "administracao") {
+          // Se houver alterações no formulário "funcionario" será feito aqui.
+          if ($_SESSION['fun_cargo'] == "medico") {
+
+            $_SESSION['form'] = 2;
+            include 'form_medico.php';
+
+          } else {
+
+            $_SESSION['form'] = 2;
+            include 'form_enfermeiro.php';
+
+          }
+        } else {
+          // aqui ficará as alterações do paciente
+        }
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
