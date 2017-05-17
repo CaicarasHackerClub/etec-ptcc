@@ -6,7 +6,7 @@ Class Main,FormLogin
 
 */
 
-.FormLogin{
+.FormLogin {
   display: flex;
   flex-flow: wrap;
   width: 26%;
@@ -16,21 +16,37 @@ Class Main,FormLogin
   background-color: #9bd3ae;
 }
 
-.FormLogin .submit{
+.FormLogin .submit {
   background-color: #009657;
   color: #eee;
   border: 0;
 }
 
-.FormLogin .inp_class{
+.form-confir .lbl_class {
+  color: #009657;
+  width: 100%;
+  height: 20px;
+  font-size: 16pt;
+  text-align: center;
+}
+
+.anchor {
+  background-color: #009657;
+  color: #fff;
+  margin: 3px;
+  width: 100px;
+  border-radius: 3px;
+}
+
+.FormLogin .inp_class {
   text-indent: 7px;
 }
 
-.FormLogin .submit:hover{
+.FormLogin .submit:hover {
   background-color: #01b26a;
 }
 
-.FormLogin input{
+.FormLogin input {
   width: 80%;
   height: 40px;
   margin-top: 10px;
@@ -39,14 +55,22 @@ Class Main,FormLogin
   border-radius: 5px 5px 5px 5px;
 }
 
-.Img{
+.Img {
   left: 50%;
   margin-top: -330px;
   margin-left: -110px;
   position: absolute;
 }
 
-/* Dispositivos abaixo de 460px*/
+.form-confir {
+  width: 37%;
+  height: 37%;
+  margin-left: 31.5%;
+  margin-top: 150px;
+  border-radius: 3px;
+}
+
+/* Dispositivos abaixo de 800px*/
 @media screen and (max-width: 800px) {
   /*Class FormLogin*/
   .FormLogin{
@@ -56,6 +80,10 @@ Class Main,FormLogin
     margin-top: 340px;
   }
 
+  .form-confir {
+    margin-top: 150px;
+  }
+
   .FormLogin input{
     height: 40px;
   }
@@ -63,10 +91,14 @@ Class Main,FormLogin
 /* Dispositivos abaixo de 460px*/
 @media screen and (max-width: 460px) {
   /*Class FormLogin*/
-  .FormLogin{
+  .FormLogin {
     width: 80%;
     height: 220px;
     margin-left: 8%;
     margin-top: 340px;
+  }
+
+  .form-confir {
+    margin-top: 150px;
   }
 }

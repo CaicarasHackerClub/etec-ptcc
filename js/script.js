@@ -161,12 +161,14 @@
       // });
       $(".visible-group").css({
         "visibility":"hidden",
-        "position":"absolute"
+        "position":"absolute",
+        "display":"none"
       });
 
       $(".hidden-group").css({
         "visibility":"visible",
-        "position":"relative"
+        "position":"absolute",
+        "display":"inline-block",
       });
     });
   });

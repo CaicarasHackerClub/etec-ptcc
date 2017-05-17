@@ -4,6 +4,7 @@ session_start();
 <html>
   <head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
     <link rel="stylesheet" href="css/index.css" type="text/css">
   </head>
   <body>
@@ -24,16 +25,16 @@ session_start();
       }
     } else {
       $acao = isset($_GET['acao']) ? $_GET['acao'] : ""; ?>
-      <a href="?acao=cadastro">Cadastro</a>
-      <a href="?acao=logoff">Sair</a>
+      <a href="?acao=cadastro" class="anchor">Cadastro</a>
+      <a href="?acao=logoff" class="anchor">Sair</a>
       <?php
       if ($acao == "cadastro") {
         if (!isset($_POST['doc'])) {
         ?>
-          <form action="index.php?acao=cadastro" method="post">
-            <label>Numero do documento:</label>
-            <input type="text" name="doc" size="28"><br>
-            <input type="submit" name=procurar value="Procurar">
+          <form action="index.php?acao=cadastro" class="form-confir FormLogin" method="post">
+            <label class="lbl_class">Numero do documento:</label>
+            <input type="text" class="inp_class" name="doc" size="28"><br>
+            <input type="submit" name=procurar class="submit" value="Procurar">
           </form>
         <?php
         } else {
