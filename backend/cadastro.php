@@ -251,28 +251,16 @@
             echo "Erro ao cadastrar";
           }
           if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
-            echo "<form class=\"Form\" action=\"cadastro.php?acao=cadastro&passo=4\" method=\"post\">";
             if ($_SESSION['fun_cargo'] == "medico") {
-              ?>
-              <h1>Médico</h1>
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">CRM:</label>
-                <input class="inp_class" type="text" name="med_crm" size="28"><br>
-                <label class="lbl_class">Especialização:</label>
-              <?php
-                $sql->selectbox("especializacao");
-              ?>
-              </div>
-            <?php
+
+              $_SESSION['form'] = 1;
+              include 'form_medico.php';
+
             } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
-            ?>
-              <h1>Enfermeiro</h1>
-              <div class="group-form group-form-cadastro">
-                <label class="lbl_class">Registro:</label>
-                <input class="inp_class" type="text" name="enf_registro" size="28"><br>
-              </div>
-              <?php
+            $_SESSION['form'] = 1;
+            include 'form_enfermeiro.php';
+
             } else {
               echo "Não está sendo cadastrado medico ou enfermeiro";
             }
