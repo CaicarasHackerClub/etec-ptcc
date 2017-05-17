@@ -111,7 +111,7 @@ $usuario = $sql->fetch($selUsu);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $usuario[2] . "\"";
+        $val = " value=\"" . $usuario[1] . "\"";
       }
     ?>
     <input class="inp_class" type="password" name="usu_senha" size="28" <?=$dis . $val; ?>><br>
