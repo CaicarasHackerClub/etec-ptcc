@@ -365,7 +365,7 @@
         }
 
       } elseif ($_GET['passo'] == 6){
-        if ($_SESSION['tipo']) == "administracao") {
+        if ($_SESSION['tipo'] == "administracao") {
           // Se houver alterações no formulário "funcionario" será feito aqui.
           if ($_SESSION['fun_cargo'] == "medico") {
 
