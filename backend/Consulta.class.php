@@ -39,7 +39,7 @@ class Consulta extends Fila {
     $this->comentario = $comentario;
   }
 
-  function getComentatio() {
+  function getComentario() {
     return $this->comentario;
   }
 
@@ -48,7 +48,7 @@ class Consulta extends Fila {
   }
 
   function getTriId() {
-    return $this->TriId;
+    return $this->triId;
   }
 
   function setMedId($medId) {
@@ -63,7 +63,7 @@ class Consulta extends Fila {
     $this->encId = $encId;
   }
 
-  function getEndId() {
+  function getEncId() {
     return $this->encId;
   }
 }
