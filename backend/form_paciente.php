@@ -49,7 +49,7 @@ $paciente = $sql->fetch($selPac);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $paciente[2] . "\"";
+        $val = " value=\"" . $paciente[3] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="pac_doenca" size="28" <?=$dis . $val; ?>><br>
@@ -60,7 +60,7 @@ $paciente = $sql->fetch($selPac);
     if ($_SESSION['form'] == 1) {
       $sql->selectbox("escolaridade");
     } else {
-      echo "<input class=\"inp_class\" type=\"text\" name=\"pac_escolaridade\" size=\"28\" disabled value = " . $paciente[3] . "><br>";
+      echo "<input class=\"inp_class\" type=\"text\" name=\"pac_escolaridade\" size=\"28\" disabled value = " . $paciente[4] . "><br>";
     }
     ?>
   </div>
@@ -72,7 +72,7 @@ $paciente = $sql->fetch($selPac);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $paciente[4] . "\"";
+        $val = " value=\"" . $paciente[5] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="pds_convenio_nome" size="28" <?=$dis . $val; ?>><br>
@@ -85,7 +85,7 @@ $paciente = $sql->fetch($selPac);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $paciente[5] . "\"";
+        $val = " value=\"" . $paciente[6] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="pds_num_convenio" size="28" <?=$dis . $val; ?>><br>
@@ -98,7 +98,7 @@ $paciente = $sql->fetch($selPac);
       $val = "";
     } else {
       $dis = " disabled";
-      $val = " value=\"" . $paciente[6] . "\"";
+      $val = " value=\"" . $paciente[7] . "\"";
     }
     ?>
     <input class="inp_class" type="text" name="pds_numero_sus" size="28" <?=$dis . $val; ?>><br>
