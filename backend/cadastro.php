@@ -351,7 +351,7 @@
       } elseif ($_GET['passo'] == 5) {
         echo "Foi clicado em proximo!!"; //teste
         $_SESSION['form'] == 2;
-        include 'form_funcionario';
+        include 'form_funcionario.php';
 
       } elseif ($acao == "logoff") {
         session_destroy();
