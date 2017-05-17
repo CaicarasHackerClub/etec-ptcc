@@ -100,7 +100,7 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[4] . "\"";
+            $val = " value=\"" . $pessoa[5] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_cpf" size="28"  <?=$dis . $val; ?>><br>
@@ -113,7 +113,7 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[5] . "\"";
+            $val = " value=\"" . $pessoa[6] . "\"";
           }
       ?>
       <input class="inp_class" type="date" name="pes_data" size="28"  <?=$dis . $val; ?>><br>
@@ -126,7 +126,7 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[6] . "\"";
+            $val = " value=\"" . $pessoa[7] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_email" size="28"  <?=$dis . $val; ?>><br>
@@ -137,7 +137,7 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("estado_civil");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\" disabled value=" . $pessoa[8] . "<br>";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\" disabled value=" . $pessoa[8] . "><br>";
         }
       ?>
     </div>
@@ -152,7 +152,7 @@ $endereco = $sql->fetch($selEnd);
             $val = " value=\"" . $pessoa[9] . "\"";
           }
       ?>
-      <input class="inp_class" type="text" name="pes_cidadania" size="28" value="Brasileira"><br>
+      <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Gênero</label>
@@ -160,7 +160,7 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("genero");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\" disabled value=" . $pessoa[10] . "<br>";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\" disabled value=" . $pessoa[10] . "><br>";
         }
       ?>
     </div>
@@ -170,7 +170,7 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("sexo");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\" disabled value=" . $pessoa[10] . "<br>";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\" disabled value=" . $pessoa[11] . "><br>";
         }
       ?>
     </div>
@@ -182,10 +182,10 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[11] . "\"";
+            $val = " value=\"" . $pessoa[12] . "\"";
           }
       ?>
-      <input class="inp_class" type="text" name="pes_telefone" size="15"><br>
+      <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val?>><br>
     </div>
     <input class="submit" id="inp-env" type="button" name="inp-env" value="OK">
   </fieldset>
@@ -247,7 +247,7 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("cidade");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\" disabled value=" . $endereco[4] . "<br>";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\" disabled value=" . $endereco[4] . "><br>";
         }
       ?>
     </div>
@@ -257,7 +257,7 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("estado");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\" disabled value=" . $endereco[5] . "<br>";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\" disabled value=" . $endereco[5] . "><br>";
         }
       ?>
     </div>
