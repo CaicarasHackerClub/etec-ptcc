@@ -115,7 +115,6 @@
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
             if ($_SESSION['tipo'] == "recepcao") {
-
               $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do paciente que está sendo cadastrado*/
@@ -318,17 +317,20 @@
 
           if ($okMed && $okHas) {
             echo "Médico(a) cadastrado!!";
+
+            $_SESSION['form'] = 2;
+            include 'form_pessoa.php';
+
           } else {
             echo "Não cadastrado!" . $insMed . "...." . $insHas ;
           }
+
         } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
           $metodo->setEnf_registro($_POST['enf_registro']);
-
           $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
 
           $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
           $fun_id=$sql->selecionar($sel_id);
-
 
           $insEnf="INSERT INTO enfermeiro (enf_registro, funcionario_fun_id) VALUES(
                   '" . $metodo->getEnf_registro() . "',
@@ -337,25 +339,48 @@
           $okEnf= $sql->inserir($insEnf);
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
+
+            $_SESSION['form'] = 2;
+            include 'form_pessoa.php';
+
           } else {
             echo "Não cadastrado!!!";
           }
         } else {
           echo "Não é enfermeiro ou médico";
         }
-      ////////////////////Fim do cadastro//////
-        // Formulário de dados pessoais da confirmação final
-        $_SESSION['form'] == 2;
-
-        include 'form_pessoa.php';
-
+    ////////////////////Fim do cadastro//////
+      // Formulário de dados pessoais da confirmação final
       } elseif ($_GET['passo'] == 5) {
-        echo "Foi clicado em proximo!!"; //teste
+        //echo "Foi clicado em proximo!!"; //teste
+        //Se houver alterações no formulário "pessoa" será feito aqui.
+        if ($_SESSION['tipo'] == "administracao") {
 
-        $_SESSION['form'] == 2;
+          $_SESSION['form'] == 2;
+          include 'form_funcionario.php';
+        } else {
 
-        include 'form_funcionario';
+          $_SESSION['form'] == 2;
+          include 'form_paciente.php';
+        }
 
+      } elseif ($_GET['passo'] == 6){
+        if ($_SESSION['tipo'] == "administracao") {
+          // Se houver alterações no formulário "funcionario" será feito aqui.
+          if ($_SESSION['fun_cargo'] == "medico") {
+
+            $_SESSION['form'] = 2;
+            include 'form_medico.php';
+
+          } else {
+
+            $_SESSION['form'] = 2;
+            include 'form_enfermeiro.php';
+
+          }
+        } else {
+          // aqui ficará as alterações do paciente
+        }
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);

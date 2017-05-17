@@ -1,6 +1,6 @@
 <?php
 include_once("Sql.class.php");
-$sql = New Sql;
+$sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=3";
@@ -23,7 +23,7 @@ $usuario = $sql->fetch($selUsu);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Cargo:</label>
     <?php
-    if ($_SESSION['form'] == 1){
+    if ($_SESSION['form'] == 1) {
     echo "<select class=\"select\" name=\"fun_cargo\">";
     echo  "<option class=\"option\" value=\"recepcao\">Recepcionista</option>";
     echo  "<option class=\"option\" value=\"medico\">Médico</option>";
@@ -111,7 +111,7 @@ $usuario = $sql->fetch($selUsu);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $usuario[2] . "\"";
+        $val = " value=\"" . $usuario[1] . "\"";
       }
     ?>
     <input class="inp_class" type="password" name="usu_senha" size="28" <?=$dis . $val; ?>><br>

@@ -175,6 +175,7 @@ class Fila extends Sql {
 
   public function cat() {
     $this->tabela .= "
+
     <tr class='tr_fila'>
       <form action='fila.php' class='form form-classi' method='post'>
         <td>" . $this->id . "</td>
@@ -182,51 +183,52 @@ class Fila extends Sql {
         <td>" . $this->chegada . "</td>
         <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
         <td>" . $this->cor . "</td>
-          <div id='abrirModal' class='modal'>
-          	<div>
+          <div id='abrirModal$this->id' class='modal'>
+            <div>
               Paciente: " . $this->nome . " <br>
               Classificação: " . strtolower($this->cor) . " <br>
-          		<a href='#fechar' title='Fechar' class='fechar'>x</a>
-              <input type='hidden' name='id' value='" . $this->id . "'>
+              <a href='#fechar' title='Fechar' class='fechar'>x</a>
+              <input type='hidden' name='id' value='".$this->id."'>
 
-              <input type='radio' id='azul' name='class' value='1'";
+              <input type='radio' id='azul$this->id' name='class' value='1'";
               $this->tabela .= $this->numCor == 1 ? ' checked' : "";
               $this->tabela .= ">
-              <label for='azul' class='lbl-radio-class lbl_class'></label>
+              <label for='azul$this->id' class='lbl-radio-class lbl_class'></label>
 
-              <input type='radio' id='verde' name='class' value='2'";
+              <input type='radio' id='verde$this->id' name='class' value='2'";
               $this->tabela .= $this->numCor == 2 ? ' checked' : "";
               $this->tabela .= ">
-              <label for='verde' class='lbl-radio-class lbl_class'></label>
+              <label for='verde$this->id' class='lbl-radio-class lbl_class'></label>
 
-              <input type='radio' id='amarelo' name='class' value='3'";
+              <input type='radio' id='amarelo$this->id' name='class' value='3'";
               $this->tabela .= $this->numCor == 3 ? ' checked' : "";
               $this->tabela .= ">
-              <label for='amarelo' class='lbl-radio-class lbl_class'></label>
+              <label for='amarelo$this->id' class='lbl-radio-class lbl_class'></label>
 
-              <input type='radio' id='laranja' name='class' value='4'";
+              <input type='radio' id='laranja$this->id' name='class' value='4'";
               $this->tabela .= $this->numCor == 4 ? ' checked' : "";
               $this->tabela .= ">
-              <label for='laranja' class='lbl-radio-class lbl_class'></label>
+              <label for='laranja$this->id' class='lbl-radio-class lbl_class'></label>
 
-              <input type='radio' id='vermelho' name='class' value='5'";
+              <input type='radio' id='vermelho$this->id' name='class' value='5'";
               $this->tabela .= $this->numCor == 5 ? ' checked' : "";
               $this->tabela .= ">
-              <label for='vermelho' class='lbl-radio-class lbl_class'></label>
+              <label for='vermelho$this->id' class='lbl-radio-class lbl_class'></label>
 
               <input type='password' name='senha' class='inp_class'> <br>
               <input class='submit' type='submit' name='reclassificar' value='Reclassificar'>
-				   </div>
+           </div>
          </div>
-
+         <script>
+          passarValor();
+         </script>
         <td>
-          <a class='submit anchor' name='reclassificar' href='#abrirModal'>Reclassificar</a>
+          <a class='submit anchor' name='reclassificar' href='#abrirModal$this->id'>Reclassificar</a>
         </td>
         <td>
           <input class='submit' type='submit' name='desistir' value='Desistente'>
         </td>
     ";
-
     $this->proximo();
 
     $this->tabela .= "</form> </tr>";

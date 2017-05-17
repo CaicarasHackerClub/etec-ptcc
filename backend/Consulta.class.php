@@ -11,7 +11,7 @@ class Consulta extends Fila {
   private $medId;
   private $encId;
 
-  function setChegada($chegada){
+  function setChegada($chegada) {
     $this->chegada = $chegada;
   }
 

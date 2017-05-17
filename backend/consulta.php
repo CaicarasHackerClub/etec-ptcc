@@ -45,9 +45,12 @@
 
     echo "Inserido com sucesso!";
   } else {
+<<<<<<< HEAD
     $query = "SELECT * FROM triagem WHERE tri_status = 3";
     $res = $sql->inserir($query);
 
+=======
+>>>>>>> 39c2a819e3cc93e18af1890aec9fe433f614d130
     ?>
 
     <table border="1">
