@@ -44,4 +44,5 @@ $medico = $sql->fetch($selMed);
     }
     ?>
   </div>
+  <input class="inp_class submmit" type="submit" value="Confirmar">
 </form>
