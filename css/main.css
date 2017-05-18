@@ -488,6 +488,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   height: 30px;
 }
 
+.extend .lbl_class {
+  line-height: 50px;
+}
+
 .extend button[name='manual'] {
   background-color: #f56529;
 }
