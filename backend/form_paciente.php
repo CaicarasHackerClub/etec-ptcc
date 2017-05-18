@@ -24,7 +24,11 @@ $paciente = $sql->fetch($selPac);
       if ($_SESSION['form'] == 1) {
         $sql->selectbox("tipo_sanguineo");
       } else {
-        echo "<input class=\"inp_class\" type=\"text\" name=\"pac_tipo_sanguineo\" size=\"28\" disabled value = " . $paciente[1] . "><br>";
+        //Procurando o tipo sanquineo
+        $sel = "SELECT * FROM tipo_sanguineo WHERE tis_id'" . $paciente[1] . "';";
+        $tis = $sql->fetch($s);
+
+        echo "<input class=\"inp_class\" type=\"text\" name=\"pac_tipo_sanguineo\" size=\"28\" disabled value = " . $tis[2] . "><br>";
       }
       ?>
   </div>
@@ -60,7 +64,9 @@ $paciente = $sql->fetch($selPac);
     if ($_SESSION['form'] == 1) {
       $sql->selectbox("escolaridade");
     } else {
-      echo "<input class=\"inp_class\" type=\"text\" name=\"pac_escolaridade\" size=\"28\" disabled value = " . $paciente[4] . "><br>";
+      $sel = "SELECT * FROM escolaridade WHERE esc_id='" . $paciente[4] . "';";
+      $esc = $sql->fetch($sel);
+      echo "<input class=\"inp_class\" type=\"text\" name=\"pac_escolaridade\" size=\"28\" disabled value = " . $esc[2] . "><br>";
     }
     ?>
   </div>
