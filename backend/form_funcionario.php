@@ -1,3 +1,4 @@
+<link rel='stylesheet' href='../css/main.css'>
 <?php
 include_once("Sql.class.php");
 $sql = new Sql;
@@ -18,13 +19,13 @@ $funcionario = $sql->fetch($selFun);
 $selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $idFun . "';";
 $usuario = $sql->fetch($selUsu);
 ?>
-<form class="Form" action="<?=$tipo?>" method="post">
-  <h1 class="titulo">Funcionário</h1>
+<form class="Form form-funcionario" action="<?=$tipo?>" method="post">
+  <h1 class="titulo">Funcionário</h1><br>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Cargo:</label>
     <?php
     if ($_SESSION['form'] == 1) {
-    echo "<select class=\"select\" name=\"fun_cargo\">";
+    echo "<select class=\"inp_class\" name=\"fun_cargo\">";
     echo  "<option class=\"option\" value=\"recepcao\">Recepcionista</option>";
     echo  "<option class=\"option\" value=\"medico\">Médico</option>";
     echo  "<option class=\"option\" value=\"enfermeiro\">Enfermeiro</option>";
@@ -81,7 +82,7 @@ $usuario = $sql->fetch($selUsu);
     <label class="lbl_class">Turno:</label>
     <?php
       if ($_SESSION['form'] == 1) {
-      echo "<select class=\"select\" name=\"fun_turno\">";
+      echo "<select class=\"inp_class\" name=\"fun_turno\">";
       echo "<option class=\"option\" value=\"manha\">Manhã</option>";
       echo "<option class=\"option\" value=\"tarde\">Tarde</option>";
       echo "<option class=\"option\" value=\"noite\">Noite</option>";
@@ -123,5 +124,5 @@ $usuario = $sql->fetch($selUsu);
       echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
     }
   ?>
-  <input class="inp_class" type="submit" value="Proximo">
+  <input class="submit" type="submit" value="Proximo">
 </form>
