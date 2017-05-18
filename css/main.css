@@ -434,7 +434,8 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   border-radius: 3px 3px 3px 3px;
 }
 
-.form-classi .titulo, .form-cadastro .titulo{
+.form-classi .titulo, .form-cadastro .titulo,
+.form .titulo {
   display: inline-block;
   margin-left: 36%;
   width: 250px;
@@ -469,19 +470,31 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form-cadastro .grupo-info {
   width: 90%;
+  height: auto;
   margin-left: 5%;
-  margin-top: 2%;
+  margin-top: 0;
 }
 
 .form-cadastro .hidden-group {
   visibility: hidden;
   position: absolute;
-  display: none;
+  display: inline;
 }
 
 .form-cadastro .grupo-info .legenda {
   color: #01b26a;
   font-size: 16pt;
+}
+
+/*Formulário funcionario*/
+.form-funcionario .group-form .inp_class,
+.form-funcionario .group-form .lbl_class  {
+  width: 40%;
+}
+
+.form-funcionario .group-form {
+  width: 26%;
+  margin-left: 5.5%;
 }
 
 .extend .submit {
