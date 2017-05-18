@@ -44,8 +44,10 @@ $usuario = $sql->fetch($selUsu);
     if ($_SESSION['form'] == 1) {
       $sql->selectbox("setor");
     } else {
+      $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[6]  . "';";
+      $set = $sql->fetch($sel);
       echo "<input class=\"inp_class\" type=\"text\" name=\"fun_setor\" size=\"28\"
-            disabled value = " . $funcionario[2] . "><br>";
+            disabled value = " . $set[2] . "><br>";
     }
     ?>
   </div>
