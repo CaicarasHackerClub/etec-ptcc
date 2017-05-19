@@ -25,8 +25,8 @@ session_start();
       }
     } else {
       $acao = isset($_GET['acao']) ? $_GET['acao'] : ""; ?>
-      <a href="?acao=cadastro" class="anchor">Cadastro</a>
-      <a href="?acao=logoff" class="anchor">Sair</a>
+      <!--<a href="?acao=cadastro" class="anchor">Cadastro</a>-->
+      <!--<a href="?acao=logoff" class="anchor">Sair</a>-->
       <?php
       if ($acao == "cadastro") {
         if (!isset($_POST['doc'])) {
