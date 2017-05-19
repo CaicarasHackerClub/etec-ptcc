@@ -72,7 +72,7 @@ $usuario = $sql->fetch($selUsu);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $funcionario[4] . "\"";
+        $val = " value=\"" . $funcionario[3] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="fun_inscricao" size="28" <?=$dis . $val; ?>><br>
@@ -88,7 +88,7 @@ $usuario = $sql->fetch($selUsu);
       echo "</select><br>";
       } else {
         echo "<input class=\"inp_class\" type=\"text\" name=\"fun_turno\" size=\"28\"
-            disabled value = " . $funcionario[5] . "><br>";
+            disabled value = " . $funcionario[4] . "><br>";
       }
     ?>
   </div>
