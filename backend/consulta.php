@@ -2,12 +2,120 @@
   include_once 'Sql.class.php';
   include_once 'Consulta.class.php';
 
-  $sql = new Sql();
   $cons = new Consulta();
+  $sql = new Sql();
+
+  date_default_timezone_set('America/Sao_Paulo');
 
   if (isset($_POST['consulta'])) {
-    // DAdos da triagem
+    $query = "SELECT * FROM  triagem WHERE tri_id = " . $_POST['id'] . ";";
+    $pac = $sql->fetch($query);
+
+    $data = new Datetime($pac['tri_data']);
+
+    $org = $pac['tri_orgaos_vitais'] == 1 ? "Sim" : "Não";
+
+    $class = "";
+
+    switch ($pac['tri_classe_risco']) {
+      case 1:
+        $class = 'Azul';
+        break;
+      case 2:
+        $class = 'Verde';
+        break;
+      case 3:
+        $class = 'Amarelo';
+        break;
+      case 4:
+        $class = 'Laranja';
+        break;
+      case 5:
+        $class = 'Vermelho';
+        break;
+    }
+
+    $query2 =
+    "SELECT pessoa.pes_nome, pessoa.pes_data
+      FROM ((triagem
+      INNER JOIN paciente ON paciente.pac_id = " . $pac['id_paciente'] . ")
+      INNER JOIN pessoa ON pessoa.pes_id = paciente.pessoa_pes_id)";
+
+    $fetch = $sql->fetch($query2);
+    $nome = $fetch['pes_nome'];
+    $idade = date('Y') - $fetch['pes_data'];
+
     ?>
+      <h2> Dados da triagem </h2>
+
+      <table>
+        <tr>
+          <th>Data</th>
+          <td> <?php echo $data->format('d/m/Y'); ?> </td>
+        </tr>
+        <tr>
+          <th>Hora</th>
+          <td> <?php echo $pac['tri_hora']; ?> </td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>#</th>
+          <td> <?php echo $pac['tri_id']; ?></td>
+        </tr>
+        <tr>
+          <th>Classificação de risco</th>
+          <td> <?php echo $class; ?> </td>
+        </tr>
+        <tr>
+          <th>Nome</th>
+          <td> <?php echo $nome; ?> </td>
+
+        </tr>
+        <tr>
+          <th>Idade</th>
+          <td> <?php echo $idade ?> anos </td>
+        </tr>
+        <tr>
+          <th>Peso</th>
+          <td> <?php echo $pac['tri_peso']; ?> kg </td>
+        </tr>
+        <tr>
+          <th>Altura</th>
+          <td> <?php echo $pac['tri_altura']; ?> m </td>
+        </tr>
+        <tr>
+          <th>Temperatura</th>
+          <td> <?php echo $pac['tri_temperatura']; ?> ºC </td>
+        </tr>
+        <tr>
+          <th>Pressão</th>
+          <td> <?php echo $pac['tri_pressao']; ?> mmHg </td>
+        </tr>
+        <tr>
+          <th>Batimento</th>
+          <td> <?php echo $pac['tri_batimento']; ?> bpm </td>
+        </tr>
+        <tr>
+          <th>Respiração</th>
+          <td> <?php echo $pac['tri_respiracao']; ?> rpm </td>
+        </tr>
+        <tr>
+          <th>Oxigenação</th>
+          <td> <?php echo $pac['tri_oxigenacao']; ?> % </td>
+        </tr>
+        <tr>
+          <th>Dor</th>
+          <td> <?php echo $pac['tri_dor']; ?>/10 </td>
+        </tr>
+        <tr>
+          <th>Comprometimento dos orgãos vitais</th>
+          <td> <?php echo $org; ?> </td>
+        </tr>
+
+      </table>
+
       <form action="consulta.php" method="post">
         <input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
         <input type="hidden" name="chegada" value="<?php echo date('H:m:i') ?>">
@@ -15,11 +123,11 @@
         <label> Encaminhamento </label>
         <input type="text" name="encaminhamento"> <br>
         <label> Comentário </label>
-        <input type="text" name="comentario">
+        <input type="text" name="comentario"> <br>
         <input type="submit" name="encerrar" value="Encerrar consulta">
       </form>
     <?php
-  } else if (isset($_POST['encerrar'])) {
+  } elseif (isset($_POST['encerrar'])) {
     $chegada = $_POST['chegada'];
     $data = $_POST['data'];
     $saida = date('H:m:i');
@@ -35,22 +143,19 @@
     $cons->setMedId(1);
     $cons->setEncId($encaminhamento);
 
-    echo "Query: " . $query . "<br>";
-
     $query = "INSERT INTO consulta(con_hora_chegada, con_hora_saida, con_data, con_comentario, con_tri_id, con_med_id, con_enc_id)
       VALUES('" . $cons->getChegada() . "', '" . $cons->getSaida() . "', '" . $cons->getData() . "', '" . $cons->getcomentario() .
       "', " . $cons->getTriId() . ", " . $cons->getMedId() . ", " . $cons->getEncId() . ");";
 
-    $cons->inserir($query);
+    echo "Query: " . $query . "<br>";
+
+    $sql->inserir($query);
 
     echo "Inserido com sucesso!";
   } else {
-<<<<<<< HEAD
     $query = "SELECT * FROM triagem WHERE tri_status = 3";
     $res = $sql->inserir($query);
 
-=======
->>>>>>> 39c2a819e3cc93e18af1890aec9fe433f614d130
     ?>
 
     <table border="1">
@@ -63,14 +168,14 @@
 
     <?php
 
-    if ($cons->num($query) == 0) {
+    if ($sql->num($query) == 0) {
       echo
       "<tr>
         <td colspan='4'> Não há ninguém aguardando atendimento </td>
       </tr>";
     } else {
       while ($pac = mysqli_fetch_array($res)) {
-        $espera = $cons->calc($_pac['data'], $_pac['hora']);
+        $espera = $cons->calc($pac['tri_data'], $pac['tri_hora']);
         $cons->setPac($pac['tri_id'], $espera, $pac['tri_classe_risco']);
 
         $pac = $cons->getPac();

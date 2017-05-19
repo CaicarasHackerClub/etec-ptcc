@@ -83,21 +83,21 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   date_default_timezone_set('America/Sao_Paulo');
 
   $id = isset($_POST['id']) && !empty($_POST['id']) ? $_POST['id'] : 0;
-  $temp = isset($_POST['temp']) ? trim($_POST['temp']) : ""; //
-  $pas = isset($_POST['pas']) ? trim($_POST['pas']) : ""; //
-  $pad = isset($_POST['pad']) ? trim($_POST['pad']) : ""; //
+  $temp = isset($_POST['temp']) ? trim($_POST['temp']) : "";
+  $pas = isset($_POST['pas']) ? trim($_POST['pas']) : "";
+  $pad = isset($_POST['pad']) ? trim($_POST['pad']) : "";
   $peso = isset($_POST['peso']) && !empty($_POST['peso']) ? trim($_POST['peso']) : 0;
   $altura = isset($_POST['altura']) && !empty($_POST['altura']) ? trim($_POST['altura']) : 0;
-  $batimento = isset($_POST['batimento']) ? trim($_POST['batimento']) : ""; //
+  $batimento = isset($_POST['batimento']) ? trim($_POST['batimento']) : "";
   $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : 0;
-  $resp = isset($_POST['resp']) ? trim($_POST['resp']) : ""; //
+  $resp = isset($_POST['resp']) ? trim($_POST['resp']) : "";
   $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : 0;
   $orgaos = isset($_POST['org']) ? 1 : 0;
   $data = date('Y-m-d');
   $hora = date('H:i');
 
   $blank = [
-    'Temperatura corporal' => $temp,
+    'Temperatura' => $temp,
     'PAS' => $pas,
     'PAD' => $pad,
     'Batimento cardíaco' => $batimento,
@@ -131,11 +131,11 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
         tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor,
         tri_orgaos_vitais, tri_data, tri_hora, tri_status, id_paciente) VALUES("
-        . $tri->getTemp() . ", '"  . $tri->getPas()    . "x"   . $tri->getPad()       . "', "
-        . $tri->getPeso() . ", "   . $tri->getAltura() . ", "  . $tri->getBatimento() . ", "
-        . $tri->getOxi()  . ", "   . $tri->getClass()   . ", " . $tri->getResp()      . ", "
-        . $tri->getDor()  . ", "   . $tri->getOrg()    . ", '" . $tri->getData()      . "', '"
-        . $tri->getHora() . "', '" . $tri->getStatus() . "', " . $tri->getPacId()     . ");";
+        . $tri->getTemp() . ", '"  . $tri->getPas()     . "x"   . $tri->getPad()       . "', "
+        . $tri->getPeso() . ", "   . $tri->getAltura()  . ", "  . $tri->getBatimento() . ", "
+        . $tri->getOxi()  . ", "   . $tri->getClass()   . ", "  . $tri->getResp()      . ", "
+        . $tri->getDor()  . ", "   . $tri->getOrg()     . ", '" . $tri->getData()      . "', '"
+        . $tri->getHora() . "', '" . $tri->getStatus()  . "', " . $tri->getPacId()     . ");";
 
     $rows = "SELECT tri_id FROM triagem WHERE id_paciente = " . $tri->getPacId() . " AND tri_status <> 5 AND tri_status <> 6 ;";
 
@@ -149,27 +149,25 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
       echo "O paciente já passou pela triagem";
     }
   } else {
-    // Pegando a idade do paciente
-    $fetchId = $sql->fetch("SELECT pessoa_pes_id FROM paciente WHERE pac_id = " . $tri->getPacId() . ";");
-    $fetchData = $sql->fetch("SELECT pes_data FROM pessoa WHERE pes_id = " . $fetchId['pessoa_pes_id'] . ";");
+    $query = "SELECT pessoa.pes_data FROM pessoa INNER JOIN paciente ON pessoa.pes_id = " . $tri->getPacId() . ";";
+    $data = $sql->selecionar($query);
 
-    $dataNasc = explode("-", $fetchData['pes_data']);
+    $dataNasc = explode("-", $data);
     $idade = date('Y') - $dataNasc[0];
 
-    // echo "ID PESSOA: " . $fetchId['pessoa_pes_id'] . "<br>";
-
     // echo
-    // "<br> Peso: " . $tri->getPeso() . "<br>" .
-    // "Altura: " . $tri->getAltura()  ."<br>" .
-    // "Batimento cadíaco: " . $tri->getBatimento() . "<br>" .
-    // "Respiração: " . $tri->getResp() . "<br>" .
-    // "Temperatura: " . $tri->getTemp() . "<br>" .
-    // "PAS: " . $tri->getPas() . "<br>" .
-    // "PAD: " . $tri->getPad() . "<br>" .
-    // "Oxigenação: " . $tri->getOxi() . "<br>" .
-    // "Idade: " . $idade . "<br>" .
-    // "Orgãos vitais comprometidos: " . $tri->getOrg() . "<br>" .
-    // "ID: " . $tri->getPacId() . "<br><br>";
+    // "ID: " . $tri->getPacId() . "<br>
+    // Peso: " . $tri->getPeso() . "<br>
+    // Altura: " . $tri->getAltura()  ."<br>
+    // Batimento cadíaco: " . $tri->getBatimento() . "<br>
+    // Respiração: " . $tri->getResp() . "<br>
+    // Temperatura: " . $tri->getTemp() . "<br>
+    // PAS: " . $tri->getPas() . "<br>
+    // PAD: " . $tri->getPad() . "<br>
+    // Oxigenação: " . $tri->getOxi() . "<br>
+    // Orgãos vitais comprometidos: " . $tri->getOrg() . "<br>
+    // Idade: " . $idade . "<br>";
+
 
     // Classificando
     if (($tri->getResp() < 10 || $tri->getResp() > 30) && $tri->getResp() != 0) {
@@ -198,7 +196,9 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
           }
         }
       }
-    } ?>
+    }
+
+    ?>
 
     <form class="form form-classi" action="triagem.php" method="post">
     <h1 class="titulo"> Classificação: </h1>

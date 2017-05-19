@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 11/05/2017 às 02:59
+-- Tempo de geração: 18/05/2017 às 02:52
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9759,10 +9759,10 @@ INSERT INTO `cidade` (`cid_id`, `cid_nome`, `est_id`, `cid_capital`) VALUES
 
 CREATE TABLE `consulta` (
   `con_id` int(11) NOT NULL,
-  `con_hora_chegada` time NOT NULL,
-  `con_hora_saida` time NOT NULL,
-  `con_data` date NOT NULL,
-  `con_comentario` text COLLATE utf8_bin NOT NULL,
+  `con_hora_chegada` time NOT NULL COMMENT 'Hora que chegou para Consulta',
+  `con_hora_saida` time NOT NULL COMMENT 'Hora que saiu da Consulta',
+  `con_data` date NOT NULL COMMENT 'data da entrada',
+  `con_comentario` text COLLATE utf8_bin NOT NULL COMMENT 'Caso queira fazer um comentário sobre o paciente',
   `con_tri_id` int(11) NOT NULL,
   `con_med_id` int(11) NOT NULL,
   `con_enc_id` int(11) NOT NULL
@@ -9822,8 +9822,27 @@ CREATE TABLE `doenca_pessoa` (
 
 CREATE TABLE `encaminhamento` (
   `enc_id` int(11) NOT NULL,
-  `enc_nome` varchar(30) COLLATE utf8_bin NOT NULL
+  `enc_nome` varchar(30) COLLATE utf8_bin NOT NULL COMMENT 'Para onde o paciente será encaminhado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `encaminhamento`
+--
+
+INSERT INTO `encaminhamento` (`enc_id`, `enc_nome`) VALUES
+(1, 'Farmácia'),
+(2, 'Radiologia'),
+(3, 'Pediatria'),
+(4, 'Ortopedia'),
+(5, 'Clinico Geral'),
+(6, 'Pronto Socorro'),
+(7, 'Fisioterapia'),
+(8, 'Exames Laboratoriais'),
+(9, 'Cardiologia'),
+(10, 'Dermatologia'),
+(11, 'Ginecologia'),
+(12, 'Oftalmologia'),
+(13, 'Urologia');
 
 -- --------------------------------------------------------
 
@@ -10133,7 +10152,8 @@ CREATE TABLE `login_acesso` (
 --
 
 INSERT INTO `login_acesso` (`log_id`, `log_data`, `log_ip`, `usuario_usu_id`) VALUES
-(1, '0000-00-00 00:00:00', '127.0.0.1', 1);
+(1, '0000-00-00 00:00:00', '127.0.0.1', 1),
+(2, '2017-05-17 00:00:00', '127.0.0.1', 3);
 
 -- --------------------------------------------------------
 
@@ -10280,7 +10300,8 @@ INSERT INTO `setor` (`set_id`, `set_nome`, `set_descricao`, `set_responsavel`) V
 (5, 'maternidade', 'ala observatória de recem nascidos', 'enfermeiro chefe'),
 (6, 'farmacia', 'controle de remédios', 'farmaceutico'),
 (7, 'laboratório', 'sala de exames', 'médico'),
-(8, 'radiografia', 'sala de raio x', 'enfermeiro especializado');
+(8, 'radiografia', 'sala de raio x', 'enfermeiro especializado'),
+(9, 'Administração', 'Cuidar da Parte Administrativa', 'Chefe Encarregado');
 
 -- --------------------------------------------------------
 
@@ -10310,7 +10331,7 @@ INSERT INTO `sexo` (`sex_id`, `sex_sexo`) VALUES
 
 CREATE TABLE `status_triagem` (
   `stt_id` int(11) NOT NULL,
-  `stt_nome` varchar(22) COLLATE utf8_bin NOT NULL
+  `stt_nome` varchar(22) COLLATE utf8_bin NOT NULL COMMENT 'Nome do status da triagem'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10342,12 +10363,25 @@ CREATE TABLE `sub_setor` (
 --
 
 INSERT INTO `sub_setor` (`sbs_id`, `sbs_nome`, `setor_set_id`) VALUES
-(1, 'sala de curativos', 1),
-(2, 'sala de exames', 7),
-(3, 'cirurgia vascular', 3),
-(4, 'berçario', 5),
-(5, 'CAF', 6),
-(6, 'raio x', 8);
+(1, 'PS(Pronto Socorro)', 2),
+(2, 'Sala de Exames', 7),
+(3, 'Cirurgia Vascular', 3),
+(4, 'Berçario', 5),
+(5, 'Farmacia', 6),
+(6, 'Raio X', 8),
+(7, 'Banco de Leite', 5),
+(8, 'Estoque', 6),
+(9, 'Cirurgia de Risco', 4),
+(10, 'Centro Obstétrico Neonatologia', 5),
+(11, 'Observação pós operatório', 4),
+(12, 'Cirurgia de pequeno Risco.', 3),
+(13, 'Emergencia', 1),
+(14, 'Laboratório', 1),
+(15, 'Portoria', 1),
+(16, 'Prontuario', 9),
+(17, 'Contabilidade', 9),
+(18, 'Recursos Humanos', 9),
+(19, 'Assistente Administratvo', 9);
 
 -- --------------------------------------------------------
 
@@ -10397,6 +10431,15 @@ CREATE TABLE `triagem` (
   `tri_status` int(11) DEFAULT NULL COMMENT 'status da triagem',
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `triagem`
+--
+
+INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `tri_altura`, `tri_batimento`, `tri_oxigenacao`, `tri_classe_risco`, `tri_respiracao`, `tri_dor`, `tri_orgaos_vitais`, `tri_data`, `tri_hora`, `tri_status`, `id_paciente`) VALUES
+(1, 27, '160x140', 45, 1.75, 60, 30, 4, 80, 0, 1, '2017-05-17', '15:54:00', 2, 9),
+(2, 28, '140x80', 76, 1.5, 100, 30, 3, 80, 0, 1, '2017-05-17', '15:56:00', 2, 2),
+(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 0, 1, '2017-05-17', '16:03:00', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -10673,7 +10716,7 @@ ALTER TABLE `doenca_pessoa`
 -- AUTO_INCREMENT de tabela `encaminhamento`
 --
 ALTER TABLE `encaminhamento`
-  MODIFY `enc_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `enc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
@@ -10728,7 +10771,7 @@ ALTER TABLE `geo_camada_end`
 -- AUTO_INCREMENT de tabela `login_acesso`
 --
 ALTER TABLE `login_acesso`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de tabela `medico`
 --
@@ -10753,7 +10796,7 @@ ALTER TABLE `plano_de_saude`
 -- AUTO_INCREMENT de tabela `setor`
 --
 ALTER TABLE `setor`
-  MODIFY `set_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `set_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de tabela `sexo`
 --
@@ -10773,7 +10816,7 @@ ALTER TABLE `tipo_sanguineo`
 -- AUTO_INCREMENT de tabela `triagem`
 --
 ALTER TABLE `triagem`
-  MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --

@@ -11,59 +11,59 @@ class Consulta extends Fila {
   private $medId;
   private $encId;
 
-  function setChegada($chegada) {
+  public function setChegada($chegada) {
     $this->chegada = $chegada;
   }
 
-  function getChegada() {
+  public function getChegada() {
     return $this->chegada;
   }
 
-  function setSaida($saida) {
+  public function setSaida($saida) {
     $this->saida = $saida;
   }
 
-  function getSaida() {
+  public function getSaida() {
     return $this->saida;
   }
 
-  function setData($data) {
+  public function setData($data) {
     $this->data = $data;
   }
 
-  function getData() {
+  public function getData() {
     return $this->data;
   }
 
-  function setComentario($comentario) {
+  public function setComentario($comentario) {
     $this->comentario = $comentario;
   }
 
-  function getComentario() {
+  public function getComentario() {
     return $this->comentario;
   }
 
-  function setTriId($triId) {
+  public function setTriId($triId) {
     $this->triId = $triId;
   }
 
-  function getTriId() {
+  public function getTriId() {
     return $this->triId;
   }
 
-  function setMedId($medId) {
+  public function setMedId($medId) {
     $this->medId = $medId;
   }
 
-  function getMedId() {
+  public function getMedId() {
     return $this->medId;
   }
 
-  function setEncId($encId) {
+  public function setEncId($encId) {
     $this->encId = $encId;
   }
 
-  function getEncId() {
+  public function getEncId() {
     return $this->encId;
   }
 }
