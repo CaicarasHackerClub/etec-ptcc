@@ -47,8 +47,8 @@ $usuario = $sql->fetch($selUsu);
     } else {
       $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[6]  . "';";
       $set = $sql->fetch($sel);
-      echo "<input class=\"inp_class\" type=\"text\" name=\"fun_setor\" size=\"28\"
-            disabled value = " . $set[2] . "><br>";
+      echo "<input class=\"inp_class\" type=\"text\" name=\"set_setor\" size=\"28\"
+            disabled value = " . $set[1] . "><br>";
     }
     ?>
   </div>
@@ -60,7 +60,7 @@ $usuario = $sql->fetch($selUsu);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $funcionario[3] . "\"";
+        $val = " value=\"" . $funcionario[2] . "\"";
       }
       ?>
     <input class="inp_class" type="time" name="fun_horario" size="28" <?=$dis . $val; ?>><br>
