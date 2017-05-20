@@ -254,12 +254,12 @@
             if ($_SESSION['fun_cargo'] == "medico") {
 
               $_SESSION['form'] = 1;
-              include 'form_medico.php';
+              include 'form_complementar.php';
 
             } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
             // Se o funcionário for enfermeiro ao clicar no botão de proximo irá para o formulário abaixo
             $_SESSION['form'] = 1;
-            include 'form_enfermeiro.php';
+            include 'form_complementar.php';
 
             } else {
               echo "Não está sendo cadastrado medico ou enfermeiro";
@@ -358,13 +358,15 @@
           if ($_SESSION['fun_cargo'] == "medico") {
 
             $_SESSION['form'] = 2;
-            include 'form_medico.php';
+            include 'form_complementar.php';
 
-          } else {
+          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
 
             $_SESSION['form'] = 2;
-            include 'form_enfermeiro.php';
+            include 'form_complementar.php';
 
+          } else {
+            echo "Não é medico ou enfermeiro";
           }
         } else {
           // aqui ficará as alterações do paciente
