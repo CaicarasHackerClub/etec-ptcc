@@ -126,7 +126,7 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[7] . "\"";
+            $val = " value=\"" . $pessoa[8] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_email" size="28"  <?=$dis . $val; ?>><br>
@@ -137,7 +137,9 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("estado_civil");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\" disabled value=" . $pessoa[8] . "><br>";
+          $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
+          $etc = $sql->fetch($selE);
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\" disabled value=" . $etc[1] . "><br>";
         }
       ?>
     </div>
@@ -149,7 +151,7 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[9] . "\"";
+            $val = " value=\"" . $pessoa[10] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val?>><br>
@@ -160,7 +162,9 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("genero");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\" disabled value=" . $pessoa[10] . "><br>";
+          $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
+          $gen = $sql->fetch($selG);
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\" disabled value=" . $gen[1] . "><br>";
         }
       ?>
     </div>
@@ -170,7 +174,9 @@ $endereco = $sql->fetch($selEnd);
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("sexo");
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\" disabled value=" . $pessoa[11] . "><br>";
+          $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
+          $sex = $sql->fetch($selG);
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\" disabled value=" . $sex[1] . "><br>";
         }
       ?>
     </div>
@@ -182,7 +188,7 @@ $endereco = $sql->fetch($selEnd);
             $val = "";
           } else {
             $dis = " disabled";
-            $val = " value=\"" . $pessoa[12] . "\"";
+            $val = " value=\"" . $pessoa[13] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val?>><br>
