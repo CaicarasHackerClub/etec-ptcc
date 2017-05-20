@@ -29,7 +29,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
         $val = " value=\"" . $medico[1] . "\"";
       }
        ?>
-      <input class="inp_class" type="text" name="med_crm" size="28" <?=$dis . $val ?>><br>
+      <input class="inp_class" type="text" name="med_crm" size="28" <?=$dis . $val; ?>><br>
       <label class="lbl_class">Especialização:</label>
       <?php
       if ($_SESSION['form'] == 1) {
@@ -38,7 +38,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
         // Pegando o nome da especialização
         $sel = "SELECT * FROM medico_has_especializacao WHERE medico_med_id='" . $idMed . "';";
         $esp = $sql->fetch($sel);
-        $selEsp = "SELECT * FROM especializacao WHERE esp_id='" . $esp[2] . "';";
+        $selEsp = "SELECT * FROM especializacao WHERE esp_id='" . $esp[1] . "';";
         $es = $sql->fetch($selEsp);
 
         echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" value=" . $es[2] .  "><br>";
@@ -73,11 +73,16 @@ if ($_SESSION['fun_cargo'] == "medico") {
           $dis = "";
           $val = "";
         } else {
+          $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
+          $fun_id = $sql->selecionar($maxFun);
+          $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $fun_id . "';";
+          $reg = $sql->fetch($sel);
+
           $dis = "disabled";
           $val = "value=\"" . $reg[2] . "\"";
         }
         ?>
-        <input class="inp_class" type="text" name="enf_registro" size="28" <?=$dis . $val?>><br>
+        <input class="inp_class" type="text" name="enf_registro" size="28" <?=$dis . $val;?>><br>
       </div>
       <input class="inp_class submmit" type="submit" value="Confirmar">
     </form>
