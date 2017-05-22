@@ -38,10 +38,10 @@ if ($_SESSION['fun_cargo'] == "medico") {
         // Pegando o nome da especialização
         $sel = "SELECT * FROM medico_has_especializacao WHERE medico_med_id='" . $idMed . "';";
         $esp = $sql->fetch($sel);
-        $selEsp = "SELECT * FROM especializacao WHERE esp_id='" . $esp[1] . "';";
+        $selEsp = "SELECT e.esp_nome FROM especializacao e INNER JOIN medico_has_especializacao me ON         e.esp_id = me.especializacao_esp_id WHERE me.especializacao_esp_id ='" . $esp[1] . "';";
         $es = $sql->fetch($selEsp);
 
-        echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" value=" . $es[2] .  "><br>";
+        echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" disabled value=" . $es[0] .  "><br>";
       }
       ?>
     </div>
