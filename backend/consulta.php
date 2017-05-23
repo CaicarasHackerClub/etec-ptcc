@@ -8,8 +8,12 @@
   date_default_timezone_set('America/Sao_Paulo');
 
   if (isset($_POST['consulta'])) {
-    $query = "SELECT * FROM  triagem WHERE tri_id = " . $_POST['id'] . ";";
+    $query = "SELECT * FROM  triagem WHERE tri_id = " . $_POST['triId'] . ";";
+
     $pac = $sql->fetch($query);
+
+    $st = "UPDATE triagem SET tri_status = 4 WHERE tri_id = " . $pac['tri_id'];
+    $cons->inserir($st);
 
     $data = new Datetime($pac['tri_data']);
 
@@ -117,22 +121,23 @@
       </table>
 
       <form action="consulta.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
+        <input type="hidden" name="triId" value="<?php echo $_POST['triId'] ?>">
         <input type="hidden" name="chegada" value="<?php echo date('H:m:i') ?>">
         <input type="hidden" name="data" value="<?php echo date('Y-m-d') ?>">
         <label> Encaminhamento </label>
-        <input type="text" name="encaminhamento"> <br>
+        <?php $sql->selectbox('encaminhamento'); ?>
         <label> Comentário </label>
         <input type="text" name="comentario"> <br>
+        <input type="submit" name="cancelar" value="Cancelar consulta">
         <input type="submit" name="encerrar" value="Encerrar consulta">
       </form>
     <?php
-  } elseif (isset($_POST['encerrar'])) {
+  } elseif (isset($_POST['encerrar']) || isset($_POST['cancelar'])) {
     $chegada = $_POST['chegada'];
     $data = $_POST['data'];
     $saida = date('H:m:i');
     $comentario = isset($_POST['comentario']) ? $_POST['comentario'] : "";
-    $triId = $_POST['id'];
+    $triId = $_POST['triId'];
     $encaminhamento = $_POST['encaminhamento'];
 
     $cons->setChegada($chegada);
@@ -143,15 +148,24 @@
     $cons->setMedId(1);
     $cons->setEncId($encaminhamento);
 
-    $query = "INSERT INTO consulta(con_hora_chegada, con_hora_saida, con_data, con_comentario, con_tri_id, con_med_id, con_enc_id)
-      VALUES('" . $cons->getChegada() . "', '" . $cons->getSaida() . "', '" . $cons->getData() . "', '" . $cons->getcomentario() .
-      "', " . $cons->getTriId() . ", " . $cons->getMedId() . ", " . $cons->getEncId() . ");";
+    $mensagem = "";
 
-    echo "Query: " . $query . "<br>";
+    if (isset($_POST['encerrar'])) {
+      $st = "UPDATE triagem SET tri_status = 5 WHERE tri_id = " . $cons->getTriId();
 
-    $sql->inserir($query);
+      $query = "INSERT INTO consulta(con_hora_chegada, con_hora_saida, con_data, con_comentario, con_tri_id, con_med_id, con_enc_id)
+        VALUES('" . $cons->getChegada() . "', '" . $cons->getSaida() . "', '" . $cons->getData() . "', '" . $cons->getComentario() .
+        "', " . $cons->getTriId() . ", " . $cons->getMedId() . ", " . $cons->getEncId() . ");";
 
-    echo "Inserido com sucesso!";
+      $sql->inserir($query);
+      $mensagem = "Inserido com sucesso.";
+    } else if (isset($_POST['cancelar'])) {
+      $st = "UPDATE triagem SET tri_status = 6 WHERE tri_id = " . $cons->getTriId();
+      $mensagem = "Consulta cancelada.";
+    }
+
+    $sql->inserir($st);
+    echo $mensagem;
   } else {
     $query = "SELECT * FROM triagem WHERE tri_status = 3";
     $res = $sql->inserir($query);
@@ -187,8 +201,8 @@
             <td>" . $pac[1] . "</td>
             <td>" . $pac[2] . "</td>
             <td>" . $pac[3] . "/" . $pac[4]. "</td>
-            <input type='hidden' value='" . $pac[0] . "' name='id'>
-            <td> <input type='submit' name='consulta'> </td>
+            <input type='hidden' value='" . $pac[0] . "' name='triId'>
+            <td> <input type='submit' name='consulta' value='Iniciar consulta'> </td>
           </tr>
         </form>";
 
