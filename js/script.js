@@ -132,12 +132,11 @@
       var num    = $(".abas li").length - 1;
       aba.remove();
       $("#content div:nth-child("+indice.toString()+")").remove();
-      // $(".aba").removeClass("selecionada");
-      // $("#content div").hide();
+      var id          = indice - 1;
+      var primeiraTag = $(".abas li:nth-child(1) .aba").hasClass("selecionada");
+      var ultimaTag   = $(".abas li:nth-child("+ num +") .aba").hasClass("selecionada");
+
       if(indice > 1) {
-        var id          = indice - 1;
-        var primeiraTag = $(".abas li:nth-child(1) .aba").hasClass("selecionada");
-        var ultimaTag   = $(".abas li:nth-child("+ num +") .aba").hasClass("selecionada");
 
         if (!primeiraTag && !ultimaTag) {
           $("#content div:nth-child("+id.toString()+")").show();
@@ -145,7 +144,9 @@
         }
       } else {
         $("#content div:nth-child("+indice.toString()+")").show();
-        $(".abas li:nth-child("+indice+") .aba").addClass("selecionada");
+        if (!ultimaTag) {
+          $(".abas li:nth-child("+indice+") .aba").addClass("selecionada");
+        }
       }
     });
   }
