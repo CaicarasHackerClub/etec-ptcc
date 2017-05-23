@@ -18,7 +18,7 @@ session_start()
     <nav class="lateral" id="lateral">
     <img class="logo" src="../img/logos/index.png">
     <a href="#" id="user" class="nav_user user">Usuário</a>
-    <a href="#" class="nav_user">Deslogar</a>
+    <a href="../index.php?acao=logoff" class="nav_user" >Deslogar</a>
     <div class="hora" id="hora"></div>
     </nav>
 
