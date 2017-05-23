@@ -48,6 +48,7 @@ session_start();
                 if ($qtd>=1) {
                   echo "Já possui um numero SUS com esse numero!!";
                 } else {
+                  $_SESSION['sus'] = $_POST['doc'];
                   header("Location:backend/cadastro.php?acao=cadastro");
                 }
             } else {
@@ -56,6 +57,7 @@ session_start();
                 if ($qtd>=1) {
                   echo "Já possui um CPF documento com esse numero!!";
                 } else {
+                  $_SESSION['cpf'] = $_POST['doc'];
                   header("Location:backend/cadastro.php?acao=cadastro");
                 }
             }
