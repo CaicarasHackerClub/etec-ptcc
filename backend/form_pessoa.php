@@ -97,7 +97,7 @@ $endereco = $sql->fetch($selEnd);
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
-            $val = "";
+            $val = "value=\"" . $_SESSION['cpf'] . "\"";
           } else {
             $dis = " disabled";
             $val = " value=\"" . $pessoa[5] . "\"";
