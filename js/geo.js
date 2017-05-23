@@ -1,9 +1,9 @@
-var placeSearch, autocomplete;
+var autocomplete;
 var componentForm = {
   route: 'long_name',
   street_number: 'short_name',
   sublocality_level_1: 'long_name',
-  administrative_area_level_1: 'short_name',
+  administrative_area_level_1: 'long_name',
   administrative_area_level_2: 'short_name',
   postal_code: 'short_name',
   country: 'long_name',
@@ -34,29 +34,16 @@ function fillInAddress() {
 
   for (var i = 0; i < place.address_components.length; i++) {
     var addressType = place.address_components[i].types[0];
+    console.log(addressType);
+
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
-      $('#' + addressType).children('input').val(val);
+      var $container = $('#' + addressType);
+      $container.children('input').val(val);
+      console.log(val, componentForm[addressType], addressType);
     }
   }
 }
-
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
-
 
 function geoApp() {
   "use strict";

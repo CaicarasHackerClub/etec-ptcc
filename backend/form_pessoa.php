@@ -202,7 +202,7 @@ $endereco = $sql->fetch($selEnd);
     <div class="extend group-form group-form-cadastro">
       <label class="lbl_class">Endereço:</label>
       <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
-      placeholder="Procurar endereço" onfocus="geolocate()">
+      placeholder="Procurar endereço"">
       <button class="submit" type="button" name="auto" id="btn-auto">Auto</button>
       <button class="submit" type="button" name="manual" id="btn-manual">Manual</button><br>
     </div>
@@ -251,21 +251,27 @@ $endereco = $sql->fetch($selEnd);
       <label class="lbl_class">Cidade:</label>
       <?php
         if ($_SESSION['form'] == 1) {
-          $sql->selectbox("cidade");
+          $dis = "";
+          $val = "";
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\" disabled value=" . $endereco[4] . "><br>";
+          $dis = " disabled";
+          $val = " value=\"" . $endereco[4] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val; ?>><br>
     </div>
     <div id="administrative_area_level_1" class="group-form group-form-cadastro">
       <label class="lbl_class">Estado:</label>
       <?php
         if ($_SESSION['form'] == 1) {
-          $sql->selectbox("estado");
+          $dis = "";
+          $val = "";
         } else {
-          echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\" disabled value=" . $endereco[5] . "><br>";
+          $dis = " disabled";
+          $val = " value=\"" . $endereco[5] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val; ?>><br>
     </div>
 
     <div id="postal_code" class="group-form group-form-cadastro">
