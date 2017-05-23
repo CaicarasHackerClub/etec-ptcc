@@ -54,7 +54,7 @@ session_start()
 
         }
       ?>
-      <a class="anchor" id="anchor-triagem" onclick="enviar(1)" href="../backend/sub_modulo.php<?=$dis1;?>"><img class="avatars" id="img-triagem" src="../img/avatars/triagem.png"><p class="txt_avatar" id="name-tri">
+      <a class="anchor" id="anchor-triagem" onclick="enviar(1)" href="../backend/sub_modulo.php" <?=$dis1?>><img class="avatars" id="img-triagem" src="../img/avatars/triagem.png"><p class="txt_avatar" id="name-tri">
       Triagem</p></a>
       <!-- <input type="hidden" name=Valor value="../img/avatars/triagem.png">
       <input type="hidden" name=Nome_pag value="Triagem">
@@ -69,7 +69,7 @@ session_start()
         }
       ?>
       <!-- <form class="form" action="sub_modulo.php" method="post"> -->
-      <a class="anchor" href="../backend/sub_modulo.php<=?$dis2;?>" onclick="enviar(2)"><img class="avatars" id="img-recepcao" src="../img/avatars/recepcao.png"><p class="txt_avatar" id="name-recep">Recepção</p></a>
+      <a class="anchor" href="../backend/sub_modulo.php" <?=$dis2?> onclick="enviar(2)"><img class="avatars" id="img-recepcao" src="../img/avatars/recepcao.png"><p class="txt_avatar" id="name-recep">Recepção</p></a>
       <!-- <input type="hidden" name=Valor value="../img/avatars/recepcao.png">
       <input type="hidden" name=Nome_pag value="Recepcao">
       </form> -->
@@ -83,7 +83,7 @@ session_start()
         }
       ?>
       <!-- <form class="form" action="sub_modulo.php" method="post"> -->
-      <a class="anchor" href= "../backend/sub_modulo.php <?=$dis3?>" onclick="enviar(3)"><img class="avatars" id="img-admin" src="../img/avatars/adm.png"><p class="txt_avatar" id="name-admin">Administração</p></a>
+      <a class="anchor" href= "../backend/sub_modulo.php" <?=$dis3?> onclick="enviar(3)"><img class="avatars" id="img-admin" src="../img/avatars/adm.png"><p class="txt_avatar" id="name-admin">Administração</p></a>
       <!-- <input type="hidden" name=Valor value="../img/avatars/adm.png">
       <input type="hidden" name=Nome_pag value="Administracao">
       </form> -->
@@ -96,7 +96,7 @@ session_start()
           $dis4 = "disabled";
         }
       ?>
-      <a class="anchor" href="../backend/sub_modulo.php <?=$dis4?>" onclick="enviar(4)"><img class="avatars" id="img-portaria" src="../img/avatars/portaria.png"><p class="txt_avatar" id="name-portaria">Portaria</p></a>
+      <a class="anchor" href="../backend/sub_modulo.php" <?=$dis4?> onclick="enviar(4)"><img class="avatars" id="img-portaria" src="../img/avatars/portaria.png"><p class="txt_avatar" id="name-portaria">Portaria</p></a>
 
     </div>
 
