@@ -7,10 +7,13 @@
   </head>
   <body>
     <?php
+    include_once "funcoes.php";
     include_once("Posto.class.php");
-    $metodo=new Metodo;
     include_once("Sql.class.php");
-    $sql=new Sql;
+
+    $metodo = new Metodo;
+    $sql = new Sql;
+    $con = $sql->conecta();
 
     $acao =isset($_GET['acao'])? $_GET['acao'] : "";
 
@@ -36,9 +39,19 @@
         $metodo->setPes_sexo_biologico($_POST['sexo']);
         $metodo->setPes_telefone($_POST['pes_telefone']);
 
+        // TODO: arrumar cidade, estado
+        $estado = tiraAcentos($_POST['end_estado']);
+        $cidade = tiraAcentos($_POST['end_cidade']);
+
+        $selId = "SELECT est_id FROM estado WHERE est_nome = '$estado'";
+        $estadoId = $sql->selecionar($selId);
+
+        $selId = "SELECT cid_id FROM cidade WHERE cid_nome = '$cidade' AND est_id = $estadoId";
+        $cidadeId = $sql->selecionar($selId);
+
         $metodo->setEnd_pais($_POST['end_pais']);
-        $metodo->setEnd_estado($_POST['estado']);
-        $metodo->setEnd_cidade($_POST['cidade']);
+        $metodo->setEnd_estado($estadoId);
+        $metodo->setEnd_cidade($cidadeId);
         $metodo->setEnd_cep($_POST['end_cep']);
         $metodo->setEnd_bairro($_POST['end_bairro']);
         $metodo->setEnd_rua($_POST['end_rua']);
@@ -81,6 +94,9 @@
           //Insere os dados na tabela endereço
           $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
           $pes_id=$sql->selecionar($sel_id);
+
+          echo $metodo->getEnd_estado();
+          echo $metodo->getEnd_cidade();
 
           $insEnd="INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero,pessoa_pes_id) VALUES (
                 '" . $metodo->getEnd_pais()   . "',
