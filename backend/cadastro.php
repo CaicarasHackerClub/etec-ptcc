@@ -340,9 +340,10 @@
               echo "Não cadastrado!!!";
             }
           }
-        } elseif ($_SESSION['fun_cargo'] == "recepcionista") {
+        } elseif ($_SESSION['fun_cargo'] == "recepcao") {
           $_SESSION['form'] = 2;
           include 'form_pessoa.php';
+
         } else {
           $_SESSION['form'] = 2;
           include 'form_pessoa.php';
@@ -356,6 +357,7 @@
 
           $_SESSION['form'] == 2;
           include 'form_funcionario.php';
+
         } else {
 
           $_SESSION['form'] == 2;
@@ -365,18 +367,17 @@
       } elseif ($_GET['passo'] == 6){
         if ($_SESSION['tipo'] == "administracao") {
           // Se houver alterações no formulário "funcionario" será feito aqui.
-          if ($_SESSION['fun_cargo'] == "medico") {
+          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+            if ($_SESSION['fun_cargo'] == "medico") {
 
-            $_SESSION['form'] = 2;
-            include 'form_complementar.php';
+              $_SESSION['form'] = 2;
+              include 'form_complementar.php';
 
-          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+            } else {
 
-            $_SESSION['form'] = 2;
-            include 'form_complementar.php';
-
-          } else {
-            echo "Não é medico ou enfermeiro";
+              $_SESSION['form'] = 2;
+              include 'form_complementar.php';
+            }
           }
         } else {
           // aqui ficará as alterações do paciente
