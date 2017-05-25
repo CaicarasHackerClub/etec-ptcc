@@ -104,7 +104,11 @@
   /*Função que implementa as abas*/
   function abas(num) {
     $("#content div:nth-child(1)").show();
-    $(".abas li:first div").addClass("selecionada");
+    var primeiraTag = $(".abas li:nth-child(2) .aba").hasClass("selecionada");
+
+    if (!primeiraTag) {
+      $(".abas li:first div").addClass("selecionada");
+    }
 
     /*Coloca o icone de fechar nas abas*/
     $('#abas'+num).append("<img class='image-close' src='../img/icons/fecharJ.png'>");
@@ -137,7 +141,6 @@
       var ultimaTag   = $(".abas li:nth-child("+ num +") .aba").hasClass("selecionada");
 
       if(indice > 1) {
-
         if (!primeiraTag && !ultimaTag) {
           $("#content div:nth-child("+id.toString()+")").show();
           $(".abas li:nth-child("+id+") .aba").addClass("selecionada");
