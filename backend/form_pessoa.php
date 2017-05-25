@@ -107,7 +107,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_cpf" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class lbl-extend-class">Data de Nascimento:</label>
+      <label class="lbl_class">Data de Nascimento:</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
