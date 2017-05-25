@@ -203,9 +203,8 @@ $endereco = $sql->fetch($selEnd);
     <div class="extend group-form group-form-cadastro">
       <label class="lbl_class">Endereço:</label>
       <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
-      placeholder="Procurar endereço"">
-      <button class="submit" type="button" name="auto" id="btn-auto">Auto</button>
-      <button class="submit" type="button" name="manual" id="btn-manual">Manual</button><br>
+      placeholder="Procurar endereço">
+      <button class="submit" type="button" name="auto" id="btn-auto">Completar</button>
     </div>
     <!-- Seção Auto Endereço -->
     <div id="auto-endereco" class="auto-endereco">

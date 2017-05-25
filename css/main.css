@@ -510,7 +510,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   line-height: 50px;
 }
 
-.extend button[name='manual'] {
+.extend button[name='auto'] {
   background-color: #f56529;
 }
 
