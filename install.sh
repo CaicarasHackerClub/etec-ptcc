@@ -3,6 +3,19 @@
 NODE_PATH="/etc/apt/sources.list.d/nodesource.list"
 YARN_PATH="/etc/apt/sources.list.d/yarn.list"
 
+D2U=$(which dos2unix)
+PCF=$(which php-cs-fixer)
+
+if [[ ! -x "$D2U" ]] ; then
+  sudo apt -y update && sudo apt -y install dos2unix
+fi
+
+if [[ ! -x "$PCF" ]] ; then
+  wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer
+  sudo chmod a+x php-cs-fixer
+  sudo mv php-cs-fixer /usr/local/bin/php-cs-fixer
+fi
+
 if [[ ! -f "$NODE_PATH" ]]; then
     echo "* Adicionando PPA para NodeJS"
     curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -25,4 +38,3 @@ chmod a+x fixer.sh
 echo "* Instalando módulos"
 yarn install
 echo "* Configurando Sniffers"
-
