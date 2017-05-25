@@ -142,7 +142,7 @@
             echo "Erro ao cadastrar pessoa!";
           }
         }
-      }elseif ($_GET['passo'] == 3) {
+      } elseif ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
           $metodo->setPac_tipo_sangue($_POST['tipo_sanguineo']);
           $metodo->setPac_remedio($_POST['pac_remedio']);
@@ -256,7 +256,6 @@
           }
           if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
             if ($_SESSION['fun_cargo'] == "medico") {
-
               $_SESSION['form'] = 1;
               include 'form_complementar.php';
 
@@ -354,27 +353,23 @@
         //echo "Foi clicado em proximo!!"; //teste
         //Se houver alterações no formulário "pessoa" será feito aqui.
         if ($_SESSION['tipo'] == "administracao") {
-
           $_SESSION['form'] == 2;
           include 'form_funcionario.php';
 
         } else {
-
           $_SESSION['form'] == 2;
           include 'form_paciente.php';
         }
 
-      } elseif ($_GET['passo'] == 6){
+      } elseif ($_GET['passo'] == 6) {
         if ($_SESSION['tipo'] == "administracao") {
           // Se houver alterações no formulário "funcionario" será feito aqui.
           if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
             if ($_SESSION['fun_cargo'] == "medico") {
-
               $_SESSION['form'] = 2;
               include 'form_complementar.php';
 
             } else {
-
               $_SESSION['form'] = 2;
               include 'form_complementar.php';
             }

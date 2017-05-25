@@ -159,7 +159,7 @@
 
       $sql->inserir($query);
       $mensagem = "Inserido com sucesso.";
-    } else if (isset($_POST['cancelar'])) {
+    } elseif (isset($_POST['cancelar'])) {
       $st = "UPDATE triagem SET tri_status = 6 WHERE tri_id = " . $cons->getTriId();
       $mensagem = "Consulta cancelada.";
     }

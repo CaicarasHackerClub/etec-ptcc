@@ -49,7 +49,6 @@ if ($_SESSION['fun_cargo'] == "medico") {
   </form>
 <?php
 } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-
     if ($_SESSION['form'] == 1) {
         $tipo = "cadastro.php?acao=cadastro&passo=4";
     } elseif ($_SESSION['form'] == 2) {

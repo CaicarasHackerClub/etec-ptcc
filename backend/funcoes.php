@@ -7,7 +7,7 @@
 // Tira os acentos de uma string
 function tiraAcentos($str) {
   return preg_replace(
-    array("/(á|à|ã|â|ä)/",
+      array("/(á|à|ã|â|ä)/",
           "/(Á|À|Ã|Â|Ä)/",
           "/(é|è|ê|ë)/",
           "/(É|È|Ê|Ë)/",
@@ -19,6 +19,7 @@ function tiraAcentos($str) {
           "/(Ú|Ù|Û|Ü)/",
           "/(ñ)/",
           "/(Ñ)/"),
-    explode(" ", "a A e E i I o O u U n N"),
-    $str);
+      explode(" ", "a A e E i I o O u U n N"),
+      $str
+  );
 }
