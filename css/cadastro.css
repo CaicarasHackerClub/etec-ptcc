@@ -1,0 +1,32 @@
+@media (max-width: 1993px) {
+  .form-cadastro .group-form-cadastro {
+    width: 40%;
+  }
+
+  .form-cadastro .group-form-cadastro .inp_class {
+    width: 60%;
+  }
+
+  .form-cadastro .group-form-cadastro .lbl_class {
+    width: 37%;
+  }
+}
+
+@media (max-width: 985px) {
+  .form-cadastro .group-form-cadastro {
+    width: 48%;
+    margin-left: 1%;
+  }
+}
+
+@media (max-width: 761px) {
+
+}
+
+@media (max-width: 643px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
