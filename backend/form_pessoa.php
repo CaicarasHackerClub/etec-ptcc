@@ -3,6 +3,7 @@
     //update == 3
 -->
 <link rel='stylesheet' href='../css/main.css'>
+<link rel='stylesheet' href='../css/cadastro.css'>
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="../js/script.js" ></script>
 <?php
