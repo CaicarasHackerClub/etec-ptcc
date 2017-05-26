@@ -1,3 +1,7 @@
+var $error = $('#error-onload');
+var $searchbox = $('#autocompletar-in');
+var $enderecoForm = $('#auto-endereco');
+
 function initAutocomplete() {
   var autocomplete;
   var componentForm = {
@@ -9,9 +13,6 @@ function initAutocomplete() {
     postal_code: 'short_name',
     country: 'long_name',
   };
-  var $searchbox = $('#autocompletar-in');
-  var $enderecoForm = $('#auto-endereco');
-  var $error = $('#error-onload');
 
   $searchbox.keypress(function(e) {
     if (e.which === 13) {
@@ -45,30 +46,14 @@ function initAutocomplete() {
           $container.children('input').val(val);
         }
       }
+      $error.fadeOut('fast');
     }, function() {
-      showMessage('Nenhuma opção válida foi selecionada.', function() {
-        showMessage('Você pode realizar outra busca ou completar manualmente.', function() {
+      showMessage($error, 'Nenhuma opção válida foi selecionada.', 3500, function() {
+        showMessage($error, 'Você pode realizar outra busca ou completar manualmente.', 0, function() {
           showFields();
         });
       });
     });
-  }
-
-  function showMessage(message, done) {
-    $error.text(message).fadeIn();
-    setTimeout(function() {
-      $error.fadeOut(done);
-    }, 3500);
-  }
-
-  function showFields() {
-    $enderecoForm.fadeIn();
-    $('.cadastro-submit').fadeIn();
-  }
-
-  function hideFields() {
-    $enderecoForm.fadeOut();
-    $('.cadastro-submit').fadeOut();
   }
 
   function getPlace() {
@@ -82,6 +67,16 @@ function initAutocomplete() {
   }
 }
 
+function showFields() {
+  $enderecoForm.fadeIn();
+  $('.cadastro-submit').fadeIn('slow');
+}
+
+function hideFields() {
+  $enderecoForm.fadeOut();
+  $('.cadastro-submit').fadeOut();
+}
+
 function loadError() {
   try {
     throw new URIError('Autocompletado de endereço não está disponível nesse momento.');
@@ -89,6 +84,6 @@ function loadError() {
     $('#autocompletar').hide();
     $('#auto-endereco').show();
     $('.cadastro-submit').show();
-    $('#error-onload').text(e.message).show();
+    showMessage($error, e.message, 0);
   }
 }
