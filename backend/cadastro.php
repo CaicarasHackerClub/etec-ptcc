@@ -387,7 +387,7 @@
     mysqli_close($con);
     ?>
     <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/geo.js"></script>
+    <script src="../js/autocompletar.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places&callback=initAutocomplete" onerror="loadError()"
         async defer></script>
   </body>
