@@ -136,7 +136,7 @@
               /*formulário para o preenchimento de dados
               do funcionario que está sendo cadastrado*/
               include 'form_funcionario.php';
-
+              }
             }
           } else {
             echo "Erro ao cadastrar pessoa!";
