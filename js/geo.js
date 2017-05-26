@@ -9,12 +9,22 @@ var componentForm = {
   country: 'long_name',
 };
 
+function loadError() {
+  try {
+    throw new URIError('Autocompletado de endereço não está disponível nesse momento.');
+  } catch (e) {
+    $('#autocompletar').hide();
+    $('#auto-endereco').show();
+    $('#error-onload').text(e.message).show();
+  }
+}
+
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById('autocomplete'), {types: ['geocode']});
+    document.getElementById('autocompletar-in'), {types: ['geocode']});
   // autocomplete.addListener('place_changed', fillInAddress);
   $('#btn-auto').click(function() {
-    if ($('#autocomplete').val()) {
+    if ($('#autocompletar-in').val()) {
       $('#auto-endereco').show();
       fillInAddress();
     } else {
@@ -23,26 +33,40 @@ function initAutocomplete() {
   });
 }
 
+function getPlace() {
+  return new Promise(function(resolve, reject) {
+    var place = autocomplete.getPlace();
+    console.log(place);
+    if (place && place !== '') {
+      resolve(place);
+    }
+    reject(Error('Autocompletado de endereços do Google Maps não está respondendo. \nVerifique sua \
+        conexão a Internet.'));
+  });
+}
+
 function fillInAddress() {
-  var place = autocomplete.getPlace();
-
-  for (var component in componentForm) {
-    if (document.getElementById(component)) {
-      document.getElementById(component).value = '';
+  getPlace().then(function(place) {
+    for (var component in componentForm) {
+      if (document.getElementById(component)) {
+        document.getElementById(component).value = '';
+      }
     }
-  }
 
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    console.log(addressType);
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      console.log(addressType);
 
-    if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
-      var $container = $('#' + addressType);
-      $container.children('input').val(val);
-      console.log(val, componentForm[addressType], addressType);
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        var $container = $('#' + addressType);
+        $container.children('input').val(val);
+        console.log(val, componentForm[addressType], addressType);
+      }
     }
-  }
+  }, function(error) {
+    alert(error);
+  });
 }
 
 function geoApp() {

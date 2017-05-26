@@ -200,9 +200,10 @@ $endereco = $sql->fetch($selEnd);
   <fieldset class="grupo-info hidden-group">
     <legend class="legenda">Dados de Contato</legend>
 
-    <div class="extend group-form group-form-cadastro">
+    <div class="error" id="error-onload"></div>
+    <div class="extend group-form group-form-cadastro" id="autocompletar">
       <label class="lbl_class">Endereço:</label>
-      <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
+      <input id="autocompletar-in" class="inp_class" type="text" name="" size="28" value=""
       placeholder="Procurar endereço">
       <button class="submit" type="button" name="auto" id="btn-auto">Completar</button>
     </div>
