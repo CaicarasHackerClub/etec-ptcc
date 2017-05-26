@@ -47,22 +47,37 @@ function initAutocomplete() {
         }
       }
       $error.fadeOut('fast');
-    }, function() {
-      showMessage($error, 'Nenhuma opção válida foi selecionada.', 3500, function() {
-        showMessage($error, 'Você pode realizar outra busca ou completar manualmente.', 0, function() {
-          showFields();
+    }, function(isOnline) {
+      if (isOnline) {
+        showMessage($error, 'Nenhuma opção válida foi selecionada.', 3500, function() {
+          showMessage($error, 'Você pode realizar outra busca ou completar manualmente.', 0, function() {
+            showFields();
+          });
         });
-      });
+      } else {
+        var message = 'Você está offline nesse momento. A função Autocompletado precisa que você esteja conectado à Internet.';
+        showMessage($error, message, 0);
+      }
     });
   }
 
   function getPlace() {
     return new Promise(function(resolve, reject) {
       var place = autocomplete.getPlace();
-      if (place !== null && typeof place.address_components !== 'undefined' && place !== '') {
+
+      if (place.hasOwnProperty('address_components')) {
         resolve(place);
+      } else {
+        $.ajax({
+          url: 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+        })
+        .done(function() {
+          reject(true);
+        })
+        .fail(function() {
+          reject(false);
+        });
       }
-      reject();
     });
   }
 }
@@ -78,12 +93,14 @@ function hideFields() {
 }
 
 function loadError() {
-  try {
-    throw new URIError('Autocompletado de endereço não está disponível nesse momento.');
-  } catch (e) {
-    $('#autocompletar').hide();
-    $('#auto-endereco').show();
-    $('.cadastro-submit').show();
-    showMessage($error, e.message, 0);
-  }
+  var message = 'Autocompletado de endereço não está disponível nesse momento.';
+
+  $('#autocompletar').hide();
+  $enderecoForm.show();
+  $('.cadastro-submit').show();
+
+  showMessage($error, message, 3500, function() {
+    var message = 'Verifique a sua conexão de Internet. Você ainda pode cadastrar manualmente.';
+    showMessage($error, message, 0);
+  });
 }
