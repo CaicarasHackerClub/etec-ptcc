@@ -59,7 +59,8 @@ function initAutocomplete() {
   function getPlace() {
     return new Promise(function(resolve, reject) {
       var place = autocomplete.getPlace();
-      if (place !== null && typeof place.address_components !== 'undefined' && place !== '') {
+
+      if (place.hasOwnProperty('address_components')) {
         resolve(place);
       }
       reject();
@@ -82,7 +83,7 @@ function loadError() {
     throw new URIError('Autocompletado de endereço não está disponível nesse momento.');
   } catch (e) {
     $('#autocompletar').hide();
-    $('#auto-endereco').show();
+    $enderecoForm.show();
     $('.cadastro-submit').show();
     showMessage($error, e.message, 0);
   }
