@@ -120,13 +120,15 @@
 
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
-            if ($_SESSION['tipo'] == "recepcao") {
+            if ($_SESSION['tipo'] == "recepcao" || $_SESSION['tipo'] == "recepcao") {
+              if ($_SESSION['tipo'] == "recepcao" ) {
+
               $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do paciente que está sendo cadastrado*/
               include 'form_paciente.php';
 
-            } elseif ($_SESSION['tipo'] == "administracao") {
+              } else {
               /* Se o usuário logado for administrativo ele só poderá cadastrar
               os dados de funcionário do formulário abaixo
               */
@@ -135,8 +137,6 @@
               do funcionario que está sendo cadastrado*/
               include 'form_funcionario.php';
 
-            } else {
-              echo "Apenas adm e recepcionistas";
             }
           } else {
             echo "Erro ao cadastrar pessoa!";
