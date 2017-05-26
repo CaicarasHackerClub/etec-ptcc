@@ -1,3 +1,7 @@
+.cadastro-submit {
+  display: none;
+}
+
 @media (max-width: 1993px) {
   .form-cadastro .group-form-cadastro {
     width: 40%;

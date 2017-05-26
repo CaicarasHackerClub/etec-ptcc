@@ -11,6 +11,7 @@ function initAutocomplete() {
   };
   var $searchbox = $('#autocompletar-in');
   var $enderecoForm = $('#auto-endereco');
+  var $error = $('#error-onload');
 
   $searchbox.keypress(function(e) {
     if (e.which === 13) {
@@ -22,13 +23,12 @@ function initAutocomplete() {
       document.getElementById('autocompletar-in'), {types: ['geocode']});
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    if ($searchbox.val()) {
-      $enderecoForm.show();
-      fillInAddress();
-    }
+    var val = $searchbox.val();
+    showFields();
+    fillInAddress(val);
   });
 
-  function fillInAddress() {
+  function fillInAddress(val) {
     getPlace().then(function(place) {
       for (var component in componentForm) {
         if (document.getElementById(component)) {
@@ -45,15 +45,36 @@ function initAutocomplete() {
           $container.children('input').val(val);
         }
       }
-    }, function(error) {
-      loadError();
+    }, function() {
+      showMessage('Nenhuma opção válida foi selecionada.', function() {
+        showMessage('Você pode realizar outra busca ou completar manualmente.', function() {
+          showFields();
+        });
+      });
     });
+  }
+
+  function showMessage(message, done) {
+    $error.text(message).fadeIn();
+    setTimeout(function() {
+      $error.fadeOut(done);
+    }, 3500);
+  }
+
+  function showFields() {
+    $enderecoForm.fadeIn();
+    $('.cadastro-submit').fadeIn();
+  }
+
+  function hideFields() {
+    $enderecoForm.fadeOut();
+    $('.cadastro-submit').fadeOut();
   }
 
   function getPlace() {
     return new Promise(function(resolve, reject) {
       var place = autocomplete.getPlace();
-      if (place && place !== '') {
+      if (place !== null && typeof place.address_components !== 'undefined' && place !== '') {
         resolve(place);
       }
       reject();
@@ -67,6 +88,7 @@ function loadError() {
   } catch (e) {
     $('#autocompletar').hide();
     $('#auto-endereco').show();
+    $('.cadastro-submit').show();
     $('#error-onload').text(e.message).show();
   }
 }

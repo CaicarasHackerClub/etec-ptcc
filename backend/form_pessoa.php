@@ -205,7 +205,7 @@ $endereco = $sql->fetch($selEnd);
       <label class="lbl_class">Endereço:</label>
       <input id="autocompletar-in" class="inp_class" type="text" name="" size="28" value=""
       placeholder="Procurar endereço ou enter para completado manual" autofocus>
-      <button class="submit" type="button" name="auto" id="btn-auto">Manual</button>
+      <!-- <button class="submit" type="button" name="auto" id="btn-auto">Manual</button> -->
     </div>
     <!-- Seção Auto Endereço -->
     <div id="auto-endereco" class="auto-endereco">
@@ -307,6 +307,6 @@ $endereco = $sql->fetch($selEnd);
         echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
       }
       ?>
-      <input class="inp_class submit" type="submit" value="Proximo"><br>
+      <input class="inp_class submit cadastro-submit" type="submit" value="Proximo"><br>
   </fieldset>
   </form>
