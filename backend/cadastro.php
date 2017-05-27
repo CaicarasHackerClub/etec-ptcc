@@ -272,8 +272,6 @@
           } else {
             header("Location:cadastro.php&passo=4");
           }
-        } else {
-          header("Location:cadastro.php?passo=4");
         }
       } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
