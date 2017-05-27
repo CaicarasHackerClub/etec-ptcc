@@ -39,7 +39,7 @@ session_start()
         $sql = new Sql;
 
         $con=$sql->conecta();
-        $selCar="SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id=u.funcionario_id WHERE u.usu_id='" . $_SESSION['id_usu']. "';";
+        $selCar="SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id=u.funcionario_id WHERE u.usu_id=" . $_SESSION['id_usu']. ";";
 
         $res=mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 
