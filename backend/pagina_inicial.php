@@ -34,6 +34,7 @@ session_start()
     <div class="conteudoCentro">
       <!-- <form class="form" action="sub_modulo.php" method="post"> -->
       <?php
+        //echo $_SESSION['id_usu'];
         include_once("Sql.class.php");
         $sql = new Sql;
 
@@ -46,7 +47,8 @@ session_start()
 
         $_SESSION['tipo']=$cargo['fun_cargo'];
 
-        if ($_SESSION['tipo'] == "triagem") {
+        if ($_SESSION['tipo'] == "enfermeiro" || $_SESSION['tipo'] == "medico") {
+          $link1 = "../backend/sub_modulo.php";
           $dis1 = "";
         } else {
           $link1 = "";
@@ -54,7 +56,7 @@ session_start()
 
         }
       ?>
-      <a class="anchor" id="anchor-triagem" onclick="enviar(1)" href="../backend/sub_modulo.php" <?=$dis1?>><img class="avatars" id="img-triagem" src="../img/avatars/triagem.png"><p class="txt_avatar" id="name-tri">
+      <a class="anchor" id="anchor-triagem" onclick="enviar(1)" href="<?=$link1?>" <?=$dis1?>><img class="avatars" id="img-triagem" src="../img/avatars/triagem.png"><p class="txt_avatar" id="name-tri">
       Triagem</p></a>
       <!-- <input type="hidden" name=Valor value="../img/avatars/triagem.png">
       <input type="hidden" name=Nome_pag value="Triagem">
@@ -69,7 +71,7 @@ session_start()
         }
       ?>
       <!-- <form class="form" action="sub_modulo.php" method="post"> -->
-      <a class="anchor" href="../backend/sub_modulo.php" <?=$dis2?> onclick="enviar(2)"><img class="avatars" id="img-recepcao" src="../img/avatars/recepcao.png"><p class="txt_avatar" id="name-recep">Recepção</p></a>
+      <a class="anchor" href="<?=$link2?>" <?=$dis2?> onclick="enviar(2)"><img class="avatars" id="img-recepcao" src="../img/avatars/recepcao.png"><p class="txt_avatar" id="name-recep">Recepção</p></a>
       <!-- <input type="hidden" name=Valor value="../img/avatars/recepcao.png">
       <input type="hidden" name=Nome_pag value="Recepcao">
       </form> -->
@@ -83,7 +85,7 @@ session_start()
         }
       ?>
       <!-- <form class="form" action="sub_modulo.php" method="post"> -->
-      <a class="anchor" href= "../backend/sub_modulo.php" <?=$dis3?> onclick="enviar(3)"><img class="avatars" id="img-admin" src="../img/avatars/adm.png"><p class="txt_avatar" id="name-admin">Administração</p></a>
+      <a class="anchor" href= "<?=$link3?>" <?=$dis3?> onclick="enviar(3)"><img class="avatars" id="img-admin" src="../img/avatars/adm.png"><p class="txt_avatar" id="name-admin">Administração</p></a>
       <!-- <input type="hidden" name=Valor value="../img/avatars/adm.png">
       <input type="hidden" name=Nome_pag value="Administracao">
       </form> -->
@@ -96,7 +98,7 @@ session_start()
           $dis4 = "disabled";
         }
       ?>
-      <a class="anchor" href="../backend/sub_modulo.php" <?=$dis4?> onclick="enviar(4)"><img class="avatars" id="img-portaria" src="../img/avatars/portaria.png"><p class="txt_avatar" id="name-portaria">Portaria</p></a>
+      <a class="anchor" href="<?=$link4?>" <?=$dis4?> onclick="enviar(4)"><img class="avatars" id="img-portaria" src="../img/avatars/portaria.png"><p class="txt_avatar" id="name-portaria">Portaria</p></a>
 
     </div>
 
