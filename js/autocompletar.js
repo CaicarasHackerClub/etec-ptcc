@@ -107,7 +107,7 @@ function loadError() {
   $enderecoForm.fadeIn();
   $('.cadastro-submit').fadeIn('slow');
 
-  var message = 'Verifique sua conexão de Internet. Autocompletado de endereço não está disponívlel, \
-  mas você ainda pode cadastrar manualmente.';
+  var message = 'Verifique sua conexão de Internet. Autocompletado de endereço não está disponívlel, ' +
+    'mas você ainda pode cadastrar manualmente.';
   showMessage($error, message, 0);
 }

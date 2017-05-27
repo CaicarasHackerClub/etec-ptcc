@@ -120,8 +120,7 @@
 
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
-            if ($_SESSION['tipo'] == "recepcao" ) {
-
+            if ($_SESSION['tipo'] == "recepcao") {
               $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do paciente que está sendo cadastrado*/
