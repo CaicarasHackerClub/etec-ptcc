@@ -27,7 +27,7 @@
       <a href="#" Class="anchor" id="fila" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/portaria.png" class="icon-modulo" alt=""><p>Portaria</p></a>
     </main>
     <a href="#" id="user" class="nav_user user">Usuário</a>
-    <a href="#" class="nav_user">Deslogar</a>
+    <a href="../index.php?acao=logoff" class="nav_user">Deslogar</a>
     <div id="hora" class="hora"></div>
     </nav>
 
