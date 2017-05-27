@@ -2,16 +2,21 @@ var $error = $('#error-onload');
 var $searchbox = $('#autocompletar-in');
 var $enderecoForm = $('#auto-endereco');
 
+var LONG_MESSAGE = 4500;
+var SHORT_MESSAGE = 3500;
+
 function initAutocomplete() {
+  'use strict';
+
   var autocomplete;
   var componentForm = {
-    route: 'long_name',
-    street_number: 'short_name',
-    sublocality_level_1: 'long_name',
-    administrative_area_level_1: 'long_name',
-    administrative_area_level_2: 'short_name',
-    postal_code: 'short_name',
-    country: 'long_name',
+    route: 'long_name',                         // Rua
+    street_number: 'short_name',                // Número
+    sublocality_level_1: 'long_name',           // Bairro
+    administrative_area_level_1: 'long_name',   // Estado
+    administrative_area_level_2: 'short_name',  // Cidade
+    postal_code: 'short_name',                  // CEP
+    country: 'long_name',                       // País
   };
 
   $searchbox.keypress(function(e) {
@@ -24,18 +29,21 @@ function initAutocomplete() {
       document.getElementById('autocompletar-in'), {types: ['geocode']});
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    var val = $searchbox.val();
     showFields();
-    fillInAddress(val);
+    fillInAddress();
   });
 
-  function fillInAddress(val) {
+  function clearForm() {
+    for (var component in componentForm) {
+      $('#' + component).children('input').val('');
+    }
+  }
+
+  function fillInAddress() {
+
+    clearForm();
+
     getPlace().then(function(place) {
-      for (var component in componentForm) {
-        if (document.getElementById(component)) {
-          document.getElementById(component).value = '';
-        }
-      }
 
       for (var i = 0; i < place.address_components.length; i++) {
         var addressType = place.address_components[i].types[0];
@@ -47,18 +55,28 @@ function initAutocomplete() {
         }
       }
       $error.fadeOut('fast');
+
     }, function(isOnline) {
       if (isOnline) {
-        showMessage($error, 'Nenhuma opção válida foi selecionada.', 3500, function() {
-          showMessage($error, 'Você pode realizar outra busca ou completar manualmente.', 0, function() {
+
+        showMessage($error, 'Nenhuma opção válida de autocompletado foi selecionada.', SHORT_MESSAGE, function() {
+          showMessage($error, 'Você pode realizar outra busca ou completar de forma manual.', 0, function() {
             showFields();
           });
         });
       } else {
-        var message = 'Você está offline nesse momento. A função Autocompletado precisa que você esteja conectado à Internet.';
-        showMessage($error, message, 0);
+        var message = 'Você está offline nesse momento. A função de autocompletado precisa que você esteja conectado à Internet.';
+        showMessage($error, message, LONG_MESSAGE, function() {
+          var message = 'Verifique sua conexão de Internet. Você ainda pode cadastrar de forma manual.';
+          showMessage($error, message, 0);
+        });
       }
     });
+  }
+
+  function showFields() {
+    $enderecoForm.fadeIn();
+    $('.cadastro-submit').fadeIn('slow');
   }
 
   function getPlace() {
@@ -82,25 +100,14 @@ function initAutocomplete() {
   }
 }
 
-function showFields() {
-  $enderecoForm.fadeIn();
-  $('.cadastro-submit').fadeIn('slow');
-}
-
-function hideFields() {
-  $enderecoForm.fadeOut();
-  $('.cadastro-submit').fadeOut();
-}
-
 function loadError() {
-  var message = 'Autocompletado de endereço não está disponível nesse momento.';
+  'use strict';
 
   $('#autocompletar').hide();
-  $enderecoForm.show();
-  $('.cadastro-submit').show();
+  $enderecoForm.fadeIn();
+  $('.cadastro-submit').fadeIn('slow');
 
-  showMessage($error, message, 3500, function() {
-    var message = 'Verifique a sua conexão de Internet. Você ainda pode cadastrar manualmente.';
-    showMessage($error, message, 0);
-  });
+  var message = 'Verifique sua conexão de Internet. Autocompletado de endereço não está disponívlel, \
+  mas você ainda pode cadastrar manualmente.';
+  showMessage($error, message, 0);
 }
