@@ -26,7 +26,7 @@
         if ($qtd >= 1) {
           $_SESSION['id_usu'] = $qtd;
           echo "Logado !!! <br>";
-          $log_data = date("y-m-d");
+          $log_data = date("Y-m-d h:i");
           $log_ip = $_SERVER['REMOTE_ADDR'];
           $log_id = $_SESSION['id_usu'];
           $sel = "SELECT * FROM login_acesso WHERE

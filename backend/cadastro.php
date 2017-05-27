@@ -120,15 +120,14 @@
 
             /* se o usuário logado for recepcionista ele só poderá cadastrar
             os dados de pacientes do formulário abaixo */
-            if ($_SESSION['tipo'] == "recepcao" || $_SESSION['tipo'] == "administracao") {
-              if ($_SESSION['tipo'] == "recepcao" ) {
+            if ($_SESSION['tipo'] == "recepcao" ) {
 
               $_SESSION['form'] = 1;
               /*formulário para o preenchimento de dados
               do paciente que está sendo cadastrado*/
               include 'form_paciente.php';
 
-              } else {
+            } else {
               /* Se o usuário logado for administrativo ele só poderá cadastrar
               os dados de funcionário do formulário abaixo
               */
@@ -136,7 +135,7 @@
               /*formulário para o preenchimento de dados
               do funcionario que está sendo cadastrado*/
               include 'form_funcionario.php';
-              }
+
             }
           } else {
             echo "Erro ao cadastrar pessoa!";
@@ -198,7 +197,7 @@
                   echo "Não cadastrado!!!!!!!!!";
             }
             //}
-        } elseif ($_SESSION['tipo'] == "administracao") {
+        } else {
           $metodo->setFun_cargo($_POST ['fun_cargo']);
           $metodo->setFun_horario($_POST ['fun_horario']);
           $metodo->setFun_inscricao($_POST ['fun_inscricao']);
@@ -273,8 +272,6 @@
           } else {
             header("Location:cadastro.php&passo=4");
           }
-        } else {
-          header("Location:cadastro.php?passo=4");
         }
       } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
