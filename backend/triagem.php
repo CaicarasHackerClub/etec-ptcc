@@ -146,7 +146,9 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
         echo "Erro ao inserir";
       }
     } else {
-      echo "O paciente já passou pela triagem";
+      echo "
+      <a href='javascript:window.history.go(-1)' class='anchor'><img src='../img/icons/voltar.png' class='image' alt='...'></a>
+      O paciente já passou pela triagem";
     }
   } else {
     $query = "SELECT pessoa.pes_data FROM pessoa INNER JOIN paciente ON pessoa.pes_id = " . $tri->getPacId() . ";";
@@ -199,7 +201,7 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     }
 
     ?>
-
+    <a href="javascript:window.history.go(-1)" class="anchor"><img src="../img/icons/voltar.png" class="image" alt="..."></a>
     <form class="form form-classi" action="triagem.php" method="post">
     <h1 class="titulo"> Classificação: </h1>
     <input type="radio" id="vermelho" class="inp_class" name="class" value="5" required
