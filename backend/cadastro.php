@@ -314,6 +314,7 @@
 
           if ($okMed && $okHas) {
             echo "Médico(a) cadastrado!!";
+
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
 

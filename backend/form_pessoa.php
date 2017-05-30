@@ -13,7 +13,7 @@ $sql = new Sql;
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-  $tipo = "cadastro.php?acao=cadastro&passo=5";
+  $tipo = "cadastro.php?acao=cadastro&passo=4";
 } else {
   $tipo = "cadastro.php?acao=cadastro&passo=1";
 }
