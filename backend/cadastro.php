@@ -191,7 +191,7 @@
           ///////////////////////fim da inserção de dados///////////////////////////
             if ($okPac && $okPds) {
               echo "Paciente cadastrado!!!!!!!!";
-                ///////////fim de cadastro/////////////
+              ///////////fim de cadastro/////////////
             } else {
                   echo "Não cadastrado!!!!!!!!!";
             }
@@ -247,11 +247,13 @@
 
           $okFun=$sql->inserir($insFun);
           $okUsu=$sql->inserir($insUsu);
+
           if ($okFun && $okUsu) {
             echo "Cadastrado com sucesso!!";
           } else {
             echo "Erro ao cadastrar";
           }
+
           if ($_SESSION['fun_cargo'] == "medico") {
             ////////////////formulário formação do médico ///////////////////
             $_SESSION['form'] = 1;
@@ -270,8 +272,14 @@
             include 'form_pessoa.php';
             // Irá para o passo 4 para aparecer o formulário "funcionario" //
 
+          } elseif ($_SESSION['fun_cargo'] == "funcionario") {
+            /////////////////confirmação final//////////////////////////////
+            $_SESSION['form'] = 2;
+            include 'form_pessoa.php';
+            // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
           } else {
-          header("Location:cadastro.php&passo=4");
+            header("Location:cadastro.php&passo=7");
           }
         }
       } elseif ($_GET['passo'] == 4) {
@@ -335,23 +343,33 @@
           }
 
         } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-
+          //////////////////formulário funcionario///////
           $_SESSION['form'] = 2;
-          include 'form_complementar.php';
-
-        } else {
-          echo "funcionario";
-        }
-        echo "fim passo 4";
-      // Formulário de dados pessoais da confirmação final
-      } elseif ($_GET['passo'] == 5) {
-        //echo "Foi clicado em proximo!!"; //teste
-        //Se houver alterações no formulário "pessoa" será feito aqui.
-        echo "passo 5";
-        if ($_SESSION['tipo'] == "administracao") {
-          $_SESSION['form'] == 2;
           include 'form_funcionario.php';
 
+        } elseif ($_SESSION['fun_cargo'] == "funcionario") {
+
+          $_SESSION['form'] = 2;
+          include 'form_funcionario.php';
+
+        } else {
+          echo "paciente";
+        }
+      // Formulário de dados pessoais da confirmação final
+      } elseif ($_GET['passo'] == 5) {
+        //Se houver alterações no formulário "pessoa" será feito aqui.
+        if ($_SESSION['tipo'] == "administracao") {
+          if ($_SESSION['fun_cargo'] == "medico") {
+            /////////////Confirmação final funcionario ////////////
+            $_SESSION['form'] == 2;
+            include 'form_funcionario.php';
+
+          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+
+            $_SESSION['form'] == 2;
+            include 'form_funcionario.php';
+            ////////////fim conf. final funcionario //////////////
+          }
         } else {
           $_SESSION['form'] == 2;
           include 'form_paciente.php';
@@ -360,20 +378,23 @@
       } elseif ($_GET['passo'] == 6) {
         if ($_SESSION['tipo'] == "administracao") {
           // Se houver alterações no formulário "funcionario" será feito aqui.
-          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
-            if ($_SESSION['fun_cargo'] == "medico") {
+          if ($_SESSION['fun_cargo'] == "medico") {
 
-              $_SESSION['form'] = 2;
-              include 'form_complementar.php';
+            $_SESSION['form'] = 2;
+            include 'form_complementar.php';
 
-            } else {
-              $_SESSION['form'] = 2;
-              include 'form_complementar.php';
-            }
+          } else {
+
+            $_SESSION['form'] = 2;
+            include 'form_complementar.php';
           }
         } else {
-          // aqui ficará as alterações do paciente
+          header("location:cadastro.php?passo=7");
+        // aqui ficará as alterações do paciente
         }
+      } elseif ($_GET['passo'] == 7) {
+        echo "passo 7 !!";
+
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
