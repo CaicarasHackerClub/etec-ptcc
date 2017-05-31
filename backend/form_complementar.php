@@ -79,10 +79,10 @@ if ($_SESSION['fun_cargo'] == "medico") {
           $reg = $sql->fetch($sel);
 
           $dis = "disabled";
-          $val = "value=\"" . $reg[2] . "\"";
+          $val = " value=\"" . $reg[1] . "\"";
         }
         ?>
-        <input class="inp_class" type="text" name="enf_registro" size="28" <?=$dis . $val;?>><br>
+        <input class="inp_class" type="text" name="enf_registro" size="20" <?=$dis . $val;?>><br>
       </div>
       <input class="inp_class submmit" type="submit" value="Confirmar">
     </form>
