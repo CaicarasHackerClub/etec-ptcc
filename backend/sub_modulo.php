@@ -39,6 +39,7 @@
       <img src="../img/icons/opcoes.png" id="btn_slide-down" onclick="mostrarConfig()" class="button">
       </header>
       <div class="config cabecalho-group" id="config">
+      <a href="javascript:window.history.go(-1)" class="anchor"><img src="../img/icons/voltar.png" class="image" alt="..."></a>
       <a href="#" class="anchor "><img src="../img/icons/imprimir.png" class="image" alt="..."></a>
       <a href="#" class="anchor "><img src="../img/icons/editar.png" class="image" alt="..."></a>
       <a href="#" class="anchor "><img src="../img/icons/salvar.png" class="image" alt="..."></a>
