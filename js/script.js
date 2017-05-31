@@ -185,6 +185,20 @@
         "display":"inline-block",
       });
     });
+
+    $("#inp-voltar").click(function () {
+      $(".visible-group").css({
+        "visibility":"visible",
+        "position":"absolute",
+        "display":"inline-block"
+      });
+
+      $(".hidden-group").css({
+        "visibility":"hidden",
+        "position":"absolute",
+        "display":"none",
+      });
+    });
   });
   function enviar(val) {
     var img;
