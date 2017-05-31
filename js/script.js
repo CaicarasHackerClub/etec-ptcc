@@ -1,7 +1,22 @@
 
   function recebe() {
-    var img = JSON.parse(sessionStorage.getItem('img'));
-    $("#lbl_triagem").html(JSON.parse(sessionStorage.getItem('nome-modulo')));
+    var img  = JSON.parse(sessionStorage.getItem('img'));
+    var nome = JSON.parse(sessionStorage.getItem('nome-modulo'));
+
+    alert(nome);
+    if (nome == "Administração" || nome == "Recepção") {
+      $("#triagem").remove();
+      $("#fila").remove();
+    }else if(nome == "Triagem") {
+      $("#cadastro").remove();
+      $("#fila").remove();
+    }
+    //  else {
+    //   $("#triagem").remove();
+    //   $("#cadastro").remove();
+    // }
+
+    $("#lbl_triagem").html(nome);
     $('.tit-image').css( {
       "background": "url("+img+") no-repeat",
       "background-size": "140px",
