@@ -15,13 +15,13 @@
     <nav class="lateral" id="lateral">
     <img class="logo sub-logo" src="../img/logos/index.png">
     <main class="main main-lateral">
-      <a href="#" Class="anchor" id="modulo_1" onclick="mostrar()" >+ Módulo</a>
+      <!-- <a href="#" Class="anchor" id="modulo_1" onclick="mostrar()" >+ Módulo</a>
       <ul class="submodulo" id="submodulo_1">
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
       <li class="lista" ><a href="#" Class="anchor ">Sub Módulo</a></li>
-      </ul>
+      </ul> -->
       <a href="#" Class="anchor" id="triagem" onclick="mostrarAbas('Triagem', '../backend/triagem.php', 1)" ><img src="../img/icons/triagem.png" class="icon-modulo"  alt=""> <p>Triagem</p></a>
       <a href="#" Class="anchor" id="cadastro" onclick="mostrarAbas('Cadastro', '../index.php?acao=cadastro', 2)" ><img src="../img/icons/cadastro.png" class="icon-modulo" alt=""><p>Cadastro</p></a>
       <a href="#" Class="anchor" id="fila" onclick="mostrarAbas('Fila', '../backend/fila.php', 4)" ><img src="../img/icons/portaria.png" class="icon-modulo" alt=""><p>Portaria</p></a>
