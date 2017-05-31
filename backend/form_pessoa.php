@@ -313,6 +313,7 @@ $endereco = $sql->fetch($selEnd);
         echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
       }
       ?>
+      <input class="submit" id="inp-voltar" type="button" value="Anterior"><br>
       <input class="inp_class submit cadastro-submit" type="submit" value="Proximo"><br>
   </fieldset>
   </form>
