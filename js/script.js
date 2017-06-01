@@ -9,6 +9,9 @@
     }else if(nome == "Triagem") {
       $("#cadastro").remove();
       $("#fila").remove();
+    }else if (nome == "Portaria") {
+      $("#cadastro").remove();
+      $("#triagem").remove();
     }
 
     $("#lbl_triagem").html(nome);
