@@ -118,6 +118,24 @@ session_start()
           ?>">
           <p class="txt_avatar" id="name-portaria">Portaria</p>
         </a>
+
+        <?php
+          if ($_SESSION['tipo'] == "medico") {
+            $link5 = "../backend/sub_modulo.php";
+
+          } else {
+            $link5 = "";
+
+          }
+        ?>
+        <a class="anchor" href="<?=$link5?>" onclick="enviar(5)">
+          <img class="avatars" id="img-medico" src="<?php
+            echo ($_SESSION['tipo'] == "medico" ? "../img/avatars/consultorio.png":"../img/avatars/consultoriopb.png");
+          ?>">
+          <p class="txt_avatar" id="name-consultorio">Consultorio</p>
+        </a>
+
+
       </div>
 
     </div>
