@@ -2,7 +2,7 @@
 include_once("Sql.class.php");
 $sql = new Sql;
 ?>
-<div id="auto-endereco" class="auto-endereco">
+
   <div id="route" class="group-form group-form-cadastro">
     <label class="lbl_class">Rua:</label>
     <?php
@@ -95,5 +95,10 @@ $sql = new Sql;
       }
     ?>
     <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
-  </div>
+    <?php
+      if ($_SESSION['form'] == 2) {
+        echo "<input class=\"inp_class submit cadastro-submit\" type=\"submit\" value=\"Confirmar\"><br>";
+      }
+    ?>
+
      <!-- Seção Auto Endereço FIM -->

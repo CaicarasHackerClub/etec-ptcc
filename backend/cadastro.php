@@ -266,7 +266,7 @@
             include 'form_complementar.php';
             /////////////////////////fim//////////////////////////////////////
 
-          } elseif ($_SESSION['fun_cargo'] == "recepcao"){
+          } elseif ($_SESSION['fun_cargo'] == "recepcao") {
             /////////////////confirmação final///////////////////////////////
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
@@ -349,7 +349,6 @@
           include 'form_funcionario.php';
 
         } elseif ($_SESSION['fun_cargo'] == "funcionario") {
-
           $_SESSION['form'] = 2;
           include 'form_funcionario.php';
 
@@ -366,7 +365,6 @@
             include 'form_funcionario.php';
 
           } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-
             $_SESSION['form'] == 2;
             include 'form_funcionario.php';
             ////////////fim conf. final funcionario //////////////
@@ -380,12 +378,10 @@
         if ($_SESSION['tipo'] == "administracao") {
           // Se houver alterações no formulário "funcionario" será feito aqui.
           if ($_SESSION['fun_cargo'] == "medico") {
-
             $_SESSION['form'] = 2;
             include 'form_complementar.php';
 
           } else {
-
             $_SESSION['form'] = 2;
             include 'form_complementar.php';
           }

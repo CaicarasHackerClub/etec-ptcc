@@ -3,7 +3,6 @@ include_once("Sql.class.php");
 $sql = new Sql;
 
 if ($_SESSION['fun_cargo'] == "medico") {
-
   if ($_SESSION['form'] == 1) {
       $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {

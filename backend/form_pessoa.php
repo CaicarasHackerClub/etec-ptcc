@@ -203,23 +203,25 @@ $endereco = $sql->fetch($selEnd);
   </fieldset>
 
   <fieldset class="grupo-info hidden-group">
+      <legend class="legenda">Dados de Contato</legend>
     <?php
       if ($_SESSION['form'] == 1) {
-    ?>
-      <legend class="legenda">Dados de Contato</legend>
-      <div class="error" id="error-onload"></div>
-        <div class="extend group-form group-form-cadastro" id="autocompletar">
-          <label class="lbl_class">Endereço:</label>
-          <input id="autocompletar-in" class="inp_class" type="text" name="" size="28" value=""
-          placeholder="Procurar endereço ou enter para completado manual" autofocus>
-        <!-- <button class="submit" type="button" name="auto" id="btn-auto">Manual</button> -->
-        </div>
-    <?php
-      $_SESSION['form'] = 1;
-      include 'form_endereco.php';
-      echo "</div>";
-
+      ?>
+        <div class="error" id="error-onload"></div>
+          <div class="extend group-form group-form-cadastro" id="autocompletar">
+            <label class="lbl_class">Endereço:</label>
+            <input id="autocompletar-in" class="inp_class" type="text" name="" size="28" value=""
+            placeholder="Procurar endereço ou enter para completado manual" autofocus>
+          <!-- <button class="submit" type="button" name="auto" id="btn-auto">Manual</button> -->
+          </div>
+        <?php
+        //$_SESSION['form'] = 2;
+        echo "</div>";
+        echo "<div id=\"auto-endereco\" class=\"auto-endereco\">";
+        include 'form_endereco.php';
+        echo "</div>";
       } else {
+        echo "oi";
         $_SESSION['form'] = 2;
         include 'form_endereco.php';
       }
