@@ -221,7 +221,7 @@ $endereco = $sql->fetch($selEnd);
         include 'form_endereco.php';
         echo "</div>";
       } else {
-        echo "oi";
+
         $_SESSION['form'] = 2;
         include 'form_endereco.php';
       }

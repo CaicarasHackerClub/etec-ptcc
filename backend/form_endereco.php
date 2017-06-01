@@ -97,7 +97,7 @@ $sql = new Sql;
     <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
     <?php
       if ($_SESSION['form'] == 2) {
-        echo "<input class=\"inp_class submit cadastro-submit\" type=\"submit\" value=\"Confirmar\"><br>";
+        echo "<input type=\"submit\" value=\"Confirmar\"><br>";
       }
     ?>
 

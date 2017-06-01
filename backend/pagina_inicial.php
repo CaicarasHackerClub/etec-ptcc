@@ -34,7 +34,7 @@ session_start()
       <div class="conteudoCentro">
         <!-- <form class="form" action="sub_modulo.php" method="post"> -->
         <?php
-          echo $_SESSION['id_usu'];
+
           include_once("Sql.class.php");
           $sql = new Sql;
 
