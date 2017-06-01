@@ -203,7 +203,6 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     }
 
     ?>
-
     <form class="form form-classi" action="triagem.php" method="post">
     <h1 class="titulo"> Classificação: </h1>
     <input type="radio" id="vermelho" class="inp_class" name="class" value="5" required

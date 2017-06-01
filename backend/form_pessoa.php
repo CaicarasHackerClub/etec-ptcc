@@ -13,7 +13,12 @@ $sql = new Sql;
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-  $tipo = "cadastro.php?acao=cadastro&passo=5";
+  if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+    $tipo = "cadastro.php?acao=cadastro&passo=5";
+  } else {
+    $tipo = "cadastro.php?acao=cadastro&passo=4";
+  }
+
 } else {
   $tipo = "cadastro.php?acao=cadastro&passo=1";
 }
@@ -198,114 +203,37 @@ $endereco = $sql->fetch($selEnd);
   </fieldset>
 
   <fieldset class="grupo-info hidden-group">
-    <legend class="legenda">Dados de Contato</legend>
-
-    <div class="extend group-form group-form-cadastro">
-      <label class="lbl_class">Endereço:</label>
-      <input id="autocomplete" class="inp_class" type="text" name="" size="28" value=""
-      placeholder="Procurar endereço">
-      <button class="submit" type="button" name="auto" id="btn-auto">Completar</button>
-    </div>
-    <!-- Seção Auto Endereço -->
-    <div id="auto-endereco" class="auto-endereco">
-      <div id="route" class="group-form group-form-cadastro">
-      <label class="lbl_class">Rua:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[1] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_rua" size="28"  <?=$dis . $val; ?>><br>
-    </div>
-    <div id="street_number" class="group-form group-form-cadastro">
-      <label class="lbl_class">Numero:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[2] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_numero" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div id="sublocality_level_1" class="group-form group-form-cadastro">
-      <label class="lbl_class">Bairro:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[3] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_bairro" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div id="administrative_area_level_2" class="group-form group-form-cadastro">
-      <label class="lbl_class">Cidade:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[4] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div id="administrative_area_level_1" class="group-form group-form-cadastro">
-      <label class="lbl_class">Estado:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[5] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val; ?>><br>
-    </div>
-
-    <div id="postal_code" class="group-form group-form-cadastro">
-      <label class="lbl_class">Cep:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[6] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_cep" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div id="country" class="group-form group-form-cadastro">
-      <label class="lbl_class">País:</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $endereco[7] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    </div> <!-- Seção Auto Endereço FIM -->
+      <legend class="legenda">Dados de Contato</legend>
     <?php
+      if ($_SESSION['form'] == 1) {
+      ?>
+        <div class="error" id="error-onload"></div>
+          <div class="extend group-form group-form-cadastro" id="autocompletar">
+            <label class="lbl_class">Endereço:</label>
+            <input id="autocompletar-in" class="inp_class" type="text" name="" size="28" value=""
+            placeholder="Procurar endereço ou enter para completado manual" autofocus>
+          <!-- <button class="submit" type="button" name="auto" id="btn-auto">Manual</button> -->
+          </div>
+        <?php
+        //$_SESSION['form'] = 2;
+        echo "</div>";
+        echo "<div id=\"auto-endereco\" class=\"auto-endereco\">";
+        include 'form_endereco.php';
+        echo "</div>";
+      } else {
+
+        $_SESSION['form'] = 2;
+        include 'form_endereco.php';
+      }
+    ?>
+    <!-- Seção Auto Endereço -->
+
+      <?php
       if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
         echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
       }
       ?>
-      <input class="inp_class submit" type="submit" value="Proximo"><br>
+      <input class="submit" id="inp-voltar" type="button" value="Anterior"><br>
+      <input class="inp_class submit cadastro-submit" type="submit" value="Proximo"><br>
   </fieldset>
   </form>

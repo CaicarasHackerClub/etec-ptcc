@@ -1,7 +1,27 @@
 
   function recebe() {
-    var img = JSON.parse(sessionStorage.getItem('img'));
-    $("#lbl_triagem").html(JSON.parse(sessionStorage.getItem('nome-modulo')));
+    var img  = JSON.parse(sessionStorage.getItem('img'));
+    var nome = JSON.parse(sessionStorage.getItem('nome-modulo'));
+
+    if (nome == "Administração" || nome == "Recepção") {
+      $("#triagem").remove();
+      $("#consulta").remove();
+      $("#fila").remove();
+    }else if(nome == "Triagem") {
+      $("#consulta").remove();
+      $("#cadastro").remove();
+      $("#fila").remove();
+    }else if (nome == "Portaria") {
+      $("#cadastro").remove();
+      $("#consulta").remove();
+      $("#triagem").remove();
+    }else {
+      $("#fila").remove();
+      $("#cadastro").remove();
+      $("#triagem").remove();
+    }
+
+    $("#lbl_triagem").html(nome);
     $('.tit-image').css( {
       "background": "url("+img+") no-repeat",
       "background-size": "140px",
@@ -175,6 +195,20 @@
         "display":"inline-block",
       });
     });
+
+    $("#inp-voltar").click(function () {
+      $(".visible-group").css({
+        "visibility":"visible",
+        "position":"absolute",
+        "display":"inline-block"
+      });
+
+      $(".hidden-group").css({
+        "visibility":"hidden",
+        "position":"absolute",
+        "display":"none",
+      });
+    });
   });
   function enviar(val) {
     var img;
@@ -192,9 +226,13 @@
           img = $("#img-admin").attr('src');
           name = $("#name-admin").html();
           break;
-      default:
+      case 4:
           img = $("#img-portaria").attr('src');
           name = $("#name-portaria").html();
+          break;
+      default:
+      img = $("#img-medico").attr('src');
+      name = $("#name-consultorio").html();
     }
 
     var image = JSON.stringify(img);
