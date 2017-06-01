@@ -1,7 +1,7 @@
 <?php
 
 class Triagem {
-  private $pacId;
+  private $atId;
   private $peso;
   private $altura;
   private $batimento;
@@ -17,12 +17,12 @@ class Triagem {
   private $hora;
   private $status;
 
-  public function setPacId($pacId) {
-    $this->pacId = $pacId;
+  public function setAtId($atId) {
+    $this->atId = $atId;
   }
 
-  public function getPacId() {
-    return $this->pacId;
+  public function getAtId() {
+    return $this->atId;
   }
 
   public function setPeso($peso) {

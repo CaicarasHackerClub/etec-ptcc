@@ -55,47 +55,50 @@ class Fila extends Sql {
     return $this->pacMax;
   }
 
-  public function setPac($id, $espera, $cor) {
-    $this->id = $id;
-
-    $pes = parent::selecionar("SELECT id_paciente FROM triagem WHERE tri_id = " . $this->id . ";");
-    $pesId = parent::selecionar("SELECT pessoa_pes_id FROM paciente WHERE pac_id = " . $pes . ";");
-    $this->nome = parent::selecionar("SELECT pes_nome FROM pessoa WHERE pes_id = " . $pesId . ";");
-
-    $this->espera = $espera;
-
+  public function getCor($cor) {
     switch ($cor) {
       case 1:
-        $this->cor = 'Azul';
-        $this->numCor = 1;
-        $this->tempoMax = '240';
+        $cor = 'Azul';
+        $tempoMax = '240';
         break;
       case 2:
-        $this->cor = 'Verde';
-        $this->numCor = 2;
-        $this->tempoMax = '120';
+        $cor = 'Verde';
+        $tempoMax = '120';
         break;
       case 3:
-        $this->cor = 'Amarelo';
-        $this->numCor = 3;
-        $this->tempoMax = '60';
+        $cor = 'Amarelo';
+        $tempoMax = '60';
         break;
       case 4:
-        $this->cor = 'Laranja';
-        $this->numCor = 4;
-        $this->tempoMax = '10';
+        $cor = 'Laranja';
+        $tempoMax = '10';
         break;
       case 5:
-        $this->cor = 'Vermelho';
-        $this->numCor = 5;
-        $this->tempoMax = '00';
+        $cor = 'Vermelho';
+        $tempoMax = '00';
         break;
     }
+
+    return array($cor, $tempoMax);
   }
 
-  public function getPac() {
-    $pac = [$this->id, $this->nome, $this->cor, $this->espera, $this->tempoMax];
-    return $pac;
+  public function setPac($id, $espera, $cor) {
+    $this->id = $id;
+    $this->numCor = $cor;
+
+    $class = $this->getCor($cor);
+    $this->cor = $class[0];
+    $this->tempoMax = $class[1];
+
+    $pac = "SELECT pessoa.pes_nome FROM pessoa
+      INNER JOIN paciente ON paciente.pessoa_pes_id = pessoa.pes_id
+      INNER JOIN atendimento ON atendimento.ate_pac_id = paciente.pac_id
+      INNER JOIN triagem ON triagem.tri_ate_id = atendimento.ate_id
+      WHERE triagem.tri_id = " . $id;
+
+    $this->nome = parent::selecionar($pac);
+
+    $this->espera = $espera;
   }
 
   public function getEspera() {

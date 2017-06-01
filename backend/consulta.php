@@ -3,6 +3,7 @@
   include_once 'Consulta.class.php';
 
   $cons = new Consulta();
+  $fila = new Fila();
   $sql = new Sql();
 
   date_default_timezone_set('America/Sao_Paulo');
@@ -19,33 +20,36 @@
 
     $org = $pac['tri_orgaos_vitais'] == 1 ? "Sim" : "Não";
 
-    $class = "";
+    // $class = "";
 
-    switch ($pac['tri_classe_risco']) {
-      case 1:
-        $class = 'Azul';
-        break;
-      case 2:
-        $class = 'Verde';
-        break;
-      case 3:
-        $class = 'Amarelo';
-        break;
-      case 4:
-        $class = 'Laranja';
-        break;
-      case 5:
-        $class = 'Vermelho';
-        break;
-    }
+    // switch ($pac['tri_classe_risco']) {
+    //   case 1:
+    //     $class = 'Azul';
+    //     break;
+    //   case 2:
+    //     $class = 'Verde';
+    //     break;
+    //   case 3:
+    //     $class = 'Amarelo';
+    //     break;
+    //   case 4:
+    //     $class = 'Laranja';
+    //     break;
+    //   case 5:
+    //     $class = 'Vermelho';
+    //     break;
+    // }
 
-    $query2 =
-    "SELECT pessoa.pes_nome, pessoa.pes_data
-      FROM ((triagem
-      INNER JOIN paciente ON paciente.pac_id = " . $pac['id_paciente'] . ")
-      INNER JOIN pessoa ON pessoa.pes_id = paciente.pessoa_pes_id)";
+    $dados = $fila->getCor($pac['tri_classe_risco']);
+    $class = $dados[0];
 
-    $fetch = $sql->fetch($query2);
+    $queryPac = "SELECT pessoa.pes_nome, pessoa.pes_data FROM pessoa
+      INNER JOIN paciente ON paciente.pessoa_pes_id = pessoa.pes_id
+      INNER JOIN atendimento ON atendimento.ate_pac_id = paciente.pac_id
+      INNER JOIN triagem ON triagem.tri_ate_id = atendimento.ate_id
+      WHERE triagem.tri_id = " . $_POST['triId'];
+
+    $fetch = $sql->fetch($queryPac);
     $nome = $fetch['pes_nome'];
     $idade = date('Y') - $fetch['pes_data'];
 
@@ -167,7 +171,13 @@
     $sql->inserir($st);
     echo $mensagem;
   } else {
-    $query = "SELECT * FROM triagem WHERE tri_status = 3";
+    // $query = "SELECT * FROM triagem WHERE tri_status = 3";
+    $query = "SELECT * FROM pessoa
+      INNER JOIN paciente ON paciente.pessoa_pes_id = pessoa.pes_id
+      INNER JOIN atendimento ON atendimento.ate_pac_id = paciente.pac_id
+      INNER JOIN triagem ON triagem.tri_ate_id = atendimento.ate_id
+      WHERE triagem.tri_status = 3";
+
     $res = $sql->inserir($query);
 
     ?>
@@ -179,6 +189,7 @@
         <th> Classificação </th>
         <th> Tempo de espera </th>
       </thead>
+      <tbody>
 
     <?php
 
@@ -190,18 +201,17 @@
     } else {
       while ($pac = mysqli_fetch_array($res)) {
         $espera = $cons->calc($pac['tri_data'], $pac['tri_hora']);
-        $cons->setPac($pac['tri_id'], $espera, $pac['tri_classe_risco']);
-
-        $pac = $cons->getPac();
+        $dados = $fila->getCor($pac['tri_classe_risco']);
+        $class = $dados[0];
 
         echo
         "<form action='consulta.php' method='post'>
           <tr>
-            <td>" . $pac[0] . "</td>
-            <td>" . $pac[1] . "</td>
-            <td>" . $pac[2] . "</td>
-            <td>" . $pac[3] . "/" . $pac[4]. "</td>
-            <input type='hidden' value='" . $pac[0] . "' name='triId'>
+            <td>" . $pac['tri_id'] . "</td>
+            <td>" . $pac['pes_nome'] . "</td>
+            <td>" . $class . "</td>
+            <td>" . $espera  . " min </td>
+            <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
             <td> <input type='submit' name='consulta' value='Iniciar consulta'> </td>
           </tr>
         </form>";
@@ -211,6 +221,7 @@
 
     ?>
 
+      </tbody>
     </table>
 
     <?php

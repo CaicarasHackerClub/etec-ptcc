@@ -108,7 +108,7 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
 
   $class = isset($_POST['class']) ? $_POST['class'] : "0";
 
-  $tri->setPacId($id);
+  $tri->setAtId($id);
   $tri->setTemp($temp);
   $tri->setPas($pas);
   $tri->setPad($pad);
@@ -130,14 +130,14 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
 
     $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
         tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor,
-        tri_orgaos_vitais, tri_data, tri_hora, tri_status, id_paciente) VALUES("
+        tri_orgaos_vitais, tri_data, tri_hora, tri_status, tri_ate_id) VALUES("
         . $tri->getTemp() . ", '"  . $tri->getPas()     . "x"   . $tri->getPad()       . "', "
         . $tri->getPeso() . ", "   . $tri->getAltura()  . ", "  . $tri->getBatimento() . ", "
         . $tri->getOxi()  . ", "   . $tri->getClass()   . ", "  . $tri->getResp()      . ", "
         . $tri->getDor()  . ", "   . $tri->getOrg()     . ", '" . $tri->getData()      . "', '"
-        . $tri->getHora() . "', '" . $tri->getStatus()  . "', " . $tri->getPacId()     . ");";
+        . $tri->getHora() . "', '" . $tri->getStatus()  . "', " . $tri->getAtId()     . ");";
 
-    $rows = "SELECT tri_id FROM triagem WHERE id_paciente = " . $tri->getPacId() . " AND tri_status <> 5 AND tri_status <> 6 ;";
+    $rows = "SELECT tri_id FROM triagem WHERE tri_ate_id = " . $tri->getAtId() . " AND tri_status <> 5 AND tri_status <> 6 ;";
 
     if ($sql->num($rows) == 0) {
       if ($sql->inserir($query)) {
@@ -149,14 +149,18 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
       echo "O paciente já passou pela triagem";
     }
   } else {
-    $query = "SELECT pessoa.pes_data FROM pessoa INNER JOIN paciente ON pessoa.pes_id = " . $tri->getPacId() . ";";
+    $query = "SELECT pessoa.pes_data FROM triagem
+      INNER JOIN atendimento ON atendimento.ate_id = " . $tri->getAtId() . "
+      INNER JOIN paciente ON paciente.pac_id = atendimento.ate_pac_id
+      INNER JOIN pessoa ON pessoa.pes_id = paciente.pessoa_pes_id";
+
     $data = $sql->selecionar($query);
 
     $dataNasc = explode("-", $data);
     $idade = date('Y') - $dataNasc[0];
 
     // echo
-    // "ID: " . $tri->getPacId() . "<br>
+    // "ID: " . $tri->getAtId() . "<br>
     // Peso: " . $tri->getPeso() . "<br>
     // Altura: " . $tri->getAltura()  ."<br>
     // Batimento cadíaco: " . $tri->getBatimento() . "<br>
@@ -252,7 +256,7 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     <input type="hidden" class="inp_class" name="oxi" value=" <?php echo $tri->getOxi() ?>">
     <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
     <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
-    <input type="hidden" class="inp_class" name="id" value=" <?php echo $tri->getPacId()  ?> ">
+    <input type="hidden" class="inp_class" name="id" value=" <?php echo $tri->getAtId()  ?> ">
     <input type="submit" class="submit" name="classificar" value="Classificar">
     </form>
   <?php
