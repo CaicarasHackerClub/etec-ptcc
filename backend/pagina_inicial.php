@@ -104,7 +104,7 @@ session_start()
         <input type="hidden" name=Nome_pag value="Administracao">
         </form> -->
         <?php
-          if ($_SESSION['tipo'] == "portaria") {
+          if ($_SESSION['tipo'] == "enfermeiro-chefe") {
             $link4 = "../backend/sub_modulo.php";
 
           } else {
@@ -114,7 +114,7 @@ session_start()
         ?>
         <a class="anchor" href="<?=$link4?>" onclick="enviar(4)">
           <img class="avatars" id="img-portaria" src="<?php
-            echo ($_SESSION['tipo'] == "enfermeiro" ? "../img/avatars/portaria.png":"../img/avatars/portariapb.png");
+            echo ($_SESSION['tipo'] == "enfermeiro-chefe" ? "../img/avatars/portaria.png":"../img/avatars/portariapb.png");
           ?>">
           <p class="txt_avatar" id="name-portaria">Portaria</p>
         </a>
