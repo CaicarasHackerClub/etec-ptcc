@@ -5,11 +5,18 @@
 
     if (nome == "Administração" || nome == "Recepção") {
       $("#triagem").remove();
+      $("#consulta").remove();
       $("#fila").remove();
     }else if(nome == "Triagem") {
+      $("#consulta").remove();
       $("#cadastro").remove();
       $("#fila").remove();
     }else if (nome == "Portaria") {
+      $("#cadastro").remove();
+      $("#consulta").remove();
+      $("#triagem").remove();
+    }else {
+      $("#fila").remove();
       $("#cadastro").remove();
       $("#triagem").remove();
     }
@@ -219,9 +226,13 @@
           img = $("#img-admin").attr('src');
           name = $("#name-admin").html();
           break;
-      default:
+      case 4:
           img = $("#img-portaria").attr('src');
           name = $("#name-portaria").html();
+          break;
+      default:
+      img = $("#img-medico").attr('src');
+      name = $("#name-consultorio").html();
     }
 
     var image = JSON.stringify(img);
