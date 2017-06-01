@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 24/05/2017 às 05:00
+-- Tempo de geração: 01/06/2017 às 01:51
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10110,7 +10110,7 @@ INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`
 (2, 'enfermeiro', '08:00:00', '1111112', 'noturno', 2, 5),
 (3, 'administracao', '07:00:00', '1222222', 'noturno', 4, 1),
 (4, 'recepcao', '07:00:00', '13333333', 'noturno', 5, 1),
-(5, 'recpcionista', '07:00:00', '1444444', 'noturno', 6, 4);
+(5, 'enfermeiro-chefe', '07:00:00', '1444444', 'noturno', 6, 4);
 
 -- --------------------------------------------------------
 
@@ -10755,7 +10755,7 @@ ALTER TABLE `encaminhamento`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de tabela `enfermeiro`
 --
@@ -10820,7 +10820,7 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de tabela `plano_de_saude`
 --
