@@ -57,7 +57,9 @@ session_start()
           }
         ?>
         <a class="anchor" id="anchor-triagem" onclick="enviar(1)" href="<?=$link1?>">
-          <img class="avatars" id="img-triagem" src="../img/avatars/triagem.png">
+          <img class="avatars" id="img-triagem" src="<?php
+            echo ($_SESSION['tipo'] == "enfermeiro" ? "../img/avatars/triagem.png":"../img/avatars/triagempb.png");
+          ?>">
           <p class="txt_avatar" id="name-tri">Triagem</p>
         </a>
         <!-- <input type="hidden" name=Valor value="../img/avatars/triagem.png">
@@ -74,7 +76,9 @@ session_start()
         ?>
         <!-- <form class="form" action="sub_modulo.php" method="post"> -->
         <a class="anchor" href="<?=$link2?>" onclick="enviar(2)">
-          <img class="avatars" id="img-recepcao" src="../img/avatars/recepcao.png">
+          <img class="avatars" id="img-recepcao" src="<?php
+            echo ($_SESSION['tipo'] == "recepcao" ? "../img/avatars/recepcao.png":"../img/avatars/recepcaopb.png");
+          ?>">
           <p class="txt_avatar" id="name-recep">Recepção</p>
         </a>
         <!-- <input type="hidden" name=Valor value="../img/avatars/recepcao.png">
@@ -91,7 +95,9 @@ session_start()
         ?>
         <!-- <form class="form" action="sub_modulo.php" method="post"> -->
         <a class="anchor" href= "<?=$link3?>" onclick="enviar(3)">
-          <img class="avatars" id="img-admin" src="../img/avatars/adm.png">
+          <img class="avatars" id="img-admin" src="<?php
+            echo ($_SESSION['tipo'] == "administracao" ? "../img/avatars/adm.png":"../img/avatars/admpb.png");
+          ?>">
           <p class="txt_avatar" id="name-admin">Administração</p>
         </a>
         <!-- <input type="hidden" name=Valor value="../img/avatars/adm.png">
@@ -107,7 +113,9 @@ session_start()
           }
         ?>
         <a class="anchor" href="<?=$link4?>" onclick="enviar(4)">
-          <img class="avatars" id="img-portaria" src="../img/avatars/portaria.png">
+          <img class="avatars" id="img-portaria" src="<?php
+            echo ($_SESSION['tipo'] == "enfermeiro" ? "../img/avatars/portaria.png":"../img/avatars/portariapb.png");
+          ?>">
           <p class="txt_avatar" id="name-portaria">Portaria</p>
         </a>
       </div>
