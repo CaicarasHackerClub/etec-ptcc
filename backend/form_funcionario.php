@@ -125,6 +125,17 @@ $usuario = $sql->fetch($selUsu);
     <input class="inp_class" type="password" name="usu_senha" size="28" <?=$dis . $val; ?>><br>
   </div>
   <?php
+  if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+  ?>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Confirmação de senha:</label>
+      <input class="inp_class" type="password" name="conf_senha" size="28"><br>
+    </div>
+  <?php
+  }
+  ?>
+
+  <?php
     if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
       echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
     }
