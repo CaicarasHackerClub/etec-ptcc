@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 02/06/2017 às 03:27
+-- Tempo de geração: 03/06/2017 às 01:27
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10094,9 +10094,8 @@ INSERT INTO `estado_civil` (`etc_id`, `etc_nome`) VALUES
 CREATE TABLE `funcionario` (
   `fun_id` int(11) NOT NULL,
   `fun_cargo` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'cargo ocupado pelo funcionário',
-  `fun_horario` time NOT NULL COMMENT 'quantas horas trabalha por dia o funcionário',
   `fun_inscricao` varchar(9) COLLATE utf8_bin NOT NULL COMMENT 'número que foi registrado ou carteira do funcionario',
-  `fun_turno` varchar(8) COLLATE utf8_bin NOT NULL COMMENT 'em qual turno trabalha ',
+  `fun_turno` int(11) NOT NULL COMMENT 'em qual turno trabalha ',
   `pessoa_pes_id` int(11) NOT NULL,
   `setor_set_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -10105,12 +10104,12 @@ CREATE TABLE `funcionario` (
 -- Fazendo dump de dados para tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_horario`, `fun_inscricao`, `fun_turno`, `pessoa_pes_id`, `setor_set_id`) VALUES
-(1, 'medico', '08:00:00', '1111111', 'noturno', 1, 3),
-(2, 'enfermeiro', '08:00:00', '1111112', 'noturno', 2, 5),
-(3, 'administracao', '07:00:00', '1222222', 'noturno', 4, 1),
-(4, 'recepcao', '07:00:00', '13333333', 'noturno', 5, 1),
-(5, 'enfermeiro-chefe', '07:00:00', '1444444', 'noturno', 6, 4);
+INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_inscricao`, `fun_turno`, `pessoa_pes_id`, `setor_set_id`) VALUES
+(1, 'medico', '1111111', 1, 1, 3),
+(2, 'enfermeiro', '1111112', 2, 2, 5),
+(3, 'administracao', '1222222', 3, 4, 1),
+(4, 'recepcao', '13333333', 4, 5, 1),
+(5, 'enfermeiro-chefe', '1444444', 5, 6, 4);
 
 -- --------------------------------------------------------
 
@@ -10512,6 +10511,28 @@ INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `turno`
+--
+
+CREATE TABLE `turno` (
+  `tur_id` int(11) NOT NULL,
+  `tur_nome` varchar(12) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `turno`
+--
+
+INSERT INTO `turno` (`tur_id`, `tur_nome`) VALUES
+(1, 'Manhã'),
+(2, 'Tarde'),
+(3, 'Noite'),
+(4, 'Plantão 12H'),
+(5, 'Plantão 24H');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuario`
 --
 
@@ -10636,7 +10657,8 @@ ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`fun_id`),
   ADD UNIQUE KEY `fun_inscricao` (`fun_inscricao`),
   ADD KEY `fk_funcionario_pessoa1_idx` (`pessoa_pes_id`),
-  ADD KEY `setor_set_id` (`setor_set_id`);
+  ADD KEY `setor_set_id` (`setor_set_id`),
+  ADD KEY `fun_turno` (`fun_turno`);
 
 --
 -- Índices de tabela `genero`
@@ -10763,6 +10785,12 @@ ALTER TABLE `triagem`
   ADD KEY `tri_classe_risco` (`tri_classe_risco`),
   ADD KEY `tri_status` (`tri_status`),
   ADD KEY `tri_ate_id` (`tri_ate_id`);
+
+--
+-- Índices de tabela `turno`
+--
+ALTER TABLE `turno`
+  ADD PRIMARY KEY (`tur_id`);
 
 --
 -- Índices de tabela `usuario`
@@ -10922,6 +10950,11 @@ ALTER TABLE `tipo_sanguineo`
 ALTER TABLE `triagem`
   MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT de tabela `turno`
+--
+ALTER TABLE `turno`
+  MODIFY `tur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -10976,7 +11009,8 @@ ALTER TABLE `enfermeiro`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `fk_funcionario_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`setor_set_id`) REFERENCES `setor` (`set_id`);
+  ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`setor_set_id`) REFERENCES `setor` (`set_id`),
+  ADD CONSTRAINT `funcionario_ibfk_2` FOREIGN KEY (`fun_turno`) REFERENCES `turno` (`tur_id`);
 
 --
 -- Restrições para tabelas `geo_camada_end`
