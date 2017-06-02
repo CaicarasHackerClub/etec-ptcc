@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 01/06/2017 às 01:51
+-- Tempo de geração: 02/06/2017 às 03:27
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10159,6 +10159,52 @@ CREATE TABLE `geo_camada_end` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `locais`
+--
+
+CREATE TABLE `locais` (
+  `loc_id` int(11) NOT NULL,
+  `loc_local` varchar(30) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `locais`
+--
+
+INSERT INTO `locais` (`loc_id`, `loc_local`) VALUES
+(1, 'Atendimento'),
+(2, 'Triagem'),
+(3, 'Fila'),
+(4, 'Consulta'),
+(5, 'Proto Socorro'),
+(6, 'Farmácia'),
+(7, 'Radiologia'),
+(8, 'Pediatria'),
+(9, 'Ortopedia'),
+(10, 'Clinico Geral'),
+(11, 'Fisioterapia'),
+(12, 'Exames Laboratoriais'),
+(13, 'Cardiologia'),
+(14, 'Dermatologia'),
+(15, 'Ginecologia'),
+(16, 'Oftalmologia'),
+(17, 'Urologia');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `localizacao_paciente`
+--
+
+CREATE TABLE `localizacao_paciente` (
+  `lop_id` int(11) NOT NULL,
+  `lop_pac_id` int(11) NOT NULL,
+  `lop_loc_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `login_acesso`
 --
 
@@ -10613,6 +10659,20 @@ ALTER TABLE `geo_camada_end`
   ADD KEY `gce_cam_id` (`gce_cam_id`);
 
 --
+-- Índices de tabela `locais`
+--
+ALTER TABLE `locais`
+  ADD PRIMARY KEY (`loc_id`);
+
+--
+-- Índices de tabela `localizacao_paciente`
+--
+ALTER TABLE `localizacao_paciente`
+  ADD PRIMARY KEY (`lop_id`),
+  ADD KEY `lop_pac_id` (`lop_pac_id`),
+  ADD KEY `lop_loc_id` (`lop_loc_id`);
+
+--
 -- Índices de tabela `login_acesso`
 --
 ALTER TABLE `login_acesso`
@@ -10802,6 +10862,16 @@ ALTER TABLE `geo_camada`
 ALTER TABLE `geo_camada_end`
   MODIFY `gce_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de tabela `locais`
+--
+ALTER TABLE `locais`
+  MODIFY `loc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT de tabela `localizacao_paciente`
+--
+ALTER TABLE `localizacao_paciente`
+  MODIFY `lop_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de tabela `login_acesso`
 --
 ALTER TABLE `login_acesso`
@@ -10914,6 +10984,13 @@ ALTER TABLE `funcionario`
 ALTER TABLE `geo_camada_end`
   ADD CONSTRAINT `geo_camada_end_ibfk_1` FOREIGN KEY (`gce_end_id`) REFERENCES `endereco` (`end_id`),
   ADD CONSTRAINT `geo_camada_end_ibfk_2` FOREIGN KEY (`gce_cam_id`) REFERENCES `geo_camada` (`gec_id`);
+
+--
+-- Restrições para tabelas `localizacao_paciente`
+--
+ALTER TABLE `localizacao_paciente`
+  ADD CONSTRAINT `localizacao_paciente_ibfk_1` FOREIGN KEY (`lop_pac_id`) REFERENCES `paciente` (`pac_id`),
+  ADD CONSTRAINT `localizacao_paciente_ibfk_2` FOREIGN KEY (`lop_loc_id`) REFERENCES `locais` (`loc_id`);
 
 --
 -- Restrições para tabelas `login_acesso`
