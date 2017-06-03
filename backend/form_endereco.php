@@ -11,7 +11,7 @@ $sql = new Sql;
          $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $endereco[1] . "\"";
+        $val = " value=\"" . $endereco[6] . "\"";
       }
       ?>
     <input class="inp_class" type="text" name="end_rua" size="28"  <?=$dis . $val; ?>><br>
@@ -25,7 +25,7 @@ $sql = new Sql;
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $endereco[2] . "\"";
+        $val = " value=\"" . $endereco[7] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="end_numero" size="28" <?=$dis . $val; ?>><br>
@@ -38,7 +38,7 @@ $sql = new Sql;
           $val = "";
         } else {
           $dis = " disabled";
-          $val = " value=\"" . $endereco[3] . "\"";
+          $val = " value=\"" . $endereco[5] . "\"";
         }
       ?>
       <input class="inp_class" type="text" name="end_bairro" size="28" <?=$dis . $val; ?>><br>
@@ -49,12 +49,16 @@ $sql = new Sql;
       if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
+        ?>
+         <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val; ?>><br>
+        <?php
       } else {
-        $dis = " disabled";
-        $val = " value=\"" . $endereco[4] . "\"";
+        $sel1 = "SELECT * FROM cidade WHERE cid_id ='" . $endereco[3]  . "';";
+        $cid = $sql->fetch($sel1);
+        echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\"
+            disabled value = " . $cid[1] . "><br>";
       }
     ?>
-    <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div id="administrative_area_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Estado:</label>
@@ -62,12 +66,16 @@ $sql = new Sql;
       if ($_SESSION['form'] == 1) {
         $dis = "";
         $val = "";
+        ?>
+         <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val; ?>><br>
+        <?php
       } else {
-        $dis = " disabled";
-        $val = " value=\"" . $endereco[5] . "\"";
+        $sel1 = "SELECT * FROM estado WHERE est_id ='" . $endereco[2]  . "';";
+        $est = $sql->fetch($sel1);
+        echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\"
+            disabled value = " . $est[1] . "><br>";
       }
     ?>
-    <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val; ?>><br>
   </div>
 
   <div id="postal_code" class="group-form group-form-cadastro">
@@ -78,7 +86,7 @@ $sql = new Sql;
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $endereco[6] . "\"";
+        $val = " value=\"" . $endereco[4] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="end_cep" size="28" <?=$dis . $val; ?>><br>
@@ -91,7 +99,7 @@ $sql = new Sql;
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $endereco[7] . "\"";
+        $val = " value=\"" . $endereco[1] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
