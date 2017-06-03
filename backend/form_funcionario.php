@@ -58,19 +58,6 @@ $usuario = $sql->fetch($selUsu);
     ?>
   </div>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Horario:</label>
-    <?php
-      if ($_SESSION['form'] == 1) {
-        $dis = "";
-        $val = "";
-      } else {
-        $dis = " disabled";
-        $val = " value=\"" . $funcionario[2] . "\"";
-      }
-      ?>
-    <input class="inp_class" type="time" name="fun_horario" size="28" <?=$dis . $val; ?>><br>
-  </div>
-  <div class="group-form group-form-cadastro">
     <label class="lbl_class">Inscrição:</label>
     <?php
       if ($_SESSION['form'] == 1) {
@@ -87,14 +74,12 @@ $usuario = $sql->fetch($selUsu);
     <label class="lbl_class">Turno:</label>
     <?php
       if ($_SESSION['form'] == 1) {
-      echo "<select class=\"inp_class\" name=\"fun_turno\">";
-      echo "<option class=\"option\" value=\"manha\">Manhã</option>";
-      echo "<option class=\"option\" value=\"tarde\">Tarde</option>";
-      echo "<option class=\"option\" value=\"noite\">Noite</option>";
-      echo "</select><br>";
+        $sql->selectbox("turno");
       } else {
+        $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[4]  . "';";
+        $tur = $sql->fetch($sel);
         echo "<input class=\"inp_class\" type=\"text\" name=\"fun_turno\" size=\"28\"
-            disabled value = " . $funcionario[4] . "><br>";
+            disabled value = " . $tur[1] . "><br>";
       }
     ?>
   </div>
