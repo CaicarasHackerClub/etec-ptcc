@@ -50,7 +50,7 @@ $usuario = $sql->fetch($selUsu);
     if ($_SESSION['form'] == 1) {
       $sql->selectbox("setor");
     } else {
-      $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[6]  . "';";
+      $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[5]  . "';";
       $set = $sql->fetch($sel);
       echo "<input class=\"inp_class\" type=\"text\" name=\"set_setor\" size=\"28\"
             disabled value = " . $set[1] . "><br>";
@@ -65,7 +65,7 @@ $usuario = $sql->fetch($selUsu);
         $val = "";
       } else {
         $dis = " disabled";
-        $val = " value=\"" . $funcionario[3] . "\"";
+        $val = " value=\"" . $funcionario[2] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="fun_inscricao" size="28" <?=$dis . $val; ?>><br>
@@ -76,8 +76,8 @@ $usuario = $sql->fetch($selUsu);
       if ($_SESSION['form'] == 1) {
         $sql->selectbox("turno");
       } else {
-        $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[4]  . "';";
-        $tur = $sql->fetch($sel);
+        $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[3]  . "';";
+        $tur = $sql->fetch($sel1);
         echo "<input class=\"inp_class\" type=\"text\" name=\"fun_turno\" size=\"28\"
             disabled value = " . $tur[1] . "><br>";
       }
