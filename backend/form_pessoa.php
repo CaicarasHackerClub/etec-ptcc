@@ -7,7 +7,7 @@
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="../js/script.js" ></script>
 <?php
-include_once("Sql.class.php");
+include_once "Sql.class.php";
 $sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
@@ -221,7 +221,6 @@ $endereco = $sql->fetch($selEnd);
         include 'form_endereco.php';
         echo "</div>";
       } else {
-
         $_SESSION['form'] = 2;
         include 'form_endereco.php';
       }

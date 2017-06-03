@@ -9,7 +9,7 @@ session_start();
   </head>
   <body>
     <?php
-    include_once("backend/Sql.class.php");
+    include_once "backend/Sql.class.php";
     $sql=new Sql;
 
     if (!isset($_SESSION['id_usu'])) {

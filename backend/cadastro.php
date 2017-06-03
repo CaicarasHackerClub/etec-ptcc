@@ -8,8 +8,8 @@
   <body>
     <?php
     include_once "funcoes.php";
-    include_once("Posto.class.php");
-    include_once("Sql.class.php");
+    include_once "Posto.class.php";
+    include_once "Sql.class.php";
 
     $metodo = new Metodo;
     $sql = new Sql;

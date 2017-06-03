@@ -1,5 +1,5 @@
 <?php
-include_once("Sql.class.php");
+include_once "Sql.class.php";
 $sql = new Sql;
 ?>
 

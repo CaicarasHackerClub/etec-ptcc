@@ -35,7 +35,7 @@ session_start()
         <!-- <form class="form" action="sub_modulo.php" method="post"> -->
         <?php
 
-          include_once("Sql.class.php");
+          include_once "Sql.class.php";
           $sql = new Sql;
 
           $con=$sql->conecta();
