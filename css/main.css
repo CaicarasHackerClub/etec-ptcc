@@ -382,6 +382,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   /*overflow:scroll;*/
 }
 
+.form-cadastro .select {
+  width: 20%;
+}
+
 .form-cadastro {
   margin-left: 0;
   /*overflow: hidden;*/
@@ -400,6 +404,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   background-color: #01b26a;
   text-align: right;
   border-radius: 3px 0 0 3px;
+  padding-right: 10px;
 }
 
 .form .lbl_class {
@@ -476,12 +481,12 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 65%;
 }
 
-.form-cadastro .extend {
-  width: 90%;
+.form-cadastro .grupo-info .extend {
+  width: 60%;
 }
 
-.form-cadastro .extend .inp_class{
-  width: 60%;
+.form-cadastro .visible-group .extend {
+  width: 85%;
 }
 
 .form-cadastro .grupo-info {
@@ -513,15 +518,20 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 5.5%;
 }
 
-.extend .submit {
+.form-cadastro .grupo-info .extend .submit {
   height: 30px;
 }
 
-.extend .lbl_class {
+.form-cadastro .grupo-info .extend .inp_class  {
+  width: 75%;
+}
+
+.form-cadastro .grupo-info .extend .lbl_class {
+  width: 20%;
   line-height: 50px;
 }
 
-.extend button[name='auto'] {
+.form-cadastro .grupo-info .extend button[name='auto'] {
   background-color: #f56529;
 }
 
