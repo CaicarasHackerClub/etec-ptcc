@@ -199,7 +199,7 @@
         } else {
           $metodo->setFun_cargo($_POST ['fun_cargo']);
           $metodo->setFun_inscricao($_POST ['fun_inscricao']);
-          $metodo->setFun_turno($_POST ['fun_turno']);
+          $metodo->setFun_turno($_POST ['turno']);
 
           $metodo->setUsu_email($_POST['usu_email']);
           $metodo->setUsu_senha($_POST['usu_senha']);
@@ -215,69 +215,73 @@
           }
           else {
             */
-          $sel_id="SELECT MAX(usu_id) AS usu_id FROM usuario";
-          $usu_id=$sql->selecionar($sel_id);
-          $usu_id++;
+          if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
+            echo "Senhas não correspondem";
+          } else {
+            $sel_id="SELECT MAX(usu_id) AS usu_id FROM usuario";
+            $usu_id=$sql->selecionar($sel_id);
+            $usu_id++;
 
-          $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
-          $pes_id=$sql->selecionar($sel_id);
+            $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
+            $pes_id=$sql->selecionar($sel_id);
 
-          $insFun="INSERT INTO funcionario (fun_cargo, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
-                  '" . $metodo->getFun_cargo()    . "',
-                  '" . $metodo->getFun_inscricao(). "',
-                  '" . $metodo->getFun_turno()    . "',
-                  '" .     $pes_id                . "',
-                  '" . $metodo->getSet_setor()    . "'
-                );";
-
-
-          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-          $fun_id=$sql->selecionar($sel_id);
-          $fun_id++;
-
-          $insUsu="INSERT INTO usuario (usu_senha, usu_email, usu_ativo, usu_tipo, funcionario_id) VALUES (
-                    '" . $metodo->getUsu_senha(). "',
-                    '" . $metodo->getUsu_email(). "',
-                    '     1                        ',
-                    '     1                        ',
-                    '" .    $fun_id             . "'
+            $insFun="INSERT INTO funcionario (fun_cargo, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
+                    '" . $metodo->getFun_cargo()    . "',
+                    '" . $metodo->getFun_inscricao(). "',
+                    '" . $metodo->getFun_turno()    . "',
+                    '" .     $pes_id                . "',
+                    '" . $metodo->getSet_setor()    . "'
                   );";
 
-          $okFun=$sql->inserir($insFun);
-          $okUsu=$sql->inserir($insUsu);
 
-          if ($okFun && $okUsu) {
-            echo "Cadastrado com sucesso!!";
-          } else {
-            echo "Erro ao cadastrar";
-          }
+            $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+            $fun_id=$sql->selecionar($sel_id);
+            $fun_id++;
 
-          if ($_SESSION['fun_cargo'] == "medico") {
-            ////////////////formulário formação do médico ///////////////////
-            $_SESSION['form'] = 1;
-            include 'form_complementar.php';
-            /////////////////////////fim/////////////////////////////////////
+            $insUsu="INSERT INTO usuario (usu_senha, usu_email, usu_ativo, usu_tipo, funcionario_id) VALUES (
+                      '" . $metodo->getUsu_senha(). "',
+                      '" . $metodo->getUsu_email(). "',
+                      '     1                        ',
+                      '     1                        ',
+                      '" .    $fun_id             . "'
+                    );";
 
-          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-            ///////////////formulário enfermeiro/////////////////////////////
-            $_SESSION['form'] = 1;
-            include 'form_complementar.php';
-            /////////////////////////fim//////////////////////////////////////
+            $okFun=$sql->inserir($insFun);
+            $okUsu=$sql->inserir($insUsu);
 
-          } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-            /////////////////confirmação final///////////////////////////////
-            $_SESSION['form'] = 2;
-            include 'form_pessoa.php';
-            // Irá para o passo 4 para aparecer o formulário "funcionario" //
+            if ($okFun && $okUsu) {
+              echo "Cadastrado com sucesso!!";
+            } else {
+              echo "Erro ao cadastrar";
+            }
 
-          } elseif ($_SESSION['fun_cargo'] == "funcionario") {
-            /////////////////confirmação final//////////////////////////////
-            $_SESSION['form'] = 2;
-            include 'form_pessoa.php';
-            // Irá para o passo 4 para aparecer o formulário "funcionario" //
+            if ($_SESSION['fun_cargo'] == "medico") {
+              ////////////////formulário formação do médico ///////////////////
+              $_SESSION['form'] = 1;
+              include 'form_complementar.php';
+              /////////////////////////fim/////////////////////////////////////
 
-          } else {
-            header("Location:cadastro.php&passo=7");
+            } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+              ///////////////formulário enfermeiro/////////////////////////////
+              $_SESSION['form'] = 1;
+              include 'form_complementar.php';
+              /////////////////////////fim//////////////////////////////////////
+
+            } elseif ($_SESSION['fun_cargo'] == "recepcao") {
+              /////////////////confirmação final///////////////////////////////
+              $_SESSION['form'] = 2;
+              include 'form_pessoa.php';
+              // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
+            } elseif ($_SESSION['fun_cargo'] == "funcionario") {
+              /////////////////confirmação final//////////////////////////////
+              $_SESSION['form'] = 2;
+              include 'form_pessoa.php';
+              // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
+            } else {
+              header("Location:cadastro.php&passo=7");
+            }
           }
         }
       } elseif ($_GET['passo'] == 4) {
