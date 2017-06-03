@@ -198,7 +198,6 @@
             //}
         } else {
           $metodo->setFun_cargo($_POST ['fun_cargo']);
-          $metodo->setFun_horario($_POST ['fun_horario']);
           $metodo->setFun_inscricao($_POST ['fun_inscricao']);
           $metodo->setFun_turno($_POST ['fun_turno']);
 
@@ -223,9 +222,8 @@
           $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
           $pes_id=$sql->selecionar($sel_id);
 
-          $insFun="INSERT INTO funcionario (fun_cargo, fun_horario, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
+          $insFun="INSERT INTO funcionario (fun_cargo, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
                   '" . $metodo->getFun_cargo()    . "',
-                  '" . $metodo->getFun_horario()  . "',
                   '" . $metodo->getFun_inscricao(). "',
                   '" . $metodo->getFun_turno()    . "',
                   '" .     $pes_id                . "',
