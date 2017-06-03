@@ -46,8 +46,8 @@ $endereco = $sql->fetch($selEnd);
   <br>
   <fieldset class="grupo-info visible-group">
     <legend class="legenda">Dados Pessoais</legend>
-    <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Nome:</label>
+    <div class="group-form group-form-cadastro extend">
+      <label class="lbl_class">Nome</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -60,7 +60,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_nome" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Nome do pai:</label>
+      <label class="lbl_class">Nome do pai</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -73,7 +73,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_pai" size="28" <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Nome da mãe:</label>
+      <label class="lbl_class">Nome da mãe</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -86,7 +86,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_mae" size="28" <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">RG:</label>
+      <label class="lbl_class">RG</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -99,7 +99,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_rg" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">CPF:</label>
+      <label class="lbl_class">CPF</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -112,7 +112,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_cpf" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Data de Nascimento:</label>
+      <label class="lbl_class">Nascimento</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -138,7 +138,7 @@ $endereco = $sql->fetch($selEnd);
       <input class="inp_class" type="text" name="pes_email" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Estado civil:</label>
+      <label class="lbl_class">Estado civil</label>
       <?php
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("estado_civil");
@@ -150,7 +150,7 @@ $endereco = $sql->fetch($selEnd);
       ?>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Cidadania:</label>
+      <label class="lbl_class">Cidadania</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -175,7 +175,7 @@ $endereco = $sql->fetch($selEnd);
       ?>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Sexo biológico:</label>
+      <label class="lbl_class">Sexo biológico</label>
       <?php
         if ($_SESSION['form'] == 1) {
           $sql->selectbox("sexo");
@@ -187,7 +187,7 @@ $endereco = $sql->fetch($selEnd);
       ?>
     </div>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Telefone:</label>
+      <label class="lbl_class">Telefone</label>
       <?php
           if ($_SESSION['form'] == 1) {
             $dis = "";
@@ -209,7 +209,7 @@ $endereco = $sql->fetch($selEnd);
       ?>
         <div class="error" id="error-onload"></div>
           <div class="extend group-form group-form-cadastro" id="autocompletar">
-            <label class="lbl_class">Endereço:</label>
+            <label class="lbl_class">Endereço</label>
             <input id="autocompletar-in" class="inp_class" type="text" name="" size="28" value=""
             placeholder="Procurar endereço ou enter para completado manual" autofocus>
           <!-- <button class="submit" type="button" name="auto" id="btn-auto">Manual</button> -->
@@ -233,7 +233,7 @@ $endereco = $sql->fetch($selEnd);
         echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
       }
       ?>
-      <input class="submit" id="inp-voltar" type="button" value="Anterior"><br>
+      <input class="submit" id="inp-voltar" type="button" value="Anterior">
       <input class="inp_class submit cadastro-submit" type="submit" value="Proximo"><br>
   </fieldset>
   </form>
