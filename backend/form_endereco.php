@@ -56,7 +56,7 @@ $sql = new Sql;
         $sel1 = "SELECT * FROM cidade WHERE cid_id ='" . $endereco[3]  . "';";
         $cid = $sql->fetch($sel1);
         echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\"
-            disabled value = " . $cid[1] . "><br>";
+            disabled value = \"" . $cid[1] . "\"><br>";
       }
     ?>
   </div>
@@ -73,7 +73,7 @@ $sql = new Sql;
         $sel1 = "SELECT * FROM estado WHERE est_id ='" . $endereco[2]  . "';";
         $est = $sql->fetch($sel1);
         echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\"
-            disabled value = " . $est[1] . "><br>";
+            disabled value = \"" . $est[1] . "\"><br>";
       }
     ?>
   </div>
