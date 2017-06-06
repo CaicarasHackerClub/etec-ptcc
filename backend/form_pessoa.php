@@ -13,6 +13,17 @@ $sql = new Sql;
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
+
+  $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
+  $idPes = $sql->selecionar($maxPes);
+  $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";
+  $pessoa = $sql->fetch($selPes);
+
+  $maxEnd = "SELECT MAX(end_id) AS end_id FROM endereco";
+  $idEnd = $sql->selecionar($maxEnd);
+  $selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
+  $endereco = $sql->fetch($selEnd);
+
   if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
     $tipo = "cadastro.php?acao=cadastro&passo=5";
   } else {
@@ -20,18 +31,14 @@ if ($_SESSION['form'] == 1) {
   }
 
 } else {
-  $tipo = "cadastro.php?acao=cadastro&passo=1";
+  $sel="SELECT * FROM pessoa WHERE pes_cpf = '" . $_SESSION['cpf'] ."';";
+  $pessoa=$sql->fetch($sel);
+  $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $pessoa['10'] . "';";
+  $endereco = $sql->fetch($selEnd);
+
+  $tipo="cadastro.php?acao=cadastro&passo=1";
 }
 
-$maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-$idPes = $sql->selecionar($maxPes);
-$selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";
-$pessoa = $sql->fetch($selPes);
-
-$maxEnd = "SELECT MAX(end_id) AS end_id FROM endereco";
-$idEnd = $sql->selecionar($maxEnd);
-$selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
-$endereco = $sql->fetch($selEnd);
 ?>
 <form class="Form form-cadastro" action="<?=$tipo?>" method="post">
   <?php
