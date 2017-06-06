@@ -55,7 +55,13 @@ session_start();
               $sel="SELECT pes_cpf FROM pessoa WHERE pes_cpf = '" . $_POST['doc']  . "';";
               $qtd=$sql->selecionar($sel);
                 if ($qtd>=1) {
-                  echo "Já possui um CPF documento com esse numero!!";
+                  echo "Ja possui um cpf com esse numero!!";
+
+                  $_SESSION['cpf'] = $_POST['doc'];
+                  $_SESSION['form'] = 3;
+
+                  include'backend/form_pessoa.php';
+
                 } else {
                   $_SESSION['cpf'] = $_POST['doc'];
                   header("Location:backend/cadastro.php?acao=cadastro");
