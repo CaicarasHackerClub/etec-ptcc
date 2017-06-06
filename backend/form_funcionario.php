@@ -3,6 +3,8 @@
 include_once "Sql.class.php";
 $sql = new Sql;
 
+$_GET['voltar'] = isset($_GET['voltar'])? $_GET['voltar'] : "";
+
 if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['form'] = 1;
   $tipo = "cadastro.php?acao=cadastro&passo=3";
