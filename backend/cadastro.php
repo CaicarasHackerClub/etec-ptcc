@@ -217,7 +217,7 @@
             */
           if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
             echo "<script>alert('Senhas não correspondem!')
-            location.href='form_funcionario.php';</script>;";
+            location.href='form_funcionario.php?voltar=1';</script>;";
 
           } else {
             $sel_id="SELECT MAX(usu_id) AS usu_id FROM usuario";
