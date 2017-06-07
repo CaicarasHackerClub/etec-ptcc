@@ -40,7 +40,7 @@ a {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 98vh;
+  height: 100vh;
 }
 
 /*conteúdo da lateral, hora, usuário, logar, etc..*/
@@ -98,7 +98,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 2%;
+  margin-top: 102px;
   padding-left: 4%;
 }
 
@@ -125,9 +125,9 @@ a {
 /*Div que contém o título e o botão para aparecer a lateral*/
 .cabecalho{
   display: flex;
+  position: fixed;
   font-size: 17pt;
   width: 100%;
-  height: 102px;
 }
 
 .sub-cabecalho{
@@ -215,6 +215,7 @@ a {
 
 .conteudoCentro .txt_avatar{
 	text-align: center;
+  /*margin-left: 5%;*/
 }
 
 /*edição nas tags a da navegação lateral*/
@@ -236,8 +237,9 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo central da pagina*/
 .conteudoCentro .main{
   /*border: 0.5px solid #29784b;*/
+  margin-top: 49px;
   width: 100%;
-  height: 100%;
+  height: 93vh;
   display: flex;
   flex-flow: column;
   /*background-color: #9bd3ae;*/
@@ -276,7 +278,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .container .main .cabecalho .group-image {
   width: 34%;
-
 }
 
 .container .main .cabecalho .group-image .tit-image{
@@ -382,8 +383,12 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   /*overflow:scroll;*/
 }
 
-.form-cadastro .select {
-  width: 20%;
+.form-cadastro .grupo-info .group-form-cadastro .select {
+  width: 30%;
+}
+
+.form-cadastro .grupo-info .group-form-cadastro input[name="pes_data"] {
+  width: 40%;
 }
 
 .form-cadastro {
@@ -400,7 +405,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   width: 185px;
   height: 100%;
-  /*padding: 0;*/
   background-color: #01b26a;
   text-align: right;
   border-radius: 3px 0 0 3px;
@@ -482,24 +486,19 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 .form-cadastro .grupo-info .extend {
-  width: 60%;
-}
-
-.form-cadastro .visible-group .extend {
-  width: 85%;
+  width: 87.5%;
 }
 
 .form-cadastro .grupo-info {
   width: 90%;
   height: auto;
   margin-left: 5%;
-  margin-top: 0;
+  margin-top: -1%;
+  margin-bottom: 1%;
 }
 
 .form-cadastro .hidden-group {
-  visibility: hidden;
-  position: absolute;
-  display: inline;
+  display: none;
 }
 
 .form-cadastro .grupo-info .legenda {
@@ -518,16 +517,12 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 5.5%;
 }
 
-.form-cadastro .grupo-info .extend .submit {
-  height: 30px;
-}
-
 .form-cadastro .grupo-info .extend .inp_class  {
   width: 75%;
 }
 
 .form-cadastro .grupo-info .extend .lbl_class {
-  width: 20%;
+  width: 17%;
   line-height: 50px;
 }
 
@@ -812,21 +807,6 @@ input[value="1"] + .lbl-radio-class:before  {
   }
 }
 
-@media (max-height: 280px){
-  /*.cabecalho .titulo{
-    width: 32%;
-  }
-
-  .container .lateral .sub-logo{
-    visibility: hidden;
-  }
-
-  .container .lateral .main-lateral{
-    height: 70%;
-  }*/
-
-}
-
 @media (min-width: 651px){
   /*grupo contido no cabeçalho*/
   .container .main .cabecalho .config{
@@ -842,17 +822,5 @@ input[value="1"] + .lbl-radio-class:before  {
   /*edição no grupo onde fica o icone da página*/
   .container .main .cabecalho .cabecalho-group{
     margin-left: 0;
-  }
-
-  @media (max-height: 590px){
-    .container .main .cabecalho .group-image .tit-image{
-      height: 94%;
-      background-size: 100%;
-    }
-
-    .container .main .cabecalho .group-image .tit-text{
-      margin-top: 1em;
-      padding-bottom: 15%;
-    }
   }
 }
