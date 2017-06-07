@@ -11,14 +11,17 @@
       $("#consulta").remove();
       $("#cadastro").remove();
       $("#fila").remove();
+      $("#geoloc").remove();
     }else if (nome == "Portaria") {
       $("#cadastro").remove();
       $("#consulta").remove();
       $("#triagem").remove();
+      $("#geoloc").remove();
     }else {
       $("#fila").remove();
       $("#cadastro").remove();
       $("#triagem").remove();
+      $("#geoloc").remove();
     }
 
     $("#lbl_triagem").html(nome);
