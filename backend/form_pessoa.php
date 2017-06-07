@@ -1,6 +1,7 @@
 <!--//cadastro == 1
     // confirmacao final == 2
     //update == 3
+    // verificação de dados == 4
 -->
 <link rel='stylesheet' href='../css/main.css'>
 <link rel='stylesheet' href='../css/cadastro.css'>
@@ -30,13 +31,18 @@ if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   }
 
+} elseif ($_SESSION['form'] == 3) {
+
+  $tipo="cadastro.php?acao=cadastro&passo=1";
+
 } else {
+
   $sel="SELECT * FROM pessoa WHERE pes_cpf = '" . $_SESSION['cpf'] ."';";
   $pessoa=$sql->fetch($sel);
   $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $pessoa['10'] . "';";
   $endereco = $sql->fetch($selEnd);
 
-  $tipo="cadastro.php?acao=cadastro&passo=1";
+  $tipo = "index.php?acao=cadastro&passo=1";
 }
 
 ?>
