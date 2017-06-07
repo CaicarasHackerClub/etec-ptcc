@@ -58,9 +58,13 @@ session_start();
                   echo "Ja possui um cpf com esse numero!!";
 
                   $_SESSION['cpf'] = $_POST['doc'];
-                  $_SESSION['form'] = 3;
+                  $_SESSION['form'] = 4;
 
                   include'backend/form_pessoa.php';
+
+                  $_SESSION['form'] = 4;
+
+                  include'backend/form_funcionario';
 
                 } else {
                   $_SESSION['cpf'] = $_POST['doc'];
