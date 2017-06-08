@@ -361,41 +361,8 @@
         }
       // Formulário de dados pessoais da confirmação final
       } elseif ($_GET['passo'] == 5) {
-        //Se houver alterações no formulário "pessoa" será feito aqui.
-        if ($_SESSION['tipo'] == "administracao") {
-          if ($_SESSION['fun_cargo'] == "medico") {
-            /////////////Confirmação final funcionario ////////////
-            $_SESSION['form'] == 2;
-            include 'form_funcionario.php';
-
-          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-            $_SESSION['form'] == 2;
-            include 'form_funcionario.php';
-            ////////////fim conf. final funcionario //////////////
-          }
-        } else {
-          $_SESSION['form'] == 2;
-          include 'form_paciente.php';
-        }
-
-      } elseif ($_GET['passo'] == 6) {
-        if ($_SESSION['tipo'] == "administracao") {
-          // Se houver alterações no formulário "funcionario" será feito aqui.
-          if ($_SESSION['fun_cargo'] == "medico") {
-            $_SESSION['form'] = 2;
-            include 'form_complementar.php';
-
-          } else {
-            $_SESSION['form'] = 2;
-            include 'form_complementar.php';
-          }
-        } else {
-          header("location:cadastro.php?passo=7");
-        // aqui ficará as alterações do paciente
-        }
-      } elseif ($_GET['passo'] == 7) {
-        echo "passo 7 !!";
-
+          echo "passo 5";
+      
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
