@@ -272,17 +272,17 @@
             } elseif ($_SESSION['fun_cargo'] == "recepcao") {
               /////////////////confirmação final///////////////////////////////
               $_SESSION['form'] = 2;
-              include 'form_pessoa.php';
+              include 'update.php';
               // Irá para o passo 4 para aparecer o formulário "funcionario" //
 
             } elseif ($_SESSION['fun_cargo'] == "funcionario") {
               /////////////////confirmação final//////////////////////////////
               $_SESSION['form'] = 2;
-              include 'form_pessoa.php';
+              include 'update.php';
               // Irá para o passo 4 para aparecer o formulário "funcionario" //
 
             } else {
-              header("Location:cadastro.php&passo=7");
+              header("Location:cadastro.php&passo=5");
             }
           }
         }
@@ -320,7 +320,7 @@
             echo "Médico(a) cadastrado!!";
 
             $_SESSION['form'] = 2;
-            include 'form_pessoa.php';
+            include 'update.php';
 
           } else {
             echo "Não cadastrado!" . $insMed . "...." . $insHas ;
@@ -341,28 +341,16 @@
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
             $_SESSION['form'] = 2;
-            include 'form_pessoa.php';
+            include 'update.php';
 
           } else {
             echo "Não cadastrado!!!";
           }
-
-        } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-          //////////////////formulário funcionario///////
-          $_SESSION['form'] = 2;
-          include 'form_funcionario.php';
-
-        } elseif ($_SESSION['fun_cargo'] == "funcionario") {
-          $_SESSION['form'] = 2;
-          include 'form_funcionario.php';
-
-        } else {
-          echo "paciente";
         }
-      // Formulário de dados pessoais da confirmação final
+
       } elseif ($_GET['passo'] == 5) {
           echo "passo 5";
-      
+
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);

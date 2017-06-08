@@ -15,7 +15,7 @@ if ($_SESSION['form'] == 1) {
   //cadastro
   $tipo = "cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-  
+
   $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
   $idPes = $sql->selecionar($maxPes);
   $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";
@@ -26,24 +26,20 @@ if ($_SESSION['form'] == 1) {
   $selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
   $endereco = $sql->fetch($selEnd);
 
-  if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
-    $tipo = "update.php?acao=cadastro&p=3";
-  } else {
-    $tipo = "update.php?acao=cadastro&p=3";
-  }
-
+  $tipo = "update.php?p=1";
 
 } else {
 
   $pessoa=$_SESSION['pessoa'];
   $endereco=$_SESSION['end'];
 
-  $tipo = "visualiza.php?acao=cadastro&passo=1";
+  $tipo = "update.php?acao=cadastro&p=2";
 }
 
 ?>
 <form class="Form form-cadastro" action="<?=$tipo?>" method="post">
   <?php
+  echo $tipo;
   if ($_SESSION['form'] == 1) {
     echo "<h1 class=\"titulo\">Cadastro de Pessoa</h1>";
   } elseif ($_SESSION['form'] == 2) {
