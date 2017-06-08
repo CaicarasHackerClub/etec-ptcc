@@ -12,9 +12,10 @@ include_once "Sql.class.php";
 $sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
+  //cadastro
   $tipo = "cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-
+  //confirmação final
   $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
   $idPes = $sql->selecionar($maxPes);
   $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";
@@ -31,18 +32,13 @@ if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   }
 
-} elseif ($_SESSION['form'] == 3) {
-
-  $tipo="cadastro.php?acao=cadastro&passo=1";
 
 } else {
 
-  $sel="SELECT * FROM pessoa WHERE pes_cpf = '" . $_SESSION['cpf'] ."';";
-  $pessoa=$sql->fetch($sel);
-  $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $pessoa['10'] . "';";
-  $endereco = $sql->fetch($selEnd);
+  $pessoa=$_SESSION['pessoa'];
+  $endereco=$_SESSION['end'];
 
-  $tipo = "index.php?acao=cadastro&passo=1";
+  $tipo = "visualiza.php?acao=cadastro&passo=1";
 }
 
 ?>
@@ -212,7 +208,7 @@ if ($_SESSION['form'] == 1) {
       ?>
       <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val?>><br>
     </div>
-    <input class="submit" id="inp-env" type="button" name="inp-env" value="OK">
+    <input class="submit" id="inp-env" type="button" name="inp-env" value="Proximo">
   </fieldset>
 
   <fieldset class="grupo-info hidden-group">
