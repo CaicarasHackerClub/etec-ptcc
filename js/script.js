@@ -11,14 +11,17 @@
       $("#consulta").remove();
       $("#cadastro").remove();
       $("#fila").remove();
+      $("#geoloc").remove();
     }else if (nome == "Portaria") {
       $("#cadastro").remove();
       $("#consulta").remove();
       $("#triagem").remove();
+      $("#geoloc").remove();
     }else {
       $("#fila").remove();
       $("#cadastro").remove();
       $("#triagem").remove();
+      $("#geoloc").remove();
     }
 
     $("#lbl_triagem").html(nome);
@@ -184,13 +187,11 @@
       //   }
       // });
       $(".visible-group").css({
-        "visibility":"hidden",
         "position":"absolute",
         "display":"none"
       });
 
       $(".hidden-group").css({
-        "visibility":"visible",
         "position":"absolute",
         "display":"inline-block",
       });
@@ -198,13 +199,11 @@
 
     $("#inp-voltar").click(function () {
       $(".visible-group").css({
-        "visibility":"visible",
         "position":"absolute",
         "display":"inline-block"
       });
 
       $(".hidden-group").css({
-        "visibility":"hidden",
         "position":"absolute",
         "display":"none",
       });
