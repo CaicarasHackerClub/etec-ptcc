@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 03/06/2017 às 01:27
+-- Tempo de geração: 08/06/2017 às 05:41
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9785,6 +9785,9 @@ CREATE TABLE `consulta` (
   `con_hora_saida` time NOT NULL COMMENT 'Hora que saiu da Consulta',
   `con_data` date NOT NULL COMMENT 'data da entrada',
   `con_comentario` text COLLATE utf8_bin NOT NULL COMMENT 'Caso queira fazer um comentário sobre o paciente',
+  `con_reclamacao` text COLLATE utf8_bin NOT NULL COMMENT 'caso o paciente esteja com alguma reclamação na hora  da triagem (ex: dores forte de cabeça)',
+  `con_doenca` text COLLATE utf8_bin NOT NULL COMMENT 'caso o paciente tenha uma doença cronica',
+  `con_diagnostico` text COLLATE utf8_bin NOT NULL COMMENT 'informar o diagnóstico do paciente',
   `con_tri_id` int(11) NOT NULL,
   `con_med_id` int(11) NOT NULL,
   `con_enc_id` int(11) NOT NULL
@@ -9881,6 +9884,7 @@ CREATE TABLE `endereco` (
   `end_bairro` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'Bairro onde mora a pessoa',
   `end_rua` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'logradouro da pessoa',
   `end_numero` int(9) NOT NULL COMMENT 'numero da casa/apt/etc da pessoa',
+  `end_complemento` varchar(100) COLLATE utf8_bin NOT NULL COMMENT 'informação adicional sobre o endereço',
   `end_lat` float(10,6) DEFAULT NULL COMMENT 'Latitude do endereço para a geolocalzação',
   `end_lng` float(10,6) DEFAULT NULL COMMENT 'Longitude do endereço para a geolocalização',
   `pessoa_pes_id` int(11) NOT NULL
@@ -9890,22 +9894,22 @@ CREATE TABLE `endereco` (
 -- Fazendo dump de dados para tabela `endereco`
 --
 
-INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`, `end_lat`, `end_lng`, `pessoa_pes_id`) VALUES
-(1, 'Brasil', 26, 9510, '11680-000', 'Centro', 'av Iperoig', 314, NULL, NULL, 1),
-(2, 'Brasil', 26, 9510, '11680-000', 'Itaguá', 'Castro Alves', 507, NULL, NULL, 2),
-(3, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Conceição', 314, NULL, NULL, 3),
-(4, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 288, NULL, NULL, 4),
-(5, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Comercial', 212, NULL, NULL, 5),
-(6, 'Brasil', 26, 9510, '11680-000', 'Estufa 1', 'Taubaté ', 344, NULL, NULL, 6),
-(7, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Vasco da Gama', 31, NULL, NULL, 7),
-(8, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 14, NULL, NULL, 8),
-(9, 'Brasil', 26, 9510, '11680-000', 'Folha Seca', 'Irene Gomes', 122, NULL, NULL, 9),
-(10, 'Brasil', 20, 9510, '11680-000', 'Centro', 'Liberdade', 34, NULL, NULL, 10),
-(11, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Minas Gerais', 64, NULL, NULL, 11),
-(12, 'Brasil', 26, 9510, '11680-000', 'Itagua', 'Raimundo Correa', 80, NULL, NULL, 12),
-(13, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 328, NULL, NULL, 13),
-(14, 'Brasil', 26, 9510, '11680-000', 'Barra Seca', 'Juscelino Monteiro', 580, NULL, NULL, 14),
-(15, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Portuguesa Santista', 458, NULL, NULL, 15);
+INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_cep`, `end_bairro`, `end_rua`, `end_numero`, `end_complemento`, `end_lat`, `end_lng`, `pessoa_pes_id`) VALUES
+(1, 'Brasil', 26, 9510, '11680-000', 'Centro', 'av Iperoig', 314, '', NULL, NULL, 1),
+(2, 'Brasil', 26, 9510, '11680-000', 'Itaguá', 'Castro Alves', 507, '', NULL, NULL, 2),
+(3, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Conceição', 314, '', NULL, NULL, 3),
+(4, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 288, '', NULL, NULL, 4),
+(5, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Comercial', 212, '', NULL, NULL, 5),
+(6, 'Brasil', 26, 9510, '11680-000', 'Estufa 1', 'Taubaté ', 344, '', NULL, NULL, 6),
+(7, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Vasco da Gama', 31, '', NULL, NULL, 7),
+(8, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Cascata', 14, '', NULL, NULL, 8),
+(9, 'Brasil', 26, 9510, '11680-000', 'Folha Seca', 'Irene Gomes', 122, '', NULL, NULL, 9),
+(10, 'Brasil', 20, 9510, '11680-000', 'Centro', 'Liberdade', 34, '', NULL, NULL, 10),
+(11, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Minas Gerais', 64, '', NULL, NULL, 11),
+(12, 'Brasil', 26, 9510, '11680-000', 'Itagua', 'Raimundo Correa', 80, '', NULL, NULL, 12),
+(13, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 328, '', NULL, NULL, 13),
+(14, 'Brasil', 26, 9510, '11680-000', 'Barra Seca', 'Juscelino Monteiro', 580, '', NULL, NULL, 14),
+(15, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Portuguesa Santista', 458, '', NULL, NULL, 15);
 
 -- --------------------------------------------------------
 
@@ -10163,7 +10167,7 @@ CREATE TABLE `geo_camada_end` (
 
 CREATE TABLE `locais` (
   `loc_id` int(11) NOT NULL,
-  `loc_local` varchar(30) COLLATE utf8_bin NOT NULL
+  `loc_local` varchar(30) COLLATE utf8_bin NOT NULL COMMENT 'local onde está o paciente no hospital'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10260,9 +10264,6 @@ CREATE TABLE `medico_has_especializacao` (
 
 CREATE TABLE `paciente` (
   `pac_id` int(11) NOT NULL,
-  `pac_tipo_sangue` int(11) DEFAULT NULL COMMENT 'tipo sanguíneo',
-  `pac_remedio` text COLLATE utf8_bin COMMENT 'se tomar remédio, avisair quais',
-  `pac_doenca` text COLLATE utf8_bin COMMENT 'se tiver alguma doença avisar quais',
   `pac_educacao` int(11) DEFAULT NULL COMMENT 'nivel de escolaridade',
   `pac_hospitalizado` tinyint(1) DEFAULT NULL COMMENT 'se está ou não hospitalizado',
   `pessoa_pes_id` int(11) NOT NULL
@@ -10272,17 +10273,17 @@ CREATE TABLE `paciente` (
 -- Fazendo dump de dados para tabela `paciente`
 --
 
-INSERT INTO `paciente` (`pac_id`, `pac_tipo_sangue`, `pac_remedio`, `pac_doenca`, `pac_educacao`, `pac_hospitalizado`, `pessoa_pes_id`) VALUES
-(1, 1, 'nenhum', 'nenhuma', 4, 0, 3),
-(2, 4, 'nenhum', 'nenhuma', 3, 0, 7),
-(3, 3, 'nenhum', 'nenhuma', 4, 0, 8),
-(4, 4, 'nenhum', 'nenhuma', 3, 0, 9),
-(5, 5, 'nenhum', 'nenhuma', 3, 0, 10),
-(6, 3, 'nenhum', 'nenhuma', 4, 0, 11),
-(7, 1, 'nenhum', 'nenhuma', 2, 0, 12),
-(8, 8, 'nenhum', 'nenhuma', 3, 0, 13),
-(9, 6, 'nenhum', 'nenhuma', 4, 0, 14),
-(10, 2, 'nenhum', 'nenhuma', 4, 0, 15);
+INSERT INTO `paciente` (`pac_id`, `pac_educacao`, `pac_hospitalizado`, `pessoa_pes_id`) VALUES
+(1, 4, 0, 3),
+(2, 3, 0, 7),
+(3, 4, 0, 8),
+(4, 3, 0, 9),
+(5, 3, 0, 10),
+(6, 4, 0, 11),
+(7, 2, 0, 12),
+(8, 3, 0, 13),
+(9, 4, 0, 14),
+(10, 4, 0, 15);
 
 -- --------------------------------------------------------
 
@@ -10340,6 +10341,19 @@ CREATE TABLE `plano_de_saude` (
   `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do cartão SUS',
   `pds_num_convenio` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do convenio ou plano de saude',
   `pac_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `receita`
+--
+
+CREATE TABLE `receita` (
+  `rec_id` int(11) NOT NULL,
+  `rec_data` date NOT NULL COMMENT 'data da consulta',
+  `rec_prescricao` text COLLATE utf8_bin NOT NULL COMMENT 'informar os nomes dos remédios, dosagem e o  período ',
+  `rec_consulta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -10491,10 +10505,15 @@ CREATE TABLE `triagem` (
   `tri_oxigenacao` int(3) DEFAULT NULL COMMENT 'oxigenação do sangue',
   `tri_classe_risco` int(11) DEFAULT NULL COMMENT 'cor da classe de risco segundo o protocolo de Manchester',
   `tri_respiracao` int(2) DEFAULT NULL COMMENT 'frequencia respiratória',
+  `tri_tipo_sanguineo` int(11) NOT NULL,
+  `tri_doenca` text COLLATE utf8_bin NOT NULL COMMENT 'caso o paciente tenha doenças cronicas',
+  `tri_remedio` text COLLATE utf8_bin NOT NULL COMMENT 'caso o paciente tome  remédios ',
   `tri_dor` int(2) DEFAULT NULL COMMENT 'grau de dor',
   `tri_orgaos_vitais` tinyint(1) DEFAULT NULL COMMENT 'se esta comprometido ou não',
   `tri_data` date DEFAULT NULL COMMENT 'data da entrada',
   `tri_hora` time DEFAULT NULL COMMENT 'hora da entrada',
+  `tri_reclamacao` text COLLATE utf8_bin NOT NULL COMMENT 'relatar reclamações do paciente (ex: dores fortes de cabeça)',
+  `tri_sintomas` text COLLATE utf8_bin NOT NULL COMMENT 'caso perceba mais alguns sintomas no paciente ',
   `tri_status` int(11) DEFAULT NULL COMMENT 'status da triagem',
   `tri_ate_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -10503,10 +10522,10 @@ CREATE TABLE `triagem` (
 -- Fazendo dump de dados para tabela `triagem`
 --
 
-INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `tri_altura`, `tri_batimento`, `tri_oxigenacao`, `tri_classe_risco`, `tri_respiracao`, `tri_dor`, `tri_orgaos_vitais`, `tri_data`, `tri_hora`, `tri_status`, `tri_ate_id`) VALUES
-(1, 27, '160x140', 45, 1.75, 60, 30, 4, 80, 0, 1, '2017-05-17', '15:54:00', 2, 1),
-(2, 28, '140x80', 76, 1.5, 100, 30, 3, 80, 0, 1, '2017-05-17', '15:56:00', 2, 2),
-(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 0, 1, '2017-05-17', '16:03:00', 2, 3);
+INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `tri_altura`, `tri_batimento`, `tri_oxigenacao`, `tri_classe_risco`, `tri_respiracao`, `tri_tipo_sanguineo`, `tri_doenca`, `tri_remedio`, `tri_dor`, `tri_orgaos_vitais`, `tri_data`, `tri_hora`, `tri_reclamacao`, `tri_sintomas`, `tri_status`, `tri_ate_id`) VALUES
+(1, 27, '160x140', 45, 1.75, 60, 30, 4, 80, 1, '', '', 0, 1, '2017-05-17', '15:54:00', '', '', 2, 1),
+(2, 28, '140x80', 76, 1.5, 100, 30, 3, 80, 1, '', '', 0, 1, '2017-05-17', '15:56:00', '', '', 2, 2),
+(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 1, '', '', 0, 1, '2017-05-17', '16:03:00', '', '', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -10516,7 +10535,7 @@ INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `
 
 CREATE TABLE `turno` (
   `tur_id` int(11) NOT NULL,
-  `tur_nome` varchar(12) COLLATE utf8_bin NOT NULL
+  `tur_nome` varchar(12) COLLATE utf8_bin NOT NULL COMMENT 'nome do turno do funcionário'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10723,7 +10742,6 @@ ALTER TABLE `medico_has_especializacao`
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`pac_id`),
   ADD KEY `fk_paciente_pessoa1_idx` (`pessoa_pes_id`),
-  ADD KEY `pac_tipo_sangue` (`pac_tipo_sangue`),
   ADD KEY `pac_educacao` (`pac_educacao`);
 
 --
@@ -10745,6 +10763,12 @@ ALTER TABLE `plano_de_saude`
   ADD UNIQUE KEY `pds_num_convenio` (`pds_num_convenio`),
   ADD UNIQUE KEY `pds_numero_sus` (`pds_numero_sus`),
   ADD KEY `fk_plano_de_saude_paciente1_idx` (`pac_id`);
+
+--
+-- Índices de tabela `receita`
+--
+ALTER TABLE `receita`
+  ADD KEY `rec_consulta` (`rec_consulta`);
 
 --
 -- Índices de tabela `setor`
@@ -10784,7 +10808,8 @@ ALTER TABLE `triagem`
   ADD PRIMARY KEY (`tri_id`),
   ADD KEY `tri_classe_risco` (`tri_classe_risco`),
   ADD KEY `tri_status` (`tri_status`),
-  ADD KEY `tri_ate_id` (`tri_ate_id`);
+  ADD KEY `tri_ate_id` (`tri_ate_id`),
+  ADD KEY `tri_tipo_sanguineo` (`tri_tipo_sanguineo`);
 
 --
 -- Índices de tabela `turno`
@@ -11050,7 +11075,6 @@ ALTER TABLE `medico_has_especializacao`
 --
 ALTER TABLE `paciente`
   ADD CONSTRAINT `fk_paciente_pessoa1` FOREIGN KEY (`pessoa_pes_id`) REFERENCES `pessoa` (`pes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`pac_tipo_sangue`) REFERENCES `tipo_sanguineo` (`tis_id`),
   ADD CONSTRAINT `paciente_ibfk_2` FOREIGN KEY (`pac_educacao`) REFERENCES `escolaridade` (`esc_id`);
 
 --
@@ -11068,6 +11092,12 @@ ALTER TABLE `plano_de_saude`
   ADD CONSTRAINT `fk_plano_de_saude_paciente1` FOREIGN KEY (`pac_id`) REFERENCES `paciente` (`pac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Restrições para tabelas `receita`
+--
+ALTER TABLE `receita`
+  ADD CONSTRAINT `receita_ibfk_1` FOREIGN KEY (`rec_consulta`) REFERENCES `consulta` (`con_id`);
+
+--
 -- Restrições para tabelas `sub_setor`
 --
 ALTER TABLE `sub_setor`
@@ -11079,7 +11109,8 @@ ALTER TABLE `sub_setor`
 ALTER TABLE `triagem`
   ADD CONSTRAINT `triagem_ibfk_1` FOREIGN KEY (`tri_classe_risco`) REFERENCES `cores` (`cor_id`),
   ADD CONSTRAINT `triagem_ibfk_2` FOREIGN KEY (`tri_status`) REFERENCES `status_triagem` (`stt_id`),
-  ADD CONSTRAINT `triagem_ibfk_3` FOREIGN KEY (`tri_ate_id`) REFERENCES `atendimento` (`ate_id`);
+  ADD CONSTRAINT `triagem_ibfk_3` FOREIGN KEY (`tri_ate_id`) REFERENCES `atendimento` (`ate_id`),
+  ADD CONSTRAINT `triagem_ibfk_4` FOREIGN KEY (`tri_tipo_sanguineo`) REFERENCES `tipo_sanguineo` (`tis_id`);
 
 --
 -- Restrições para tabelas `usuario`
