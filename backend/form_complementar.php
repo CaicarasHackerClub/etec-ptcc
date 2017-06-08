@@ -6,9 +6,9 @@ if ($_SESSION['fun_cargo'] == "medico") {
   if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {
-    $tipo = "cadastro.php?acao=cadastro&passo=7";
+    $tipo = "update.php?acao=cadastro&p=3";
   } else {
-    $tipo = "cadastro.php?acao=cadastro&passo=3";
+    $tipo = "update.php?acao=cadastro&p=3";
   }
 
   $maxMed = "SELECT MAX(med_id) AS med_id FROM medico";
@@ -52,9 +52,9 @@ if ($_SESSION['fun_cargo'] == "medico") {
   if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {
-    $tipo = "cadastro.php?acao=cadastro&passo=7";
+    $tipo = "update.php?acao=cadastro&p=3";
   } else {
-    $tipo = "cadastro.php?acao=cadastro&passo=3";
+    $tipo = "update.php?acao=cadastro&p=3";
   }
 
   $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
