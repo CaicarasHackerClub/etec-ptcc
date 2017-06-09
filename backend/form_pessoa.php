@@ -26,20 +26,17 @@ if ($_SESSION['form'] == 1) {
   $selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
   $endereco = $sql->fetch($selEnd);
 
-  $tipo = "update.php?p=1";
+    if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+      $tipo = "cadastro.php?acao=cadastro&passo=5";
+    } else {
+      $tipo = "cadastro.php?acao=cadastro&passo=4";
+    }
 
-} else {
-
-  $pessoa=$_SESSION['pessoa'];
-  $endereco=$_SESSION['end'];
-
-  $tipo = "update.php?acao=cadastro&p=2";
 }
 
 ?>
 <form class="Form form-cadastro" action="<?=$tipo?>" method="post">
   <?php
-  echo $tipo;
   if ($_SESSION['form'] == 1) {
     echo "<h1 class=\"titulo\">Cadastro de Pessoa</h1>";
   } elseif ($_SESSION['form'] == 2) {

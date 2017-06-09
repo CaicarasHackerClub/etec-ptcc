@@ -57,14 +57,21 @@ session_start();
                 if ($qtd>=1) {
                   echo "Ja possui um cpf com esse numero!!";
 
-                  $_SESSION['cpf'] = $_POST['doc'];
-                  $_SESSION['form'] = 4;
+                  $sel="SELECT * FROM pessoa WHERE pes_cpf = '" . $_POST['doc'] ."';";
+                  $pessoa=$sql->fetch($sel);
+                  $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $pessoa['10'] . "';";
+                  $endereco = $sql->fetch($selEnd);
+                  $_SESSION['form'] = 3;
+                  $_SESSION['pessoa'] = $pessoa;
+                  $_SESSION['end'] = $endereco;
 
-                  include'backend/form_pessoa.php';
+                    include'backend/form_pessoa.php';
 
-                  $_SESSION['form'] = 4;
+                    header("Location:visualizar.php?acao=cadastro");
 
-                  include'backend/form_funcionario';
+                  //$_SESSION['form'] = 4;
+
+                  //include'backend/form_funcionario.php';
 
                 } else {
                   $_SESSION['cpf'] = $_POST['doc'];

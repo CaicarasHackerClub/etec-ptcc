@@ -6,9 +6,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
   if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {
-    $tipo = "update.php?acao=cadastro&p=3";
-  } else {
-    $tipo = "update.php?acao=cadastro&p=3";
+    $tipo = "cadastro.php?acao=cadastro&passo=7";
   }
 
   $maxMed = "SELECT MAX(med_id) AS med_id FROM medico";

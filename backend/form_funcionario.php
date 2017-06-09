@@ -14,11 +14,9 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
     $tipo = "cadastro.php?acao=cadastro&passo=6";
   } else {
-  $tipo = "cadastro.php?acao=cadastro&passo=5";
+    $tipo = "cadastro.php?acao=cadastro&passo=5";
   }
 
-} else {
-  $tipo = "cadastro.php?acao=cadastro&passo=3";
 }
 
 $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";

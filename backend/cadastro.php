@@ -272,13 +272,13 @@
             } elseif ($_SESSION['fun_cargo'] == "recepcao") {
               /////////////////confirmação final///////////////////////////////
               $_SESSION['form'] = 2;
-              include 'update.php';
+              include 'form_pessoa.php';
               // Irá para o passo 4 para aparecer o formulário "funcionario" //
 
             } elseif ($_SESSION['fun_cargo'] == "funcionario") {
               /////////////////confirmação final//////////////////////////////
               $_SESSION['form'] = 2;
-              include 'update.php';
+              include 'form_pessoa.php';
               // Irá para o passo 4 para aparecer o formulário "funcionario" //
 
             } else {
@@ -320,7 +320,7 @@
             echo "Médico(a) cadastrado!!";
 
             $_SESSION['form'] = 2;
-            include 'update.php';
+            include 'form_pessoa.php';
 
           } else {
             echo "Não cadastrado!" . $insMed . "...." . $insHas ;
@@ -341,15 +341,43 @@
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
             $_SESSION['form'] = 2;
-            include 'update.php';
+            include 'form_pessoa.php';
 
           } else {
             echo "Não cadastrado!!!";
           }
+        } elseif ($_SESSION['fun_cargo'] == "recepcao") {
+
+            $_SESSION['form'] = 2;
+            include 'form_funcionario.php';
+        } elseif ($_SESSION['fun_cargo'] == "recepcao") {
+            $_SESSION['form'] = 2;
+            include 'form_funcionario.php';
         }
 
       } elseif ($_GET['passo'] == 5) {
-          echo "passo 5";
+        if ($_SESSION['tipo'] == "administracao") {
+
+          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+            $_SESSION['form'] = 2;
+            include 'form_funcionario.php';
+          }
+
+        } else {
+          echo "paciente!!";
+        }
+      } elseif ($_GET['passo'] == 6) {
+        if ($_SESSION['tipo'] == "administracao") {
+         if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+
+          $_SESSION['form'] = 2;
+          include 'form_complementar.php';
+
+          }
+        }
+      } elseif ($_GET['passo'] == 7) {
+        echo "passo 6";
+
 
       } elseif ($acao == "logoff") {
         session_destroy();
