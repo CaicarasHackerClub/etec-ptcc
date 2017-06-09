@@ -239,7 +239,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
   /*border: 0.5px solid #29784b;*/
   margin-top: 49px;
   width: 100%;
-  height: 93vh;
+  height: 92.7vh;
   display: flex;
   flex-flow: column;
   /*background-color: #9bd3ae;*/
@@ -248,7 +248,7 @@ AQUI COMEÇA AS EDIÇÕES NO CONTEUDO DO CENTRO DOS SUB-MÓDULOS
 /*edição no conteudo que fica dentro do centro da pagina*/
 .conteudoCentro .main .main-centro{
   width: 100%;
-  height: 83.2vh;
+  height: 100vh;
 }
 
 /*edição na segunda class do da main do centro*/
@@ -282,7 +282,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .container .main .cabecalho .group-image .tit-image{
   display: inline-block;
-  /*background: url("../img/avatars/triagem.png") no-repeat;*/
   background-size: 70px;
   background-position: center;
   background-position: 15% -1%;
