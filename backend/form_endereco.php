@@ -10,7 +10,11 @@ $sql = new Sql;
         $dis = "";
          $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $endereco[6] . "\"";
       }
       ?>
@@ -24,7 +28,11 @@ $sql = new Sql;
         $dis = "";
         $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $endereco[7] . "\"";
       }
     ?>
@@ -37,7 +45,11 @@ $sql = new Sql;
           $dis = "";
           $val = "";
         } else {
-          $dis = " disabled";
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
           $val = " value=\"" . $endereco[5] . "\"";
         }
       ?>
@@ -55,10 +67,15 @@ $sql = new Sql;
       } else {
         $sel1 = "SELECT * FROM cidade WHERE cid_id ='" . $endereco[3]  . "';";
         $cid = $sql->fetch($sel1);
-        echo "<input class=\"inp_class\" type=\"text\" name=\"end_cidade\" size=\"28\"
-            disabled value = \"" . $cid[1] . "\"><br>";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
+        $val = " value = \"" . $cid[1] . "\"";
       }
     ?>
+      <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val;?>><br>";
   </div>
   <div id="administrative_area_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Estado:</label>
@@ -72,10 +89,15 @@ $sql = new Sql;
       } else {
         $sel1 = "SELECT * FROM estado WHERE est_id ='" . $endereco[2]  . "';";
         $est = $sql->fetch($sel1);
-        echo "<input class=\"inp_class\" type=\"text\" name=\"end_estado\" size=\"28\"
-            disabled value = \"" . $est[1] . "\"><br>";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
+        $val = " value = \"" . $est[1] . "\"";
       }
     ?>
+    <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val;?>><br>
   </div>
 
   <div id="postal_code" class="group-form group-form-cadastro">
@@ -85,7 +107,11 @@ $sql = new Sql;
         $dis = "";
         $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $endereco[4] . "\"";
       }
     ?>
@@ -98,13 +124,17 @@ $sql = new Sql;
         $dis = "";
         $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $endereco[1] . "\"";
       }
     ?>
     <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
     <?php
-      if ($_SESSION['form'] == 2) {
+      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
         echo "<input class=\"submit\" type=\"submit\" value=\"Próximo\"><br>";
       }
     ?>
