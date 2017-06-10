@@ -8,7 +8,11 @@
 body {
   margin: 0;
   width: 100%;
-  /*overflow: hidden;*/
+  overflow: hidden;
+}
+
+iframe {
+  border-style: inherit;
 }
 
 /*remover checkbox para usar em displays menores*/
@@ -318,6 +322,9 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width:100%;
   overflow:hidden;
   cursor:pointer;
+  background-color: #F1FFF7;
+  border-bottom: 1px solid gray;
+  height: 30px;
 }
 
 .TabControl .content{
