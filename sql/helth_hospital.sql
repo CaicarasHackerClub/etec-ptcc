@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08/06/2017 às 05:41
+-- Tempo de geração: 10/06/2017 às 06:15
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9909,7 +9909,17 @@ INSERT INTO `endereco` (`end_id`, `end_pais`, `end_estado`, `end_cidade`, `end_c
 (12, 'Brasil', 26, 9510, '11680-000', 'Itagua', 'Raimundo Correa', 80, '', NULL, NULL, 12),
 (13, 'Brasil', 26, 9510, '11680-000', 'Centro', 'Dona Maria Alves', 328, '', NULL, NULL, 13),
 (14, 'Brasil', 26, 9510, '11680-000', 'Barra Seca', 'Juscelino Monteiro', 580, '', NULL, NULL, 14),
-(15, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Portuguesa Santista', 458, '', NULL, NULL, 15);
+(15, 'Brasil', 26, 9510, '11680-000', 'Estufa 2', 'Portuguesa Santista', 458, '', NULL, NULL, 15),
+(16, 'Brasil', 26, 9510, '11680-000', 'Corcovado', 'Estrada do Corcovado', 3884, '', NULL, NULL, 16),
+(17, 'Brasil', 26, 9510, '11680-000', 'Estufa II', 'Jabaquara', 373, '', NULL, NULL, 17),
+(18, 'Brasil', 26, 9510, '11680-000', 'Pereque-Mirim', 'Rua Teresa Barreto', 233, '', NULL, NULL, 18),
+(19, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Rua Reforma Agraria', 250, '', NULL, NULL, 19),
+(20, 'Brasil', 26, 9510, '11680-000', 'Estufa II', 'Avenida Petrópolis', 516, '', NULL, NULL, 20),
+(21, 'Brasil', 26, 9510, '11680-000', 'Sumidouro', 'Marino Elídio Vieira', 458, '', NULL, NULL, 21),
+(22, 'Brasil', 26, 9510, '11680-000', 'Perequê-Açu', 'Rua Praia do Pulso', 125, '', NULL, NULL, 22),
+(23, 'Brasil', 26, 9510, '11680-000', 'Estufa II', 'Rua Oito', 24, '', NULL, NULL, 23),
+(24, 'Brasil', 26, 9510, '11680-000', 'Ipiranguinha', 'Rua Teodoro Miguel da Silva', 415, '', NULL, NULL, 24),
+(25, 'Brasil', 26, 9510, 'Centro', 'Hans Staden', '1060', 0, '', NULL, NULL, 25);
 
 -- --------------------------------------------------------
 
@@ -10283,7 +10293,17 @@ INSERT INTO `paciente` (`pac_id`, `pac_educacao`, `pac_hospitalizado`, `pessoa_p
 (7, 2, 0, 12),
 (8, 3, 0, 13),
 (9, 4, 0, 14),
-(10, 4, 0, 15);
+(10, 4, 0, 15),
+(11, 3, 0, 16),
+(12, 3, 0, 17),
+(13, 3, 0, 18),
+(14, 3, 0, 19),
+(15, 3, 0, 20),
+(16, 3, 0, 21),
+(17, 3, 0, 22),
+(18, 3, 0, 23),
+(19, 3, 0, 24),
+(20, 3, 0, 25);
 
 -- --------------------------------------------------------
 
@@ -10327,7 +10347,17 @@ INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes
 (12, 'Robervaldo', 'Ronaldo', 'Fetolino', '70.400.429-5', '67034634634', '1960-06-30', 1, 'rober@bol.com.br', 2, 'Ubatubense', 1, 1, '(12)972350434'),
 (13, 'Danilo', 'Robert', '', '49.530.834-10', '75400167312', '1999-08-29', 1, 'Danilo@hotmail.com', 1, 'Ubatubense', 2, 2, '(12)997877675'),
 (14, 'Karol Silva', 'Jonas Silva', 'Lara Silva', '47.833.478-99', '89935666740', '1995-07-30', 1, 'karol@mail.com', 2, 'Ubatubense', 2, 2, '(12)38464589'),
-(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '99046239378', '1977-07-07', 1, 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691');
+(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '99046239378', '1977-07-07', 1, 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691'),
+(16, 'Alejandro ', 'Francisco', 'Beatriz', 'V562715-0', '12345678901', '1971-02-01', 1, 'aledruetta@gmail.com', 1, 'Argentino', 1, 1, '12996778100'),
+(17, 'Metheus', 'Edson', 'Aurecina', '12345678911', '12345678911', '2017-06-13', 1, 'matheus-nascimento@hotmail.com', 1, 'Brasileiro', 1, 1, '1238325512'),
+(18, 'Josue Miguel', 'Luciano Alves', 'Queila Miguel', '365526564', '36331089802', '1999-06-03', 1, 'jose@miguel.com', 1, 'Brasileiro', 1, 1, '38329098'),
+(19, 'Jonatas Ramos de Alexandria', 'Gilson Rodrigues de Alexandria', 'Maria Pereira Ramos', '32232232201', '42822162808', '1996-03-28', 1, 'jonatas@gmail.com', 2, 'Brasileiro', 1, 1, '38334506'),
+(20, 'Daniel da Silva Alexandre', 'Daniel Pedro', 'Sueli Maria', '487548449', '41225077826', '1993-06-16', 1, 'danieltec.in@outlook.com', 1, 'Brasileiro', 1, 1, '12997844638'),
+(21, 'Alecsander', 'Alecssaner', 'Eliane', '0000000012', '00000000012', '2000-04-01', 1, 'alecs@lol.com', 4, 'Alemão', 1, 1, '12991980454'),
+(22, 'William', 'N/C', 'maria luzia sales souza', '00000000001', '00000000001', '2000-01-27', 1, 'willfut2015@gmail.com', 1, 'Brasileiro', 1, 1, '12988939597'),
+(23, 'Anderson Ferret dos Santos', 'Demitri dos Santos', 'Cristiane Ferret dos Santos', '0000000029', '00000000098', '1999-03-05', 1, 'anderson@gmail.com', 1, 'Brasileiro', 1, 1, '38331153'),
+(24, 'Mariane Briet', 'Julio', 'Mariana', '00011123456', '00011145906', '2000-10-04', 1, 'mari@briet.com', 1, 'Brasileiro', 2, 2, '1238338998'),
+(25, 'Rafaela', 'Rafael', 'Julia', '00000234567', '00000012319', '2000-04-17', 1, 'rafaela@nalu.com', 1, 'Brasileira', 2, 2, '1238330909');
 
 -- --------------------------------------------------------
 
@@ -10339,9 +10369,35 @@ CREATE TABLE `plano_de_saude` (
   `pds_id` int(11) NOT NULL,
   `pds_convenio_nome` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'nome do convenio ou plano de saude',
   `pds_numero_sus` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do cartão SUS',
-  `pds_num_convenio` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT 'número do convenio ou plano de saude',
+  `pds_num_convenio` varchar(20) COLLATE utf8_bin NOT NULL,
   `pac_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `plano_de_saude`
+--
+
+INSERT INTO `plano_de_saude` (`pds_id`, `pds_convenio_nome`, `pds_numero_sus`, `pds_num_convenio`, `pac_id`) VALUES
+(1, '', '123456905495459', '', 1),
+(2, 'Unimed', '000293949392930', '94938493849545', 2),
+(3, '', '000293949392931', '', 3),
+(4, '', '000293949392932', '', 4),
+(5, 'Planstel', '000293949392933', '1239848589458', 5),
+(6, '', '000293949392934', '', 6),
+(7, 'Planstel', '000293949392935', '1239849090932', 7),
+(8, '', '000293949392936', '', 8),
+(9, 'Unimed', '000293949392937', '1234445678767', 9),
+(10, 'Unimed', '100293949392937', '1234561234567', 10),
+(11, '', '000293949392938', '', 11),
+(12, '', '000293949392939', '', 12),
+(13, 'Planstel', '000293949392920', '1234321234567', 13),
+(14, '', '000293949392921', '', 14),
+(15, '', '000293949392922', '', 15),
+(16, 'Unimed', '000293949392923', '1230009849321', 16),
+(17, '', '000293949392924', '', 17),
+(18, 'Planstel', '000293949392925', '1010234345609', 18),
+(19, 'Unimed', '090392129309456', '9999111100098', 19),
+(20, 'Unimed', '090392129309416', '9999000111234', 20);
 
 -- --------------------------------------------------------
 
@@ -10760,7 +10816,6 @@ ALTER TABLE `pessoa`
 --
 ALTER TABLE `plano_de_saude`
   ADD PRIMARY KEY (`pds_id`),
-  ADD UNIQUE KEY `pds_num_convenio` (`pds_num_convenio`),
   ADD UNIQUE KEY `pds_numero_sus` (`pds_numero_sus`),
   ADD KEY `fk_plano_de_saude_paciente1_idx` (`pac_id`);
 
@@ -10868,7 +10923,7 @@ ALTER TABLE `encaminhamento`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `end_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de tabela `enfermeiro`
 --
@@ -10938,17 +10993,17 @@ ALTER TABLE `medico`
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `pac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de tabela `plano_de_saude`
 --
 ALTER TABLE `plano_de_saude`
-  MODIFY `pds_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pds_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de tabela `setor`
 --
