@@ -114,15 +114,33 @@
 
             //verifica se a query foi inserida corretamente
           } else {
-            $upd = "UPDATE pessoa SET pes_nome='" . $metodo->getPes_nome() . "',
-                    pes_pai='" . $metodo->getPes_pai() . "', pes_mae='" . $metodo->getPes_mae()  . "',
-                    pes_rg='" . $metodo->getPes_rg() . "', pes_cpf='" . $metodo->getPes_cpf() . "',
-                    pes_data='" . $metodo->getPes_data() . "', pes_email='" . $metodo->getPes_email() . "',
-                    pes_estado_civil='" . $metodo->getPes_estado_civil() . "', pes_cidadania='" . $metodo->getPes_cidadania() . "',pes_genero='" . $metodo->getPes_genero() . "',
-                    pes_sexo_biologico='" . $metodo->getPes_sexo_biologico() . "',
-                    pes_telefone='" . $metodo->getPes_telefone() . "' WHERE pes_id='" . $_SESSION['id'] . "';";
+            $updPes = "UPDATE pessoa SET pes_nome='" . $metodo->getPes_nome() . "',
+                        pes_pai='" . $metodo->getPes_pai() . "',
+                        pes_mae='" . $metodo->getPes_mae()  . "',
+                        pes_rg='" . $metodo->getPes_rg() . "',
+                        pes_cpf='" . $metodo->getPes_cpf() . "',
+                        pes_data='" . $metodo->getPes_data() . "',
+                        pes_email='" . $metodo->getPes_email() . "',
+                        pes_estado_civil='" . $metodo->getPes_estado_civil() . "',
+                        pes_cidadania='" . $metodo->getPes_cidadania() . "',
+                        pes_genero='" . $metodo->getPes_genero() . "',
+                        pes_sexo_biologico='" . $metodo->getPes_sexo_biologico() . "',
+                        pes_telefone='" . $metodo->getPes_telefone() . "'
+                        WHERE pes_id='" . $_SESSION['id'] . "';";
 
-            $okPes = $sql->inserir($upd);
+            $okPes = $sql->inserir($updPes);
+
+            $updEnd = "UPDATE endereco SET end_pais='" . $metodo->getPes_nome() . "',
+                        end_estado='" . $metodo->getPes_pai() . "',
+                        end_cidade='" . $metodo->getPes_mae()  . "',
+                        end_cep='" . $metodo->getPes_rg() . "',
+                        end_bairro='" . $metodo->getPes_cpf() . "',
+                        end_rua='" . $metodo->getPes_data() . "',
+                        end_numero='" . $metodo->getPes_email() . "',
+                        pessoa_pes_id='" . $_SESSION['id'] . "',
+                        WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+
+            $okEnd = $sql->inserir($updEnd);
 
           }
 
@@ -171,43 +189,63 @@
           $metodo->setPds_num_convenio($_POST['pds_num_convenio']);
 
 
+          if ($_SESSION['esc'] == 1) {
+          ////////Seleciona o ultimo id de pessoa e ultimo id de paciente para ser utilizado///////////
+            $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
+            $pes_id=$sql->selecionar($sel_id);
 
-          //$qtdPds="SELECT * FROM plano_de_saude WHERE pds_sus =
-          //      '" . $_POST['pds_numero_sus'] . "';";
+            $sel_id="SELECT MAX(pac_id) AS pac_id FROM paciente";
+            $pac_id=$sql->selecionar($sel_id);
+            $pac_id++;
 
-          /*if ($qtdPds >= 1) {
-            echo "Paciente já cadastrado!";
-          }
-          else {
-          */  ////////Seleciona o ultimo id de pessoa e ultimo id de paciente para ser utilizado///////////
-          $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
-          $pes_id=$sql->selecionar($sel_id);
+            ////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
+            $insPac="INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao,           pac_hospitalizado, pessoa_pes_id) VALUES (
+                    '" . $metodo->getPac_tipo_sangue() . "',
+                    '" . $metodo->getPac_remedio()     . "',
+                    '" . $metodo->getPac_doenca()      . "',
+                    '" . $metodo->getPac_educacao()    . "',
+                    0 ,
+                    '" . $pes_id                       . "'
 
-          $sel_id="SELECT MAX(pac_id) AS pac_id FROM paciente";
-          $pac_id=$sql->selecionar($sel_id);
-          $pac_id++;
+                    );";
 
-          ////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
-          $insPac="INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao,           pac_hospitalizado, pessoa_pes_id) VALUES (
-                  '" . $metodo->getPac_tipo_sangue() . "',
-                  '" . $metodo->getPac_remedio()     . "',
-                  '" . $metodo->getPac_doenca()      . "',
-                  '" . $metodo->getPac_educacao()    . "',
-                  0 ,
-                  '" . $pes_id                       . "'
+            $insPds="INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id)  VALUES (
+                    '" . $metodo->getPds_convenio_nome(). "',
+                    '" . $metodo->getPds_numero_sus()   . "',
+                    '" . $metodo->getPds_num_convenio() . "',
+                    '" . $pac_id            . "'
 
                   );";
-
-          $insPds="INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id)  VALUES (
-                  '" . $metodo->getPds_convenio_nome(). "',
-                  '" . $metodo->getPds_numero_sus()   . "',
-                  '" . $metodo->getPds_num_convenio() . "',
-                  '" . $pac_id            . "'
-
-                );";
-          $okPac=$sql->inserir($insPac);
-          $okPds=$sql->inserir($insPds);
+            $okPac=$sql->inserir($insPac);
+            $okPds=$sql->inserir($insPds);
           ///////////////////////fim da inserção de dados///////////////////////////
+          } else {
+            $updPac="UPDATE paciente SET
+                        pac_tipo_sangue='" . $metodo->getPac_tipo_sangue() . "',
+                        pac_remedio='" . $metodo->getPac_remedio() . "',
+                        pac_doenca='" . $metodo->getPac_doenca()  . "',
+                        pac_educacao='" . $metodo->getPac_educacao() . "',
+                        pac_hospitalizado='0',
+                        pessoa_pes_id='" . $_SESSION['id'] . "',
+                        WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+
+            $okPac=$sql->inserir($updPac);
+
+            $sel="SELECT pac_id FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+            $pacId= $sql->selecionar($sel);
+
+            $updPds="UPDATE plano_de_saude SET
+                        pds_convenio_nome='" . $metodo->getPds_convenio_nome() . "',
+                        pds_numero_sus='" . $metodo->getPds_numero_sus() . "',
+                        pds_num_convenio='" . $metodo->getPds_num_convenio()  . "',
+                        paciente_pac_id='" . $pacId  . "'
+                        WHERE paciente_pac_id='" . $pacId . "';";
+
+            $okPds=$sql->inserir($updPds);
+
+
+
+          }
             if ($okPac && $okPds) {
               echo "<script>alert('Concluido!')
               location.href='index.php';</script>;";
@@ -378,7 +416,6 @@
             echo "Não cadastrado!!!";
           }
         } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-
             $_SESSION['form'] = 2;
             include 'form_funcionario.php';
         } elseif ($_SESSION['fun_cargo'] == "recepcao") {
@@ -388,7 +425,6 @@
 
       } elseif ($_GET['passo'] == 5) {
         if ($_SESSION['tipo'] == "administracao") {
-
           if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
             $_SESSION['form'] = 2;
             include 'form_funcionario.php';
@@ -400,11 +436,10 @@
       } elseif ($_GET['passo'] == 6) {
         if ($_SESSION['tipo'] == "administracao") {
          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
-
           $_SESSION['form'] = 2;
           include 'form_complementar.php';
 
-          }
+         }
         }
       } elseif ($_GET['passo'] == 7) {
         echo "<script>alert('Concluido!')
