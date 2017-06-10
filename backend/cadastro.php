@@ -63,8 +63,6 @@
         $metodo->setEnd_numero($_POST['end_numero']);
 
         // Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
-        $selPes="SELECT * FROM pessoa WHERE pes_cpf='" . $_POST ['pes_cpf'] . "';";
-        $qtd=$sql->selecionar($selPes);
 
         if ($qtd >= 1) {
           echo "Pessoa já cadastrada!!";
@@ -74,6 +72,9 @@
         } else {
           ////////////////////Insere os dados do formulário anterior no banco/////////////////////////
           if ($_SESSION['esc'] == 1) {
+            $selPes="SELECT * FROM pessoa WHERE pes_cpf='" . $_POST ['pes_cpf'] . "';";
+            $qtd=$sql->selecionar($selPes);
+
             $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES (
                 '". $metodo->getPes_nome()          ."',
                 '". $metodo->getPes_pai()           ."',
@@ -130,14 +131,14 @@
 
             $okPes = $sql->inserir($updPes);
 
-            $updEnd = "UPDATE endereco SET end_pais='" . $metodo->getPes_nome() . "',
-                        end_estado='" . $metodo->getPes_pai() . "',
-                        end_cidade='" . $metodo->getPes_mae()  . "',
-                        end_cep='" . $metodo->getPes_rg() . "',
-                        end_bairro='" . $metodo->getPes_cpf() . "',
-                        end_rua='" . $metodo->getPes_data() . "',
-                        end_numero='" . $metodo->getPes_email() . "',
-                        pessoa_pes_id='" . $_SESSION['id'] . "',
+            $updEnd = "UPDATE endereco SET end_pais='" . $metodo->getEnd_pais() . "',
+                        end_estado='" . $metodo->getEnd_estado() . "',
+                        end_cidade='" . $metodo->getEnd_cidade()  . "',
+                        end_cep='" . $metodo->getEnd_cep() . "',
+                        end_bairro='" . $metodo->getEnd_bairro() . "',
+                        end_rua='" . $metodo->getEnd_rua() . "',
+                        end_numero='" . $metodo->getEnd_numero() . "',
+                        pessoa_pes_id='" . $_SESSION['id'] . "'
                         WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
 
             $okEnd = $sql->inserir($updEnd);
