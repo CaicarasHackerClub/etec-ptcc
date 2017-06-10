@@ -20,10 +20,6 @@ header{
   display: none;
 }
 
-input {
-  padding-left: 1em;
-}
-
 a {
   outline:none;
 }
@@ -528,7 +524,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 .form-cadastro .grupo-info .extend .inp_class  {
-  width: 75%;
+  width: 81.7%;
 }
 
 .form-cadastro .grupo-info .extend .lbl_class {
@@ -538,6 +534,10 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form-cadastro .grupo-info .extend button[name='auto'] {
   background-color: #f56529;
+}
+
+.inp_class {
+  padding-left: 1em;
 }
 
 /* Escondemos o radio original */
