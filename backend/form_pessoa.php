@@ -13,7 +13,7 @@ $sql = new Sql;
 
 if ($_SESSION['form'] == 1) {
   //cadastro
-  $tipo = "cadastro.php?acao=cadastro&passo=2";
+  $tipo="cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
   $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
   $idPes = $sql->selecionar($maxPes);
@@ -30,6 +30,12 @@ if ($_SESSION['form'] == 1) {
     } else {
       $tipo = "cadastro.php?acao=cadastro&passo=4";
     }
+
+} elseif ($_SESSION['form'] == 3) {
+  $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $_SESSION['id'] . "';";
+  $pessoa = $sql->fetch($selPes);
+  $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+  $endereco = $sql->fetch($selEnd);
 
 }
 
