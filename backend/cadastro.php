@@ -263,97 +263,114 @@
           $metodo->setSet_setor($_POST['setor']);
 
           $_SESSION['fun_cargo'] = $_POST['fun_cargo'];
-          // Seleção e inserção na tabela funcionário
-          //$selFun ="SELECT fun_inscricao FROM funcionario WHERE '" . $_POST['fun_inscricao'] . "';";
 
-           /*  $qtdFun=$posto->selecionar($selfun);
-          if ($qtd >= 1) {
-            echo"Funcionario já cadastrado!";
-          }
-          else {
-            */
-          if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
-            echo "<script>alert('Senhas não correspondem!')
-            location.href='form_funcionario.php?voltar=1';</script>;";
+          if ($_SESSION['esc'] == 1) {
+            if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
+              echo "<script>alert('Senhas não correspondem!')
+              location.href='form_funcionario.php?voltar=1';</script>;";
 
-          } else {
-            $sel_id="SELECT MAX(usu_id) AS usu_id FROM usuario";
-            $usu_id=$sql->selecionar($sel_id);
-            $usu_id++;
+            } else {
+              $sel_id="SELECT MAX(usu_id) AS usu_id FROM usuario";
+              $usu_id=$sql->selecionar($sel_id);
+              $usu_id++;
 
-            $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
-            $pes_id=$sql->selecionar($sel_id);
+              $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
+              $pes_id=$sql->selecionar($sel_id);
 
-            $insFun="INSERT INTO funcionario (fun_cargo, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
-                    '" . $metodo->getFun_cargo()    . "',
-                    '" . $metodo->getFun_inscricao(). "',
-                    '" . $metodo->getFun_turno()    . "',
-                    '" .     $pes_id                . "',
-                    '" . $metodo->getSet_setor()    . "'
-                  );";
-
-
-            $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-            $fun_id=$sql->selecionar($sel_id);
-            $fun_id++;
-
-            $insUsu="INSERT INTO usuario (usu_senha, usu_email, usu_ativo, usu_tipo, funcionario_id) VALUES (
-                      '" . $metodo->getUsu_senha(). "',
-                      '" . $metodo->getUsu_email(). "',
-                      '     1                        ',
-                      '     1                        ',
-                      '" .    $fun_id             . "'
+              $insFun="INSERT INTO funcionario (fun_cargo, fun_inscricao, fun_turno, pessoa_pes_id, setor_set_id) VALUES (
+                      '" . $metodo->getFun_cargo()    . "',
+                      '" . $metodo->getFun_inscricao(). "',
+                      '" . $metodo->getFun_turno()    . "',
+                      '" .     $pes_id                . "',
+                      '" . $metodo->getSet_setor()    . "'
                     );";
 
-            $okFun=$sql->inserir($insFun);
-            $okUsu=$sql->inserir($insUsu);
 
-            if ($okFun && $okUsu) {
-              echo "Cadastrado com sucesso!!";
-            } else {
-              echo "Erro ao cadastrar";
+              $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+              $fun_id=$sql->selecionar($sel_id);
+              $fun_id++;
+
+              $insUsu="INSERT INTO usuario (usu_senha, usu_email, usu_ativo, usu_tipo, funcionario_id) VALUES (
+                        '" . $metodo->getUsu_senha(). "',
+                        '" . $metodo->getUsu_email(). "',
+                        '     1                        ',
+                        '     1                        ',
+                        '" .    $fun_id             . "'
+                      );";
+
+              $okFun=$sql->inserir($insFun);
+              $okUsu=$sql->inserir($insUsu);
             }
-
-            if ($_SESSION['fun_cargo'] == "medico") {
-              ////////////////formulário formação do médico ///////////////////
-              if ($_SESSION['esc'] == 1) {
-                $_SESSION['form'] = 1;
-                include 'form_complementar.php';
-              } else {
-                $_SESSION['form'] = 3;
-                include 'form_complementar.php';
-              }
-              /////////////////////////fim/////////////////////////////////////
-
-            } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-              ///////////////formulário enfermeiro/////////////////////////////
-              if ($_SESSION['esc'] == 1) {
-                $_SESSION['form'] = 1;
-                include 'form_complementar.php';
-              } else {
-                $_SESSION['form'] = 3;
-                include 'form_complementar.php';
-              }
-              /////////////////////////fim//////////////////////////////////////
-
-            } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-              /////////////////confirmação final///////////////////////////////
-                $_SESSION['form'] = 2;
-                include 'form_pessoa.php';
-
-
-              // Irá para o passo 4 para aparecer o formulário "funcionario" //
-
-            } elseif ($_SESSION['fun_cargo'] == "funcionario") {
-              /////////////////confirmação final//////////////////////////////
-              $_SESSION['form'] = 2;
-              include 'form_pessoa.php';
-              // Irá para o passo 4 para aparecer o formulário "funcionario" //
+          } else {
+            if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
+              echo "<script>alert('Senhas não correspondem!')
+              location.href='form_funcionario.php?voltar=1';</script>;";
 
             } else {
-              header("Location:cadastro.php&passo=5");
+              $updFun="UPDATE funcionario SET
+                          fun_cargo='" . $metodo->getFun_cargo() . "',
+                          fun_inscricao='" . $metodo->getFun_inscricao() . "',
+                          fun_turno='" . $metodo->getFun_turno()  . "',
+                          pessoa_pes_id='" . $_SESSION['id']  . "',
+                          setor_set_id='" . $metodo->getSet_setor(). "'
+                          WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+
+              $sel="SELECT fun_id FROM funcionario WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+              $funId=$sql->selecionar($sel);
+
+              $updUsu="UPDATE usuario SET usu_senha='" . $metodo->getUsu_senha() . "',
+                      usu_email='" . $metodo->getUsu_email() . "',  usu_ativo='1', usu_tipo='1',
+                      funcionario_id='" . $funId. "' WHERE funcionario_id='" . $funId . "'
+                      ;";
+
+              $okFun=$sql->inserir($updFun);
+              $okUsu=$sql->inserir($updUsu);
             }
           }
+          if ($okFun && $okUsu) {
+            echo "Cadastrado com sucesso!!";
+          } else {
+            echo "Erro ao cadastrar";
+          }
+
+          if ($_SESSION['fun_cargo'] == "medico") {
+            ////////////////formulário formação do médico ///////////////////
+            if ($_SESSION['esc'] == 1) {
+              $_SESSION['form'] = 1;
+              include 'form_complementar.php';
+            } else {
+              $_SESSION['form'] = 3;
+              include 'form_complementar.php';
+            }
+            /////////////////////////fim/////////////////////////////////////
+          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+            ///////////////formulário enfermeiro/////////////////////////////
+            if ($_SESSION['esc'] == 1) {
+              $_SESSION['form'] = 1;
+              include 'form_complementar.php';
+            } else {
+              $_SESSION['form'] = 3;
+              include 'form_complementar.php';
+            }
+            /////////////////////////fim//////////////////////////////////////
+          } elseif ($_SESSION['fun_cargo'] == "recepcao") {
+            /////////////////confirmação final///////////////////////////////
+            $_SESSION['form'] = 2;
+            include 'form_pessoa.php';
+
+
+              // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
+          } elseif ($_SESSION['fun_cargo'] == "funcionario") {
+            /////////////////confirmação final//////////////////////////////
+            $_SESSION['form'] = 2;
+            include 'form_pessoa.php';
+              // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
+          } else {
+            header("Location:cadastro.php&passo=5");
+          }
+
         }
       } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
@@ -362,28 +379,44 @@
           $metodo->setEsp_nome($_POST['especializacao']);
 
           $esp=$metodo->getEsp_nome();
-          echo $esp;
-            //$selMed="SELECT * FROM medico WHERE '" . $_POST['med_crm'] . "';";
 
-          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-          $fun_id=$sql->selecionar($sel_id);
+          if ($_SESSION['esc'] == 1) {
+            $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+            $fun_id=$sql->selecionar($sel_id);
 
-          $insMed="INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
-                  '" . $metodo->getMed_crm() . "',
-                  '" . $fun_id               . "'
-                  );";
+            $insMed="INSERT INTO medico (med_crm, funcionario_fun_id) VALUES (
+                    '" . $metodo->getMed_crm() . "',
+                    '" . $fun_id               . "'
+                    );";
 
-          $sel_id="SELECT MAX(med_id) AS med_id FROM medico";
-          $med_id=$sql->selecionar($sel_id);
-          $med_id++;
+            $sel_id="SELECT MAX(med_id) AS med_id FROM medico";
+            $med_id=$sql->selecionar($sel_id);
+            $med_id++;
 
-          $insHas="INSERT INTO medico_has_especializacao (medico_med_id, especializacao_esp_id) VALUES(
-                  '" . $med_id                . "',
-                  '" . $metodo->getEsp_nome() . "'
-                  );";
+            $insHas="INSERT INTO medico_has_especializacao (medico_med_id, especializacao_esp_id) VALUES(
+                    '" . $med_id                . "',
+                    '" . $metodo->getEsp_nome() . "'
+                    );";
 
-          $okMed=$sql->inserir($insMed);
-          $okHas=$sql->inserir($insHas);
+            $okMed=$sql->inserir($insMed);
+            $okHas=$sql->inserir($insHas);
+          } else {
+            $updMed="UPDATE medico SET
+                        med_crm='" . $metodo->getMed_crm() . "',
+                        funcionario_fun_id='" . $funId . "'
+                        WHERE funcionario_fun_id='" . $funId . "';";
+
+            $sel="SELECT med_id FROM medico WHERE funcionario_fun_id='" . $funId . "';";
+            $medId=$sql->selecionar($sel);
+
+            $updMed="UPDATE medico_has_especializacao SET
+                        medico_med_id='" . $medId . "',
+                        especializacao_esp_id='" . $metodo->getEsp_nome() . "'
+                        WHERE funcionario_fun_id='" . $funId . "';";
+
+            $okMed=$sql->inserir($updMed);
+            $okHas=$sql->inserir($updHas);
+          }
 
           if ($okMed && $okHas) {
             echo "Médico(a) cadastrado!!";
@@ -398,15 +431,22 @@
         } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
           $metodo->setEnf_registro($_POST['enf_registro']);
           $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
-          $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
-          $fun_id=$sql->selecionar($sel_id);
+          if ($_SESSION['esc'] == 1) {
+            $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
+            $fun_id=$sql->selecionar($sel_id);
 
-          $insEnf="INSERT INTO enfermeiro (enf_registro, funcionario_fun_id) VALUES(
-                  '" . $metodo->getEnf_registro() . "',
-                  '" . $fun_id                    . "'
-                  );";
-          $okEnf= $sql->inserir($insEnf);
-          ////////////////////Fim do cadastro//////
+            $insEnf="INSERT INTO enfermeiro (enf_registro, funcionario_fun_id) VALUES(
+                    '" . $metodo->getEnf_registro() . "',
+                    '" . $fun_id                    . "'
+                    );";
+            $okEnf= $sql->inserir($insEnf);
+            ////////////////////Fim do cadastro//////
+          } else {
+            $updEnf="UPDATE enfermeiro SET enf_registro='" . $metodo->getEnf_registro() . "',
+                     funcionario_fun_id='". $funId . "' WHERE funcionario_fun_id='" . $funId . "';";
+
+            $okEnf= $sql->inserir($updEnf);
+          }
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
             $_SESSION['form'] = 2;
