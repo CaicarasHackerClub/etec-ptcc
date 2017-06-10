@@ -185,12 +185,17 @@ a {
   width: 100%;
 }
 
-.container .main-lateral .anchor p{
+.container .main-lateral .anchor p {
   display: inline-block;
   position: absolute;
   margin: 0;
   margin-left: 10px;
   margin-top: 7px;
+  cursor: pointer;
+}
+
+.container .main-lateral .anchor p:hover {
+  text-decoration: underline;
 }
 
 .container .main-lateral .anchor .icon-modulo{
@@ -226,7 +231,7 @@ a {
 .container .lateral .main-lateral .anchor{
   background-color: #01b26c;
   border-bottom: 1px solid #29784b;
-  color: #29784b;
+  color: #f1fff7;
 }
 
 /*hover das tags a*/
