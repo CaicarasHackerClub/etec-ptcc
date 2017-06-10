@@ -29,7 +29,7 @@ $usuario = $sql->fetch($selUsu);
 <form class="Form form-funcionario" action="<?=$tipo?>" method="post">
   <h1 class="titulo">Funcionário</h1><br>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Cargo:</label>
+    <label class="lbl_class">Cargo</label>
     <?php
     if ($_SESSION['form'] == 1) {
     echo "<select class=\"inp_class\" name=\"fun_cargo\">";
@@ -47,7 +47,7 @@ $usuario = $sql->fetch($selUsu);
     <br>
   </div>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Setor:</label>
+    <label class="lbl_class">Setor</label>
     <?php
     if ($_SESSION['form'] == 1) {
       $sql->selectbox("setor");
@@ -60,7 +60,7 @@ $usuario = $sql->fetch($selUsu);
     ?>
   </div>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Inscrição:</label>
+    <label class="lbl_class">Inscrição</label>
     <?php
       if ($_SESSION['form'] == 1) {
         $dis = "";
@@ -73,7 +73,7 @@ $usuario = $sql->fetch($selUsu);
     <input class="inp_class" type="text" name="fun_inscricao" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Turno:</label>
+    <label class="lbl_class">Turno</label>
     <?php
       if ($_SESSION['form'] == 1) {
         $sql->selectbox("turno");
@@ -86,7 +86,7 @@ $usuario = $sql->fetch($selUsu);
     ?>
   </div>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">E-mail:</label>
+    <label class="lbl_class">E-mail</label>
     <?php
       if ($_SESSION['form'] == 1) {
         $dis = "";
@@ -99,7 +99,7 @@ $usuario = $sql->fetch($selUsu);
     <input class="inp_class" type="text" name="usu_email" size="28" <?=$dis . $val; ?>><br>
   </div>
   <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Senha:</label>
+    <label class="lbl_class">Senha</label>
     <?php
       if ($_SESSION['form'] == 1) {
         $dis = "";
@@ -115,7 +115,7 @@ $usuario = $sql->fetch($selUsu);
   if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
   ?>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Confirmação de senha:</label>
+      <label class="lbl_class">Confirmação</label>
       <input class="inp_class" type="password" name="conf_senha" size="28"><br>
     </div>
   <?php
