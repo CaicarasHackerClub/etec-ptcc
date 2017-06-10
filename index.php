@@ -56,7 +56,9 @@ session_start();
               $qtd=$sql->selecionar($sel);
               if ($qtd>=1) {
                 echo "Ja possui um cpf com esse numero!!";
-                $_SESSION['esc'] = 3;
+                  $sel="SELECT pes_id FROM pessoa WHERE pes_cpf=" . $_POST['doc'] . ";";
+                  $_SESSION['id'] = $sql->selecionar($sel);
+                  $_SESSION['esc'] = 3;
                 header("Location:backend/cadastro.php?acao=cadastro");
               } else {
                 $_SESSION['cpf'] = $_POST['doc'];
