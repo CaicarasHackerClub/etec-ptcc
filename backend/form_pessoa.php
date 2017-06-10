@@ -175,7 +175,7 @@ if ($_SESSION['form'] == 1) {
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Estado civil</label>
       <?php
-        if ($_SESSION['form'] == 1) {
+        if ($_SESSION['form'] == 1  || $_SESSION['form'] == 3) {
           $sql->selectbox("estado_civil");
         } else {
           $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
@@ -188,9 +188,10 @@ if ($_SESSION['form'] == 1) {
           }
 
           $val = "value=\"" . $etc[1] . "\"";
+        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\""
+             . $dis . $val . "><br>\"";
         }
       ?>
-      <input class="inp_class" type="text" name="pes_estado_civil" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Cidadania</label>
@@ -207,15 +208,15 @@ if ($_SESSION['form'] == 1) {
             $val = " value=\"" . $pessoa[10] . "\"";
           }
       ?>
-      <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val?>><br>
+      <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Gênero</label>
       <?php
-        if ($_SESSION['form'] == 1) {
+        if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
           $sql->selectbox("genero");
         } else {
-          $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
+          $selG = "SELECT gen_genero FROM genero WHERE gen_id='" . $pessoa[11] . "';";
           $gen = $sql->fetch($selG);
           if ($_SESSION['form'] == 2) {
             $dis = " disabled";
@@ -223,14 +224,14 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
           }
           $val = " value=\"" . $gen[1] . "\"";
+        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\"" . $dis . $val . "><br>\"";
         }
       ?>
-      <input class="inp_class" type="text" name="pes_genero" size="28"<?=$dis . $val?>><br>";
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Sexo biológico</label>
       <?php
-        if ($_SESSION['form'] == 1) {
+        if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
           $sql->selectbox("sexo");
         } else {
           $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
@@ -242,8 +243,9 @@ if ($_SESSION['form'] == 1) {
           }
         $val = " value=\"" . $sex[1] . "\"";
         }
+      echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\"" . $dis . $val .
+      "><br>";
       ?>
-      <input class="inp_class" type="text" name="pes_sexo_biologico" size="28"<?=$dis . $val?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Telefone</label>
@@ -260,7 +262,7 @@ if ($_SESSION['form'] == 1) {
           $val = " value=\"" . $pessoa[13] . "\"";
       }
       ?>
-      <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val?>><br>
+      <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val;?>><br>
     </div>
     <input class="submit" id="inp-env" type="button" name="inp-env" value="Proximo">
   </fieldset>
@@ -283,8 +285,7 @@ if ($_SESSION['form'] == 1) {
         echo "<div id=\"auto-endereco\" class=\"auto-endereco\">";
         include 'form_endereco.php';
         echo "</div>";
-      } else {
-        $_SESSION['form'] = 2;
+      } elseif ($_SESSION['form'] == 2 || $_SESSION['form'] == 3)  {
         include 'form_endereco.php';
       }
     ?>
