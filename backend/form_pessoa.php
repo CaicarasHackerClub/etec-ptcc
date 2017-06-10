@@ -15,7 +15,6 @@ if ($_SESSION['form'] == 1) {
   //cadastro
   $tipo = "cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-
   $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
   $idPes = $sql->selecionar($maxPes);
   $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";

@@ -52,13 +52,12 @@ session_start();
                   header("Location:backend/cadastro.php?acao=cadastro");
                 }
             } else {
-
               $sel="SELECT pes_cpf FROM pessoa WHERE pes_cpf = '" . $_POST['doc']  . "';";
               $qtd=$sql->selecionar($sel);
               if ($qtd>=1) {
                 echo "Ja possui um cpf com esse numero!!";
                 $_SESSION['esc'] = 3;
-                header ("Location:backend/cadastro.php?acao=cadastro");
+                header("Location:backend/cadastro.php?acao=cadastro");
               } else {
                 $_SESSION['cpf'] = $_POST['doc'];
                 $_SESSION['esc'] = 1;

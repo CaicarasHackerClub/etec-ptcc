@@ -10,7 +10,6 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['form'] = 1;
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 } elseif ($_SESSION['form'] == 2) {
-
   if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
     $tipo = "cadastro.php?acao=cadastro&passo=6";
   } else {

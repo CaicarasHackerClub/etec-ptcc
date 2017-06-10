@@ -386,7 +386,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: inline-block;
   font-family: sans-serif;
   /*border: 1px solid;*/
-  /*overflow:scroll;*/
+  overflow: auto;
 }
 
 .form-cadastro .grupo-info .group-form-cadastro .select {
@@ -399,7 +399,6 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form-cadastro {
   margin-left: 0;
-  /*overflow: hidden;*/
 }
 
 .auto-endereco {
