@@ -10,28 +10,38 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['form'] = 1;
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 } elseif ($_SESSION['form'] == 2) {
+
+  $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
+  $idFun = $sql->selecionar($maxFun);
+  $selFun = "SELECT * FROM funcionario WHERE fun_id='" . $idFun . "';";
+  $funcionario = $sql->fetch($selFun);
+
+  $selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $idFun . "';";
+  $usuario = $sql->fetch($selUsu);
+
   if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
     $tipo = "cadastro.php?acao=cadastro&passo=6";
   } else {
     $tipo = "cadastro.php?acao=cadastro&passo=5";
   }
 
+} else {
+  $selFun = "SELECT * FROM funcionario WHERE pessoa_pes_id='". $_SESSION['id'] ."';";
+  $funcionario=$sql->fetch($selFun);
+  $selUsu="SELECT * FROM usuario WHERE funcionario_id='" . $funcionario['0'] . "';";
+  $usuario=$sql->fetch($selUsu);
+
+  $tipo = "cadastro.php?acao=cadastro&passo=3";
+
 }
 
-$maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
-$idFun = $sql->selecionar($maxFun);
-$selFun = "SELECT * FROM funcionario WHERE fun_id='" . $idFun . "';";
-$funcionario = $sql->fetch($selFun);
-
-$selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $idFun . "';";
-$usuario = $sql->fetch($selUsu);
 ?>
 <form class="Form form-funcionario" action="<?=$tipo?>" method="post">
   <h1 class="titulo">Funcionário</h1><br>
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Cargo</label>
     <?php
-    if ($_SESSION['form'] == 1) {
+    if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
     echo "<select class=\"inp_class\" name=\"fun_cargo\">";
     echo  "<option class=\"option\" value=\"recepcao\">Recepcionista</option>";
     echo  "<option class=\"option\" value=\"medico\">Médico</option>";
@@ -49,7 +59,7 @@ $usuario = $sql->fetch($selUsu);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Setor</label>
     <?php
-    if ($_SESSION['form'] == 1) {
+    if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
       $sql->selectbox("setor");
     } else {
       $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[5]  . "';";
@@ -66,7 +76,11 @@ $usuario = $sql->fetch($selUsu);
         $dis = "";
         $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $funcionario[2] . "\"";
       }
     ?>
@@ -75,7 +89,7 @@ $usuario = $sql->fetch($selUsu);
   <div class="group-form group-form-cadastro">
     <label class="lbl_class">Turno</label>
     <?php
-      if ($_SESSION['form'] == 1) {
+      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
         $sql->selectbox("turno");
       } else {
         $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[3]  . "';";
@@ -92,7 +106,11 @@ $usuario = $sql->fetch($selUsu);
         $dis = "";
         $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $usuario[2] . "\"";
       }
     ?>
@@ -105,7 +123,11 @@ $usuario = $sql->fetch($selUsu);
         $dis = "";
         $val = "";
       } else {
-        $dis = " disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $usuario[1] . "\"";
       }
     ?>
