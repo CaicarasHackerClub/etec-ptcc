@@ -53,7 +53,7 @@ if ($_SESSION['form'] == 1) {
   <br>
   <fieldset class="grupo-info visible-group">
     <legend class="legenda">Dados Pessoais</legend>
-    <div class="group-form group-form-cadastro extend">
+      <div class="group-form group-form-cadastro extend">
       <label class="lbl_class">Nome</label>
       <?php
           if ($_SESSION['form'] == 1) {

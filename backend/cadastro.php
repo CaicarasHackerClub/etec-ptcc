@@ -44,6 +44,9 @@
         $metodo->setPes_sexo_biologico($_POST['sexo']);
         $metodo->setPes_telefone($_POST['pes_telefone']);
 
+        if (isset($_POST['tipo'])) {
+        $metodo->setPes_tipo($_POST['tipo']);
+        }
         // TODO: arrumar cidade, estado
         $estado = tiraAcentos($_POST['end_estado']);
         $cidade = tiraAcentos($_POST['end_cidade']);
@@ -75,13 +78,20 @@
             $selPes="SELECT * FROM pessoa WHERE pes_cpf='" . $_POST ['pes_cpf'] . "';";
             $qtd=$sql->selecionar($selPes);
 
-            $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone) VALUES (
+            if ($_SESSION['tipo'] == "recepcao") {
+              $tipo = 1;
+            } else {
+              $tipo = 2;
+            }
+            $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_tipo, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone)
+              VALUES (
                 '". $metodo->getPes_nome()          ."',
                 '". $metodo->getPes_pai()           ."',
                 '". $metodo->getPes_mae()           ."',
                 '". $metodo->getPes_rg()            ."',
                 '". $metodo->getPes_cpf()           ."',
                 '". $metodo->getPes_data()          ."',
+                '". $tipo                           ."',
                 '". $metodo->getPes_email()         ."',
                 '". $metodo->getPes_estado_civil()  ."',
                 '". $metodo->getPes_cidadania()     ."',
@@ -121,6 +131,7 @@
                         pes_rg='" . $metodo->getPes_rg() . "',
                         pes_cpf='" . $metodo->getPes_cpf() . "',
                         pes_data='" . $metodo->getPes_data() . "',
+                        pes_tipo='" . $metodo->getPes_tipo() . "',
                         pes_email='" . $metodo->getPes_email() . "',
                         pes_estado_civil='" . $metodo->getPes_estado_civil() . "',
                         pes_cidadania='" . $metodo->getPes_cidadania() . "',
