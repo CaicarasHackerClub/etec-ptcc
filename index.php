@@ -52,31 +52,18 @@ session_start();
                   header("Location:backend/cadastro.php?acao=cadastro");
                 }
             } else {
+
               $sel="SELECT pes_cpf FROM pessoa WHERE pes_cpf = '" . $_POST['doc']  . "';";
               $qtd=$sql->selecionar($sel);
-                if ($qtd>=1) {
-                  echo "Ja possui um cpf com esse numero!!";
-
-                  $sel="SELECT * FROM pessoa WHERE pes_cpf = '" . $_POST['doc'] ."';";
-                  $pessoa=$sql->fetch($sel);
-                  $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $pessoa['10'] . "';";
-                  $endereco = $sql->fetch($selEnd);
-                  $_SESSION['form'] = 3;
-                  $_SESSION['pessoa'] = $pessoa;
-                  $_SESSION['end'] = $endereco;
-
-                    include'backend/form_pessoa.php';
-
-                    header("Location:visualizar.php?acao=cadastro");
-
-                  //$_SESSION['form'] = 4;
-
-                  //include'backend/form_funcionario.php';
-
-                } else {
-                  $_SESSION['cpf'] = $_POST['doc'];
-                  header("Location:backend/cadastro.php?acao=cadastro");
-                }
+              if ($qtd>=1) {
+                echo "Ja possui um cpf com esse numero!!";
+                $_SESSION['esc'] = 3;
+                header ("Location:backend/cadastro.php?acao=cadastro");
+              } else {
+                $_SESSION['cpf'] = $_POST['doc'];
+                $_SESSION['esc'] = 1;
+                header("Location:backend/cadastro.php?acao=cadastro");
+              }
             }
           }
         } else {
