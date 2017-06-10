@@ -36,7 +36,7 @@ if ($_SESSION['form'] == 1) {
   $pessoa = $sql->fetch($selPes);
   $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
   $endereco = $sql->fetch($selEnd);
-
+  $tipo="cadastro.php?acao=cadastro&passo=2";
 }
 
 ?>
@@ -60,7 +60,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[1] . "\"";
           }
       ?>
@@ -73,7 +77,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[2] . "\"";
           }
       ?>
@@ -86,7 +94,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[3] . "\"";
           }
       ?>
@@ -99,7 +111,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[4] . "\"";
           }
       ?>
@@ -112,7 +128,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "value=\"" . $_SESSION['cpf'] . "\"";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[5] . "\"";
           }
       ?>
@@ -125,7 +145,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[6] . "\"";
           }
       ?>
@@ -138,7 +162,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[8] . "\"";
           }
       ?>
@@ -152,9 +180,17 @@ if ($_SESSION['form'] == 1) {
         } else {
           $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
           $etc = $sql->fetch($selE);
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\" disabled value=" . $etc[1] . "><br>";
+
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+
+          $val = "value=\"" . $etc[1] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="pes_estado_civil" size="28"  <?=$dis . $val; ?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Cidadania</label>
@@ -163,7 +199,11 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
             $val = "";
           } else {
-            $dis = " disabled";
+            if ($_SESSION['form'] == 2) {
+              $dis = " disabled";
+            } else {
+              $dis = "";
+            }
             $val = " value=\"" . $pessoa[10] . "\"";
           }
       ?>
@@ -177,9 +217,15 @@ if ($_SESSION['form'] == 1) {
         } else {
           $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
           $gen = $sql->fetch($selG);
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\" disabled value=" . $gen[1] . "><br>";
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+          $val = " value=\"" . $gen[1] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="pes_genero" size="28"<?=$dis . $val?>><br>";
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Sexo biológico</label>
@@ -189,20 +235,30 @@ if ($_SESSION['form'] == 1) {
         } else {
           $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
           $sex = $sql->fetch($selG);
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\" disabled value=" . $sex[1] . "><br>";
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+        $val = " value=\"" . $sex[1] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="pes_sexo_biologico" size="28"<?=$dis . $val?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Telefone</label>
       <?php
-          if ($_SESSION['form'] == 1) {
-            $dis = "";
-            $val = "";
-          } else {
-            $dis = " disabled";
-            $val = " value=\"" . $pessoa[13] . "\"";
-          }
+      if ($_SESSION['form'] == 1) {
+        $dis = "";
+        $val = "";
+      } else {
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
+          $val = " value=\"" . $pessoa[13] . "\"";
+      }
       ?>
       <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val?>><br>
     </div>
