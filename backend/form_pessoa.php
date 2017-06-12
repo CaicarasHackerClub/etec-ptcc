@@ -214,16 +214,15 @@ if ($_SESSION['form'] == 1) {
         if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
           $sql->selectbox("genero");
         } else {
-          $selG = "SELECT gen_genero FROM genero WHERE gen_id='" . $pessoa[11] . "';";
+          $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
           $gen = $sql->fetch($selG);
+
           if ($_SESSION['form'] == 2) {
             $dis = " disabled";
           } else {
             $dis = "";
           }
-          $val= " value=\"" . $gen[1] . "\"";
-
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\"". $dis . $val ."><br>";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\"". $dis . " value=\"" . $gen[1] . "\"><br>";
 
         }
       ?>
