@@ -185,9 +185,6 @@
         }
       } elseif ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
-          $metodo->setPac_tipo_sangue($_POST['tipo_sanguineo']);
-          $metodo->setPac_remedio($_POST['pac_remedio']);
-          $metodo->setPac_doenca($_POST['pac_doenca']);
           $metodo->setPac_educacao($_POST['escolaridade']);
 
           $metodo->setPds_convenio_nome($_POST['pds_convenio_nome']);
@@ -335,48 +332,47 @@
           }
           if ($okFun && $okUsu) {
             echo "Cadastrado com sucesso!!";
+            if ($_SESSION['fun_cargo'] == "medico") {
+              ////////////////formulário formação do médico ///////////////////
+              if ($_SESSION['esc'] == 1) {
+                $_SESSION['form'] = 1;
+                include 'form_complementar.php';
+              } else {
+                $_SESSION['form'] = 3;
+                include 'form_complementar.php';
+              }
+              /////////////////////////fim/////////////////////////////////////
+            } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+              ///////////////formulário enfermeiro/////////////////////////////
+              if ($_SESSION['esc'] == 1) {
+                $_SESSION['form'] = 1;
+                include 'form_complementar.php';
+              } else {
+                $_SESSION['form'] = 3;
+                include 'form_complementar.php';
+              }
+              /////////////////////////fim//////////////////////////////////////
+            } elseif ($_SESSION['fun_cargo'] == "recepcao") {
+              /////////////////confirmação final///////////////////////////////
+              $_SESSION['form'] = 2;
+              include 'form_pessoa.php';
+
+
+                // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
+            } elseif ($_SESSION['fun_cargo'] == "funcionario") {
+              /////////////////confirmação final//////////////////////////////
+              $_SESSION['form'] = 2;
+              include 'form_pessoa.php';
+                // Irá para o passo 4 para aparecer o formulário "funcionario" //
+
+            } else {
+              header("Location:cadastro.php&passo=5");
+            }
+
           } else {
             echo "Erro ao cadastrar";
           }
-
-          if ($_SESSION['fun_cargo'] == "medico") {
-            ////////////////formulário formação do médico ///////////////////
-            if ($_SESSION['esc'] == 1) {
-              $_SESSION['form'] = 1;
-              include 'form_complementar.php';
-            } else {
-              $_SESSION['form'] = 3;
-              include 'form_complementar.php';
-            }
-            /////////////////////////fim/////////////////////////////////////
-          } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-            ///////////////formulário enfermeiro/////////////////////////////
-            if ($_SESSION['esc'] == 1) {
-              $_SESSION['form'] = 1;
-              include 'form_complementar.php';
-            } else {
-              $_SESSION['form'] = 3;
-              include 'form_complementar.php';
-            }
-            /////////////////////////fim//////////////////////////////////////
-          } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-            /////////////////confirmação final///////////////////////////////
-            $_SESSION['form'] = 2;
-            include 'form_pessoa.php';
-
-
-              // Irá para o passo 4 para aparecer o formulário "funcionario" //
-
-          } elseif ($_SESSION['fun_cargo'] == "funcionario") {
-            /////////////////confirmação final//////////////////////////////
-            $_SESSION['form'] = 2;
-            include 'form_pessoa.php';
-              // Irá para o passo 4 para aparecer o formulário "funcionario" //
-
-          } else {
-            header("Location:cadastro.php&passo=5");
-          }
-
         }
       } elseif ($_GET['passo'] == 4) {
         //últimos inserts e/ou confirmação de cadastro de acordo com o que foi preenchido
@@ -414,6 +410,7 @@
 
             $sel="SELECT med_id FROM medico WHERE funcionario_fun_id='" . $funId . "';";
             $medId=$sql->selecionar($sel);
+            $medId++;
 
             $updMed="UPDATE medico_has_especializacao SET
                         medico_med_id='" . $medId . "',
@@ -426,7 +423,6 @@
 
           if ($okMed && $okHas) {
             echo "Médico(a) cadastrado!!";
-
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
 
@@ -448,8 +444,11 @@
             $okEnf= $sql->inserir($insEnf);
             ////////////////////Fim do cadastro//////
           } else {
+            $sel_id="SELECT * FROM funcionario WHERE pessoa_pes_id='" .$_SESSION['id'] . "';";
+            $fun_id=$sql->selecionar($sel_id);
+
             $updEnf="UPDATE enfermeiro SET enf_registro='" . $metodo->getEnf_registro() . "',
-                     funcionario_fun_id='". $funId . "' WHERE funcionario_fun_id='" . $funId . "';";
+                     funcionario_fun_id='". $fun_id . "' WHERE funcionario_fun_id='" . $fun_id . "';";
 
             $okEnf= $sql->inserir($updEnf);
           }

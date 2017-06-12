@@ -84,7 +84,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
           $dis = "";
         }
 
-        $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $idFun . "';";
+        $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $_SESSION['fun_id'] . "';";
         $reg = $sql->fetch($sel);
 
         $val = " value=\"" . $reg[1] . "\"";
