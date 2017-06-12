@@ -25,7 +25,7 @@
 
         if ($qtd >= 1) {
           $_SESSION['id_usu'] = $qtd;
-          echo "Logado !!! <br>";
+          //echo "Logado !!! <br>";
           $log_data = date("Y-m-d h:i");
           $log_ip = $_SERVER['REMOTE_ADDR'];
           $log_id = $_SESSION['id_usu'];
@@ -39,7 +39,7 @@
                 '" . $log_data         . "',
                  " . $_SESSION['id_usu'] . "
                 );";
-          echo "olá" . $ins;
+          //echo "olá" . $ins;
 
           $qtd = $sql->selecionar($sel);
           if ($qtd >=1) {
@@ -48,7 +48,7 @@
             $ok = $sql->inserir($ins);
 
             if ($ok) {
-              echo "Cadastrado com sucesso!";
+              //echo "Cadastrado com sucesso!";
             } else {
               echo "Sessão não cadastrada com sucesso!";
             }

@@ -73,9 +73,11 @@ $sql = new Sql;
           $dis = "";
         }
         $val = " value = \"" . $cid[1] . "\"";
+        ?>
+        <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val;?>><br>";
+        <?php
       }
     ?>
-      <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val;?>><br>";
   </div>
   <div id="administrative_area_level_1" class="group-form group-form-cadastro">
     <label class="lbl_class">Estado:</label>
@@ -95,9 +97,11 @@ $sql = new Sql;
           $dis = "";
         }
         $val = " value = \"" . $est[1] . "\"";
+        ?>
+        <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val;?>><br>
+        <?php
       }
     ?>
-    <input class="inp_class" type="text" name="end_estado" size="28" <?=$dis . $val;?>><br>
   </div>
 
   <div id="postal_code" class="group-form group-form-cadastro">
@@ -133,10 +137,11 @@ $sql = new Sql;
       }
     ?>
     <input class="inp_class" type="text" name="end_pais" size="28" <?=$dis . $val; ?>><br>
-    <?php
-      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
-        echo "<input class=\"submit\" type=\"submit\" value=\"Próximo\"><br>";
-      }
-    ?>
+  </div>
+    <!-- <?php
+      //if ($_SESSION['form'] == 1 || $_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
+        //echo "<input class=\"submit\" type=\"submit\" value=\"Próximo\"><br>";
+      //}
+    ?> -->
 
      <!-- Seção Auto Endereço FIM -->

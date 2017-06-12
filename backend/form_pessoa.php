@@ -40,7 +40,7 @@ if ($_SESSION['form'] == 1) {
 }
 
 ?>
-<form class="Form form-cadastro" action="<?=$tipo?>" method="post">
+<form class="form form-cadastro" action="<?=$tipo?>" method="post">
   <?php
   if ($_SESSION['form'] == 1) {
     echo "<h1 class=\"titulo\">Cadastro de Pessoa</h1>";
@@ -238,7 +238,13 @@ if ($_SESSION['form'] == 1) {
           } else {
             $dis = "";
           }
+<<<<<<< HEAD
           $val = " value=\"" . $sex[1] . "\"";
+=======
+        $val = " value=\"" . $sex[1] . "\"";
+        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\"" . $dis . $val .
+        "><br>";
+>>>>>>> 32eab150249783e158ae1d334da92b43e535e99d
         }
       ?>
       <input class="inp_class" type="text" name="pes_sexo_biologico" size="15" <?=$dis . $val;?>><br>
