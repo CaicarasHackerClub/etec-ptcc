@@ -62,7 +62,7 @@ $sql = new Sql;
         }
         $val = " value = \"" . $cid[1] . "\"";
         ?>
-        <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val;?>><br>";
+        <input class="inp_class" type="text" name="end_cidade" size="28" <?=$dis . $val;?>><br>
         <?php
       }
     ?>
