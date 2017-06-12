@@ -15,21 +15,29 @@ if ($_SESSION['form'] == 1) {
   //cadastro
   $tipo="cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-  $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
-  $idPes = $sql->selecionar($maxPes);
-  $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";
-  $pessoa = $sql->fetch($selPes);
 
-  $maxEnd = "SELECT MAX(end_id) AS end_id FROM endereco";
-  $idEnd = $sql->selecionar($maxEnd);
-  $selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
-  $endereco = $sql->fetch($selEnd);
+  if ($_SESSION['esc'] == 1) {
+    $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
+    $idPes = $sql->selecionar($maxPes);
+    $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $idPes . "';";
+    $pessoa = $sql->fetch($selPes);
 
-    if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
-      $tipo = "cadastro.php?acao=cadastro&passo=5";
-    } else {
-      $tipo = "cadastro.php?acao=cadastro&passo=4";
-    }
+    $maxEnd = "SELECT MAX(end_id) AS end_id FROM endereco";
+    $idEnd = $sql->selecionar($maxEnd);
+    $selEnd = "SELECT * FROM endereco WHERE end_id='" . $idEnd . "';";
+    $endereco = $sql->fetch($selEnd);
+  } else {
+    $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $_SESSION['id'] . "';";
+    $pessoa = $sql->fetch($selPes);
+    $selEnd = "SELECT * FROM endereco WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+    $endereco = $sql->fetch($selEnd);
+  }
+
+  if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+    $tipo = "cadastro.php?acao=cadastro&passo=5";
+  } else {
+    $tipo = "cadastro.php?acao=cadastro&passo=4";
+  }
 
 } elseif ($_SESSION['form'] == 3) {
   $selPes = "SELECT * FROM pessoa WHERE pes_id='" . $_SESSION['id'] . "';";
