@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <?php
+
+include_once 'Sql.class.php';
+$sql = new Sql();
+
 // $id = isset($_POST['id']) ? $_POST['id'] : "";
 
 if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
@@ -66,33 +70,55 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
         </select> <br>
       </div>
       <div class="group-form">
+        <label class="lbl_class">Tipo sanguíneo: </label>
+        <?php $sql->selectbox('tipo_sanguineo'); ?>
+      </div>
+      <div class="group-form">
         <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
         <input id="indi" class="inp_class" type="checkbox" name="org">
+      </div>
+      <div class="group-form">
+        <label class="lbl_class">Doenças: </label>
+        <input class="inp_class" type="text" name="doencas"> <br>
+      </div>
+      <div class="group-form">
+        <label class="lbl_class">Remédios: </label>
+        <input class="inp_class" type="text" name="remedios"> <br>
+      </div>
+      <div class="group-form">
+        <label class="lbl_class">Sintomas observados: </label>
+        <input class="inp_class" type="text" name="sintomas"> <br>
+      </div>
+      <div class="group-form">
+        <label class="lbl_class">Reclamação: </label>
+        <input class="inp_class" type="text" name="reclamacao"> <br>
       </div>
       <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
     </div>
   </form>
   <?php
 } else {
-  include_once 'Sql.class.php';
   include_once 'Triagem.class.php';
-
-  $sql = new Sql();
   $tri = new Triagem();
 
   date_default_timezone_set('America/Sao_Paulo');
 
   $id = isset($_POST['id']) && !empty($_POST['id']) ? $_POST['id'] : 0;
-  $temp = isset($_POST['temp']) ? trim($_POST['temp']) : "";
-  $pas = isset($_POST['pas']) ? trim($_POST['pas']) : "";
-  $pad = isset($_POST['pad']) ? trim($_POST['pad']) : "";
+  $temp = isset($_POST['temp']) ? trim($_POST['temp']) : 0;
+  $pas = isset($_POST['pas']) ? trim($_POST['pas']) : "0";
+  $pad = isset($_POST['pad']) ? trim($_POST['pad']) : "0";
   $peso = isset($_POST['peso']) && !empty($_POST['peso']) ? trim($_POST['peso']) : 0;
   $altura = isset($_POST['altura']) && !empty($_POST['altura']) ? trim($_POST['altura']) : 0;
   $batimento = isset($_POST['batimento']) ? trim($_POST['batimento']) : "";
   $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : 0;
-  $resp = isset($_POST['resp']) ? trim($_POST['resp']) : "";
+  $resp = isset($_POST['resp']) ? trim($_POST['resp']) : 0;
   $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : 0;
+  $tipoSanguineo = isset($_POST['tipo_sanguineo']) ? trim($_POST['tipo_sanguineo']) : "";
   $orgaos = isset($_POST['org']) ? 1 : 0;
+  $doencas = isset($_POST['doencas']) ? trim($_POST['doencas']) : "";
+  $remedios = isset($_POST['remedios']) ? trim($_POST['remedios']) : "";
+  $sintomas = isset($_POST['sintomas']) ? trim($_POST['sintomas']) : "";
+  $reclamacao = isset($_POST['reclamacao']) ? trim($_POST['reclamacao']) : "";
   $data = date('Y-m-d');
   $hora = date('H:i');
 
@@ -119,7 +145,12 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   $tri->setClass($class);
   $tri->setResp($resp);
   $tri->setDor($dor);
+  $tri->setTipoSanguineo($tipoSanguineo);
   $tri->setOrg($orgaos);
+  $tri->setDoencas($doencas);
+  $tri->setRemedios($remedios);
+  $tri->setSintomas($sintomas);
+  $tri->setReclamacao($reclamacao);
   $tri->setData($data);
   $tri->setHora($hora);
 
@@ -128,23 +159,23 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     $status = $tri->getClass() == 5 ? 3 : 1;
     $tri->setStatus($status);
 
-    $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso, tri_altura,
-        tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao, tri_dor,
-        tri_orgaos_vitais, tri_data, tri_hora, tri_status, tri_ate_id) VALUES("
-        . $tri->getTemp() . ", '"  . $tri->getPas()     . "x"   . $tri->getPad()       . "', "
-        . $tri->getPeso() . ", "   . $tri->getAltura()  . ", "  . $tri->getBatimento() . ", "
-        . $tri->getOxi()  . ", "   . $tri->getClass()   . ", "  . $tri->getResp()      . ", "
-        . $tri->getDor()  . ", "   . $tri->getOrg()     . ", '" . $tri->getData()      . "', '"
-        . $tri->getHora() . "', '" . $tri->getStatus()  . "', " . $tri->getAtId()     . ");";
+    $query = "INSERT INTO `triagem`(tri_temperatura, tri_pressao, tri_peso,
+        tri_altura, tri_batimento, tri_oxigenacao, tri_classe_risco, tri_respiracao,
+        tri_dor, tri_orgaos_vitais, tri_data, tri_hora, tri_status, tri_tipo_sanguineo,
+        tri_doenca, tri_remedio, tri_sintomas, tri_reclamacao, tri_ate_id) VALUES("
+        . $tri->getTemp()       . ", '"  . $tri->getPas()       . "x"    . $tri->getPad()           . "', "
+        . $tri->getPeso()       . ", "   . $tri->getAltura()    . ", "   . $tri->getBatimento()     . ", "
+        . $tri->getOxi()        . ", "   . $tri->getClass()     . ", "   . $tri->getResp()          . ", "
+        . $tri->getDor()        . ", "   . $tri->getOrg()       . ", '"  . $tri->getData()          . "', '"
+        . $tri->getHora()       . "', "  . $tri->getStatus()    . ", "   . $tri->getTipoSanguineo() . ", '"
+        . $tri->getDoencas()    . "', '" . $tri->getRemedios()  . "', '" . $tri->getSintomas()      . "', '"
+        . $tri->getReclamacao() . "', "  . $tri->getAtId()      . ");";
 
     $rows = "SELECT tri_id FROM triagem WHERE tri_ate_id = " . $tri->getAtId() . " AND tri_status <> 5 AND tri_status <> 6 ;";
 
     if ($sql->num($rows) == 0) {
-      if ($sql->inserir($query)) {
-        echo "Inserido com sucesso";
-      } else {
-        echo "Erro ao inserir";
-      }
+      $sql->inserir($query);
+      echo "Inserido com sucesso";
     } else {
       echo "O paciente já passou pela triagem";
     }
@@ -254,8 +285,13 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     <input type="hidden" class="inp_class" name="pad" value=" <?php echo $tri->getPad() ?>">
     <input type="hidden" class="inp_class" name="oxi" value=" <?php echo $tri->getOxi() ?>">
     <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
+    <input type="hidden" class="inp_class" name="tipo_sanguineo" value="<?php echo $tri->getTipoSanguineo() ?>">
     <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
-    <input type="hidden" class="inp_class" name="id" value=" <?php echo $tri->getAtId()  ?> ">
+    <input type="hidden" class="inp_class" name="doencas" value="<?php echo $tri->getDoencas() ?>">
+    <input type="hidden" class="inp_class" name="remedios" value="<?php echo $tri->getRemedios() ?>">
+    <input type="hidden" class="inp_class" name="sintomas" value="<?php echo $tri->getSintomas() ?>">
+    <input type="hidden" class="inp_class" name="reclamacao" value="<?php echo $tri->getReclamacao() ?>">
+    <input type="hidden" class="inp_class" name="id" value="<?php echo $tri->getAtId() ?>">
     <input type="submit" class="submit" name="classificar" value="Classificar">
     </form>
   <?php

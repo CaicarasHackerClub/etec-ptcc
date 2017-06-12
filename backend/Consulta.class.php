@@ -1,15 +1,18 @@
 <?php
 
-include_once 'Fila.class.php';
+include 'Fila.class.php';
 
-class Consulta extends Fila {
+class Consulta {
   private $chegada;
   private $saida;
   private $data;
+  private $reclamacao;
+  private $sintomas;
+  private $diagnostico;
+  private $encId;
   private $comentario;
   private $triId;
   private $medId;
-  private $encId;
 
   public function setChegada($chegada) {
     $this->chegada = $chegada;
@@ -35,6 +38,38 @@ class Consulta extends Fila {
     return $this->data;
   }
 
+  public function setReclamacao($reclamacao) {
+    $this->reclamacao = $reclamacao;
+  }
+
+  public function getReclamacao() {
+    return $this->reclamacao;
+  }
+
+  public function setSintomas($sintomas) {
+    $this->sintomas = $sintomas;
+  }
+
+  public function getSintomas() {
+    return $this->sintomas;
+  }
+
+  public function setDiagnostico($diagnostico) {
+    $this->diagnostico = $diagnostico;
+  }
+
+  public function getDiagnostico() {
+    return $this->diagnostico;
+  }
+
+  public function setEncId($encId) {
+    $this->encId = $encId;
+  }
+
+  public function getEncId() {
+    return $this->encId;
+  }
+
   public function setComentario($comentario) {
     $this->comentario = $comentario;
   }
@@ -57,13 +92,5 @@ class Consulta extends Fila {
 
   public function getMedId() {
     return $this->medId;
-  }
-
-  public function setEncId($encId) {
-    $this->encId = $encId;
-  }
-
-  public function getEncId() {
-    return $this->encId;
   }
 }

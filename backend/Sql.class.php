@@ -54,17 +54,31 @@ class Sql {
     return mysqli_num_rows($res);
   }
 
+  public function insertId() {
+    $con = $this->conecta();
+    $id = mysqli_insert_id($con);
+
+    mysqli_close($con);
+
+    return $id;
+  }
+
   public function selectbox($tabela) {
     $con = $this->conecta();
 
     $sel = "SELECT * FROM " . $tabela;
     $res = mysqli_query($con, $sel) or die("Erro : ");
 
-    echo"<select class='inp_class select' name='" . $tabela . "'>\n";
+    echo "
+    <select class='inp_class select' name='" . $tabela . "'>\n
+    <option value=''></option>\n";
+
     while ($selecao = mysqli_fetch_array($res)) {
-      echo  "<option value=" . $selecao[0] . ">" . $selecao[1] . "</option>\n";
+      echo  "
+      <option value=" . $selecao[0] . ">" . $selecao[1] . "</option>\n";
     }
-    echo  "</select><br>\n";
+
+    echo "</select><br>\n";
 
     mysqli_close($con);
   }

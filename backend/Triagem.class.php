@@ -13,6 +13,12 @@ class Triagem {
   private $oxi;
   private $org;
   private $dor;
+  private $tipoSanguineo;
+  private $doencas;
+  private $remedios;
+  private $sintomas;
+  private $reclamacao;
+
   private $data;
   private $hora;
   private $status;
@@ -105,12 +111,52 @@ class Triagem {
     return $this->dor;
   }
 
+  public function setTipoSanguineo($tipoSanguineo) {
+    $this->tipoSanguineo = $tipoSanguineo;
+  }
+
+  public function getTipoSanguineo() {
+    return $this->tipoSanguineo;
+  }
+
   public function setOrg($org) {
     $this->org = $org;
   }
 
   public function getOrg() {
     return $this->org;
+  }
+
+  public function setDoencas($doencas) {
+    $this->doencas = $doencas;
+  }
+
+  public function getDoencas() {
+    return $this->doencas;
+  }
+
+  public function setRemedios($remedios) {
+    $this->remedios = $remedios;
+  }
+
+  public function getRemedios() {
+    return $this->remedios;
+  }
+
+  public function setSintomas($sintomas) {
+    $this->sintomas = $sintomas;
+  }
+
+  public function getSintomas() {
+    return $this->sintomas;
+  }
+
+  public function setReclamacao($reclamacao) {
+    $this->reclamacao = $reclamacao;
+  }
+
+  public function getReclamacao() {
+    return $this->reclamacao;
   }
 
   public function setData($data) {
