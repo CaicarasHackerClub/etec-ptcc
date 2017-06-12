@@ -204,9 +204,9 @@ if ($_SESSION['form'] == 1) {
               $dis = "";
             }
             $val = " value=\"" . $pessoa[10] . "\"";
-            echo "<input class=\"inp_class\" type=\"text\" name=\"pes_cidadania\" size=\"28\"". $dis . $val."><br>";
           }
       ?>
+      <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Gênero</label>
