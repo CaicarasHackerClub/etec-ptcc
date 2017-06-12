@@ -46,6 +46,7 @@ $(function() {
 
         if (cpf[9+d] != resto) {
           $(".val").text("CPF inválido");
+          $(".cpf").focus();
           // alert("CPF inválido");
           return false;
         } else {
