@@ -68,129 +68,120 @@
 
         // Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
 
-        if ($qtd >= 1) {
-          echo "Pessoa já cadastrada!!";
-          ?>
-          <a href="?acao=cadastro">Voltar</a>
-          <?php
-        } else {
-          ////////////////////Insere os dados do formulário anterior no banco/////////////////////////
-          if ($_SESSION['esc'] == 1) {
-            $selPes="SELECT * FROM pessoa WHERE pes_cpf='" . $_POST ['pes_cpf'] . "';";
-            $qtd=$sql->selecionar($selPes);
 
-            if ($_SESSION['tipo'] == "recepcao") {
-              $tipo = 1;
-            } else {
-              $tipo = 2;
-            }
-            $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_tipo, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone)
-              VALUES (
-                '". $metodo->getPes_nome()          ."',
-                '". $metodo->getPes_pai()           ."',
-                '". $metodo->getPes_mae()           ."',
-                '". $metodo->getPes_rg()            ."',
-                '". $metodo->getPes_cpf()           ."',
-                '". $metodo->getPes_data()          ."',
-                '". $tipo                           ."',
-                '". $metodo->getPes_email()         ."',
-                '". $metodo->getPes_estado_civil()  ."',
-                '". $metodo->getPes_cidadania()     ."',
-                '". $metodo->getPes_genero()        ."',
-                '". $metodo->getPes_sexo_biologico()."',
-                '". $metodo->getPes_telefone()      ."'
-              );";
+          ////////////////////Insere os dados do formulário anterior no banco/////////////////////////
+        if ($_SESSION['esc'] == 1) {
+          $selPes="SELECT * FROM pessoa WHERE pes_cpf='" . $_POST ['pes_cpf'] . "';";
+          $qtd=$sql->selecionar($selPes);
+
+          if ($qtd>=1) {
+            echo "CPF já existente! Digite novamente!";
+          }
+
+          if ($_SESSION['tipo'] == "recepcao") {
+            $tipo = 1;
+          } else {
+            $tipo = 2;
+          }
+          $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_tipo, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone)
+            VALUES (
+              '". $metodo->getPes_nome()          ."',
+              '". $metodo->getPes_pai()           ."',
+              '". $metodo->getPes_mae()           ."',
+              '". $metodo->getPes_rg()            ."',
+              '". $metodo->getPes_cpf()           ."',
+              '". $metodo->getPes_data()          ."',
+              '". $tipo                           ."',
+              '". $metodo->getPes_email()         ."',
+              '". $metodo->getPes_estado_civil()  ."',
+              '". $metodo->getPes_cidadania()     ."',
+              '". $metodo->getPes_genero()        ."',
+              '". $metodo->getPes_sexo_biologico()."',
+              '". $metodo->getPes_telefone()      ."'
+            );";
 
             //Insere os dados na tabela pessoa
-            $okPes=$sql->inserir($insPes);
+          $okPes=$sql->inserir($insPes);
 
             //Insere os dados na tabela endereço
-            $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
-            $pes_id=$sql->selecionar($sel_id);
+          $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
+          $pes_id=$sql->selecionar($sel_id);
 
-            $insEnd="INSERT INTO endereco (end_pais, end_estado, end_cidade, end_cep, end_bairro, end_rua, end_numero, end_complemento, pessoa_pes_id) VALUES (
-                  '" . $metodo->getEnd_pais()        . "',
-                  '" . $metodo->getEnd_estado()      . "',
-                  '" . $metodo->getEnd_cidade()      . "',
-                  '" . $metodo->getEnd_cep()         . "',
-                  '" . $metodo->getEnd_bairro()      . "',
-                  '" . $metodo->getEnd_rua()         . "',
-                  '" . $metodo->getEnd_numero()      . "',
-                  '" . $metodo->getEnd_complemento() . "',
-                  '" . $pes_id          . "'
-              );";
+          $insEnd="INSERT INTO endereco (end_pais, end_estado, end_cidade, end_cep, end_bairro, end_rua, end_numero, end_complemento, pessoa_pes_id) VALUES (
+                '" . $metodo->getEnd_pais()        . "',
+                '" . $metodo->getEnd_estado()      . "',
+                '" . $metodo->getEnd_cidade()      . "',
+                '" . $metodo->getEnd_cep()         . "',
+                '" . $metodo->getEnd_bairro()      . "',
+                '" . $metodo->getEnd_rua()         . "',
+                '" . $metodo->getEnd_numero()      . "',
+                '" . $metodo->getEnd_complemento() . "',
+                '" . $pes_id          . "'
+            );";
+           // Verifica se a query foi inserida corretamente
+          $okEnd=$sql->inserir($insEnd);
+           /////////////////////////fim da inserção de dados Pessoais////////////////////////////////
+           //verifica se a query foi inserida corretamente
+        } else {
+          $updPes = "UPDATE pessoa SET pes_nome='" . $metodo->getPes_nome() . "',
+                      pes_pai='" . $metodo->getPes_pai() . "',
+                      pes_mae='" . $metodo->getPes_mae()  . "',
+                      pes_rg='" . $metodo->getPes_rg() . "',
+                      pes_cpf='" . $metodo->getPes_cpf() . "',
+                      pes_data='" . $metodo->getPes_data() . "',
+                      pes_tipo='" . $metodo->getPes_tipo() . "',
+                      pes_email='" . $metodo->getPes_email() . "',
+                      pes_estado_civil='" . $metodo->getPes_estado_civil() . "',
+                      pes_cidadania='" . $metodo->getPes_cidadania() . "',
+                      pes_genero='" . $metodo->getPes_genero() . "',
+                      pes_sexo_biologico='" . $metodo->getPes_sexo_biologico() . "',
+                      pes_telefone='" . $metodo->getPes_telefone() . "'
+                      WHERE pes_id='" . $_SESSION['id'] . "';";
 
-            // Verifica se a query foi inserida corretamente
-            $okEnd=$sql->inserir($insEnd);
+           $okPes = $sql->inserir($updPes);
 
-            /////////////////////////fim da inserção de dados Pessoais////////////////////////////////
+           $updEnd = "UPDATE endereco SET end_pais='" . $metodo->getEnd_pais() . "',
+                      end_estado='". $metodo->getEnd_estado() . "',
+                      end_cidade='". $metodo->getEnd_cidade()  . "',
+                      end_cep='". $metodo->getEnd_cep() . "',
+                      end_bairro='". $metodo->getEnd_bairro() . "',
+                      end_rua='". $metodo->getEnd_rua() . "',
+                      end_numero='". $metodo->getEnd_numero() . "',
+                      end_numero='". $metodo->getEnd_complemento() . "'
+                      pessoa_pes_id='". $_SESSION['id'] . "'
+                      WHERE pessoa_pes_id='". $_SESSION['id'] . "';";
 
-            //verifica se a query foi inserida corretamente
-          } else {
-            $updPes = "UPDATE pessoa SET pes_nome='" . $metodo->getPes_nome() . "',
-                        pes_pai='" . $metodo->getPes_pai() . "',
-                        pes_mae='" . $metodo->getPes_mae()  . "',
-                        pes_rg='" . $metodo->getPes_rg() . "',
-                        pes_cpf='" . $metodo->getPes_cpf() . "',
-                        pes_data='" . $metodo->getPes_data() . "',
-                        pes_tipo='" . $metodo->getPes_tipo() . "',
-                        pes_email='" . $metodo->getPes_email() . "',
-                        pes_estado_civil='" . $metodo->getPes_estado_civil() . "',
-                        pes_cidadania='" . $metodo->getPes_cidadania() . "',
-                        pes_genero='" . $metodo->getPes_genero() . "',
-                        pes_sexo_biologico='" . $metodo->getPes_sexo_biologico() . "',
-                        pes_telefone='" . $metodo->getPes_telefone() . "'
-                        WHERE pes_id='" . $_SESSION['id'] . "';";
-
-            $okPes = $sql->inserir($updPes);
-
-            $updEnd = "UPDATE endereco SET end_pais='" . $metodo->getEnd_pais() . "',
-                        end_estado='". $metodo->getEnd_estado() . "',
-                        end_cidade='". $metodo->getEnd_cidade()  . "',
-                        end_cep='". $metodo->getEnd_cep() . "',
-                        end_bairro='". $metodo->getEnd_bairro() . "',
-                        end_rua='". $metodo->getEnd_rua() . "',
-                        end_numero='". $metodo->getEnd_numero() . "',
-                        end_numero='". $metodo->getEnd_complemento() . "'
-                        pessoa_pes_id='". $_SESSION['id'] . "'
-                        WHERE pessoa_pes_id='". $_SESSION['id'] . "';";
-
-            $okEnd = $sql->inserir($updEnd);
-
-          }
-
-          if ($okPes && $okEnd) {
-            /* se o usuário logado for recepcionista ele só poderá cadastrar
-            os dados de pacientes do formulário abaixo */
-            if ($_SESSION['tipo'] == "recepcao") {
-              if ($_SESSION['esc'] == 1) {
-                $_SESSION['form'] = 1;
+           $okEnd = $sql->inserir($updEnd);
+        }
+        if ($okPes && $okEnd) {
+          /* se o usuário logado for recepcionista ele só poderá cadastrar
+          os dados de pacientes do formulário abaixo */
+          if ($_SESSION['tipo'] == "recepcao") {
+            if ($_SESSION['esc'] == 1) {
+              $_SESSION['form'] = 1;
                 /*formulário para o preenchimento de dados
                 do paciente que está sendo cadastrado*/
-                include 'form_paciente.php';
-              } else {
-                $_SESSION['form'] = 3;
-                include 'form_paciente.php';
-              }
-
+              include 'form_paciente.php';
             } else {
-              if ($_SESSION['esc'] == 1) {
-                /* Se o usuário logado for administrativo ele só poderá cadastrar
-                os dados de funcionário do formulário abaixo
-                */
-                $_SESSION['form'] = 1;
-                /*formulário para o preenchimento de dados
-                do funcionario que está sendo cadastrado*/
-                include 'form_funcionario.php';
-              } else {
-                $_SESSION['form'] = 3;
-                include 'form_funcionario.php';
-              }
-
+              $_SESSION['form'] = 3;
+              include 'form_paciente.php';
             }
           } else {
-            echo "Erro ao cadastrar pessoa!";
+            if ($_SESSION['esc'] == 1) {
+              /* Se o usuário logado for administrativo ele só poderá cadastrar
+              os dados de funcionário do formulário abaixo
+              */
+              $_SESSION['form'] = 1;
+              /*formulário para o preenchimento de dados
+              do funcionario que está sendo cadastrado*/
+              include 'form_funcionario.php';
+            } else {
+              $_SESSION['form'] = 3;
+              include 'form_funcionario.php';
+            }
           }
+        } else {
+          echo "Erro ao cadastrar pessoa!";
         }
       } elseif ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
