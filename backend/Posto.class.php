@@ -25,6 +25,7 @@ class Metodo {
   private $end_destrito;
   private $end_rua;
   private $end_numero;
+  private $end_complemento;
 
   //Funcionario
   private $fun_cargo;
@@ -127,6 +128,9 @@ class Metodo {
   }
   public function setEnd_numero($numero) {
     $this->end_numero = $numero;
+  }
+  public function setEnd_complemento($complemento) {
+    $this->end_complemento = $complemento;
   }
   //funcionario
   public function setFun_cargo($cargo) {
@@ -259,6 +263,9 @@ class Metodo {
   }
   public function getEnd_numero() {
     return $this->end_numero;
+  }
+  public function getEnd_complemento() {
+    return $this->end_complemento;
   }
 
   //get funcionario
