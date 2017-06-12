@@ -10,7 +10,6 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['form'] = 1;
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 } elseif ($_SESSION['form'] == 2) {
-
   $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
   $idFun = $sql->selecionar($maxFun);
   $selFun = "SELECT * FROM funcionario WHERE fun_id='" . $idFun . "';";

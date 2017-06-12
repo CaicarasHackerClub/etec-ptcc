@@ -285,7 +285,7 @@ if ($_SESSION['form'] == 1) {
         echo "<div id=\"auto-endereco\" class=\"auto-endereco\">";
         include 'form_endereco.php';
         echo "</div>";
-      } elseif ($_SESSION['form'] == 2 || $_SESSION['form'] == 3)  {
+      } elseif ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
         include 'form_endereco.php';
       }
     ?>
