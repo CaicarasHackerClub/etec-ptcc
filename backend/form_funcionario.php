@@ -10,13 +10,20 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['form'] = 1;
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 } elseif ($_SESSION['form'] == 2) {
-  $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
-  $idFun = $sql->selecionar($maxFun);
-  $selFun = "SELECT * FROM funcionario WHERE fun_id='" . $idFun . "';";
-  $funcionario = $sql->fetch($selFun);
+  if ($_SESSION['esc'] == 1) {
+    $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
+    $idFun = $sql->selecionar($maxFun);
+    $selFun = "SELECT * FROM funcionario WHERE fun_id='" . $idFun . "';";
+    $funcionario = $sql->fetch($selFun);
+    $selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $idFun . "';";
+    $usuario = $sql->fetch($selUsu);
+  } else {
+    $selFun="SELECT * FROM funcionario WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+    $funcionario = $sql->fetch($selFun);
+    $selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $funcionario[0] . "';";
+    $usuario = $sql->fetch($selUsu);
+  }
 
-  $selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $idFun . "';";
-  $usuario = $sql->fetch($selUsu);
 
   if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
     $tipo = "cadastro.php?acao=cadastro&passo=6";
