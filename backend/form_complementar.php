@@ -14,7 +14,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
   $selMed = "SELECT * FROM medico WHERE med_id='" . $idMed . "';";
   $medico = $sql->fetch($selMed);
   ?>
-  <form class="Form" action="<?=$tipo?>" method="post">
+  <form class="form" action="<?=$tipo?>" method="post">
     <h1>Médico</h1>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">CRM:</label>

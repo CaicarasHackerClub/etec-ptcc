@@ -16,7 +16,7 @@ $selPac = "SELECT * FROM paciente WHERE pac_id='" . $idPac . "';";
 $paciente = $sql->fetch($selPac);
 ?>
 <!--Formulário de dados da pessoa como paciente-->
-<form class="Form form-cadastro" action="<?=$tipo?>" method="post">
+<form class="form form-cadastro" action="<?=$tipo?>" method="post">
   <h1 class="titulo">Paciente</h1>
   <fieldset class="grupo-info visible-group">
     <legend class="legenda">Informações do Paciente</legend>
