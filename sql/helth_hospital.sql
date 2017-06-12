@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 10/06/2017 às 18:33
+-- Tempo de geração: 13/06/2017 às 01:13
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -9867,7 +9867,8 @@ INSERT INTO `encaminhamento` (`enc_id`, `enc_nome`) VALUES
 (10, 'Dermatologia'),
 (11, 'Ginecologia'),
 (12, 'Oftalmologia'),
-(13, 'Urologia');
+(13, 'Urologia'),
+(14, 'Dispensado');
 
 -- --------------------------------------------------------
 
@@ -10203,7 +10204,8 @@ INSERT INTO `locais` (`loc_id`, `loc_local`) VALUES
 (14, 'Dermatologia'),
 (15, 'Ginecologia'),
 (16, 'Oftalmologia'),
-(17, 'Urologia');
+(17, 'Urologia'),
+(18, 'Dispensado');
 
 -- --------------------------------------------------------
 
@@ -10831,6 +10833,7 @@ ALTER TABLE `plano_de_saude`
 -- Índices de tabela `receita`
 --
 ALTER TABLE `receita`
+  ADD PRIMARY KEY (`rec_id`),
   ADD KEY `rec_consulta` (`rec_consulta`);
 
 --
@@ -10926,7 +10929,7 @@ ALTER TABLE `doenca_pessoa`
 -- AUTO_INCREMENT de tabela `encaminhamento`
 --
 ALTER TABLE `encaminhamento`
-  MODIFY `enc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `enc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
@@ -10981,7 +10984,7 @@ ALTER TABLE `geo_camada_end`
 -- AUTO_INCREMENT de tabela `locais`
 --
 ALTER TABLE `locais`
-  MODIFY `loc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `loc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de tabela `localizacao_paciente`
 --
@@ -11013,6 +11016,11 @@ ALTER TABLE `pessoa`
 ALTER TABLE `plano_de_saude`
   MODIFY `pds_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
+-- AUTO_INCREMENT de tabela `receita`
+--
+ALTER TABLE `receita`
+  MODIFY `rec_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de tabela `setor`
 --
 ALTER TABLE `setor`
@@ -11031,7 +11039,7 @@ ALTER TABLE `status_triagem`
 -- AUTO_INCREMENT de tabela `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
-  MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de tabela `triagem`
 --
