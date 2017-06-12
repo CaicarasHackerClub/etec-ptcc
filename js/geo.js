@@ -25,10 +25,10 @@ function geoApp() {
     },
 
     icon: {
-      demografia: 'http://labs.google.com/ridefinder/images/mm_20_orange.png',
-      home: 'http://maps.google.com/mapfiles/kml/pal2/icon10.png',
-      saude: 'http://maps.google.com/mapfiles/kml/pal3/icon46.png',
-      search: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
+      demografia: 'https://labs.google.com/ridefinder/images/mm_20_orange.png',
+      home: 'https://maps.google.com/mapfiles/kml/pal2/icon10.png',
+      saude: 'https://maps.google.com/mapfiles/kml/pal3/icon46.png',
+      search: 'https://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
     },
 
     santaCasa: {
