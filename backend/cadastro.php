@@ -147,7 +147,7 @@
                       end_bairro='". $metodo->getEnd_bairro() . "',
                       end_rua='". $metodo->getEnd_rua() . "',
                       end_numero='". $metodo->getEnd_numero() . "',
-                      end_numero='". $metodo->getEnd_complemento() . "'
+                      end_complemento='". $metodo->getEnd_complemento() . "',
                       pessoa_pes_id='". $_SESSION['id'] . "'
                       WHERE pessoa_pes_id='". $_SESSION['id'] . "';";
 
