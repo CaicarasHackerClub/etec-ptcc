@@ -186,6 +186,7 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
           }
           $val = " value=\"" . $etc[1] . "\"";
+
          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\"". $dis . $val . "><br>";
         }
       ?>
@@ -221,7 +222,9 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
           }
           $val= " value=\"" . $gen[1] . "\"";
+
           echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\"". $dis . $val ."><br>";
+
         }
       ?>
     </div>
@@ -238,12 +241,10 @@ if ($_SESSION['form'] == 1) {
           } else {
             $dis = "";
           }
-        $val = " value=\"" . $sex[1] . "\"";
-        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\"" . $dis . $val .
-        "><br>";
+          $val = " value=\"" . $sex[1] . "\"";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\"" . $dis . $val ."><br>";
         }
       ?>
-      <input class="inp_class" type="text" name="pes_sexo_biologico" size="15" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Telefone</label>
