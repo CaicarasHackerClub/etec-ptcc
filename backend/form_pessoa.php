@@ -180,18 +180,15 @@ if ($_SESSION['form'] == 1) {
         } else {
           $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
           $etc = $sql->fetch($selE);
-
           if ($_SESSION['form'] == 2) {
             $dis = " disabled";
           } else {
             $dis = "";
           }
-
-          $val = "value=\"" . $etc[1] . "\"";
-        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\""
-             . $dis . $val . "><br>\"";
+          $val = " value=\"" . $etc[1] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="pes_estado_civil" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Cidadania</label>
@@ -223,10 +220,10 @@ if ($_SESSION['form'] == 1) {
           } else {
             $dis = "";
           }
-          $val = " value=\"" . $gen[1] . "\"";
-        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\"" . $dis . $val . "><br>\"";
+          $val= " value=\"" . $gen[1] . "\"";
         }
       ?>
+      <input class="inp_class" type="text" name="pes_genero" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Sexo biológico</label>
@@ -241,11 +238,10 @@ if ($_SESSION['form'] == 1) {
           } else {
             $dis = "";
           }
-        $val = " value=\"" . $sex[1] . "\"";
+          $val = " value=\"" . $sex[1] . "\"";
         }
-      echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\"" . $dis . $val .
-      "><br>";
       ?>
+      <input class="inp_class" type="text" name="pes_sexo_biologico" size="15" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Telefone</label>
@@ -285,7 +281,7 @@ if ($_SESSION['form'] == 1) {
         echo "<div id=\"auto-endereco\" class=\"auto-endereco\">";
         include 'form_endereco.php';
         echo "</div>";
-      } elseif ($_SESSION['form'] == 2 || $_SESSION['form'] == 3)  {
+      } elseif ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
         include 'form_endereco.php';
       }
     ?>

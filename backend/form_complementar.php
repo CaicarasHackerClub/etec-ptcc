@@ -6,13 +6,17 @@ if ($_SESSION['fun_cargo'] == "medico") {
   if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {
+    $maxMed = "SELECT MAX(med_id) AS med_id FROM medico";
+    $idMed = $sql->selecionar($maxMed);
+    $selMed = "SELECT * FROM medico WHERE med_id='" . $idMed . "';";
+    $medico = $sql->fetch($selMed);
     $tipo = "cadastro.php?acao=cadastro&passo=7";
+  } else {
+    $sel = "SELECT * FROM medico WHERE funcionario_fun_id='". $_SESSION['fun_id'] ."';";
+    $medico=$sql->fetch($sel);
+    $tipo = "cadastro.php?acao=cadastro&passo=4";
   }
 
-  $maxMed = "SELECT MAX(med_id) AS med_id FROM medico";
-  $idMed = $sql->selecionar($maxMed);
-  $selMed = "SELECT * FROM medico WHERE med_id='" . $idMed . "';";
-  $medico = $sql->fetch($selMed);
   ?>
   <form class="Form" action="<?=$tipo?>" method="post">
     <h1>Médico</h1>
@@ -23,14 +27,18 @@ if ($_SESSION['fun_cargo'] == "medico") {
         $dis = "";
         $val = "";
       } else {
-        $dis = "disabled";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
         $val = " value=\"" . $medico[1] . "\"";
       }
        ?>
       <input class="inp_class" type="text" name="med_crm" size="28" <?=$dis . $val; ?>><br>
       <label class="lbl_class">Especialização:</label>
       <?php
-      if ($_SESSION['form'] == 1) {
+      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
         $sql->selectbox("especializacao");
       } else {
         // Pegando o nome da especialização
@@ -50,16 +58,16 @@ if ($_SESSION['fun_cargo'] == "medico") {
   if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {
-    $tipo = "update.php?acao=cadastro&p=3";
+    $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
+    $idFun = $sql->selecionar($maxFun);
+
+    $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $idFun . "';";
+    $reg = $sql->fetch($sel);
+    $tipo = "cadastro.php?acao=cadastro&passo=7";
   } else {
-    $tipo = "update.php?acao=cadastro&p=3";
+    $tipo = "cadastro.php?acao=cadastro&passo=4";
   }
 
-  $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
-  $idFun = $sql->selecionar($maxFun);
-
-  $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $idFun . "';";
-  $reg = $sql->fetch($sel);
   ?>
   <form class="Form" action="<?=$tipo?>" method="post">
     <h1>Enfermeiro</h1>
@@ -70,12 +78,15 @@ if ($_SESSION['fun_cargo'] == "medico") {
         $dis = "";
         $val = "";
       } else {
-        $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
-        $fun_id = $sql->selecionar($maxFun);
-        $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $fun_id . "';";
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
+
+        $sel = "SELECT * FROM enfermeiro WHERE funcionario_fun_id='" . $idFun . "';";
         $reg = $sql->fetch($sel);
 
-        $dis = "disabled";
         $val = " value=\"" . $reg[1] . "\"";
       }
       ?>

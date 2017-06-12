@@ -31,6 +31,8 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $selUsu="SELECT * FROM usuario WHERE funcionario_id='" . $funcionario['0'] . "';";
   $usuario=$sql->fetch($selUsu);
 
+  $_SESSION['fun_id'] = $funcionario['0'];
+
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 
 }
