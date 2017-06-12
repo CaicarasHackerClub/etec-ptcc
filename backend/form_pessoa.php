@@ -186,9 +186,9 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
           }
           $val = " value=\"" . $etc[1] . "\"";
+         echo "<input class=\"inp_class\" type=\"text\" name=\"pes_estado_civil\" size=\"28\"". $dis . $val . "><br>";
         }
       ?>
-      <input class="inp_class" type="text" name="pes_estado_civil" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Cidadania</label>
@@ -203,9 +203,9 @@ if ($_SESSION['form'] == 1) {
               $dis = "";
             }
             $val = " value=\"" . $pessoa[10] . "\"";
+            echo "<input class=\"inp_class\" type=\"text\" name=\"pes_cidadania\" size=\"28\"". $dis . $val."><br>";
           }
       ?>
-      <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Gênero</label>
@@ -221,9 +221,9 @@ if ($_SESSION['form'] == 1) {
             $dis = "";
           }
           $val= " value=\"" . $gen[1] . "\"";
+          echo "<input class=\"inp_class\" type=\"text\" name=\"pes_genero\" size=\"28\"". $dis . $val ."><br>";
         }
       ?>
-      <input class="inp_class" type="text" name="pes_genero" size="28" <?=$dis . $val;?>><br>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Sexo biológico</label>
@@ -238,13 +238,9 @@ if ($_SESSION['form'] == 1) {
           } else {
             $dis = "";
           }
-<<<<<<< HEAD
-          $val = " value=\"" . $sex[1] . "\"";
-=======
         $val = " value=\"" . $sex[1] . "\"";
         echo "<input class=\"inp_class\" type=\"text\" name=\"pes_sexo_biologico\" size=\"28\"" . $dis . $val .
         "><br>";
->>>>>>> 32eab150249783e158ae1d334da92b43e535e99d
         }
       ?>
       <input class="inp_class" type="text" name="pes_sexo_biologico" size="15" <?=$dis . $val;?>><br>

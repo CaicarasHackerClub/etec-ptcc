@@ -64,6 +64,7 @@
         $metodo->setEnd_bairro($_POST['end_bairro']);
         $metodo->setEnd_rua($_POST['end_rua']);
         $metodo->setEnd_numero($_POST['end_numero']);
+        $metodo->setEnd_complemento($_POST['end_complemento']);
 
         // Verifica se a pessoa que está sendo cadastrada já foi cadastrada anteriormente
 
@@ -107,14 +108,15 @@
             $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
             $pes_id=$sql->selecionar($sel_id);
 
-            $insEnd="INSERT INTO endereco (end_pais, end_estado,end_cidade, end_cep,end_bairro, end_rua,end_numero,pessoa_pes_id) VALUES (
-                  '" . $metodo->getEnd_pais()   . "',
-                  '" . $metodo->getEnd_estado() . "',
-                  '" . $metodo->getEnd_cidade() . "',
-                  '" . $metodo->getEnd_cep()    . "',
-                  '" . $metodo->getEnd_bairro() . "',
-                  '" . $metodo->getEnd_rua()    . "',
-                  '" . $metodo->getEnd_numero() . "',
+            $insEnd="INSERT INTO endereco (end_pais, end_estado, end_cidade, end_cep, end_bairro, end_rua, end_numero, end_complemento, pessoa_pes_id) VALUES (
+                  '" . $metodo->getEnd_pais()        . "',
+                  '" . $metodo->getEnd_estado()      . "',
+                  '" . $metodo->getEnd_cidade()      . "',
+                  '" . $metodo->getEnd_cep()         . "',
+                  '" . $metodo->getEnd_bairro()      . "',
+                  '" . $metodo->getEnd_rua()         . "',
+                  '" . $metodo->getEnd_numero()      . "',
+                  '" . $metodo->getEnd_complemento() . "'
                   '" . $pes_id          . "'
               );";
 
@@ -143,14 +145,15 @@
             $okPes = $sql->inserir($updPes);
 
             $updEnd = "UPDATE endereco SET end_pais='" . $metodo->getEnd_pais() . "',
-                        end_estado='" . $metodo->getEnd_estado() . "',
-                        end_cidade='" . $metodo->getEnd_cidade()  . "',
-                        end_cep='" . $metodo->getEnd_cep() . "',
-                        end_bairro='" . $metodo->getEnd_bairro() . "',
-                        end_rua='" . $metodo->getEnd_rua() . "',
-                        end_numero='" . $metodo->getEnd_numero() . "',
-                        pessoa_pes_id='" . $_SESSION['id'] . "'
-                        WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+                        end_estado='". $metodo->getEnd_estado() . "',
+                        end_cidade='". $metodo->getEnd_cidade()  . "',
+                        end_cep='". $metodo->getEnd_cep() . "',
+                        end_bairro='". $metodo->getEnd_bairro() . "',
+                        end_rua='". $metodo->getEnd_rua() . "',
+                        end_numero='". $metodo->getEnd_numero() . "',
+                        end_numero='". $metodo->getEnd_complemento() . "'
+                        pessoa_pes_id='". $_SESSION['id'] . "'
+                        WHERE pessoa_pes_id='". $_SESSION['id'] . "';";
 
             $okEnd = $sql->inserir($updEnd);
 
