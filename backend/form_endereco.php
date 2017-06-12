@@ -154,5 +154,8 @@ $sql = new Sql;
     ?>
     <input class="inp_class" type="text" name="end_complemento" size="28" <?=$dis . $val; ?>><br>
   </div>
-  <input class="submit" type="submit" value="Próximo"><br>
-
+  <?php
+  if ($_SESSION['form'] == 2) {
+    echo "<input class=\"submit\" type=\"submit\" value=\"Próximo\"><br>";
+  }
+  ?>
