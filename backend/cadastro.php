@@ -116,7 +116,7 @@
                   '" . $metodo->getEnd_bairro()      . "',
                   '" . $metodo->getEnd_rua()         . "',
                   '" . $metodo->getEnd_numero()      . "',
-                  '" . $metodo->getEnd_complemento() . "'
+                  '" . $metodo->getEnd_complemento() . "',
                   '" . $pes_id          . "'
               );";
 
