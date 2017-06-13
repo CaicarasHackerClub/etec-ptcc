@@ -300,8 +300,8 @@
         if ($sql->num($query) == 0) {
           echo
           "<tr>
-            <td colspan='4'> Não há ninguém aguardando atendimento </td>
-          </tr>";
+            <td class='table-consulta-mensagem' colspan='5'> Não há ninguém aguardando atendimento </td>
+           </tr>";
         } else {
           while ($pac = mysqli_fetch_array($res)) {
             $espera = $fila->calc($pac['tri_data'], $pac['tri_hora']);
