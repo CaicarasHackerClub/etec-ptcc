@@ -95,6 +95,7 @@
   margin-top: 0.5em;
 }
 
+.btn-consulta,
 .table-consulta-forms input,
 .table-consulta-forms select {
   width: 100%;
@@ -103,7 +104,7 @@
   padding-left: 1em;
 }
 
-.table-consulta-forms input[type="submit"] {
+.btn-consulta {
   border: 0;
   border-radius: 4px;
   background-color: #009657;
@@ -111,6 +112,6 @@
   padding-left: initial;
 }
 
-.table-consulta-forms input[type="submit"]:hover {
+.btn-consulta:hover {
   background-color: #F56529;
 }

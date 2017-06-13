@@ -158,15 +158,15 @@
 
             <h3> Receita </h3>
 
-            <input type="hidden" class="med" name="med" value="">
-            <button type="button" class="adicionar"> Adicionar medicamento </button>
-            <button type="button" class="remover"> Remover medicamento </button>
-            <button type="button" class="limpar"> Limpar </button> <br>
+            <input type="hidden" class="btn-consulta med" name="med" value="">
+            <button type="button" class="btn-consulta adicionar"> Adicionar medicamento </button>
+            <button type="button" class="btn-consulta remover"> Remover medicamento </button>
+            <button type="button" class="btn-consulta limpar"> Limpar </button> <br>
 
             <div class="receita"></div>
 
-            <input type="submit" name="cancelar" value="Cancelar consulta">
-            <input type="submit" name="encerrar" value="Encerrar consulta">
+            <input type="submit" class="btn-consulta" name="cancelar" value="Cancelar consulta">
+            <input type="submit" class="btn-consulta" name="encerrar" value="Encerrar consulta">
           </form>
         </div>
       </div>
