@@ -313,10 +313,10 @@
               <tr>
                 <td>" . $pac['tri_id'] . "</td>
                 <td>" . $pac['pes_nome'] . "</td>
-                <td><div class=\"consulta-color " . strtolower($class) . "\"></div></td>
+                <td><div class=\"consulta-color consulta-color-" . strtolower($class) . "\"></div></td>
                 <td>" . $espera  . "/" . $cor[1] . " min </td>
                 <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
-                <td> <input type='submit' name='consulta' value='Iniciar consulta'> </td>
+                <td> <input class='table-consulta-botton' type='submit' name='consulta' value='Iniciar consulta'> </td>
               </tr>
             </form>";
           }

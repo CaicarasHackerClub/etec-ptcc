@@ -13,18 +13,18 @@
   height: 2.5em;
 }
 
+.table-consulta th {
+  background-color: #fff;
+  text-align: left;
+}
+
 .table-consulta tr:nth-of-type(odd),
 .table-consulta-mensagem {
   background-color: #9BD3AE;
   color: #222;
 }
 
-.table-consulta th {
-  background-color: #fff;
-  text-align: left;
-}
-
-.table-consulta td input[type="submit"] {
+.table-consulta-botton {
   background-color: #F56529;
   color: #F1FFF7;
   border: 0;
@@ -32,7 +32,7 @@
   height: 2.5em;
 }
 
-.table-consulta td input[type="submit"]:hover {
+.table-consulta-botton:hover {
   background-color: #009657;
 }
 
@@ -44,22 +44,22 @@
   border: 2px solid black;
 }
 
-.consulta-color.vermelho {
+.consulta-color-vermelho {
   background-color: red;
 }
 
-.consulta-color.amarelo {
+.consulta-color-amarelo {
   background-color: yellow;
 }
 
-.consulta-color.azul {
+.consulta-color-azul {
   background-color: blue;
 }
 
-.consulta-color.verde {
+.consulta-color-verde {
   background-color: green;
 }
 
-.consulta-color.laranja {
+.consulta-color-laranja {
   background-color: orange;
 }
