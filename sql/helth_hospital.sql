@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/06/2017 às 01:13
+-- Tempo de geração: 13/06/2017 às 17:44
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -40,7 +40,12 @@ CREATE TABLE `atendimento` (
 INSERT INTO `atendimento` (`ate_id`, `ate_hora`, `ate_data`, `ate_pac_id`) VALUES
 (1, '15:50:00', '2017-05-17', 9),
 (2, '15:54:00', '2017-05-17', 2),
-(3, '16:00:00', '2017-05-17', 3);
+(3, '16:00:00', '2017-05-17', 3),
+(4, '09:50:00', '2017-03-13', 7),
+(5, '10:50:00', '2017-03-13', 5),
+(6, '11:50:00', '2017-03-13', 11),
+(7, '16:10:00', '2017-03-13', 16),
+(8, '16:50:00', '2017-03-13', 20);
 
 -- --------------------------------------------------------
 
@@ -10899,7 +10904,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `atendimento`
 --
 ALTER TABLE `atendimento`
-  MODIFY `ate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de tabela `cidade`
 --
@@ -11039,7 +11044,7 @@ ALTER TABLE `status_triagem`
 -- AUTO_INCREMENT de tabela `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
-  MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de tabela `triagem`
 --
