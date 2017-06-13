@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/06/2017 às 18:15
+-- Tempo de geração: 13/06/2017 às 18:54
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10558,7 +10558,8 @@ INSERT INTO `tipo_sanguineo` (`tis_id`, `tis_nome`) VALUES
 (5, 'AB+'),
 (6, 'AB-'),
 (7, 'B+'),
-(8, 'B-');
+(8, 'B-'),
+(9, '');
 
 -- --------------------------------------------------------
 
@@ -11047,7 +11048,7 @@ ALTER TABLE `status_triagem`
 -- AUTO_INCREMENT de tabela `tipo_sanguineo`
 --
 ALTER TABLE `tipo_sanguineo`
-  MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `tis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de tabela `triagem`
 --
