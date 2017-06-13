@@ -11,6 +11,10 @@ body {
   overflow: hidden;
 }
 
+.sub-body {
+  overflow: auto;
+}
+
 iframe {
   border-style: inherit;
 }

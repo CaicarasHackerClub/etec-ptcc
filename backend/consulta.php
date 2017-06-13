@@ -1,5 +1,5 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
-<!-- <link rel="stylesheet" href="../css/main.css"> -->
+<link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/consulta.css">
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="../js/consulta.js" ></script>
@@ -39,123 +39,139 @@
     $tipoSanguineo = $sql->selecionar("SELECT tis_nome FROM tipo_sanguineo WHERE tis_id = " . $pac['tri_tipo_sanguineo'] . ";");
 
     ?>
-      <h2> Dados da triagem </h2>
 
-      <table>
-        <tr>
-          <th>Data</th>
-          <td> <?php echo $data->format('d/m/Y'); ?> </td>
-        </tr>
-        <tr>
-          <th>Hora</th>
-          <td> <?php echo $pac['tri_hora']; ?> </td>
-        </tr>
-      </table>
+    <div class="triagem-container">
+      <div class="table-consulta-dados">
+        <table class="table-consulta">
+          <thead>
+            <tr>
+              <th class="table-consulta-dados-title" colspan="2">Dados da triagem</th>
+            </tr>
+          </thead>
 
-      <table>
-        <tr>
-          <th>#</th>
-          <td> <?php echo $pac['tri_id']; ?></td>
-        </tr>
-        <tr>
-          <th>Classificação de risco</th>
-          <td> <?php echo $class; ?> </td>
-        </tr>
-        <tr>
-          <th>Nome</th>
-          <td> <?php echo $pac['pes_nome']; ?> </td>
+          <tbody>
+            <tr>
+              <td>#</td>
+              <td><?php echo $pac['tri_id']; ?></td>
+            </tr>
+            <tr>
+              <td>Classificação de risco</td>
+              <td><?= "<div class=\"consulta-color consulta-color-" . strtolower($class) . "\"></div>"?></td>
+            </tr>
+            <tr>
+              <td>Nome</td>
+              <td><?php echo $pac['pes_nome']; ?></td>
+            </tr>
+            <tr>
+              <td>Idade</td>
+              <td><?php echo $idade ?> anos</td>
+            </tr>
+            <tr>
+              <td>Peso</td>
+              <td><?php echo $pac['tri_peso']; ?> kg</td>
+            </tr>
+            <tr>
+              <td>Altura</td>
+              <td><?php echo $pac['tri_altura']; ?> m</td>
+            </tr>
+            <tr>
+              <td>Temperatura</td>
+              <td><?php echo $pac['tri_temperatura']; ?> ºC</td>
+            </tr>
+            <tr>
+              <td>Pressão</td>
+              <td><?php echo $pac['tri_pressao']; ?> mmHg</td>
+            </tr>
+            <tr>
+              <td>Batimento</td>
+              <td><?php echo $pac['tri_batimento']; ?> bpm</td>
+            </tr>
+            <tr>
+              <td>Respiração</td>
+              <td><?php echo $pac['tri_respiracao']; ?> rpm</td>
+            </tr>
+            <tr>
+              <td>Oxigenação</td>
+              <td><?php echo $pac['tri_oxigenacao']; ?> %</td>
+            </tr>
+            <tr>
+              <td>Dor</td>
+              <td><?php echo $pac['tri_dor']; ?>/10</td>
+            </tr>
+            <tr>
+              <td>Tipo sanguíneo</td>
+              <td><?php echo $tipoSanguineo; ?></td>
+            </tr>
+            <tr>
+              <td>Comprometimento dos orgãos vitais</td>
+              <td><?php echo $org; ?></td>
+            </tr>
+            <tr>
+              <td>Doenças</td>
+              <td><?php echo $pac['tri_doenca']; ?></td>
+            </tr>
+            <tr>
+              <td>Remédios</td>
+              <td><?php echo $pac['tri_remedio']; ?></td>
+            </tr>
+            <tr>
+              <td>Sintomas</td>
+              <td><?php echo $pac['tri_sintomas']; ?></td>
+            </tr>
+            <tr>
+              <td>Reclamação</td>
+              <td><?php echo $pac['tri_reclamacao']; ?></td>
+            </tr>
+          </table>
+        </tbody>
+      </div>
 
-        </tr>
-        <tr>
-          <th>Idade</th>
-          <td> <?php echo $idade ?> anos </td>
-        </tr>
-        <tr>
-          <th>Peso</th>
-          <td> <?php echo $pac['tri_peso']; ?> kg </td>
-        </tr>
-        <tr>
-          <th>Altura</th>
-          <td> <?php echo $pac['tri_altura']; ?> m </td>
-        </tr>
-        <tr>
-          <th>Temperatura</th>
-          <td> <?php echo $pac['tri_temperatura']; ?> ºC </td>
-        </tr>
-        <tr>
-          <th>Pressão</th>
-          <td> <?php echo $pac['tri_pressao']; ?> mmHg </td>
-        </tr>
-        <tr>
-          <th>Batimento</th>
-          <td> <?php echo $pac['tri_batimento']; ?> bpm </td>
-        </tr>
-        <tr>
-          <th>Respiração</th>
-          <td> <?php echo $pac['tri_respiracao']; ?> rpm </td>
-        </tr>
-        <tr>
-          <th>Oxigenação</th>
-          <td> <?php echo $pac['tri_oxigenacao']; ?> % </td>
-        </tr>
-        <tr>
-          <th>Dor</th>
-          <td> <?php echo $pac['tri_dor']; ?>/10 </td>
-        </tr>
-        <tr>
-          <th>Tipo sanguíneo</th>
-          <td> <?php echo $tipoSanguineo; ?> </td>
-        </tr>
-        <tr>
-          <th>Comprometimento dos orgãos vitais</th>
-          <td> <?php echo $org; ?> </td>
-        </tr>
-        <tr>
-          <th>Doenças</th>
-          <td> <?php echo $pac['tri_doenca']; ?> </td>
-        </tr>
-        <tr>
-          <th>Remédios</th>
-          <td> <?php echo $pac['tri_remedio']; ?> </td>
-        </tr>
-        <tr>
-          <th>Sintomas</th>
-          <td> <?php echo $pac['tri_sintomas']; ?> </td>
-        </tr>
-        <tr>
-          <th>Reclamação</th>
-          <td> <?php echo $pac['tri_reclamacao']; ?> </td>
-        </tr>
-      </table>
+      <div class="table-consulta-hora-forms">
+        <div class="table-consulta-hora">
+          <table class="table-consulta">
+            <tr>
+              <td>Data</td>
+              <td> <?php echo $data->format('d/m/Y'); ?> </td>
+            </tr>
+            <tr>
+              <td>Hora</td>
+              <td> <?php echo $pac['tri_hora']; ?> </td>
+            </tr>
+          </table>
+        </div>
 
-      <form action="consulta.php" method="post">
-        <input type="hidden" name="triId" value="<?php echo $pac['tri_id'] ?>">
-        <input type="hidden" name="chegada" value="<?php echo date('H:m:i') ?>">
-        <input type="hidden" name="data" value="<?php echo date('Y-m-d') ?>">
-        <label> Reclamação: </label>
-        <input type="text" name="reclamacao"> <br>
-        <label> Sintomas: </label>
-        <input type="text" name="sintomas"> <br>
-        <label> Diagnóstico presuntivo: </label>
-        <input type="text" name="diagnostico"> <br>
-        <label> Encaminhamento: </label>
-        <?php $sql->selectbox('encaminhamento'); ?>
-        <label> Comentário: </label>
-        <input type="text" name="comentario"> <br>
+        <div class="table-consulta-forms">
+          <form action="consulta.php" method="post">
+            <input type="hidden" name="triId" value="<?php echo $pac['tri_id'] ?>">
+            <input type="hidden" name="chegada" value="<?php echo date('H:m:i') ?>">
+            <input type="hidden" name="data" value="<?php echo date('Y-m-d') ?>">
+            <label> Reclamação: </label>
+            <input type="text" name="reclamacao"> <br>
+            <label> Sintomas: </label>
+            <input type="text" name="sintomas"> <br>
+            <label> Diagnóstico presuntivo: </label>
+            <input type="text" name="diagnostico"> <br>
+            <label> Encaminhamento: </label>
+            <?php $sql->selectbox('encaminhamento'); ?>
+            <label> Comentário: </label>
+            <input type="text" name="comentario"> <br>
 
-        <h3> Receita </h3>
+            <h3> Receita </h3>
 
-        <input type="hidden" class="med" name="med" value="">
-        <button type="button" class="adicionar"> Adicionar medicamento </button>
-        <button type="button" class="remover"> Remover medicamento </button>
-        <button type="button" class="limpar"> Limpar </button> <br>
+            <input type="hidden" class="med" name="med" value="">
+            <button type="button" class="adicionar"> Adicionar medicamento </button>
+            <button type="button" class="remover"> Remover medicamento </button>
+            <button type="button" class="limpar"> Limpar </button> <br>
 
-        <div class="receita"></div>
+            <div class="receita"></div>
 
-        <input type="submit" name="cancelar" value="Cancelar consulta">
-        <input type="submit" name="encerrar" value="Encerrar consulta">
+            <input type="submit" name="cancelar" value="Cancelar consulta">
+            <input type="submit" name="encerrar" value="Encerrar consulta">
+          </form>
+        </div>
+      </div>
+    </div>
 
-      </form>
     <?php
   } elseif (isset($_POST['encerrar']) || isset($_POST['cancelar'])) {
     $chegada = $_POST['chegada'];
@@ -281,7 +297,7 @@
                 <td><div class=\"consulta-color consulta-color-" . strtolower($class) . "\"></div></td>
                 <td>" . $espera  . "/" . $cor[1] . " min </td>
                 <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
-                <td> <input class='table-consulta-botton' type='submit' name='consulta' value='Iniciar consulta'> </td>
+                <td> <input class='table-consulta-bottom' type='submit' name='consulta' value='Iniciar consulta'> </td>
               </tr>
             </form>";
           }
