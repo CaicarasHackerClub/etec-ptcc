@@ -24,7 +24,7 @@
   color: #222;
 }
 
-.table-consulta-botton {
+.table-consulta-bottom {
   background-color: #F56529;
   color: #F1FFF7;
   border: 0;
@@ -32,7 +32,7 @@
   height: 2.5em;
 }
 
-.table-consulta-botton:hover {
+.table-consulta-bottom:hover {
   background-color: #009657;
 }
 
@@ -62,4 +62,9 @@
 
 .consulta-color-laranja {
   background-color: orange;
+}
+
+.triagem-container {
+  display: flex;
+  flex-wrap: wrap;
 }
