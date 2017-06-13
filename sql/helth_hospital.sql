@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/06/2017 às 17:44
+-- Tempo de geração: 13/06/2017 às 18:15
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10596,7 +10596,10 @@ CREATE TABLE `triagem` (
 INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `tri_altura`, `tri_batimento`, `tri_oxigenacao`, `tri_classe_risco`, `tri_respiracao`, `tri_tipo_sanguineo`, `tri_doenca`, `tri_remedio`, `tri_dor`, `tri_orgaos_vitais`, `tri_data`, `tri_hora`, `tri_reclamacao`, `tri_sintomas`, `tri_status`, `tri_ate_id`) VALUES
 (1, 27, '160x140', 45, 1.75, 60, 30, 4, 80, 1, '', '', 0, 1, '2017-05-17', '15:54:00', '', '', 2, 1),
 (2, 28, '140x80', 76, 1.5, 100, 30, 3, 80, 1, '', '', 0, 1, '2017-05-17', '15:56:00', '', '', 2, 2),
-(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 1, '', '', 0, 1, '2017-05-17', '16:03:00', '', '', 2, 3);
+(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 1, '', '', 0, 1, '2017-05-17', '16:03:00', '', '', 2, 3),
+(4, 28, '120x90', 78, 1.7, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 2, 4),
+(5, 28, '120x90', 68, 1.5, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 2, 5),
+(6, 28, '120x90', 90, 1.8, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -11049,7 +11052,7 @@ ALTER TABLE `tipo_sanguineo`
 -- AUTO_INCREMENT de tabela `triagem`
 --
 ALTER TABLE `triagem`
-  MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de tabela `turno`
 --
