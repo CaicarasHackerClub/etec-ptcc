@@ -69,9 +69,7 @@ class Sql {
     $sel = "SELECT * FROM " . $tabela;
     $res = mysqli_query($con, $sel) or die("Erro : ");
 
-    echo "
-    <select class='inp_class select' name='" . $tabela . "'>\n
-    <option value=''></option>\n";
+    echo "<select class='inp_class select' name='" . $tabela . "'>\n";
 
     while ($selecao = mysqli_fetch_array($res)) {
       echo  "

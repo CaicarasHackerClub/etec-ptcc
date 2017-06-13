@@ -1,7 +1,5 @@
 <?php
 
-include 'Fila.class.php';
-
 class Consulta {
   private $chegada;
   private $saida;

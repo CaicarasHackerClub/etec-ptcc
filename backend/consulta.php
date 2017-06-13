@@ -1,11 +1,11 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
-<meta http-equiv="refresh" content="30">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/consulta.css">
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="../js/script.js" ></script>
 <?php
   include_once 'Sql.class.php';
+  include_once 'Fila.class.php';
   include_once 'Consulta.class.php';
 
   $cons = new Consulta();
@@ -276,6 +276,10 @@
     $sql->inserir($st);
     echo $mensagem;
   } else {
+    ?>
+    <meta http-equiv="refresh" content="30">
+    <?php
+
     $query = "SELECT * FROM pessoa
       INNER JOIN paciente ON paciente.pessoa_pes_id = pessoa.pes_id
       INNER JOIN atendimento ON atendimento.ate_pac_id = paciente.pac_id

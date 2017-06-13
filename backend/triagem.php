@@ -113,7 +113,7 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   $oxi = isset($_POST['oxi']) && !empty($_POST['oxi']) ? trim($_POST['oxi']) : 0;
   $resp = isset($_POST['resp']) ? trim($_POST['resp']) : 0;
   $dor = isset($_POST['dor']) && !empty($_POST['dor']) ? trim($_POST['dor']) : 0;
-  $tipoSanguineo = isset($_POST['tipo_sanguineo']) ? trim($_POST['tipo_sanguineo']) : "";
+  $tipoSanguineo = $_POST['tipo_sanguineo'];
   $orgaos = isset($_POST['org']) ? 1 : 0;
   $doencas = isset($_POST['doencas']) ? trim($_POST['doencas']) : "";
   $remedios = isset($_POST['remedios']) ? trim($_POST['remedios']) : "";
