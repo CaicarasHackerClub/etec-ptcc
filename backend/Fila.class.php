@@ -20,14 +20,14 @@ class Fila extends Sql {
   private $tempo = [10, 60, 120, 240];
 
   private $tabela = "
-  <table border='1'>
-    <caption> Fila de espera </caption>
+  <table>
+    <caption>Fila de espera</caption>
     <thead>
-      <th> # </th>
-      <th> Nome </th>
-      <th> Chegada </th>
-      <th> Tempo de espera </th>
-      <th> Classificação </th>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Chegada</th>
+      <th>Tempo de espera</th>
+      <th>Classificação</th>
     </thead>
     <tbody>";
 

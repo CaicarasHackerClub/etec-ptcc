@@ -1,3 +1,9 @@
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="refresh" content="30">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/consulta.css">
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
+<script type="text/javascript" src="../js/script.js" ></script>
 <?php
   include_once 'Sql.class.php';
   include_once 'Consulta.class.php';
@@ -280,12 +286,13 @@
 
     ?>
 
-    <table border="1">
+    <table class="table-consulta">
       <thead>
-        <th> # </th>
-        <th> Nome </th>
-        <th> Classificação </th>
-        <th> Tempo de espera </th>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Classificação</th>
+        <th>Tempo de espera</th>
+        <th></th>
       </thead>
       <tbody>
         <?php
@@ -306,7 +313,7 @@
               <tr>
                 <td>" . $pac['tri_id'] . "</td>
                 <td>" . $pac['pes_nome'] . "</td>
-                <td>" . $class . "</td>
+                <td><div class=\"consulta-color " . strtolower($class) . "\"></div></td>
                 <td>" . $espera  . "/" . $cor[1] . " min </td>
                 <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
                 <td> <input type='submit' name='consulta' value='Iniciar consulta'> </td>

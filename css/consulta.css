@@ -1,0 +1,64 @@
+.table-consulta {
+  margin: 2em;
+  border: 1px solid #b5b4b4;
+  color: #333;
+  border-collapse:   collapse;
+  empty-cells: show;
+}
+
+.table-consulta tr,
+.table-consulta td,
+.table-consulta th {
+  padding: 0.5em 1em;
+  height: 2.5em;
+}
+
+.table-consulta tr:nth-of-type(odd) {
+  background-color: #9BD3AE;
+  color: #222;
+}
+
+.table-consulta th {
+  background-color: #fff;
+  text-align: left;
+}
+
+.table-consulta td input[type="submit"] {
+  background-color: #F56529;
+  color: #F1FFF7;
+  border: 0;
+  border-radius: 4px;
+  height: 2.5em;
+}
+
+.table-consulta td input[type="submit"]:hover {
+  background-color: #009657;
+}
+
+.consulta-color {
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+.consulta-color.vermelho {
+  background-color: red;
+}
+
+.consulta-color.amarelo {
+  background-color: yellow;
+}
+
+.consulta-color.azul {
+  background-color: blue;
+}
+
+.consulta-color.verde {
+  background-color: green;
+}
+
+.consulta-color.laranja {
+  background-color: orange;
+}
