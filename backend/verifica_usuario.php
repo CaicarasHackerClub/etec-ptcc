@@ -14,7 +14,7 @@
         //Direciona pro formulário de acesso
         //echo "Digite os campos corretamente";
         echo "<script>alert('Digite os campos corretamente')
-                location.href='index.php';</script>;";
+                location.href='../index.php';</script>;";
       } else {
         include_once "Sql.class.php";
         $sql = new Sql;
@@ -64,7 +64,7 @@
           echo
           "<script>
             alert('Usuario e/ou senha invalidos!!');
-            location.href='index.php';
+            location.href='../index.php';
           </script>;";
         }
       }
