@@ -1,7 +1,8 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
-<link rel="stylesheet" href="../css/main.css">
+<!-- <link rel="stylesheet" href="../css/main.css"> -->
 <link rel="stylesheet" href="../css/consulta.css">
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
+<script type="text/javascript" src="../js/consulta.js" ></script>
 <script type="text/javascript" src="../js/script.js" ></script>
 <?php
   include_once 'Sql.class.php';
@@ -144,49 +145,12 @@
 
         <h3> Receita </h3>
 
-        <?php
-        $r = 0;
+        <input type="hidden" class="med" name="med" value="">
+        <button type="button" class="adicionar"> Adicionar medicamento </button>
+        <button type="button" class="remover"> Remover medicamento </button>
+        <button type="button" class="limpar"> Limpar </button> <br>
 
-        if (isset($_POST['adicionar'])) {
-          $r = $_POST['med'] + 1;
-        } elseif (isset($_POST['remover']) && $_POST['med'] > 0) {
-          $r = $_POST['med'] - 1;
-        } elseif (isset($_POST['limpar'])) {
-          $r = 0;
-        }
-        ?>
-        <input type="hidden" name="med" value="<?php echo $r ?>">
-        <input type="submit" name="adicionar" value="Adicionar medicamento">
-        <input type="submit" name="remover" value="Remover medicamento">
-        <input type="submit" name="limpar" value="Limpar"> <br>
-        <?php
-
-        for ($i = 1; $i <= $r; $i++) {
-          if ($i < 10) {
-            $i = "0" . $i;
-          }
-
-          echo "
-          <label> Medicamento " . $i . ": </label>
-          <input type='number' size='3' name='quantidade" . $i . "'>
-          <select name='unidade" . $i . "'>
-            <option> mg </option>
-            <option> g </option>
-            <option> mL </option>
-            <option> L </option>
-          </select> de
-          <input type='text' name='medicamento" . $i . "'> a cada
-          <input type='number' size='2' name='tempo" . $i . "'>
-          <select name='unidadeTempo" . $i . "'>
-            <option> horas </option>
-            <option> dias </option>
-          </select> durante
-          <input type='number' name='periodo" . $i . "'> dias
-          <br>
-          ";
-        }
-
-        ?>
+        <div class="receita"></div>
 
         <input type="submit" name="cancelar" value="Cancelar consulta">
         <input type="submit" name="encerrar" value="Encerrar consulta">
@@ -236,9 +200,6 @@
           $rec = new Receita();
 
           for ($i = 1; $i <= $_POST['med']; $i++) {
-            if ($i < 10) {
-              $i = "0" . $i;
-            }
 
             $rec->setQuantidade($_POST['quantidade' . $i]);
             $rec->setUnidade($_POST['unidade' . $i]);
