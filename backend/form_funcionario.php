@@ -34,16 +34,16 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
 
 } else {
   if ($_SESSION['form'] == 3 || $_GET['voltar'] == 1) {
-  $selFun = "SELECT * FROM funcionario WHERE pessoa_pes_id='". $_SESSION['id'] ."';";
-  $funcionario=$sql->fetch($selFun);
-  $selUsu="SELECT * FROM usuario WHERE funcionario_id='" . $funcionario['0'] . "';";
-  $usuario=$sql->fetch($selUsu);
+    $selFun = "SELECT * FROM funcionario WHERE pessoa_pes_id='". $_SESSION['id'] ."';";
+    $funcionario=$sql->fetch($selFun);
+    $selUsu="SELECT * FROM usuario WHERE funcionario_id='" . $funcionario['0'] . "';";
+    $usuario=$sql->fetch($selUsu);
 
-  $_SESSION['fun_id'] = $funcionario['0'];
 
-  $tipo = "cadastro.php?acao=cadastro&passo=3";
+    $_SESSION['fun_id'] = $funcionario[0];
+
+    $tipo = "cadastro.php?acao=cadastro&passo=3";
   }
-
 }
 
 ?>

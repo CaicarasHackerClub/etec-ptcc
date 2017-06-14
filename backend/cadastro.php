@@ -306,8 +306,10 @@
             }
           } else {
             if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
-              echo "<script>alert('Senhas não correspondem!')
-              location.href='form_funcionario.php?voltar=1';</script>;";
+              echo "<script>
+                      alert('Senhas não correspondem!');
+                      window.history.go(-1);
+                    </script>;";
 
             } else {
               $updFun="UPDATE funcionario SET

@@ -39,15 +39,18 @@ session_start()
           $sql = new Sql;
 
           $con=$sql->conecta();
+
           $selCar="SELECT f.fun_cargo FROM funcionario f INNER JOIN usuario u ON f.fun_id=u.funcionario_id WHERE u.usu_id=" . $_SESSION['id_usu']. ";";
 
           $res=mysqli_query($con, $selCar) or die("Erro: id funcionario " . mysqli_error($con) . "<br> Query: " . $query);
 
           $cargo=mysqli_fetch_array($res);
 
-          $_SESSION['tipo']=$cargo['fun_cargo'];
+          $selCargo="SELECT * FROM cargo WHERE car_id='" . $cargo['fun_cargo'] . "';";
+          $cargo=$sql->fetch($selCargo);
+          $_SESSION['tipo']=$cargo[1];
 
-          if ($_SESSION['tipo'] == "enfermeiro" || $_SESSION['tipo'] == "medico") {
+          if ($_SESSION['tipo'] == "enfermeiro" ) {
             $link1 = "../backend/sub_modulo.php";
 
           } else {
