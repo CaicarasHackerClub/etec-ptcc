@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 14/06/2017 às 02:33
+-- Tempo de geração: 14/06/2017 às 05:56
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -45,7 +45,11 @@ INSERT INTO `atendimento` (`ate_id`, `ate_hora`, `ate_data`, `ate_pac_id`) VALUE
 (5, '10:50:00', '2017-03-13', 5),
 (6, '11:50:00', '2017-03-13', 11),
 (7, '16:10:00', '2017-03-13', 16),
-(8, '16:50:00', '2017-03-13', 20);
+(8, '16:50:00', '2017-03-13', 20),
+(9, '18:30:00', '2017-06-14', 1),
+(10, '18:50:00', '2017-06-14', 8),
+(11, '19:10:00', '2017-06-14', 19),
+(12, '19:30:00', '2017-06-14', 4);
 
 -- --------------------------------------------------------
 
@@ -55,7 +59,7 @@ INSERT INTO `atendimento` (`ate_id`, `ate_hora`, `ate_data`, `ate_pac_id`) VALUE
 
 CREATE TABLE `cargo` (
   `car_id` int(11) NOT NULL,
-  `car_nome` varchar(25) COLLATE utf8_bin NOT NULL
+  `car_nome` varchar(25) COLLATE utf8_bin NOT NULL COMMENT 'nome do cargo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10631,10 +10635,13 @@ CREATE TABLE `triagem` (
 INSERT INTO `triagem` (`tri_id`, `tri_temperatura`, `tri_pressao`, `tri_peso`, `tri_altura`, `tri_batimento`, `tri_oxigenacao`, `tri_classe_risco`, `tri_respiracao`, `tri_tipo_sanguineo`, `tri_doenca`, `tri_remedio`, `tri_dor`, `tri_orgaos_vitais`, `tri_data`, `tri_hora`, `tri_reclamacao`, `tri_sintomas`, `tri_status`, `tri_ate_id`) VALUES
 (1, 27, '160x140', 45, 1.75, 60, 30, 4, 80, 1, '', '', 0, 1, '2017-05-17', '15:54:00', '', '', 3, 1),
 (2, 28, '140x80', 76, 1.5, 100, 30, 3, 80, 1, '', '', 0, 1, '2017-05-17', '15:56:00', '', '', 4, 2),
-(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 1, '', '', 0, 1, '2017-05-17', '16:03:00', '', '', 4, 3),
-(4, 28, '120x90', 78, 1.7, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 4, 4),
-(5, 28, '120x90', 68, 1.5, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 4, 5),
-(6, 28, '120x90', 90, 1.8, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 4, 6);
+(3, 39, '140x80', 76, 1.9, 60, 30, 2, 40, 1, '', '', 0, 1, '2017-05-17', '16:03:00', '', '', 1, 3),
+(4, 28, '120x90', 78, 1.7, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 1, 4),
+(5, 28, '120x90', 68, 1.5, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 1, 5),
+(6, 28, '120x90', 90, 1.8, 50, 20, 1, 40, 3, 'nenhuma', 'nenhum', 0, 0, '2017-06-13', '10:00:00', 'dor de cabeça forte', 'náusea', 1, 6),
+(7, 33, '140x100', 100, 1.8, 40, 30, 2, 40, 3, 'nenhuma', 'nenhum', 1, 0, '2017-06-14', '18:00:00', 'Dores nos joelhos', 'febre', 1, 7),
+(8, 33, '140x100', 60, 1.4, 40, 30, 2, 40, 3, 'nenhuma', 'nenhum', 1, 0, '2017-06-14', '18:40:00', 'Dor de cabeça', 'febre', 1, 8),
+(9, 33, '140x100', 70, 1.6, 40, 30, 2, 40, 3, 'nenhuma', 'nenhum', 1, 0, '2017-06-14', '19:00:00', 'Dores nos joelhos', 'febre', 1, 9);
 
 -- --------------------------------------------------------
 
@@ -10680,8 +10687,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usu_id`, `usu_senha`, `usu_email`, `usu_ativo`, `usu_tipo`, `funcionario_id`) VALUES
 (1, '123', 'con@etec', 1, 1, 1),
 (2, '123', 'tri@etec', 1, 1, 2),
-(3, '123', 'adm@etec', 1, 1, 3),
-(4, '123', 'rec@etec', 1, 1, 4),
+(3, '123', 'rec@etec', 1, 1, 3),
+(4, '123', 'adm@etec', 1, 1, 4),
 (5, '123', 'por@etec', 1, 1, 5);
 
 --
@@ -10949,7 +10956,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `atendimento`
 --
 ALTER TABLE `atendimento`
-  MODIFY `ate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de tabela `cargo`
 --
@@ -11099,7 +11106,7 @@ ALTER TABLE `tipo_sanguineo`
 -- AUTO_INCREMENT de tabela `triagem`
 --
 ALTER TABLE `triagem`
-  MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tri_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de tabela `turno`
 --
