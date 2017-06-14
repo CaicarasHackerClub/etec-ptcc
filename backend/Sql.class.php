@@ -63,7 +63,7 @@ class Sql {
     return $id;
   }
 
-  public function selectbox($tabela) {
+  public function selectbox($tabela,$id) {
     $con = $this->conecta();
 
     $sel = "SELECT * FROM " . $tabela;
@@ -72,8 +72,12 @@ class Sql {
     echo "<select class='inp_class select' name='" . $tabela . "'>\n";
 
     while ($selecao = mysqli_fetch_array($res)) {
-      echo  "
-      <option value=" . $selecao[0] . ">" . $selecao[1] . "</option>\n";
+      if ($id == $selecao[0]) {
+        $chk = " selected=\"selected\"";
+      } else {
+        $chk = "";
+      }
+      echo "<option value=" . $selecao[0] . $chk . ">" . $selecao[1] . "</option>\n";
     }
 
     echo "</select><br>\n";

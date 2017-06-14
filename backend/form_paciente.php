@@ -21,46 +21,6 @@ $paciente = $sql->fetch($selPac);
   <fieldset class="grupo-info visible-group">
     <legend class="legenda">Informações do Paciente</legend>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Tip/Sanguineo</label>
-        <?php
-        if ($_SESSION['form'] == 1) {
-          $sql->selectbox("tipo_sanguineo");
-        } else {
-          //Procurando o tipo sanquineo
-          $sel = "SELECT * FROM tipo_sanguineo WHERE tis_id'" . $paciente[1] . "';";
-          $tis = $sql->fetch($s);
-
-          echo "<input class=\"inp_class\" type=\"text\" name=\"pac_tipo_sanguineo\" size=\"28\" disabled value = " . $tis[2] . "><br>";
-        }
-        ?>
-    </div>
-    <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Remedio</label>
-        <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $paciente[2] . "\"";
-        }
-        ?>
-      <input class="inp_class" type="text" name="pac_remedio" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Doença</label>
-      <?php
-        if ($_SESSION['form'] == 1) {
-          $dis = "";
-          $val = "";
-        } else {
-          $dis = " disabled";
-          $val = " value=\"" . $paciente[3] . "\"";
-        }
-      ?>
-      <input class="inp_class" type="text" name="pac_doenca" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div class="group-form group-form-cadastro">
       <label class="lbl_class">Escolaridade</label>
       <?php
       if ($_SESSION['form'] == 1) {

@@ -184,7 +184,14 @@ if ($_SESSION['form'] == 1) {
       <label class="lbl_class">Estado civil</label>
       <?php
         if ($_SESSION['form'] == 1  || $_SESSION['form'] == 3) {
-          $sql->selectbox("estado_civil");
+          if ($_SESSION['form'] == 1) {
+            $id = 0;
+          } else {
+            $sel="SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
+            $id=$sql->selecionar($sel);
+
+          }
+          $sql->selectbox("estado_civil",$id);
         } else {
           $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
           $etc = $sql->fetch($selE);
@@ -220,7 +227,14 @@ if ($_SESSION['form'] == 1) {
       <label class="lbl_class">Gênero</label>
       <?php
         if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-          $sql->selectbox("genero");
+          if ($_SESSION['form'] == 1) {
+            $id = 0;
+          } else {
+            $sel="SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
+            $id=$sql->selecionar($sel);
+
+          }
+          $sql->selectbox("genero", $id);
         } else {
           $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
           $gen = $sql->fetch($selG);
@@ -239,7 +253,14 @@ if ($_SESSION['form'] == 1) {
       <label class="lbl_class">Sexo biológico</label>
       <?php
         if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-          $sql->selectbox("sexo");
+          if ($_SESSION['form'] == 1) {
+            $id = 0;
+          } else {
+            $sel="SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
+            $id=$sql->selecionar($sel);
+
+          }
+          $sql->selectbox("sexo",$id);
         } else {
           $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
           $sex = $sql->fetch($selG);

@@ -5,6 +5,7 @@ $sql = new Sql;
 
 $_GET['voltar'] = isset($_GET['voltar'])? $_GET['voltar'] : "";
 $_SESSION['form'] = isset($_SESSION['form'])? $_SESSION['form'] : "";
+$_SESSION['id'] = isset($_SESSION['id'])? $_SESSION['id'] : "";
 
 if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['form'] = 1;
@@ -32,6 +33,7 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   }
 
 } else {
+  if ($_SESSION['form'] == 3 || $_GET['voltar'] == 1) {
   $selFun = "SELECT * FROM funcionario WHERE pessoa_pes_id='". $_SESSION['id'] ."';";
   $funcionario=$sql->fetch($selFun);
   $selUsu="SELECT * FROM usuario WHERE funcionario_id='" . $funcionario['0'] . "';";
@@ -40,6 +42,7 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   $_SESSION['fun_id'] = $funcionario['0'];
 
   $tipo = "cadastro.php?acao=cadastro&passo=3";
+  }
 
 }
 
@@ -68,7 +71,13 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
     <label class="lbl_class">Setor</label>
     <?php
     if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-      $sql->selectbox("setor");
+      if ($_SESSION['form'] == 1) {
+        $id = 0;
+      } else {
+        $sel="SELECT * FROM setor WHERE set_id='" . $funcionario[5] . "';";
+        $id=$sql->selecionar($sel);
+      }
+      $sql->selectbox("setor",$id);
     } else {
       $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[5]  . "';";
       $set = $sql->fetch($sel);
@@ -98,7 +107,13 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
     <label class="lbl_class">Turno</label>
     <?php
       if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-        $sql->selectbox("turno");
+        if ($_SESSION['form'] == 1) {
+          $id = 0;
+        } else {
+          $sel="SELECT * FROM turno WHERE tur_id='" . $funcionario[3] . "';";
+          $id=$sql->selecionar($sel);
+        }
+        $sql->selectbox("turno",$id);
       } else {
         $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[3]  . "';";
         $tur = $sql->fetch($sel1);
