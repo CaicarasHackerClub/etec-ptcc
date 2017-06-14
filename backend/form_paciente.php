@@ -24,7 +24,13 @@ $paciente = $sql->fetch($selPac);
       <label class="lbl_class">Escolaridade</label>
       <?php
       if ($_SESSION['form'] == 1) {
-        $sql->selectbox("escolaridade");
+        if ($_SESSION['form'] == 1) {
+            $id = 0;
+          } else {
+            $sel="SELECT * FROM escolaridade WHERE esc_id='" . $pessoa[4] . "';";
+            $id=$sql->selecionar($sel);
+          }
+        $sql->selectbox("escolaridade", $id);
       } else {
         $sel = "SELECT * FROM escolaridade WHERE esc_id='" . $paciente[4] . "';";
         $esc = $sql->fetch($sel);

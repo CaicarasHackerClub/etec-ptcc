@@ -202,10 +202,7 @@
             $pac_id++;
 
             ////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
-            $insPac="INSERT INTO paciente (pac_tipo_sangue, pac_remedio, pac_doenca, pac_educacao,           pac_hospitalizado, pessoa_pes_id) VALUES (
-                    '" . $metodo->getPac_tipo_sangue() . "',
-                    '" . $metodo->getPac_remedio()     . "',
-                    '" . $metodo->getPac_doenca()      . "',
+            $insPac="INSERT INTO paciente (pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
                     '" . $metodo->getPac_educacao()    . "',
                     0 ,
                     '" . $pes_id                       . "'
