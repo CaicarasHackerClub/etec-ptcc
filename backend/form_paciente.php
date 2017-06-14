@@ -73,7 +73,7 @@ $paciente = $sql->fetch($selPac);
     </div>
     <?php
       if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
-        echo "<input id=\"0\" type=\"button\" value=\"Alterar\">";
+        echo "<input id=\"0\" class=\"submit\" type=\"button\" value=\"Alterar\">";
       }
     ?>
     <input class="submit" type="submit" value="Confirmar">
