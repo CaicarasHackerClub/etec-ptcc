@@ -48,7 +48,7 @@ session_start()
 
           $selCargo="SELECT * FROM cargo WHERE car_id='" . $cargo['fun_cargo'] . "';";
           $cargo=$sql->fetch($selCargo);
-          $_SESSION['tipo']=$cargo[2];
+          $_SESSION['tipo']=$cargo[1];
 
           if ($_SESSION['tipo'] == "enfermeiro" || $_SESSION['tipo'] == "medico") {
             $link1 = "../backend/sub_modulo.php";
