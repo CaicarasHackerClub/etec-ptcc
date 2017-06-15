@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 14/06/2017 às 05:56
+-- Tempo de geração: 15/06/2017 às 20:53
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10170,7 +10170,7 @@ INSERT INTO `funcionario` (`fun_id`, `fun_cargo`, `fun_inscricao`, `fun_turno`, 
 
 CREATE TABLE `genero` (
   `gen_id` int(11) NOT NULL,
-  `gen_genero` varchar(15) COLLATE utf8_bin NOT NULL COMMENT 'Genêro da pessoa'
+  `gen_genero` varchar(30) COLLATE utf8_bin NOT NULL COMMENT 'Genêro da pessoa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -10180,7 +10180,24 @@ CREATE TABLE `genero` (
 INSERT INTO `genero` (`gen_id`, `gen_genero`) VALUES
 (1, 'masculino'),
 (2, 'feminino'),
-(3, 'lgbt');
+(3, 'Agênero/Neutro'),
+(4, 'Andrgino'),
+(5, 'Bigênero'),
+(6, 'Cis/Cisgênero '),
+(7, 'Feminino para Masculino/FTM'),
+(8, 'Fluido'),
+(9, 'Não-conforme/Variante'),
+(10, 'Questionando'),
+(11, 'Genderqueer'),
+(12, 'Intersexo'),
+(13, 'Masculino para Feminino/MTF'),
+(14, 'Nenhum'),
+(15, 'Não-binário'),
+(16, 'Outro'),
+(17, 'Pangênero'),
+(18, 'Trans/Transgêne'),
+(19, 'Transexual'),
+(20, 'Dois-espíritos ');
 
 -- --------------------------------------------------------
 
@@ -10368,7 +10385,6 @@ CREATE TABLE `pessoa` (
   `pes_rg` varchar(15) COLLATE utf8_bin DEFAULT NULL COMMENT 'informar o RG',
   `pes_cpf` varchar(14) COLLATE utf8_bin DEFAULT NULL COMMENT 'Informar o CPF',
   `pes_data` date DEFAULT NULL COMMENT 'data de nascimento da pessoa',
-  `pes_tipo` int(1) DEFAULT NULL COMMENT 'que tipo de pessoa é',
   `pes_email` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT 'email para contato',
   `pes_estado_civil` int(11) DEFAULT NULL COMMENT 'qual o estado civil',
   `pes_cidadania` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT 'sua cidadania',
@@ -10381,34 +10397,34 @@ CREATE TABLE `pessoa` (
 -- Fazendo dump de dados para tabela `pessoa`
 --
 
-INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_tipo`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`) VALUES
-(1, 'Karina Ramos', 'Mathos Ramos', 'Larisa Matos', '43.434.434-3', '34634634634', '2005-04-21', 1, 'karina@bol.com.br', 1, 'Ubatubense', 2, 2, '(12)982343434'),
-(2, 'Marta wender', 'Joao da Silva', 'Jorge Wender', '366.457.987.98', '44534698765', '2003-08-01', 2, 'martinhawender@email.com.br', 3, 'Paulista', 2, 2, '(12)981236789'),
-(3, 'Paula dos Santos', 'Roberto Nascimento', 'Larisa Pereira', '33.050.250-3', '12345678910', '1996-12-06', 3, 'Paulinha@gmail.com', 4, 'Paraense', 2, 2, '(35)997667890'),
-(4, 'Kleber Ramos', 'Jose Ramos', 'Pata Mathos', '909.876.897.76', '76376589909', '1988-02-10', 1, 'klberzinho@email.com', 2, 'Ubatubense', 1, 1, '(12)987667894'),
-(5, 'luiza Fonseca', 'Pedro Fonseca', 'Maria dias Fonseca', '333.654.765.98', '78656782376', '1984-08-01', 1, 'Luizinha@hot.com', 1, 'Ubatubense', 2, 2, '(12)982456674'),
-(6, 'Rafael Nunes', 'Mario da Cruz Nunes', 'Joana lopes Nunes', '771.123.678.90', '45676591256', '1997-06-25', 1, 'rafanudes@gmail.com', 2, 'Ubatubense', 1, 1, '(12)38765590'),
-(7, 'Orlando Olindo', 'Manuel Olindo ', 'Clara Silva', '33.434.434-3', '87634634634', '1989-04-21', 2, 'olindo@mail.com', 2, 'Ubatubense', 1, 1, '(12)972343434'),
-(8, 'Soraia Santos', 'Dilmar Santos', '', '18.434.434-3', '99634634634', '2005-04-21', 2, 'soraia@sol.com', 1, 'Ubatubense', 2, 2, '(12)981443434'),
-(9, 'Paulo de Oliveira', 'Manuel de Oliveira', 'Mariane', '55.474.420-X', '37059097854', '2006-07-31', 1, 'paulooli@bol.com.br', 1, 'Ubatubense', 1, 1, '(15)982360434'),
-(10, 'Cassia Eller', 'Carlos', 'Cintia', '48.535.487-8', '32079270690', '1991-07-07', 1, 'cassia@gmail.com', 2, 'Carioca', 2, 3, '(21)982343470'),
-(11, 'Camila', 'Kim', 'Joana', '63.703.398-9', '32228819054', '2005-09-29', 1, 'camila@bol.com.br', 3, 'Ubatubense', 2, 2, '(12)970343434'),
-(12, 'Robervaldo', 'Ronaldo', 'Fetolino', '70.400.429-5', '67034634634', '1960-06-30', 1, 'rober@bol.com.br', 2, 'Ubatubense', 1, 1, '(12)972350434'),
-(13, 'Danilo', 'Robert', '', '49.530.834-10', '75400167312', '1999-08-29', 1, 'Danilo@hotmail.com', 1, 'Ubatubense', 2, 2, '(12)997877675'),
-(14, 'Karol Silva', 'Jonas Silva', 'Lara Silva', '47.833.478-99', '89935666740', '1995-07-30', 1, 'karol@mail.com', 2, 'Ubatubense', 2, 2, '(12)38464589'),
-(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '99046239378', '1977-07-07', 1, 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691'),
-(16, 'Alejandro ', 'Francisco', 'Beatriz', 'V562715-0', '12345678901', '1971-02-01', 1, 'aledruetta@gmail.com', 1, 'Argentino', 1, 1, '12996778100'),
-(17, 'Matheus', 'Edson', 'Aurecina', '12345678911', '12345678911', '2017-06-13', 1, 'matheus-nascimento@hotmail.com', 1, 'Brasileiro', 1, 1, '1238325512'),
-(18, 'Josue Miguel', 'Luciano Alves', 'Queila Miguel', '365526564', '36331089802', '1999-06-03', 1, 'jose@miguel.com', 1, 'Brasileiro', 1, 1, '38329098'),
-(19, 'Jonatas Ramos de Alexandria', 'Gilson Rodrigues de Alexandria', 'Maria Pereira Ramos', '32232232201', '42822162808', '1996-03-28', 1, 'jonatas@gmail.com', 2, 'Brasileiro', 1, 1, '38334506'),
-(20, 'Daniel da Silva Alexandre', 'Daniel Pedro', 'Sueli Maria', '487548449', '41225077826', '1993-06-16', 1, 'danieltec.in@outlook.com', 1, 'Brasileiro', 1, 1, '12997844638'),
-(21, 'Alecsander', 'Alecssaner', 'Eliane', '0000000012', '00000000012', '2000-04-01', 1, 'alecs@lol.com', 4, 'Alemão', 1, 1, '12991980454'),
-(22, 'William', 'N/C', 'maria luzia sales souza', '00000000001', '00000000001', '2000-01-27', 1, 'willfut2015@gmail.com', 1, 'Brasileiro', 1, 1, '12988939597'),
-(23, 'Anderson Ferret dos Santos', 'Demitri dos Santos', 'Cristiane Ferret dos Santos', '0000000029', '00000000098', '1999-03-05', 1, 'anderson@gmail.com', 1, 'Brasileiro', 1, 1, '38331153'),
-(24, 'Mariane Briet', 'Julio', 'Mariana', '00011123456', '00011145906', '2000-10-04', 1, 'mari@briet.com', 1, 'Brasileiro', 2, 2, '1238338998'),
-(25, 'Rafaela', 'Rafael', 'Julia', '00000234567', '00000012319', '2000-04-17', 1, 'rafaela@nalu.com', 1, 'Brasileira', 2, 2, '1238330909'),
-(26, 'Thiago', 'Thiago', 'Teresa', '12388847584', '12388847584', '1999-05-21', 1, 'thiago@macacoverde.com', 1, 'Brasileiro', 1, 1, '38339889'),
-(27, 'Indiara', 'Maria Lucia', 'Carlos', '12388847581', '12388847581', '1998-02-15', 1, 'indisantos@hotmail.com', 1, 'Brasileiro', 2, 2, '38337667');
+INSERT INTO `pessoa` (`pes_id`, `pes_nome`, `pes_pai`, `pes_mae`, `pes_rg`, `pes_cpf`, `pes_data`, `pes_email`, `pes_estado_civil`, `pes_cidadania`, `pes_genero`, `pes_sexo_biologico`, `pes_telefone`) VALUES
+(1, 'Karina Ramos', 'Mathos Ramos', 'Larisa Matos', '43.434.434-3', '34634634634', '2005-04-21', 'karina@bol.com.br', 1, 'Ubatubense', 2, 2, '(12)982343434'),
+(2, 'Marta wender', 'Joao da Silva', 'Jorge Wender', '366.457.987.98', '44534698765', '2003-08-01', 'martinhawender@email.com.br', 3, 'Paulista', 2, 2, '(12)981236789'),
+(3, 'Paula dos Santos', 'Roberto Nascimento', 'Larisa Pereira', '33.050.250-3', '12345678910', '1996-12-06', 'Paulinha@gmail.com', 4, 'Paraense', 2, 2, '(35)997667890'),
+(4, 'Kleber Ramos', 'Jose Ramos', 'Pata Mathos', '909.876.897.76', '76376589909', '1988-02-10', 'klberzinho@email.com', 2, 'Ubatubense', 1, 1, '(12)987667894'),
+(5, 'luiza Fonseca', 'Pedro Fonseca', 'Maria dias Fonseca', '333.654.765.98', '78656782376', '1984-08-01', 'Luizinha@hot.com', 1, 'Ubatubense', 2, 2, '(12)982456674'),
+(6, 'Rafael Nunes', 'Mario da Cruz Nunes', 'Joana lopes Nunes', '771.123.678.90', '45676591256', '1997-06-25', 'rafanudes@gmail.com', 2, 'Ubatubense', 1, 1, '(12)38765590'),
+(7, 'Orlando Olindo', 'Manuel Olindo ', 'Clara Silva', '33.434.434-3', '87634634634', '1989-04-21', 'olindo@mail.com', 2, 'Ubatubense', 1, 1, '(12)972343434'),
+(8, 'Soraia Santos', 'Dilmar Santos', '', '18.434.434-3', '99634634634', '2005-04-21', 'soraia@sol.com', 1, 'Ubatubense', 2, 2, '(12)981443434'),
+(9, 'Paulo de Oliveira', 'Manuel de Oliveira', 'Mariane', '55.474.420-X', '37059097854', '2006-07-31', 'paulooli@bol.com.br', 1, 'Ubatubense', 1, 1, '(15)982360434'),
+(10, 'Cassia Eller', 'Carlos', 'Cintia', '48.535.487-8', '32079270690', '1991-07-07', 'cassia@gmail.com', 2, 'Carioca', 2, 3, '(21)982343470'),
+(11, 'Camila', 'Kim', 'Joana', '63.703.398-9', '32228819054', '2005-09-29', 'camila@bol.com.br', 3, 'Ubatubense', 2, 2, '(12)970343434'),
+(12, 'Robervaldo', 'Ronaldo', 'Fetolino', '70.400.429-5', '67034634634', '1960-06-30', 'rober@bol.com.br', 2, 'Ubatubense', 1, 1, '(12)972350434'),
+(13, 'Danilo', 'Robert', '', '49.530.834-10', '75400167312', '1999-08-29', 'Danilo@hotmail.com', 1, 'Ubatubense', 2, 2, '(12)997877675'),
+(14, 'Karol Silva', 'Jonas Silva', 'Lara Silva', '47.833.478-99', '89935666740', '1995-07-30', 'karol@mail.com', 2, 'Ubatubense', 2, 2, '(12)38464589'),
+(15, 'Dimaria Yesta', 'Augusto Yesta', 'Brand Norma', '65.499.538-30', '99046239378', '1977-07-07', 'Dim@ria.com', 1, 'Ubatubense', 2, 2, '(12)38325691'),
+(16, 'Alejandro ', 'Francisco', 'Beatriz', 'V562715-0', '12345678901', '1971-02-01', 'aledruetta@gmail.com', 1, 'Argentino', 1, 1, '12996778100'),
+(17, 'Matheus', 'Edson', 'Aurecina', '12345678911', '12345678911', '2017-06-13', 'matheus-nascimento@hotmail.com', 1, 'Brasileiro', 1, 1, '1238325512'),
+(18, 'Josue Miguel', 'Luciano Alves', 'Queila Miguel', '365526564', '36331089802', '1999-06-03', 'jose@miguel.com', 1, 'Brasileiro', 1, 1, '38329098'),
+(19, 'Jonatas Ramos de Alexandria', 'Gilson Rodrigues de Alexandria', 'Maria Pereira Ramos', '32232232201', '42822162808', '1996-03-28', 'jonatas@gmail.com', 2, 'Brasileiro', 1, 1, '38334506'),
+(20, 'Daniel da Silva Alexandre', 'Daniel Pedro', 'Sueli Maria', '487548449', '41225077826', '1993-06-16', 'danieltec.in@outlook.com', 1, 'Brasileiro', 1, 1, '12997844638'),
+(21, 'Alecsander', 'Alecssaner', 'Eliane', '0000000012', '00000000012', '2000-04-01', 'alecs@lol.com', 4, 'Alemão', 1, 1, '12991980454'),
+(22, 'William', 'N/C', 'maria luzia sales souza', '00000000001', '00000000001', '2000-01-27', 'willfut2015@gmail.com', 1, 'Brasileiro', 1, 1, '12988939597'),
+(23, 'Anderson Ferret dos Santos', 'Demitri dos Santos', 'Cristiane Ferret dos Santos', '0000000029', '00000000098', '1999-03-05', 'anderson@gmail.com', 1, 'Brasileiro', 1, 1, '38331153'),
+(24, 'Mariane Briet', 'Julio', 'Mariana', '00011123456', '00011145906', '2000-10-04', 'mari@briet.com', 1, 'Brasileiro', 2, 2, '1238338998'),
+(25, 'Rafaela', 'Rafael', 'Julia', '00000234567', '00000012319', '2000-04-17', 'rafaela@nalu.com', 1, 'Brasileira', 2, 2, '1238330909'),
+(26, 'Thiago', 'Thiago', 'Teresa', '12388847584', '12388847584', '1999-05-21', 'thiago@macacoverde.com', 1, 'Brasileiro', 1, 1, '38339889'),
+(27, 'Indiara', 'Maria Lucia', 'Carlos', '12388847581', '12388847581', '1998-02-15', 'indisantos@hotmail.com', 1, 'Brasileiro', 2, 2, '38337667');
 
 -- --------------------------------------------------------
 
@@ -10597,7 +10613,7 @@ INSERT INTO `tipo_sanguineo` (`tis_id`, `tis_nome`) VALUES
 (6, 'AB-'),
 (7, 'B+'),
 (8, 'B-'),
-(9, '');
+(9, 'N/C');
 
 -- --------------------------------------------------------
 
@@ -10674,7 +10690,7 @@ INSERT INTO `turno` (`tur_id`, `tur_nome`) VALUES
 CREATE TABLE `usuario` (
   `usu_id` int(11) NOT NULL,
   `usu_senha` varchar(64) COLLATE utf8_bin NOT NULL COMMENT 'senha para logar',
-  `usu_email` varchar(45) COLLATE utf8_bin NOT NULL COMMENT 'email que usará para logar',
+  `usu_email` varchar(60) COLLATE utf8_bin NOT NULL,
   `usu_ativo` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'se esta ativo ou não',
   `usu_tipo` int(11) NOT NULL COMMENT 'tipo do usuario',
   `funcionario_id` int(11) NOT NULL
@@ -10945,7 +10961,6 @@ ALTER TABLE `turno`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`usu_id`),
-  ADD UNIQUE KEY `usu_email` (`usu_email`),
   ADD KEY `funcionario_id` (`funcionario_id`);
 
 --
@@ -11031,7 +11046,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `gen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `gen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de tabela `geo_camada`
 --
