@@ -54,15 +54,6 @@ class Sql {
     return mysqli_num_rows($res);
   }
 
-  public function insertId() {
-    $con = $this->conecta();
-    $id = mysqli_insert_id($con);
-
-    mysqli_close($con);
-
-    return $id;
-  }
-
   public function selectbox($tabela,$id) {
     $con = $this->conecta();
 

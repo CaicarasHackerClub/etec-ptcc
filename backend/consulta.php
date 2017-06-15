@@ -4,18 +4,21 @@
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
 <script type="text/javascript" src="../js/consulta.js" ></script>
 <script type="text/javascript" src="../js/script.js" ></script>
+<script type="text/javascript">
+  window.history.forward();
+</script>
 <?php
   include_once 'Sql.class.php';
   include_once 'Fila.class.php';
   include_once 'Consulta.class.php';
 
-  $cons = new Consulta();
-  $fila = new Fila();
   $sql = new Sql();
+  $fila = new Fila();
+  $cons = new Consulta();
 
   date_default_timezone_set('America/Sao_Paulo');
 
-  if (isset($_POST['consulta']) || isset($_POST['adicionar']) || isset($_POST['remover']) || isset($_POST['limpar'])) {
+  if (isset($_POST['consulta'])) {
     $query = "SELECT * FROM pessoa
       INNER JOIN paciente ON paciente.pessoa_pes_id = pessoa.pes_id
       INNER JOIN atendimento ON atendimento.ate_pac_id = paciente.pac_id
@@ -216,7 +219,6 @@
           $rec = new Receita();
 
           for ($i = 1; $i <= $_POST['med']; $i++) {
-
             $rec->setQuantidade($_POST['quantidade' . $i]);
             $rec->setUnidade($_POST['unidade' . $i]);
             $rec->setMedicamento($_POST['medicamento' . $i]);
