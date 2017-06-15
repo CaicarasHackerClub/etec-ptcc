@@ -410,9 +410,11 @@
             echo "Não cadastrado!" . $insMed . "...." . $insHas ;
           }
 
-        } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+        } elseif ($_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
           $metodo->setEnf_registro($_POST['enf_registro']);
+
           $selEnf="SELECT enf_registro FROM enfermeiro WHERE '" . $_POST['enf_registro'] . "';";
+
           if ($_SESSION['esc'] == 1) {
             $sel_id="SELECT MAX(fun_id) AS fun_id FROM funcionario";
             $fun_id=$sql->selecionar($sel_id);
@@ -432,6 +434,7 @@
 
             $okEnf= $sql->inserir($updEnf);
           }
+
           if ($okEnf) {
             echo "Enfermeiro(a) Cadastrado!";
             $_SESSION['form'] = 2;

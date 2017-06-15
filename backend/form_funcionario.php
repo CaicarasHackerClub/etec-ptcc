@@ -28,7 +28,8 @@ if ($_SESSION['form'] == 1) {
   }
 
 
-  if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+  if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro" ||
+      $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
     $tipo = "cadastro.php?acao=cadastro&passo=6";
   } else {
     $tipo = "cadastro.php?acao=cadastro&passo=5";

@@ -65,7 +65,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
     <input class="inp_class submmit" type="submit" value="Confirmar">
   </form>
 <?php
-} elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
+} elseif ($_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
   if ($_SESSION['form'] == 1) {
     $tipo = "cadastro.php?acao=cadastro&passo=4";
   } elseif ($_SESSION['form'] == 2) {
