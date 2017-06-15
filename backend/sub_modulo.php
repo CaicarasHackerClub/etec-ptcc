@@ -6,9 +6,8 @@
   <meta charset="utf-8">
   <title>Home</title>
   <link rel="stylesheet" href="../css/main.css">
-  <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
-  <script type="text/javascript" src="../js/script.js" ></script>
   </head>
+
   <body onload="recebe()">
 
   <div class="container">
@@ -90,5 +89,8 @@
 
     </div>
   </div>
+
+  <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
+  <script type="text/javascript" src="../js/script.js" ></script>
   </body>
 </html>
