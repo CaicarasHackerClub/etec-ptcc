@@ -197,6 +197,8 @@
             $pac_id=$sql->selecionar($sel_id);
             $pac_id++;
 
+            $atePacId = $pac_id;
+
             ////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
             $insPac="INSERT INTO paciente (pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
                     '" . $metodo->getPac_educacao()    . "',
@@ -239,15 +241,32 @@
 
             $okPds=$sql->inserir($updPds);
 
-
+            $atePacId = $pacId;
 
           }
-            if ($okPac && $okPds) {
-              echo "<script>alert('Concluido!')
-              location.href='index.php';</script>;";
-            } else {
-              echo "Erro!";
-            }
+
+          $insAtendimento = "INSERT INTO atendimento(ate_hora, ate_data, ate_pac_id) VALUES(
+            '" . date('H:m:i') . "',
+            '" . date('Y-m-d') . "',
+            "  . $atePacId       . ");";
+
+          $con = $sql->conecta();
+          $okAte = mysqli_query($con, $insAtendimento);
+          $ateId = mysqli_insert_id($con);
+          mysqli_close($con);
+
+          if ($okPac && $okPds && $okAte) {
+            ?>
+
+            <script>
+              alert('Concluido!\n Senha: ' + <?php echo $ateId; ?>);
+              location.href = 'index.php';
+            </script>
+
+            <?php
+          } else {
+            echo "Erro!";
+          }
             //}
         } else {
           $metodo->setFun_cargo($_POST['cargo']);
