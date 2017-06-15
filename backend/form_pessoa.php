@@ -176,7 +176,7 @@ if ($_SESSION['form'] == 1) {
             } else {
               $dis = "";
             }
-            $val = " value=\"" . $pessoa[8] . "\"";
+            $val = " value=\"" . $pessoa[7] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_email" size="28"  <?=$dis . $val; ?>><br>
@@ -188,13 +188,13 @@ if ($_SESSION['form'] == 1) {
           if ($_SESSION['form'] == 1) {
             $id = 0;
           } else {
-            $sel="SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
+            $sel="SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[8] . "';";
             $id=$sql->selecionar($sel);
 
           }
           $sql->selectbox("estado_civil",$id);
         } else {
-          $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[9] . "';";
+          $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[8] . "';";
           $etc = $sql->fetch($selE);
           if ($_SESSION['form'] == 2) {
             $dis = " disabled";
@@ -219,7 +219,7 @@ if ($_SESSION['form'] == 1) {
             } else {
               $dis = "";
             }
-            $val = " value=\"" . $pessoa[10] . "\"";
+            $val = " value=\"" . $pessoa[9] . "\"";
           }
       ?>
       <input class="inp_class" type="text" name="pes_cidadania" size="28" <?=$dis . $val;?>><br>
@@ -231,13 +231,13 @@ if ($_SESSION['form'] == 1) {
           if ($_SESSION['form'] == 1) {
             $id = 0;
           } else {
-            $sel="SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
+            $sel="SELECT * FROM genero WHERE gen_id='" . $pessoa[10] . "';";
             $id=$sql->selecionar($sel);
 
           }
           $sql->selectbox("genero", $id);
         } else {
-          $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[11] . "';";
+          $selG = "SELECT * FROM genero WHERE gen_id='" . $pessoa[10] . "';";
           $gen = $sql->fetch($selG);
 
           if ($_SESSION['form'] == 2) {
@@ -257,13 +257,13 @@ if ($_SESSION['form'] == 1) {
           if ($_SESSION['form'] == 1) {
             $id = 0;
           } else {
-            $sel="SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
+            $sel="SELECT * FROM sexo WHERE sex_id='" . $pessoa[11] . "';";
             $id=$sql->selecionar($sel);
 
           }
           $sql->selectbox("sexo",$id);
         } else {
-          $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[12] . "';";
+          $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[11] . "';";
           $sex = $sql->fetch($selG);
           if ($_SESSION['form'] == 2) {
             $dis = " disabled";
@@ -287,7 +287,7 @@ if ($_SESSION['form'] == 1) {
         } else {
           $dis = "";
         }
-          $val = " value=\"" . $pessoa[13] . "\"";
+          $val = " value=\"" . $pessoa[12] . "\"";
       }
       ?>
       <input class="inp_class" type="text" name="pes_telefone" size="15" <?=$dis . $val;?>><br>
