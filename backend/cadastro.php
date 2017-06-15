@@ -78,9 +78,9 @@
             echo "CPF já existente! Digite novamente!";
           }
 
-          $tipo = 0;
 
-          $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_tipo, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone)
+
+          $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone)
             VALUES (
               '". $metodo->getPes_nome()          ."',
               '". $metodo->getPes_pai()           ."',
@@ -88,7 +88,6 @@
               '". $metodo->getPes_rg()            ."',
               '". $metodo->getPes_cpf()           ."',
               '". $metodo->getPes_data()          ."',
-              '". $tipo                           ."',
               '". $metodo->getPes_email()         ."',
               '". $metodo->getPes_estado_civil()  ."',
               '". $metodo->getPes_cidadania()     ."',
@@ -120,14 +119,13 @@
            /////////////////////////fim da inserção de dados Pessoais////////////////////////////////
            //verifica se a query foi inserida corretamente
         } else {
-          $tipo = 0;
+
           $updPes = "UPDATE pessoa SET pes_nome='" . $metodo->getPes_nome() . "',
                       pes_pai='" . $metodo->getPes_pai() . "',
                       pes_mae='" . $metodo->getPes_mae()  . "',
                       pes_rg='" . $metodo->getPes_rg() . "',
                       pes_cpf='" . $metodo->getPes_cpf() . "',
                       pes_data='" . $metodo->getPes_data() . "',
-                      pes_tipo='" . $tipo . "',
                       pes_email='" . $metodo->getPes_email() . "',
                       pes_estado_civil='" . $metodo->getPes_estado_civil() . "',
                       pes_cidadania='" . $metodo->getPes_cidadania() . "',
