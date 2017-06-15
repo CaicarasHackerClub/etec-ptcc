@@ -319,11 +319,11 @@
                           WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
 
               $sel="SELECT fun_id FROM funcionario WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
-              $funId=$sql->selecionar($sel);
+              $_SESSION['fun_id']=$sql->selecionar($sel);
 
               $updUsu="UPDATE usuario SET usu_senha='" . $metodo->getUsu_senha() . "',
                       usu_email='" . $metodo->getUsu_email() . "',  usu_ativo='1', usu_tipo='1',
-                      funcionario_id='" . $funId. "' WHERE funcionario_id='" . $funId . "'
+                      funcionario_id='" . $_SESSION['fun_id'] . "' WHERE funcionario_id='" . $_SESSION['fun_id'] . "'
                       ;";
 
               $okFun=$sql->inserir($updFun);
@@ -381,19 +381,19 @@
             $okMed=$sql->inserir($insMed);
             $okHas=$sql->inserir($insHas);
           } else {
+
             $updMed="UPDATE medico SET
                         med_crm='" . $metodo->getMed_crm() . "',
-                        funcionario_fun_id='" . $funId . "'
-                        WHERE funcionario_fun_id='" . $funId . "';";
+                        funcionario_fun_id='" . $_SESSION['fun_id']  . "'
+                        WHERE funcionario_fun_id='" . $_SESSION['fun_id'] . "';";
 
-            $sel="SELECT med_id FROM medico WHERE funcionario_fun_id='" . $funId . "';";
-            $medId=$sql->selecionar($sel);
-            $medId++;
+            $sel="SELECT * FROM medico WHERE funcionario_fun_id='" . $_SESSION['fun_id'] . "';";
+            $med=$sql->fetch($sel);
 
-            $updMed="UPDATE medico_has_especializacao SET
-                        medico_med_id='" . $medId . "',
+            $updHas="UPDATE medico_has_especializacao SET
+                        medico_med_id='" . $med[0] . "',
                         especializacao_esp_id='" . $metodo->getEsp_nome() . "'
-                        WHERE funcionario_fun_id='" . $funId . "';";
+                        WHERE medico_med_id='" . $med[0]  . "';";
 
             $okMed=$sql->inserir($updMed);
             $okHas=$sql->inserir($updHas);
@@ -424,11 +424,8 @@
             $okEnf= $sql->inserir($insEnf);
             ////////////////////Fim do cadastro//////
           } else {
-            $sel_id="SELECT * FROM funcionario WHERE pessoa_pes_id='" .$_SESSION['id'] . "';";
-            $fun_id=$sql->selecionar($sel_id);
-
             $updEnf="UPDATE enfermeiro SET enf_registro='" . $metodo->getEnf_registro() . "',
-                     funcionario_fun_id='". $fun_id . "' WHERE funcionario_fun_id='" . $fun_id . "';";
+                     funcionario_fun_id='". $_SESSION['fun_id'] . "' WHERE funcionario_fun_id='" . $_SESSION['fun_id'] . "';";
 
             $okEnf= $sql->inserir($updEnf);
           }
