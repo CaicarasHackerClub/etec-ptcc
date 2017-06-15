@@ -1,6 +1,7 @@
 <?php
  session_start();
 ?>
+<!DOCTYPE html>
 <html>
   <head>
   <link rel='stylesheet' href='../css/main.css'>
