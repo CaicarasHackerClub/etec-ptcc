@@ -334,8 +334,9 @@
           }
           if ($okFun && $okUsu) {
             echo "Cadastrado com sucesso!!";
-            if ($_SESSION['fun_cargo'] == "medico") {
-              ////////////////formulário formação do médico ///////////////////
+            echo $_SESSION['fun_cargo'];
+            if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
+              ////////////////formulário formação do médico ou enfermeiro ///////////////////
               if ($_SESSION['esc'] == 1) {
                 $_SESSION['form'] = 1;
                 include 'form_complementar.php';
@@ -343,33 +344,10 @@
                 $_SESSION['form'] = 3;
                 include 'form_complementar.php';
               }
-              /////////////////////////fim/////////////////////////////////////
-            } elseif ($_SESSION['fun_cargo'] == "enfermeiro") {
-              ///////////////formulário enfermeiro/////////////////////////////
-              if ($_SESSION['esc'] == 1) {
-                $_SESSION['form'] = 1;
-                include 'form_complementar.php';
-              } else {
-                $_SESSION['form'] = 3;
-                include 'form_complementar.php';
-              }
-              /////////////////////////fim//////////////////////////////////////
-            } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-              /////////////////confirmação final///////////////////////////////
-              $_SESSION['form'] = 2;
-              include 'form_pessoa.php';
-
-
-                // Irá para o passo 4 para aparecer o formulário "funcionario" //
-
-            } elseif ($_SESSION['fun_cargo'] == "funcionario") {
-              /////////////////confirmação final//////////////////////////////
-              $_SESSION['form'] = 2;
-              include 'form_pessoa.php';
-                // Irá para o passo 4 para aparecer o formulário "funcionario" //
-
+              /////////////////////fim//////////////////////////////////////////////////////
             } else {
-              header("Location:cadastro.php&passo=5");
+              $_SESSION['form'] = 2;
+              include 'form_pessoa.php';
             }
 
           } else {
@@ -462,19 +440,21 @@
           } else {
             echo "Não cadastrado!!!";
           }
-        } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-            $_SESSION['form'] = 2;
-            include 'form_funcionario.php';
-        } elseif ($_SESSION['fun_cargo'] == "recepcao") {
-            $_SESSION['form'] = 2;
-            include 'form_funcionario.php';
+        } else {
+          $_SESSION['form'] = 2;
+          include'form_funcionario.php';
+
         }
 
       } elseif ($_GET['passo'] == 5) {
         if ($_SESSION['tipo'] == "administracao") {
-          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+          if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro" ||
+              $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
             $_SESSION['form'] = 2;
             include 'form_funcionario.php';
+          } else {
+            echo "<script>alert('Concluido!')
+            location.href='cadastro.php';</script>;";
           }
 
         } else {
@@ -482,7 +462,8 @@
         }
       } elseif ($_GET['passo'] == 6) {
         if ($_SESSION['tipo'] == "administracao") {
-         if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro") {
+         if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro" ||
+             $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
           $_SESSION['form'] = 2;
           include 'form_complementar.php';
 
