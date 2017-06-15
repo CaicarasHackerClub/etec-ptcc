@@ -44,7 +44,13 @@ if ($_SESSION['fun_cargo'] == "medico") {
       <label class="lbl_class">Especialização:</label>
       <?php
       if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-        $sql->selectbox("especializacao");
+        if ($_SESSION['form'] == 1) {
+          $id=0;
+        } else {
+          $sel="SELECT * FROM especializacao WHERE esp_id='". $medico[2] ."';";
+          $id=$sql->selecionar($sel);
+        }
+        $sql->selectbox("especializacao",$id);
       } else {
         // Pegando o nome da especialização
         $sel = "SELECT * FROM medico_has_especializacao WHERE medico_med_id='" . $idMed . "';";

@@ -7,9 +7,10 @@ $_GET['voltar'] = isset($_GET['voltar'])? $_GET['voltar'] : "";
 $_SESSION['form'] = isset($_SESSION['form'])? $_SESSION['form'] : "";
 $_SESSION['id'] = isset($_SESSION['id'])? $_SESSION['id'] : "";
 
-if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
-  $_SESSION['form'] = 1;
+if ($_SESSION['form'] == 1) {
+
   $tipo = "cadastro.php?acao=cadastro&passo=3";
+
 } elseif ($_SESSION['form'] == 2) {
   if ($_SESSION['esc'] == 1) {
     $maxFun = "SELECT MAX(fun_id) AS fun_id FROM funcionario";
@@ -18,6 +19,7 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
     $funcionario = $sql->fetch($selFun);
     $selUsu = "SELECT * FROM usuario WHERE funcionario_id='" . $idFun . "';";
     $usuario = $sql->fetch($selUsu);
+    $_SESSION['fun_id'] = $idFun;
   } else {
     $selFun="SELECT * FROM funcionario WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
     $funcionario = $sql->fetch($selFun);
@@ -33,7 +35,7 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
   }
 
 } else {
-  if ($_SESSION['form'] == 3 || $_GET['voltar'] == 1) {
+  if ($_SESSION['form'] == 3) {
     $selFun = "SELECT * FROM funcionario WHERE pessoa_pes_id='". $_SESSION['id'] ."';";
     $funcionario=$sql->fetch($selFun);
     $selUsu="SELECT * FROM usuario WHERE funcionario_id='" . $funcionario['0'] . "';";
@@ -53,16 +55,19 @@ if ($_SESSION['form'] == 1 || $_GET['voltar'] == 1) {
     <label class="lbl_class">Cargo</label>
     <?php
     if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-    echo "<select class=\"inp_class\" name=\"fun_cargo\">";
-    echo  "<option class=\"option\" value=\"recepcao\">Recepcionista</option>";
-    echo  "<option class=\"option\" value=\"medico\">Médico</option>";
-    echo  "<option class=\"option\" value=\"enfermeiro\">Enfermeiro</option>";
-    echo  "<option class=\"option\" value=\"funcionario\">Funcionário</option>";
-    echo "</select>";
+      if ($_SESSION['form'] == 1) {
+        $id = 0;
+      } else {
+        $sel="SELECT * FROM cargo WHERE car_id='" . $funcionario[1] . "';";
+        $id=$sql->selecionar($sel);
+      }
+    $sql->selectbox("cargo", $id);
 
     } else {
+      $sel="SELECT * FROM cargo WHERE car_id='". $funcionario[1] ."';";
+      $cargo=$sql->fetch($sel);
       echo "<input class=\"inp_class\" type=\"text\" name=\"fun_cargo\" size=\"28\"
-            disabled value = " . $funcionario[1] . "><br>";
+            disabled value = " . $cargo[1] . "><br>";
     }
     ?>
     <br>

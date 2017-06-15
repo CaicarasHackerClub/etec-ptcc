@@ -254,7 +254,7 @@
             }
             //}
         } else {
-          $metodo->setFun_cargo($_POST ['fun_cargo']);
+          $metodo->setFun_cargo($_POST['cargo']);
           $metodo->setFun_inscricao($_POST ['fun_inscricao']);
           $metodo->setFun_turno($_POST ['turno']);
 
@@ -262,7 +262,10 @@
           $metodo->setUsu_senha($_POST['usu_senha']);
           $metodo->setSet_setor($_POST['setor']);
 
-          $_SESSION['fun_cargo'] = $_POST['fun_cargo'];
+          $selCar="SELECT * FROM cargo WHERE car_id='".$_POST['cargo']."';";
+          $cargo=$sql->fetch($selCar);
+
+          $_SESSION['fun_cargo'] = $cargo[1];
 
           if ($_SESSION['esc'] == 1) {
             if ($_POST['usu_senha'] <> $_POST['conf_senha']) {
