@@ -259,7 +259,7 @@
             ?>
 
             <script>
-              alert('Concluido!\n Senha: ' + <?php echo $ateId; ?>);
+              alert('Concluido!\n Código: ' + <?php echo $ateId; ?>);
               location.href = 'index.php';
             </script>
 

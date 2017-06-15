@@ -9,14 +9,12 @@
 include_once 'Sql.class.php';
 $sql = new Sql();
 
-// $id = isset($_POST['id']) ? $_POST['id'] : "";
-
 if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
   ?>
   <form class="form form-triagem" action="triagem.php" method="post">
     <div class="content-form">
       <div class="group-form">
-        <label class="lbl_class">ID: </label>
+        <label class="lbl_class">Código: </label>
         <input class="inp_class" type="text" size="4" name="id"> <br>
       </div>
 
@@ -180,6 +178,18 @@ if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
       echo "O paciente já passou pela triagem";
     }
   } else {
+    $atendimento = "SELECT * FROM atendimento WHERE ate_id = " . $tri->getAtId() . ";";
+
+    if ($sql->num($atendimento) == 0) {
+      ?>
+        <script type="text/javascript">
+          alert('Código inválido');
+          window.history.back();
+        </script>
+      <?php
+    }
+
+
     $query = "SELECT pessoa.pes_data FROM triagem
       INNER JOIN atendimento ON atendimento.ate_id = " . $tri->getAtId() . "
       INNER JOIN paciente ON paciente.pac_id = atendimento.ate_pac_id
