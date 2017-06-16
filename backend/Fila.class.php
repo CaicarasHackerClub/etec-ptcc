@@ -185,7 +185,7 @@ class Fila extends Sql {
         <td>" . $this->nome . "</td>
         <td>" . $this->chegada . "</td>
         <td>" . $this->espera . "/" . $this->tempoMax . " min </td>
-        <td>" . $this->cor . "</td>
+        <td><div class=\"consulta-color consulta-color-" . strtolower($this->cor) . "\"</div></td>
           <div id='abrirModal$this->id' class='modal'>
             <div>
               Paciente: " . $this->nome . " <br>
