@@ -54,7 +54,7 @@ class Sql {
     return mysqli_num_rows($res);
   }
 
-  public function selectbox($tabela,$id) {
+  public function selectbox($tabela, $id) {
     $con = $this->conecta();
 
     $sel = "SELECT * FROM " . $tabela;

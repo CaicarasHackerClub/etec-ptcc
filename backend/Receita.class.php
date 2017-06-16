@@ -61,5 +61,4 @@ class Receita {
   public function getReceita() {
     return substr($this->receita, 0, -2);
   }
-
 }
