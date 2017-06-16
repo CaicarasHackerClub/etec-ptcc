@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 15/06/2017 às 20:53
+-- Tempo de geração: 16/06/2017 às 03:09
 -- Versão do servidor: 10.1.21-MariaDB
 -- Versão do PHP: 7.1.1
 
@@ -10329,6 +10329,13 @@ CREATE TABLE `medico_has_especializacao` (
   `medico_med_id` int(11) NOT NULL,
   `especializacao_esp_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Fazendo dump de dados para tabela `medico_has_especializacao`
+--
+
+INSERT INTO `medico_has_especializacao` (`medico_med_id`, `especializacao_esp_id`) VALUES
+(1, 6);
 
 -- --------------------------------------------------------
 
