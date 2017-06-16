@@ -2,10 +2,13 @@
  session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-  <link rel='stylesheet' href='../css/main.css'>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='../css/main.css'>
   </head>
+
   <body>
     <?php
     include_once "funcoes.php";
@@ -499,9 +502,11 @@
     }
     mysqli_close($con);
     ?>
+
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/funcoes.js"></script>
     <script src="../js/autocompletar.js"></script>
+    <script src="../js/script.js" ></script>
     <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places&callback=initAutocomplete" onerror="loadError()"
         async defer></script>
   </body>
