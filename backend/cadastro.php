@@ -224,12 +224,9 @@
           ///////////////////////fim da inserção de dados///////////////////////////
           } else {
             $updPac="UPDATE paciente SET
-                        pac_tipo_sangue='" . $metodo->getPac_tipo_sangue() . "',
-                        pac_remedio='" . $metodo->getPac_remedio() . "',
-                        pac_doenca='" . $metodo->getPac_doenca()  . "',
                         pac_educacao='" . $metodo->getPac_educacao() . "',
                         pac_hospitalizado='0',
-                        pessoa_pes_id='" . $_SESSION['id'] . "',
+                        pessoa_pes_id='" . $_SESSION['id'] . "'
                         WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
 
             $okPac=$sql->inserir($updPac);
@@ -241,8 +238,8 @@
                         pds_convenio_nome='" . $metodo->getPds_convenio_nome() . "',
                         pds_numero_sus='" . $metodo->getPds_numero_sus() . "',
                         pds_num_convenio='" . $metodo->getPds_num_convenio()  . "',
-                        paciente_pac_id='" . $pacId  . "'
-                        WHERE paciente_pac_id='" . $pacId . "';";
+                        pac_id='" . $pacId  . "'
+                        WHERE pac_id='" . $pacId . "';";
 
             $okPds=$sql->inserir($updPds);
 
