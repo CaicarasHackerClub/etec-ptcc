@@ -18,9 +18,13 @@
 }
 
 .table-consulta tr:nth-of-type(odd),
-.table-consulta-mensagem {
+.fila-consulta-mensagem {
   background-color: #9BD3AE;
   color: #222;
+}
+
+.fila-consulta {
+  margin: 2em;
 }
 
 .btn-chamada {

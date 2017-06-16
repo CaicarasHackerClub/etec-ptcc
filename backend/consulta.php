@@ -271,45 +271,49 @@
 
     ?>
 
-    <table class="table-consulta">
-      <thead>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Classificação</th>
-        <th>Tempo de espera</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <?php
+    <div class="fila-consulta">
+      <table class="table-consulta">
 
-        if ($sql->num($query) == 0) {
-          echo
-          "<tr>
-            <td class='table-consulta-mensagem' colspan='5'> Não há ninguém aguardando atendimento </td>
-           </tr>";
-        } else {
-          while ($pac = mysqli_fetch_array($res)) {
-            $espera = $fila->calc($pac['tri_data'], $pac['tri_hora']);
-            $cor = $fila->getCor($pac['tri_classe_risco']);
-            $class = $cor[0];
+        <thead>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Classificação</th>
+          <th>Tempo de espera</th>
+          <th></th>
+        </thead>
 
+        <tbody>
+          <?php
+
+          if ($sql->num($query) == 0) {
             echo
-            "<form action='consulta.php' method='post'>
-              <tr>
-                <td>" . $pac['tri_id'] . "</td>
-                <td>" . $pac['pes_nome'] . "</td>
-                <td><div class=\"consulta-color consulta-color-" . strtolower($class) . "\"></div></td>
-                <td>" . $espera  . "/" . $cor[1] . " min </td>
-                <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
-                <td> <input class='btn-chamada' type='submit' name='consulta' value='Iniciar consulta'> </td>
-              </tr>
-            </form>";
-          }
-        }
+            "<tr>
+              <td class='fila-consulta-mensagem' colspan='5'> Não há ninguém aguardando atendimento </td>
+             </tr>";
+          } else {
+            while ($pac = mysqli_fetch_array($res)) {
+              $espera = $fila->calc($pac['tri_data'], $pac['tri_hora']);
+              $cor = $fila->getCor($pac['tri_classe_risco']);
+              $class = $cor[0];
 
-        ?>
-      </tbody>
-    </table>
+              echo
+              "<form action='consulta.php' method='post'>
+                <tr>
+                  <td>" . $pac['tri_id'] . "</td>
+                  <td>" . $pac['pes_nome'] . "</td>
+                  <td><div class=\"consulta-color consulta-color-" . strtolower($class) . "\"></div></td>
+                  <td>" . $espera  . "/" . $cor[1] . " min </td>
+                  <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
+                  <td> <input class='btn-chamada' type='submit' name='consulta' value='Iniciar consulta'> </td>
+                </tr>
+              </form>";
+            }
+          }
+
+          ?>
+        </tbody>
+      </table>
+    </div>
 
     <?php
   }
