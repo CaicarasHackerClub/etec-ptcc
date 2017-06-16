@@ -49,7 +49,6 @@ if ($_SESSION['fun_cargo'] == "medico") {
         } else {
           $sel="SELECT * FROM especializacao WHERE esp_id='". $medico[2] ."';";
           $id=$sql->selecionar($sel);
-          echo $id;
         }
         $sql->selectbox("especializacao",$id);
       } else {
