@@ -49,6 +49,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
         } else {
           $sel="SELECT * FROM especializacao WHERE esp_id='". $medico[2] ."';";
           $id=$sql->selecionar($sel);
+          echo $id;
         }
         $sql->selectbox("especializacao",$id);
       } else {
@@ -57,12 +58,10 @@ if ($_SESSION['fun_cargo'] == "medico") {
         $idMed=$sql->fetch($sell);
         $sel = "SELECT * FROM medico_has_especializacao WHERE medico_med_id='" . $idMed[0] . "';";
         $esp = $sql->fetch($sel);
-        //echo "Especializacao" . $esp[2];
-        $selEsp = "SELECT e.esp_nome FROM especializacao e INNER JOIN medico_has_especializacao me ON e.esp_id = me.especializacao_esp_id WHERE me.especializacao_esp_id ='" . $esp[1] . "';";
+        $selEsp = "SELECT * FROM especializacao e INNER JOIN medico_has_especializacao me ON e.esp_id = me.especializacao_esp_id WHERE me.especializacao_esp_id ='" . $esp[1] . "';";
         $es = $sql->fetch($selEsp);
-       // echo "Nome:" . $es[0];
 
-        echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" disabled value= \"" . $es[0] ."\"  ><br>";
+        echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" disabled value= \"" . $es[1] ."\"  ><br>";
       }
       ?>
     </div>
