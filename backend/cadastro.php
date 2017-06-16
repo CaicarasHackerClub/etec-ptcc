@@ -264,7 +264,7 @@
             ?>
 
             <script>
-              alert('Concluido!\n Código: ' + <?php echo $ateId; ?>);
+              alert('Concluido!\nCódigo: ' + <?php echo $ateId; ?>);
               location.href = 'index.php';
             </script>
 

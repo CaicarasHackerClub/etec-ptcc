@@ -155,9 +155,9 @@
             <label> Sintomas: </label>
             <input type="text" name="sintomas"> <br>
             <label> Diagnóstico presuntivo: </label>
-            <input type="text" name="diagnostico"> <br>
+            <input type="text" name="diagnostico" required> <br>
             <label> Encaminhamento: </label>
-            <?php $sql->selectbox('encaminhamento'); ?>
+            <?php $sql->selectbox('encaminhamento', 0); ?>
             <label> Comentário: </label>
             <input type="text" name="comentario"> <br>
 
