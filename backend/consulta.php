@@ -43,12 +43,13 @@
 
     ?>
 
-    <div class="triagem-container">
-      <div class="table-consulta-dados">
+    <div class="consulta-container">
+
+      <div class="dados-triagem">
         <table class="table-consulta">
           <thead>
             <tr>
-              <th class="table-consulta-dados-title" colspan="2">Dados da triagem</th>
+              <th class="dados-triagem-title" colspan="2">Dados da triagem</th>
             </tr>
           </thead>
 
@@ -129,8 +130,9 @@
         </tbody>
       </div>
 
-      <div class="table-consulta-hora-forms">
-        <div class="table-consulta-hora">
+      <div class="dados-consulta">
+
+        <div class="dados-consulta-hora">
           <table class="table-consulta">
             <tr>
               <td>Data</td>
@@ -143,7 +145,7 @@
           </table>
         </div>
 
-        <div class="table-consulta-forms">
+        <div class="dados-consulta-form">
           <form action="consulta.php" method="post">
             <input type="hidden" name="triId" value="<?php echo $pac['tri_id'] ?>">
             <input type="hidden" name="chegada" value="<?php echo date('H:m:i') ?>">
@@ -299,7 +301,7 @@
                 <td><div class=\"consulta-color consulta-color-" . strtolower($class) . "\"></div></td>
                 <td>" . $espera  . "/" . $cor[1] . " min </td>
                 <input type='hidden' value='" . $pac['tri_id'] . "' name='triId'>
-                <td> <input class='table-consulta-bottom' type='submit' name='consulta' value='Iniciar consulta'> </td>
+                <td> <input class='btn-chamada' type='submit' name='consulta' value='Iniciar consulta'> </td>
               </tr>
             </form>";
           }

@@ -6,6 +6,7 @@
   <head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
+    <title>Cadastro</title>
     <link rel='stylesheet' href='../css/main.css'>
   </head>
 
