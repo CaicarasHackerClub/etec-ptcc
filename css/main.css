@@ -500,7 +500,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   width: 87.5%;
 }
 
-.form-cadastro .grupo-info {
+.form .grupo-info {
   width: 90%;
   height: auto;
   margin-left: 5%;
@@ -512,7 +512,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   display: none;
 }
 
-.form-cadastro .grupo-info .legenda {
+.form .grupo-info .legenda {
   color: #01b26a;
   font-size: 16pt;
 }
@@ -558,6 +558,11 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form-medico .group-form .lbl_class {
   width: 140px;
+}
+
+.form-medico .group-form .inp_class,
+.form-medico .grupo-info .group-form .select {
+  width: 60%;
 }
 
 .form-medico .submit {
