@@ -467,6 +467,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   color: #fff;
   border: 0;
   border-radius: 3px 3px 3px 3px;
+  margin-left: 7%;
 }
 
 .form-classi .titulo, .form-cadastro .titulo,
@@ -517,14 +518,21 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 }
 
 /*Formulário funcionario*/
-.form-funcionario .group-form .inp_class,
 .form-funcionario .group-form .lbl_class  {
   width: 40%;
 }
 
+.form-funcionario .group-form .inp_class {
+  width: 55%;
+}
+
 .form-funcionario .group-form {
   width: 26%;
-  margin-left: 5.5%;
+  margin-left: 15%;
+}
+
+.form-funcionario .submit {
+  margin-left: 15%;
 }
 
 .form-cadastro .grupo-info .extend .inp_class  {
@@ -538,6 +546,27 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
 
 .form-cadastro .grupo-info .extend button[name='auto'] {
   background-color: #f56529;
+}
+
+.form-cadastro .hidden-group .cadastro-submit {
+  margin-left: 67%;
+}
+
+.form-medico .group-form {
+  margin-left: 7%;
+}
+
+.form-medico .group-form .lbl_class {
+  width: 140px;
+}
+
+.form-medico .submit {
+  margin-left: 7%;
+}
+
+.form-medico .titulo {
+  margin-left: 35%;
+  width: 30%;
 }
 
 .inp_class {
