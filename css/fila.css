@@ -1,8 +1,14 @@
+body {
+  overflow: auto;
+}
+
 /*Tabela*/
 table {
 	border-collapse: collapse;
   border: 0;
+  overflow: auto;
 }
+
 thead {
 	background-color: #01b26c;
 	color: #FFFFFF;
@@ -11,6 +17,10 @@ thead {
 
 th {
   height: 35px;
+}
+
+td, th {
+  padding: 8px 8px;
 }
 
 input[type="radio"]{
