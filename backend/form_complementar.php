@@ -23,10 +23,10 @@ if ($_SESSION['fun_cargo'] == "medico") {
   }
 
   ?>
-  <form class="form" action="<?=$tipo?>" method="post">
-    <h1>Médico</h1>
+  <form class="form form-cadastro form-medico" action="<?=$tipo?>" method="post">
+    <h1 class="titulo">Médico</h1>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">CRM:</label>
+      <label class="lbl_class">CRM</label>
       <?php
       if ($_SESSION['form'] == 1) {
         $dis = "";
@@ -41,7 +41,9 @@ if ($_SESSION['fun_cargo'] == "medico") {
       }
        ?>
       <input class="inp_class" type="text" name="med_crm" size="28" <?=$dis . $val; ?>><br>
-      <label class="lbl_class">Especialização:</label>
+    </div>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Especialização</label>
       <?php
       if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
         if ($_SESSION['form'] == 1) {
@@ -64,7 +66,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
       }
       ?>
     </div>
-    <input class="inp_class submmit" type="submit" value="Confirmar">
+    <input class="submit" type="submit" value="Confirmar">
   </form>
 <?php
 } elseif ($_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
@@ -89,7 +91,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
   <form class="Form" action="<?=$tipo?>" method="post">
     <h1>Enfermeiro</h1>
     <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Registro:</label>
+      <label class="lbl_class">Registro</label>
       <?php
       if ($_SESSION['form'] == 1) {
         $dis = "";
