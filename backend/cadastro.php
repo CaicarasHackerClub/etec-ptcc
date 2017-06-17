@@ -198,11 +198,6 @@
             $sel_id="SELECT MAX(pes_id) AS pes_id FROM pessoa";
             $pes_id=$sql->selecionar($sel_id);
 
-            $sel_id="SELECT MAX(pac_id) AS pac_id FROM paciente";
-            $pac_id=$sql->selecionar($sel_id);
-            $pac_id++;
-
-            $atePacId = $pac_id;
 
             ////////////////////inserção de dados nas tabelas paciente e plano_de_saude ///////////////
             $insPac="INSERT INTO paciente (pac_educacao, pac_hospitalizado, pessoa_pes_id) VALUES (
@@ -211,6 +206,12 @@
                     '" . $pes_id                       . "'
 
                     );";
+
+            $sel_id="SELECT MAX(pac_id) AS pac_id FROM paciente";
+            $pac_id=$sql->selecionar($sel_id);
+            $pac_id++;
+
+            $atePacId = $pac_id;
 
             $insPds="INSERT INTO plano_de_saude (pds_convenio_nome,pds_numero_sus,pds_num_convenio,pac_id)  VALUES (
                     '" . $metodo->getPds_convenio_nome(). "',
@@ -231,8 +232,10 @@
 
             $okPac=$sql->inserir($updPac);
 
-            $sel="SELECT pac_id FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
+            $sel="SELECT * FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
             $pacId= $sql->selecionar($sel);
+            echo $_SESSION['id'];
+            echo $pacId;
 
             $updPds="UPDATE plano_de_saude SET
                         pds_convenio_nome='" . $metodo->getPds_convenio_nome() . "',
@@ -262,7 +265,7 @@
 
             <script>
               alert('Concluido!\nCódigo: ' + <?php echo $ateId; ?>);
-              location.href = 'index.php';
+              location.href = 'cadastro.php';
             </script>
 
             <?php

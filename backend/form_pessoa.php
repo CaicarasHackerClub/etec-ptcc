@@ -1,7 +1,6 @@
 <!-- cadastro == 1
      confirmacao final == 2
      update == 3
-     verificação de dados == 4
 -->
 
 <link rel='stylesheet' href='../css/main.css'>
