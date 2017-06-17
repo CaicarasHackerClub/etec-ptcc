@@ -23,12 +23,14 @@ if ($_SESSION['form'] == 1) {
   }
   $tipo = "cadastro.php?acao=cadastro&passo=6";
 } else {
-  $selPac = "SELECT * FROM paciente WHERE pac_id='" . $_SESSION['id'] . "';";
+  echo "Oláaaa!!!!! ";
+  $selPac = "SELECT * FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
   $paciente = $sql->fetch($selPac);
 
-  $selPl = "SELECT * FROM plano_de_saude WHERE pac_id='" . $_SESSION['id'] . "';";
+  $selPl = "SELECT * FROM plano_de_saude p INNER JOIN paciente pa ON p.pac_id = pa.pac_id WHERE
+  pa.pac_id = '". $paciente[0] ."';";
   $plano = $sql->fetch($selPl);
-
+  echo $plano[1];
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 }
 
@@ -41,20 +43,29 @@ if ($_SESSION['form'] == 1) {
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Escolaridade</label>
       <?php
-      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+      if ($_SESSION['form'] == 1  || $_SESSION['form'] == 3) {
         if ($_SESSION['form'] == 1) {
-            $id = 0;
-          } else {
-            $sel="SELECT * FROM escolaridade WHERE esc_id='" . $paciente[1] . "';";
-            $id=$sql->selecionar($sel);
-          }
-        $sql->selectbox("escolaridade", $id);
+          $id = 0;
+        } else {
+          $sel="SELECT * FROM escolaridade WHERE esc_id='" . $paciente[1] . "';";
+          $id=$sql->selecionar($sel);
+        }
+          $sql->selectbox("escolaridade",$id);
       } else {
         $sel = "SELECT * FROM escolaridade WHERE esc_id='" . $paciente[1] . "';";
         $esc = $sql->fetch($sel);
-        echo "<input class=\"inp_class\" type=\"text\" name=\"pac_escolaridade\" size=\"28\" disabled value = " . $esc[2] . "><br>";
+
+        if ($_SESSION['form'] == 2) {
+          $dis = " disabled";
+        } else {
+          $dis = "";
+        }
+
+        $val = " value=\"" . $esc[1] . "\"";
+
+        echo "<input class=\"inp_class\" type=\"text\" name=\"pes_escolaridade\" size=\"28\"". $dis . $val . "><br>";
       }
-      ?>
+    ?>
     </div>
     <div class="group-form group-form-cadastro">
       <label class="lbl_class">Convênio</label>
