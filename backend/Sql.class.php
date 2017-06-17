@@ -71,7 +71,7 @@ class Sql {
       echo "<option value=" . $selecao[0] . $chk . ">" . $selecao[1] . "</option>\n";
     }
 
-    echo "</select><br>\n";
+    echo "</select>";
 
     mysqli_close($con);
   }
