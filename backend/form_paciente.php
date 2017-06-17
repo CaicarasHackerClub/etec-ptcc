@@ -11,24 +11,25 @@ if ($_SESSION['form'] == 1) {
     $selPac = "SELECT * FROM paciente WHERE pac_id='" . $idPac . "';";
     $paciente = $sql->fetch($selPac);
 
-    $selPl = "SELECT * FROM plano_de_saude WHERE pac_id='" . $idPac . "';";
+    $selPl="SELECT * FROM plano_de_saude pl INNER JOIN paciente p ON pl.pac_id=p.pac_id WHERE
+    p.pac_id = '" . $idPac . "';";
     $plano = $sql->fetch($selPl);
   } else {
-    $selPac = "SELECT * FROM paciente WHERE pac_id='" . $_SESSION['id'] . "';";
+    $selPac = "SELECT * FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
     $paciente = $sql->fetch($selPac);
 
-    $selPl = "SELECT * FROM plano_de_saude WHERE pac_id='" . $_SESSION['id'] . "';";
+    $selPl="SELECT * FROM plano_de_saude pl INNER JOIN paciente p ON pl.pac_id=p.pac_id WHERE
+    p.pac_id = '" . $paciente[0] . "';";
     $plano = $sql->fetch($selPl);
 
   }
   $tipo = "cadastro.php?acao=cadastro&passo=6";
 } else {
-  echo "Oláaaa!!!!! ";
   $selPac = "SELECT * FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
   $paciente = $sql->fetch($selPac);
 
-  $selPl = "SELECT * FROM plano_de_saude p INNER JOIN paciente pa ON p.pac_id = pa.pac_id WHERE
-  pa.pac_id = '". $paciente[0] ."';";
+  $selPl="SELECT * FROM plano_de_saude pl INNER JOIN paciente p ON pl.pac_id=p.pac_id WHERE
+  p.pac_id = '" . $paciente[0] . "';";
   $plano = $sql->fetch($selPl);
   echo $plano[1];
   $tipo = "cadastro.php?acao=cadastro&passo=3";
