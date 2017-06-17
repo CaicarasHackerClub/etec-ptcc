@@ -31,7 +31,7 @@ if ($_SESSION['form'] == 1) {
   $selPl="SELECT * FROM plano_de_saude pl INNER JOIN paciente p ON pl.pac_id=p.pac_id WHERE
   p.pac_id = '" . $paciente[0] . "';";
   $plano = $sql->fetch($selPl);
-  echo $plano[1];
+
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 }
 
