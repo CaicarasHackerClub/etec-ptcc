@@ -6,11 +6,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import static javafx.scene.paint.Color.web;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -26,10 +29,13 @@ public class WebV extends Application {
         BorderPane painel = new BorderPane();
         HBox barra = new HBox();
         
-        File img1 = new File("/home/matheusy/Área de Trabalho/Icones/retornar.png");
-        File img2 = new File("/home/matheusy/Área de Trabalho/Icones/home.png");
-        File img3 = new File("/home/matheusy/Área de Trabalho/Icones/atualizar.png");
-        File img4 = new File("/home/matheusy/Área de Trabalho/Icones/avancar.png");
+        barra.setStyle("-fx-background-color: rgba(255, 255, 255, 1);");
+        
+        String dir = System.getProperty("user.dir")+"/src/webv/";
+        File img1 = new File(dir+"retornar.png");
+        File img2 = new File(dir+"home.png");
+        File img3 = new File(dir+"atualizar.png");
+        File img4 = new File(dir+"avancar.png");
         
         Button btn1 = new Button("",new ImageView(new Image(img1.toURI().toString())));
         Button btn2 = new Button("",new ImageView(new Image(img2.toURI().toString())));
@@ -43,7 +49,7 @@ public class WebV extends Application {
         barra.setPadding(new Insets(10));
         
         WebView web = new WebView();
-        web.getEngine().load("http://192.168.1.106/hughhealth/backend/pag_inicial.php");
+        web.getEngine().load("https://elaleph.com.br/hug-health/");
         
         
         btn1.setOnAction(event ->{
@@ -62,6 +68,11 @@ public class WebV extends Application {
             web.getEngine().reload();
         });
         
+        web.getEngine().setOnAlert(event -> showAlert(event.getData())); 
+        web.getEngine().setConfirmHandler(message -> showConfirm(message));
+        
+        
+        
         painel.setCenter(web);
         painel.setTop(barra);
         
@@ -69,7 +80,29 @@ public class WebV extends Application {
         primaryStage.show();
 
     }
+    
+    private void showAlert(String message) {
+        Dialog<Void> alert = new Dialog<>();
+        alert.getDialogPane().setContentText(message);
+        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        alert.showAndWait();
+    }
+
+    private boolean showConfirm(String message) {
+        Dialog<ButtonType> confirm = new Dialog<>();
+        confirm.getDialogPane().setContentText(message);
+        confirm.getDialogPane().getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+        boolean result = confirm.showAndWait().filter(ButtonType.YES::equals).isPresent();
+
+        // for debugging:
+        System.out.println(result);
+
+        return result ;
+    }
+
+    
     public static void main(String[] args) {
         Application.launch(args);
     }
 }
+
