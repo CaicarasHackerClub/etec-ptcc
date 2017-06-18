@@ -88,28 +88,29 @@
           <input class="inp_class" type="text" name="doencas">
         </div>
 
-        <div class="group-form">
+        <div class="extend group-form">
           <label class="lbl_class">Remédios </label>
           <input class="inp_class" type="text" name="remedios">
         </div>
 
-        <div class="group-form">
+        <div class="extend group-form">
           <label class="lbl_class">Sintomas</label>
           <input class="inp_class" type="text" name="sintomas">
         </div>
 
-        <div class="group-form">
+        <div class="extend group-form">
           <label class="lbl_class">Reclamação </label>
           <input class="inp_class" type="text" name="reclamacao">
         </div>
 
         <div class="group-form">
-          <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
-          <input id="indi" class="inp_class check-class" type="checkbox" name="org">
+          <label class="lbl_class">Comprometimento de orgãos vitais </label>
+          <input id="indi" class="check-class" type="checkbox" name="org">
+          <label for="indi"></label>
         </div>
       <!-- </div> -->
-      <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
       <input class="submit" id="inp-voltar" type="button" value="Anterior">
+      <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
     </fieldset>
     </form>
     <?php
@@ -248,65 +249,67 @@
       }
 
       ?>
-      <form class="form form-classi" action="triagem.php" method="post">
-      <h1 class="titulo"> Classificação: </h1>
-      <input type="radio" id="vermelho" class="inp_class" name="class" value="5" required
-      <?php
-      if ($tri->getClass() == 5) {
-        echo "checked";
-      } ?> >
+      <form class="form form-triagem form-classi" action="triagem.php" method="post">
+        <fieldset class="grupo-info">
+          <legend class="legenda">Classificação</legend>
+          <input type="radio" id="vermelho" class="inp_class" name="class" value="5" required
+          <?php
+          if ($tri->getClass() == 5) {
+            echo "checked";
+          } ?> >
 
-      <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
+          <label for="vermelho" class="lbl-radio-class lbl_class"><p>Vermelho</p></label><br>
 
-      <input type="radio" id="laranja" class="inp_class" name="class" value="4" required
-      <?php
-      if ($tri->getClass() == 4) {
-        echo "checked";
-      } ?> >
+          <input type="radio" id="laranja" class="inp_class" name="class" value="4" required
+          <?php
+          if ($tri->getClass() == 4) {
+            echo "checked";
+          } ?> >
 
-      <label for="laranja" class="lbl-radio-class lbl_class"><p>Laranja</p></label><br>
+          <label for="laranja" class="lbl-radio-class lbl_class"><p>Laranja</p></label><br>
 
-      <input type="radio" id="amarelo" class="inp_class" name="class" value="3" required
-      <?php
-      if ($tri->getClass() == 3) {
-        echo "checked";
-      } ?> >
+          <input type="radio" id="amarelo" class="inp_class" name="class" value="3" required
+          <?php
+          if ($tri->getClass() == 3) {
+            echo "checked";
+          } ?> >
 
-      <label for="amarelo" class="lbl-radio-class lbl_class"><p>Amarelo</p></label><br>
+          <label for="amarelo" class="lbl-radio-class lbl_class"><p>Amarelo</p></label><br>
 
-      <input type="radio" id="verde" class="inp_class" name="class" value="2" required
-      <?php
-      if ($tri->getClass() == 2) {
-        echo "checked";
-      } ?> >
+          <input type="radio" id="verde" class="inp_class" name="class" value="2" required
+          <?php
+          if ($tri->getClass() == 2) {
+            echo "checked";
+          } ?> >
 
-      <label for="verde" class="lbl-radio-class lbl_class"><p>Verde</p></label><br>
+          <label for="verde" class="lbl-radio-class lbl_class"><p>Verde</p></label><br>
 
-      <input type="radio" id="azul" class="inp_class" name="class" value="1" required
-      <?php
-      if ($tri->getClass() == 1) {
-        echo "checked";
-      } ?> >
+          <input type="radio" id="azul" class="inp_class" name="class" value="1" required
+          <?php
+          if ($tri->getClass() == 1) {
+            echo "checked";
+          } ?> >
 
-      <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label>
+          <label for="azul" class="lbl-radio-class lbl_class"><p>Azul</p></label><br>
 
-      <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">
-      <input type="hidden" class="inp_class" name="altura" value=" <?php echo $tri->getAltura() ?>">
-      <input type="hidden" class="inp_class" name="batimento" value=" <?php echo $tri->getBatimento() ?>">
-      <input type="hidden" class="inp_class" name="resp" value=" <?php echo $tri->getResp() ?>">
-      <input type="hidden" class="inp_class" name="temp" value=" <?php echo $tri->getTemp() ?>">
-      <input type="hidden" class="inp_class" name="pas" value=" <?php echo $tri->getPas() ?>">
-      <input type="hidden" class="inp_class" name="pad" value=" <?php echo $tri->getPad() ?>">
-      <input type="hidden" class="inp_class" name="oxi" value=" <?php echo $tri->getOxi() ?>">
-      <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
-      <input type="hidden" class="inp_class" name="tipo_sanguineo" value="<?php echo $tri->getTipoSanguineo() ?>">
-      <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
-      <input type="hidden" class="inp_class" name="doencas" value="<?php echo $tri->getDoencas() ?>">
-      <input type="hidden" class="inp_class" name="remedios" value="<?php echo $tri->getRemedios() ?>">
-      <input type="hidden" class="inp_class" name="sintomas" value="<?php echo $tri->getSintomas() ?>">
-      <input type="hidden" class="inp_class" name="reclamacao" value="<?php echo $tri->getReclamacao() ?>">
-      <input type="hidden" class="inp_class" name="id" value="<?php echo $tri->getAtId() ?>">
-      <input type="submit" class="submit" name="classificar" value="Classificar">
+          <input type="hidden" class="inp_class" name="peso" value=" <?php echo $tri->getPeso() ?>">
+          <input type="hidden" class="inp_class" name="altura" value=" <?php echo $tri->getAltura() ?>">
+          <input type="hidden" class="inp_class" name="batimento" value=" <?php echo $tri->getBatimento() ?>">
+          <input type="hidden" class="inp_class" name="resp" value=" <?php echo $tri->getResp() ?>">
+          <input type="hidden" class="inp_class" name="temp" value=" <?php echo $tri->getTemp() ?>">
+          <input type="hidden" class="inp_class" name="pas" value=" <?php echo $tri->getPas() ?>">
+          <input type="hidden" class="inp_class" name="pad" value=" <?php echo $tri->getPad() ?>">
+          <input type="hidden" class="inp_class" name="oxi" value=" <?php echo $tri->getOxi() ?>">
+          <input type="hidden" class="inp_class" name="dor" value="<?php echo $tri->getDor() ?>">
+          <input type="hidden" class="inp_class" name="tipo_sanguineo" value="<?php echo $tri->getTipoSanguineo() ?>">
+          <input type="hidden" class="inp_class" name="org" value="<?php echo $tri->getOrg() ?>">
+          <input type="hidden" class="inp_class" name="doencas" value="<?php echo $tri->getDoencas() ?>">
+          <input type="hidden" class="inp_class" name="remedios" value="<?php echo $tri->getRemedios() ?>">
+          <input type="hidden" class="inp_class" name="sintomas" value="<?php echo $tri->getSintomas() ?>">
+          <input type="hidden" class="inp_class" name="reclamacao" value="<?php echo $tri->getReclamacao() ?>">
+          <input type="hidden" class="inp_class" name="id" value="<?php echo $tri->getAtId() ?>">
+          <input type="submit" class="submit" name="classificar" value="Classificar">
+        </fieldset>
       </form>
     <?php
     }
