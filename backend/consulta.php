@@ -189,6 +189,14 @@
     $comentario = isset($_POST['comentario']) ? trim($_POST['comentario']) : "";
     $triId = $_POST['triId'];
 
+    session_start();
+
+    $selMedId = "SELECT med_id FROM medico
+    INNER JOIN funcionario ON funcionario.fun_id = medico.funcionario_fun_id
+    INNER JOIN usuario ON usuario.funcionario_id = funcionario.fun_id WHERE usu_id = " . $_SESSION['id_usu'] . ";";
+
+    $medId = $sql->selecionar($selMedId);
+
     $cons->setChegada($chegada);
     $cons->setData($data);
     $cons->setSaida($saida);
@@ -198,7 +206,7 @@
     $cons->setEncId($encaminhamento);
     $cons->setComentario($comentario);
     $cons->setTriId($triId);
-    $cons->setMedId(1);
+    $cons->setMedId($medId);
 
     $mensagem = "";
 
