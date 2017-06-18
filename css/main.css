@@ -508,7 +508,7 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-bottom: 1%;
 }
 
-.form-cadastro .hidden-group {
+.form .hidden-group {
   display: none;
 }
 
@@ -535,16 +535,16 @@ FIM DAS EDIÇÕES NO CONTEÚDO DO CENTRO DOS SUB-MÓDULOS
   margin-left: 15%;
 }
 
-.form-cadastro .grupo-info .extend .inp_class  {
+.form .grupo-info .extend .inp_class  {
   width: 81.7%;
 }
 
-.form-cadastro .grupo-info .extend .lbl_class {
+.form .grupo-info .extend .lbl_class {
   width: 17%;
   line-height: 50px;
 }
 
-.form-cadastro .grupo-info .extend button[name='auto'] {
+.form .grupo-info .extend button[name='auto'] {
   background-color: #f56529;
 }
 
