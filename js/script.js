@@ -115,7 +115,7 @@
     if (!$("#abas"+num ).is( ":visible")) {
       $('#abas').append("<li><div class='aba' id='abas"+num+"'><span>"+nomeAba+"</span></div></li>");
       $('#content').append("<div class='conteudo' id='conteudo"+num+"'></div>");
-      $('#conteudo'+num).append("<iframe name='frame"+num+"' id='frame"+num+"' width='100%' height='100%'></iframe>");
+      $('#conteudo'+num).append("<iframe name='frame"+num+"' id='frame"+num+"' width='100%' height='98%'></iframe>");
       window.open (url, 'frame'+num);
       abas(num);
       if (screen.width <= 650) {
@@ -187,24 +187,20 @@
       //   }
       // });
       $(".visible-group").css({
-        "position":"absolute",
         "display":"none"
       });
 
       $(".hidden-group").css({
-        "position":"absolute",
         "display":"inline-block",
       });
     });
 
     $("#inp-voltar").click(function () {
       $(".visible-group").css({
-        "position":"absolute",
         "display":"inline-block"
       });
 
       $(".hidden-group").css({
-        "position":"absolute",
         "display":"none",
       });
     });
