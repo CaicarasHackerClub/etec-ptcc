@@ -4,6 +4,7 @@
   <link rel='stylesheet' href='../css/triagem.css'>
   <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
   <script type="text/javascript" src="../js/script.js" ></script>
+  <script type="text/javascript" src="../js/funcoes.js" ></script>
   <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <?php
@@ -193,9 +194,19 @@
 
       if ($sql->num($rows) == 0) {
         $sql->inserir($query);
-        echo "Inserido com sucesso";
+        ?>
+          <div class="error success" id="error"></div>
+          <script type="text/javascript">
+            showMessage($('#error'), "Paciente Inserido com sucesso", 0);
+          </script>
+        <?php
       } else {
-        echo "O paciente já passou pela triagem";
+        ?>
+          <div class="error" id="error"></div>
+          <script type="text/javascript">
+            showMessage($('#error'), "O Paciente já passou pela triagem", 0);
+          </script>
+        <?php
       }
     } else {
       $atendimento = "SELECT * FROM atendimento WHERE ate_id = " . $tri->getAtId() . ";";
