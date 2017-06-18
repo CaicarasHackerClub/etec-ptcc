@@ -1,8 +1,4 @@
 
-.form-classi .lbl_class{
-  height: 55px;
-}
-
 .form .lbl-radio-class{
   display: inline-block;
   cursor: pointer;
@@ -17,6 +13,7 @@
 
 .form-classi .lbl_class{
   width: 14%;
+  height: 55px;
   text-align: left;
   margin-top: 10px;
   border-radius:  3px 3px 3px 3px;
@@ -43,12 +40,29 @@
 .form-triagem .group-form p{
   display: inline-block;
   font-size: 80%;
+  font-weight: bold;
+}
+
+.form-triagem .grupo-info .group-form .lbl_class {
+  width: 50%;
+}
+
+.form-triagem .grupo-info .group-form .inp_class {
+  width: 32%;
+}
+
+.form-triagem .grupo-info .submit{
+  margin-left: 10%;
+}
+
+.form-triagem .grupo-info {
+  margin-top: 1%;
 }
 
 @media (max-width: 1993px) {
   .form-triagem .group-form {
-    width: 31%;
-    margin-left: 14%;
+    width: 35%;
+    margin-left: 10%;
   }
 }
 
