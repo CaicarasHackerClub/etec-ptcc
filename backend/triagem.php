@@ -2,6 +2,8 @@
 <head>
   <link rel='stylesheet' href='../css/main.css'>
   <link rel='stylesheet' href='../css/triagem.css'>
+  <script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
+  <script type="text/javascript" src="../js/script.js" ></script>
   <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <?php
@@ -12,88 +14,103 @@
   if (!isset($_POST['recepcao']) && !isset($_POST['classificar'])) {
     ?>
     <form class="form form-triagem" action="triagem.php" method="post">
-      <div class="content-form">
+      <!-- <div class="content-form"> -->
+      <fieldset class="grupo-info visible-group">
+        <legend class="legenda">Informações do paciente</legend>
         <div class="group-form">
-          <label class="lbl_class">Código: </label>
+          <label class="lbl_class">Código </label>
           <input class="inp_class" type="text" size="4" name="id" required> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class">Peso: </label>
+          <label class="lbl_class">Peso </label>
           <input class="inp_class" type="text" size="3" name="peso"> <p>kg</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class">Altura: </label>
+          <label class="lbl_class">Altura </label>
           <input class="inp_class" type="text" size="3" name="altura"> <p>m</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class min-class">Batimento cardíaco: </label>
+          <label class="lbl_class min-class">Batimento cardíaco </label>
           <input class="inp_class" type="text" size="3" name="batimento" required> <p>bpm</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class ">Respiração: </label>
+          <label class="lbl_class ">Respiração </label>
           <input class="inp_class" type="text" size="3" name="resp" required> <p>rpm</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class">Temperatura: </label>
+          <label class="lbl_class">Temperatura </label>
           <input class="inp_class" type="text" size="2" name="temp" required> <p>ºC </p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class">PAS: </label>
+          <label class="lbl_class">PAS </label>
           <input class="inp_class" type="text" size="3" name="pas" required> <p>mmHg</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class">PAD: </label>
+          <label class="lbl_class">PAD </label>
           <input class="inp_class" type="text" size="3" name="pad" required> <p>mmHg</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class min-class">Nível de oxigenação: </label>
+          <label class="lbl_class min-class">Oxigenação </label>
           <input class="inp_class" type="text" size="3" name="oxi"> <p>%</p> <br>
         </div>
 
         <div class="group-form">
-          <label class="lbl_class">Dor: </label>
+          <label class="lbl_class">Dor </label>
           <select class="inp_class" name="dor">
             <?php
               for ($i = 0; $i <= 10; $i++) {
                 echo "<option value='$i'> $i </option>";
               }
             ?>
-          </select> <br>
+          </select>
         </div>
+
         <div class="group-form">
-          <label class="lbl_class">Tipo sanguíneo: </label>
-          <?php $sql->selectbox('tipo_sanguineo'); ?>
+          <label class="lbl_class">Tipo sanguíneo </label>
+          <?php $sql->selectbox('tipo_sanguineo', 0); ?>
         </div>
+
+        <button type="button" id="inp-env" class="submit" name="button">Próximo</button>
+      </fieldset>
+
+      <fieldset class="grupo-info hidden-group">
+        <legend class="legenda">Informações do paciente</legend>
+        <div class="extend group-form">
+          <label class="lbl_class">Doenças </label>
+          <input class="inp_class" type="text" name="doencas">
+        </div>
+
+        <div class="group-form">
+          <label class="lbl_class">Remédios </label>
+          <input class="inp_class" type="text" name="remedios">
+        </div>
+
+        <div class="group-form">
+          <label class="lbl_class">Sintomas</label>
+          <input class="inp_class" type="text" name="sintomas">
+        </div>
+
+        <div class="group-form">
+          <label class="lbl_class">Reclamação </label>
+          <input class="inp_class" type="text" name="reclamacao">
+        </div>
+
         <div class="group-form">
           <label class="extend-class" for="indi">Comprometimento de orgãos vitais </label>
-          <input id="indi" class="inp_class" type="checkbox" name="org">
+          <input id="indi" class="inp_class check-class" type="checkbox" name="org">
         </div>
-        <div class="group-form">
-          <label class="lbl_class">Doenças: </label>
-          <input class="inp_class" type="text" name="doencas"> <br>
-        </div>
-        <div class="group-form">
-          <label class="lbl_class">Remédios: </label>
-          <input class="inp_class" type="text" name="remedios"> <br>
-        </div>
-        <div class="group-form">
-          <label class="lbl_class">Sintomas observados: </label>
-          <input class="inp_class" type="text" name="sintomas"> <br>
-        </div>
-        <div class="group-form">
-          <label class="lbl_class">Reclamação: </label>
-          <input class="inp_class" type="text" name="reclamacao"> <br>
-        </div>
-        <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
-      </div>
+      <!-- </div> -->
+      <input class="anchor submit" type="submit" name="recepcao" value="Enviar">
+      <input class="submit" id="inp-voltar" type="button" value="Anterior">
+    </fieldset>
     </form>
     <?php
   } else {
