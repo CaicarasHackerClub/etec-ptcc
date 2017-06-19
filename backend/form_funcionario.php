@@ -11,7 +11,6 @@ $_SESSION['form'] = isset($_SESSION['form'])? $_SESSION['form'] : "";
 $_SESSION['id'] = isset($_SESSION['id'])? $_SESSION['id'] : "";
 
 if ($_SESSION['form'] == 1) {
-
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 
 } elseif ($_SESSION['form'] == 2) {
@@ -88,7 +87,7 @@ if ($_SESSION['form'] == 1) {
           $sel="SELECT * FROM setor WHERE set_id='" . $funcionario[5] . "';";
           $id=$sql->selecionar($sel);
         }
-        $sql->selectbox("setor",$id);
+        $sql->selectbox("setor", $id);
       } else {
         $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[5]  . "';";
         $set = $sql->fetch($sel);
@@ -124,7 +123,7 @@ if ($_SESSION['form'] == 1) {
             $sel="SELECT * FROM turno WHERE tur_id='" . $funcionario[3] . "';";
             $id=$sql->selecionar($sel);
           }
-          $sql->selectbox("turno",$id);
+          $sql->selectbox("turno", $id);
         } else {
           $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[3]  . "';";
           $tur = $sql->fetch($sel1);

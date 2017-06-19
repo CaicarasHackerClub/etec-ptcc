@@ -14,7 +14,6 @@ if ($_SESSION['form'] == 1) {
   //cadastro
   $tipo="cadastro.php?acao=cadastro&passo=2";
 } elseif ($_SESSION['form'] == 2) {
-
   if ($_SESSION['esc'] == 1) {
     $maxPes = "SELECT MAX(pes_id) AS pes_id FROM pessoa";
     $idPes = $sql->selecionar($maxPes);
@@ -191,7 +190,7 @@ if ($_SESSION['form'] == 1) {
             $id=$sql->selecionar($sel);
 
           }
-          $sql->selectbox("estado_civil",$id);
+          $sql->selectbox("estado_civil", $id);
         } else {
           $selE = "SELECT * FROM estado_civil WHERE etc_id='" . $pessoa[8] . "';";
           $etc = $sql->fetch($selE);
@@ -260,7 +259,7 @@ if ($_SESSION['form'] == 1) {
             $id=$sql->selecionar($sel);
 
           }
-          $sql->selectbox("sexo",$id);
+          $sql->selectbox("sexo", $id);
         } else {
           $selS = "SELECT * FROM sexo WHERE sex_id='" . $pessoa[11] . "';";
           $sex = $sql->fetch($selG);

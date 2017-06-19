@@ -54,7 +54,7 @@ if ($_SESSION['fun_cargo'] == "medico") {
             $sel="SELECT * FROM especializacao WHERE esp_id='". $medico[2] ."';";
             $id=$sql->selecionar($sel);
           }
-          $sql->selectbox("especializacao",$id);
+          $sql->selectbox("especializacao", $id);
         } else {
           // Pegando o nome da especialização
           $sell="SELECT * FROM medico WHERE funcionario_fun_id='". $_SESSION['fun_id'] ."';";

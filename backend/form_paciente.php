@@ -5,7 +5,7 @@ $sql = new Sql;
 if ($_SESSION['form'] == 1) {
   $tipo = "cadastro.php?acao=cadastro&passo=3";
 } elseif ($_SESSION['form'] == 2) {
-  if ($_SESSION['esc'] == 1 ) {
+  if ($_SESSION['esc'] == 1) {
     $maxPac = "SELECT MAX(pac_id) AS pac_id FROM paciente";
     $idPac = $sql->selecionar($maxPac);
     $selPac = "SELECT * FROM paciente WHERE pac_id='" . $idPac . "';";
@@ -51,7 +51,7 @@ if ($_SESSION['form'] == 1) {
           $sel="SELECT * FROM escolaridade WHERE esc_id='" . $paciente[1] . "';";
           $id=$sql->selecionar($sel);
         }
-          $sql->selectbox("escolaridade",$id);
+          $sql->selectbox("escolaridade", $id);
       } else {
         $sel = "SELECT * FROM escolaridade WHERE esc_id='" . $paciente[1] . "';";
         $esc = $sql->fetch($sel);

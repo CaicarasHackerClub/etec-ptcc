@@ -48,7 +48,7 @@ session_start()
             $cargo=$sql->fetch($selCargo);
             $_SESSION['tipo']=$cargo[1];
 
-            if ($_SESSION['tipo'] == "enfermeiro" ) {
+            if ($_SESSION['tipo'] == "enfermeiro") {
               $link1 = "../backend/sub_modulo.php";
 
             } else {

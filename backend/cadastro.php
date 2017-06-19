@@ -131,7 +131,6 @@
            /////////////////////////fim da inserção de dados Pessoais////////////////////////////////
            //verifica se a query foi inserida corretamente
         } else {
-
           $updPes = "UPDATE pessoa SET pes_nome='" . $metodo->getPes_nome() . "',
                       pes_pai='" . $metodo->getPes_pai() . "',
                       pes_mae='" . $metodo->getPes_mae()  . "',
@@ -365,7 +364,6 @@
             }
           }
           if ($okFun && $okUsu) {
-
             //echo "Cadastrado com sucesso!!";
             //echo $_SESSION['fun_cargo'];
 
@@ -430,7 +428,6 @@
             $okMed=$sql->inserir($insMed);
             $okHas=$sql->inserir($insHas);
           } else {
-
             $updMed="UPDATE medico SET
                         med_crm='" . $metodo->getMed_crm() . "',
                         funcionario_fun_id='" . $_SESSION['fun_id']  . "'
@@ -449,7 +446,6 @@
           }
 
           if ($okMed && $okHas) {
-
             //echo "Médico(a) cadastrado!!";
             ?>
             <div class="error success" id="success"></div>
@@ -488,7 +484,6 @@
           }
 
           if ($okEnf) {
-
             //echo "Enfermeiro(a) Cadastrado!";
 
             ?>

@@ -2,7 +2,7 @@ $(function() {
   var i = 0;
 
   $(".adicionar").click(function() {
-    if (i == 0) {
+    if (i === 0) {
       $(".receita").empty();
     }
 
