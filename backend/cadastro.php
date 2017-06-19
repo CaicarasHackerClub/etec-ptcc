@@ -234,8 +234,8 @@
 
             $sel="SELECT * FROM paciente WHERE pessoa_pes_id='" . $_SESSION['id'] . "';";
             $pacId= $sql->selecionar($sel);
-            echo $_SESSION['id'];
-            echo $pacId;
+            //echo $_SESSION['id'];
+            //echo $pacId;
 
             $updPds="UPDATE plano_de_saude SET
                         pds_convenio_nome='" . $metodo->getPds_convenio_nome() . "',
@@ -353,8 +353,8 @@
             }
           }
           if ($okFun && $okUsu) {
-            echo "Cadastrado com sucesso!!";
-            echo $_SESSION['fun_cargo'];
+            //echo "Cadastrado com sucesso!!";
+            //echo $_SESSION['fun_cargo'];
             if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
               ////////////////formulário formação do médico ou enfermeiro ///////////////////
               if ($_SESSION['esc'] == 1) {
@@ -422,7 +422,7 @@
           }
 
           if ($okMed && $okHas) {
-            echo "Médico(a) cadastrado!!";
+            //echo "Médico(a) cadastrado!!";
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
 
@@ -453,7 +453,7 @@
           }
 
           if ($okEnf) {
-            echo "Enfermeiro(a) Cadastrado!";
+            //echo "Enfermeiro(a) Cadastrado!";
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
 
