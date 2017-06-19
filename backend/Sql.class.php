@@ -60,7 +60,7 @@ class Sql {
     $sel = "SELECT * FROM " . $tabela;
     $res = mysqli_query($con, $sel) or die("Erro : ");
 
-    echo "<select class='inp_class select' name='" . $tabela . "'>\n";
+    echo "<select class='inp_class select' name='" . $tabela . "'>";
 
     while ($selecao = mysqli_fetch_array($res)) {
       if ($id == $selecao[0]) {
@@ -68,7 +68,7 @@ class Sql {
       } else {
         $chk = "";
       }
-      echo "<option value=" . $selecao[0] . $chk . ">" . $selecao[1] . "</option>\n";
+      echo "<option value=" . $selecao[0] . $chk . ">" . $selecao[1] . "</option>";
     }
 
     echo "</select>";
