@@ -1,4 +1,7 @@
 <link rel='stylesheet' href='../css/main.css'>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
+<script type="text/javascript" src="../js/script.js" ></script>
+<script type="text/javascript" src="../js/funcoes.js" ></script>
 <?php
 include_once "Sql.class.php";
 $sql = new Sql;
@@ -52,131 +55,134 @@ if ($_SESSION['form'] == 1) {
 ?>
 <form class="form form-funcionario" action="<?=$tipo?>" method="post">
   <h1 class="titulo">Funcionário</h1><br>
-  <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Cargo</label>
-    <?php
-    if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-      if ($_SESSION['form'] == 1) {
-        $id = 0;
-      } else {
-        $sel="SELECT * FROM cargo WHERE car_id='" . $funcionario[1] . "';";
-        $id=$sql->selecionar($sel);
-      }
-    $sql->selectbox("cargo", $id);
-
-    } else {
-      $sel="SELECT * FROM cargo WHERE car_id='". $funcionario[1] ."';";
-      $cargo=$sql->fetch($sel);
-      echo "<input class=\"inp_class\" type=\"text\" name=\"fun_cargo\" size=\"28\"
-            disabled value = " . $cargo[1] . "><br>";
-    }
-    ?>
-    <br>
-  </div>
-  <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Setor</label>
-    <?php
-    if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-      if ($_SESSION['form'] == 1) {
-        $id = 0;
-      } else {
-        $sel="SELECT * FROM setor WHERE set_id='" . $funcionario[5] . "';";
-        $id=$sql->selecionar($sel);
-      }
-      $sql->selectbox("setor",$id);
-    } else {
-      $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[5]  . "';";
-      $set = $sql->fetch($sel);
-      echo "<input class=\"inp_class\" type=\"text\" name=\"set_setor\" size=\"28\"
-            disabled value = " . $set[1] . "><br>";
-    }
-    ?>
-  </div>
-  <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Inscrição</label>
-    <?php
-      if ($_SESSION['form'] == 1) {
-        $dis = "";
-        $val = "";
-      } else {
-        if ($_SESSION['form'] == 2) {
-          $dis = " disabled";
-        } else {
-          $dis = "";
-        }
-        $val = " value=\"" . $funcionario[2] . "\"";
-      }
-    ?>
-    <input class="inp_class" type="text" name="fun_inscricao" size="28" <?=$dis . $val; ?>><br>
-  </div>
-  <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Turno</label>
-    <?php
+  <fieldset class="grupo-info visible-group">
+    <legend class="legenda">Informações do Funcioniário</legend>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Cargo</label>
+      <?php
       if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
         if ($_SESSION['form'] == 1) {
           $id = 0;
         } else {
-          $sel="SELECT * FROM turno WHERE tur_id='" . $funcionario[3] . "';";
+          $sel="SELECT * FROM cargo WHERE car_id='" . $funcionario[1] . "';";
           $id=$sql->selecionar($sel);
         }
-        $sql->selectbox("turno",$id);
-      } else {
-        $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[3]  . "';";
-        $tur = $sql->fetch($sel1);
-        echo "<input class=\"inp_class\" type=\"text\" name=\"fun_turno\" size=\"28\"
-            disabled value = " . $tur[1] . "><br>";
-      }
-    ?>
-  </div>
-  <div class="group-form group-form-cadastro">
-    <label class="lbl_class">E-mail</label>
-    <?php
-      if ($_SESSION['form'] == 1) {
-        $dis = "";
-        $val = "";
-      } else {
-        if ($_SESSION['form'] == 2) {
-          $dis = " disabled";
-        } else {
-          $dis = "";
-        }
-        $val = " value=\"" . $usuario[2] . "\"";
-      }
-    ?>
-    <input class="inp_class" type="text" name="usu_email" size="28" <?=$dis . $val; ?>><br>
-  </div>
-  <div class="group-form group-form-cadastro">
-    <label class="lbl_class">Senha</label>
-    <?php
-      if ($_SESSION['form'] == 1) {
-        $dis = "";
-        $val = "";
-      } else {
-        if ($_SESSION['form'] == 2) {
-          $dis = " disabled";
-        } else {
-          $dis = "";
-        }
-        $val = " value=\"" . $usuario[1] . "\"";
-      }
-    ?>
-    <input class="inp_class" type="password" name="usu_senha" size="28" <?=$dis . $val; ?>><br>
-  </div>
-  <?php
-  if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
-  ?>
-    <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Confirmação</label>
-      <input class="inp_class" type="password" name="conf_senha" size="28"><br>
-    </div>
-  <?php
-  }
-  ?>
+      $sql->selectbox("cargo", $id);
 
-  <?php
-    if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
-      echo "<input id=\"0\" class=\"submit\" type=\"button\" value=\"Alterar\">";
+      } else {
+        $sel="SELECT * FROM cargo WHERE car_id='". $funcionario[1] ."';";
+        $cargo=$sql->fetch($sel);
+        echo "<input class=\"inp_class\" type=\"text\" name=\"fun_cargo\" size=\"28\"
+              disabled value = " . $cargo[1] . ">";
+      }
+      ?>
+      <br>
+    </div>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Setor</label>
+      <?php
+      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+        if ($_SESSION['form'] == 1) {
+          $id = 0;
+        } else {
+          $sel="SELECT * FROM setor WHERE set_id='" . $funcionario[5] . "';";
+          $id=$sql->selecionar($sel);
+        }
+        $sql->selectbox("setor",$id);
+      } else {
+        $sel = "SELECT * FROM setor WHERE set_id='" . $funcionario[5]  . "';";
+        $set = $sql->fetch($sel);
+        echo "<input class=\"inp_class\" type=\"text\" name=\"set_setor\" size=\"28\"
+              disabled value = " . $set[1] . "><br>";
+      }
+      ?>
+    </div>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Inscrição</label>
+      <?php
+        if ($_SESSION['form'] == 1) {
+          $dis = "";
+          $val = "";
+        } else {
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+          $val = " value=\"" . $funcionario[2] . "\"";
+        }
+      ?>
+      <input class="inp_class" type="text" name="fun_inscricao" size="28" <?=$dis . $val; ?>><br>
+    </div>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Turno</label>
+      <?php
+        if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+          if ($_SESSION['form'] == 1) {
+            $id = 0;
+          } else {
+            $sel="SELECT * FROM turno WHERE tur_id='" . $funcionario[3] . "';";
+            $id=$sql->selecionar($sel);
+          }
+          $sql->selectbox("turno",$id);
+        } else {
+          $sel1 = "SELECT * FROM turno WHERE tur_id='" . $funcionario[3]  . "';";
+          $tur = $sql->fetch($sel1);
+          echo "<input class=\"inp_class\" type=\"text\" name=\"fun_turno\" size=\"28\"
+              disabled value = " . $tur[1] . "><br>";
+        }
+      ?>
+    </div>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">E-mail</label>
+      <?php
+        if ($_SESSION['form'] == 1) {
+          $dis = "";
+          $val = "";
+        } else {
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+          $val = " value=\"" . $usuario[2] . "\"";
+        }
+      ?>
+      <input class="inp_class" type="text" name="usu_email" size="28" <?=$dis . $val; ?>><br>
+    </div>
+    <div class="group-form group-form-cadastro">
+      <label class="lbl_class">Senha</label>
+      <?php
+        if ($_SESSION['form'] == 1) {
+          $dis = "";
+          $val = "";
+        } else {
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+          $val = " value=\"" . $usuario[1] . "\"";
+        }
+      ?>
+      <input class="inp_class" type="password" name="usu_senha" size="28" <?=$dis . $val; ?>><br>
+    </div>
+    <?php
+    if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+    ?>
+      <div class="group-form group-form-cadastro">
+        <label class="lbl_class">Confirmação</label>
+        <input class="inp_class" type="password" name="conf_senha" size="28"><br>
+      </div>
+    <?php
     }
-  ?>
-  <input class="submit" type="submit" value="Proximo">
-</form>
+    ?>
+    <input class="submit" type="submit" value="Proximo">
+
+    <?php
+      if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
+        echo "<input id=\"0\" class=\"submit\" type=\"button\" value=\"Alterar\">";
+      }
+    ?>
+  </form>
+</fildset>

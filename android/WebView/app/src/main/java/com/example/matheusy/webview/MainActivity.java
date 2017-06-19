@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         wv = (WebView) this.findViewById(R.id.wb2);
         wv.getSettings().setJavaScriptEnabled(true);
-        wv.loadUrl("http://192.168.1.106/hughhealth/backend/pag_inicial.php");
+        wv.loadUrl("https://elaleph.com.br/hug-health/");
 
         wv.setWebViewClient(new WebViewClient() {
             @Override

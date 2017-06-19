@@ -25,6 +25,8 @@
 
 .fila-consulta {
   margin: 2em;
+  width: 97%;
+  overflow: auto;
 }
 
 .btn-chamada {
@@ -69,6 +71,10 @@
 
 .consulta-container {
   display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  padding-bottom: 5px;
 }
 
 .dados-triagem,

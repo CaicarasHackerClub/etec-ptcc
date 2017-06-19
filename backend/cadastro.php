@@ -8,6 +8,10 @@
     <meta charset="utf-8">
     <title>Cadastro</title>
     <link rel='stylesheet' href='../css/main.css'>
+    <link rel='stylesheet' href='../css/triagem.css'>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="../js/script.js" ></script>
   </head>
 
   <body>
@@ -80,10 +84,13 @@
           $qtd=$sql->selecionar($selPes);
 
           if ($qtd>=1) {
-            echo "CPF já existente! Digite novamente!";
+            ?>
+            <div class="error" id="error"></div>
+            <script type="text/javascript">
+              showMessage($('#error'), "CPF já existente! Digite novamente!", 0);
+            </script>
+            <?php
           }
-
-
 
           $insPes="INSERT INTO pessoa (pes_nome, pes_pai, pes_mae, pes_rg, pes_cpf, pes_data, pes_email, pes_estado_civil, pes_cidadania, pes_genero, pes_sexo_biologico, pes_telefone)
             VALUES (
@@ -182,7 +189,12 @@
             }
           }
         } else {
-          echo "Erro ao cadastrar pessoa!";
+          ?>
+          <div class="error" id="error"></div>
+          <script type="text/javascript">
+            showMessage($('#error'), "Erro ao cadastrar pessoa!", 0);
+          </script>
+          <?php
         }
       } elseif ($_GET['passo'] == 3) {
         if ($_SESSION['tipo'] == "recepcao") {
@@ -353,8 +365,18 @@
             }
           }
           if ($okFun && $okUsu) {
+
             //echo "Cadastrado com sucesso!!";
             //echo $_SESSION['fun_cargo'];
+
+            ?>
+            <div class="error success" id="success"></div>
+            <script type="text/javascript">
+              showMessage($('#success'), "Cadastrado com sucesso!!", 1000);
+            </script>
+            <?php
+
+            // echo $_SESSION['fun_cargo'];
             if ($_SESSION['fun_cargo'] == "medico" || $_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
               ////////////////formulário formação do médico ou enfermeiro ///////////////////
               if ($_SESSION['esc'] == 1) {
@@ -371,7 +393,12 @@
             }
 
           } else {
-            echo "Erro ao cadastrar";
+            ?>
+            <div class="error" id="error"></div>
+            <script type="text/javascript">
+              showMessage($('#error'), "Erro ao cadastrar", 0);
+            </script>
+            <?php
           }
         }
       } elseif ($_GET['passo'] == 4) {
@@ -422,7 +449,15 @@
           }
 
           if ($okMed && $okHas) {
+
             //echo "Médico(a) cadastrado!!";
+            ?>
+            <div class="error success" id="success"></div>
+            <script type="text/javascript">
+              showMessage($('#success'), "Médico(a) cadastrado!!", 1000);
+            </script>
+            <?php
+
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
 
@@ -453,12 +488,27 @@
           }
 
           if ($okEnf) {
+
             //echo "Enfermeiro(a) Cadastrado!";
+
+            ?>
+            <div class="error success" id="success"></div>
+            <script type="text/javascript">
+              showMessage($('#success'), "Enfermeiro(a) Cadastrado!", 0);
+            </script>
+            <?php
+
             $_SESSION['form'] = 2;
             include 'form_pessoa.php';
 
           } else {
-            echo "Não cadastrado!!!";
+            ?>
+            <div class="error" id="error"></div>
+            <script type="text/javascript">
+              showMessage($('#error'), "Não cadastrado!!!", 0);
+            </script>
+            <?php
+
           }
         } else {
           $_SESSION['form'] = 2;
@@ -473,8 +523,14 @@
             $_SESSION['form'] = 2;
             include 'form_funcionario.php';
           } else {
-            echo "<script>alert('Concluido!')
-            location.href='cadastro.php';</script>;";
+            ?>
+            <div class="error success" id="success"></div>
+            <script type="text/javascript">
+              showMessage($('#success'), "Concluido!", 0);
+              location.href='cadastro.php';
+            </script>
+            <?php
+
           }
 
         } else {
@@ -490,10 +546,13 @@
          }
         }
       } elseif ($_GET['passo'] == 7) {
-        echo "<script>alert('Concluido!')
-        location.href='cadastro.php';</script>;";
-
-
+        ?>
+        <div class="error success" id="success"></div>
+        <script type="text/javascript">
+          showMessage($('#success'), "Concluido!", 0);
+          location.href='cadastro.php';
+        </script>
+        <?php
       } elseif ($acao == "logoff") {
         session_destroy();
         unset($_SESSION['tipo']);
@@ -503,11 +562,7 @@
     }
     mysqli_close($con);
     ?>
-
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/funcoes.js"></script>
     <script src="../js/autocompletar.js"></script>
-    <script src="../js/script.js" ></script>
     <script src="https://maps.googleapis.com/maps/api/js?language=pt&region=BR&key=AIzaSyC0Qliqe7HjHeD2daBzwVtk6ndT3kJLVlc&libraries=places&callback=initAutocomplete" onerror="loadError()"
         async defer></script>
   </body>

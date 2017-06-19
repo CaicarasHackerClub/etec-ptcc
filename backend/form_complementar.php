@@ -25,49 +25,52 @@ if ($_SESSION['fun_cargo'] == "medico") {
   ?>
   <form class="form form-cadastro form-medico" action="<?=$tipo?>" method="post">
     <h1 class="titulo">Médico</h1>
-    <div class="group-form group-form-cadastro">
-      <label class="lbl_class">CRM</label>
-      <?php
-      if ($_SESSION['form'] == 1) {
-        $dis = "";
-        $val = "";
-      } else {
-        if ($_SESSION['form'] == 2) {
-          $dis = " disabled";
-        } else {
-          $dis = "";
-        }
-        $val = " value=\"" . $medico[1] . "\"";
-      }
-       ?>
-      <input class="inp_class" type="text" name="med_crm" size="28" <?=$dis . $val; ?>><br>
-    </div>
-    <div class="group-form group-form-cadastro">
-      <label class="lbl_class">Especialização</label>
-      <?php
-      if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+    <fieldset class="grupo-info">
+      <legend class="legenda">Dados do Médico</legend>
+      <div class="group-form group-form-cadastro">
+        <label class="lbl_class">CRM</label>
+        <?php
         if ($_SESSION['form'] == 1) {
-          $id=0;
+          $dis = "";
+          $val = "";
         } else {
-          $sel="SELECT * FROM especializacao WHERE esp_id='". $medico[2] ."';";
-          $id=$sql->selecionar($sel);
+          if ($_SESSION['form'] == 2) {
+            $dis = " disabled";
+          } else {
+            $dis = "";
+          }
+          $val = " value=\"" . $medico[1] . "\"";
         }
-        $sql->selectbox("especializacao",$id);
-      } else {
-        // Pegando o nome da especialização
-        $sell="SELECT * FROM medico WHERE funcionario_fun_id='". $_SESSION['fun_id'] ."';";
-        $idMed=$sql->fetch($sell);
-        $sel = "SELECT * FROM medico_has_especializacao WHERE medico_med_id='" . $idMed[0] . "';";
-        $esp = $sql->fetch($sel);
-        $selEsp = "SELECT * FROM especializacao e INNER JOIN medico_has_especializacao me ON e.esp_id = me.especializacao_esp_id WHERE me.especializacao_esp_id ='" . $esp[1] . "';";
-        $es = $sql->fetch($selEsp);
+         ?>
+        <input class="inp_class" type="text" name="med_crm" size="28" <?=$dis . $val; ?>><br>
+      </div>
+      <div class="group-form group-form-cadastro">
+        <label class="lbl_class">Especialização</label>
+        <?php
+        if ($_SESSION['form'] == 1 || $_SESSION['form'] == 3) {
+          if ($_SESSION['form'] == 1) {
+            $id=0;
+          } else {
+            $sel="SELECT * FROM especializacao WHERE esp_id='". $medico[2] ."';";
+            $id=$sql->selecionar($sel);
+          }
+          $sql->selectbox("especializacao",$id);
+        } else {
+          // Pegando o nome da especialização
+          $sell="SELECT * FROM medico WHERE funcionario_fun_id='". $_SESSION['fun_id'] ."';";
+          $idMed=$sql->fetch($sell);
+          $sel = "SELECT * FROM medico_has_especializacao WHERE medico_med_id='" . $idMed[0] . "';";
+          $esp = $sql->fetch($sel);
+          $selEsp = "SELECT * FROM especializacao e INNER JOIN medico_has_especializacao me ON e.esp_id = me.especializacao_esp_id WHERE me.especializacao_esp_id ='" . $esp[1] . "';";
+          $es = $sql->fetch($selEsp);
 
-        echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" disabled value= \"" . $es[1] ."\"  ><br>";
-      }
-      ?>
-    </div>
-    <input class="submit" type="submit" value="Confirmar">
-  </form>
+          echo "<input class=\"inp_class\" type=\"text\" name=\"esp_nome\" size=\"28\" disabled value= \"" . $es[1] ."\"  ><br>";
+        }
+        ?>
+      </div>
+      <input class="submit" type="submit" value="Confirmar">
+    </form>
+  </fieldset>
 <?php
 } elseif ($_SESSION['fun_cargo'] == "enfermeiro" || $_SESSION['fun_cargo'] == "enfermeiro-chefe") {
   if ($_SESSION['form'] == 1) {
