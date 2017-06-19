@@ -1,4 +1,7 @@
 <link rel='stylesheet' href='../css/main.css'>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js" ></script>
+<script type="text/javascript" src="../js/script.js" ></script>
+<script type="text/javascript" src="../js/funcoes.js" ></script>
 <?php
 include_once "Sql.class.php";
 $sql = new Sql;
@@ -70,7 +73,7 @@ if ($_SESSION['form'] == 1) {
         $sel="SELECT * FROM cargo WHERE car_id='". $funcionario[1] ."';";
         $cargo=$sql->fetch($sel);
         echo "<input class=\"inp_class\" type=\"text\" name=\"fun_cargo\" size=\"28\"
-              disabled value = " . $cargo[1] . "><br>";
+              disabled value = " . $cargo[1] . ">";
       }
       ?>
       <br>
@@ -174,12 +177,12 @@ if ($_SESSION['form'] == 1) {
     <?php
     }
     ?>
+    <input class="submit" type="submit" value="Proximo">
 
     <?php
       if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
         echo "<input id=\"0\" class=\"submit\" type=\"button\" value=\"Alterar\">";
       }
     ?>
-    <input class="submit" type="submit" value="Proximo">
   </form>
 </fildset>
