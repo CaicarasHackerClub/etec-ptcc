@@ -448,7 +448,7 @@
             ?>
             <div class="error success" id="success"></div>
             <script type="text/javascript">
-              showMessage($('#success'), "Médico(a) cadastrado!!", 0);
+              showMessage($('#success'), "Médico(a) cadastrado!!", 1000);
             </script>
             <?php
 
