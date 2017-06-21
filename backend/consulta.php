@@ -164,11 +164,17 @@
             <h3> Receita </h3>
 
             <input type="hidden" class="btn-consulta med" name="med" value="">
-            <button type="button" class="btn-consulta adicionar"> Adicionar medicamento </button>
+            <a class="btn-consulta adicionar anchor" href="#abrirModal"> Adicionar medicamento </a>
             <button type="button" class="btn-consulta remover"> Remover medicamento </button>
             <button type="button" class="btn-consulta limpar"> Limpar </button> <br>
 
-            <div class="receita"></div>
+            <div id='abrirModal' class='modal'>
+              <div>
+                <a href='#fechar' title='Fechar' class='fechar'>x</a>
+                <div class="receita"></div>
+                <a class="btn-consulta anchor" href="#fechar">Confirmar</a>
+              </div>
+            </div>
 
             <input type="submit" class="btn-consulta" name="cancelar" value="Cancelar consulta">
             <input type="submit" class="btn-consulta" name="encerrar" value="Encerrar consulta">

@@ -156,6 +156,6 @@ $sql = new Sql;
   </div>
   <?php
   if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
-    echo "<input class=\"submit\" type=\"submit\" value=\"Próximo\"><br>";
+    // echo "<input class=\"submit cadastro-submit\" type=\"submit\" value=\"Próximo\">";
   }
   ?>

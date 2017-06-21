@@ -125,7 +125,7 @@ session_start()
             <img class="avatars" id="img-medico" src="<?php
               echo ($_SESSION['tipo'] == "medico" ? "../img/avatars/consultorio.png":"../img/avatars/consultoriopb.png");
             ?>">
-            <p class="txt_avatar" id="name-consultorio">Consultorio</p>
+            <p class="txt_avatar" id="name-consultorio">Consultório</p>
           </a>
 
         </div>

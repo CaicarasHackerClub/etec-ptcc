@@ -26,6 +26,7 @@
 .fila-consulta {
   margin: 2em;
   width: 97%;
+  margin-left: 22%;
   overflow: auto;
 }
 
@@ -82,6 +83,7 @@
   width: 400px;
   max-width: 50%;
   margin: 2em;
+  margin-left: 10%;
 }
 
 .dados-triagem tr {
@@ -110,7 +112,7 @@
   padding-left: 1em;
 }
 
-.btn-consulta {
+.btn-consulta{
   border: 0;
   border-radius: 4px;
   background-color: #009657;
@@ -120,4 +122,15 @@
 
 .btn-consulta:hover {
   background-color: #F56529;
+}
+
+.modal > div {
+  width: 500px;
+  height: 90%;
+  margin-top: 1%;
+}
+
+.anchor {
+  line-height: 30px;
+  font-size: 12pt;
 }

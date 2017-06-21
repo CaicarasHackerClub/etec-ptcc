@@ -370,7 +370,7 @@
             ?>
             <div class="error success" id="success"></div>
             <script type="text/javascript">
-              showMessage($('#success'), "Cadastrado com sucesso!!", 1000);
+              showMessage($('#success'), "Cadastrado com sucesso!!", 2000);
             </script>
             <?php
 
@@ -450,7 +450,7 @@
             ?>
             <div class="error success" id="success"></div>
             <script type="text/javascript">
-              showMessage($('#success'), "Médico(a) cadastrado!!", 1000);
+              showMessage($('#success'), "Médico(a) cadastrado!!", 2000);
             </script>
             <?php
 
@@ -545,7 +545,7 @@
         <div class="error success" id="success"></div>
         <script type="text/javascript">
           showMessage($('#success'), "Concluido!", 0);
-          location.href='cadastro.php';
+          // location.href='cadastro.php';
         </script>
         <?php
       } elseif ($acao == "logoff") {

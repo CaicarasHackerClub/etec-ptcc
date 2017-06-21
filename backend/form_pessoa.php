@@ -319,10 +319,10 @@ if ($_SESSION['form'] == 1) {
 
       <?php
       if ($_SESSION['form'] == 2 || $_SESSION['form'] == 3) {
-        echo "<input id=\"0\" class=\"submit\" type=\"button\" value=\"Alterar\">";
+        // echo "<input id=\"0\" class=\"submit\" type=\"button\" value=\"Alterar\">";
       }
       ?>
       <input class="submit" id="inp-voltar" type="button" value="Anterior">
-      <input class="inp_class submit cadastro-submit" type="submit" value="Proximo"><br>
+      <input class="submit cadastro-submit" type="submit" value="Proximo">
   </fieldset>
   </form>
